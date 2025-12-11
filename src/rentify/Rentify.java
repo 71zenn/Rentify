@@ -4,6 +4,8 @@
  */
 package rentify;
 
+import view.Login;
+
 /**
  *
  * @author zenni
@@ -14,7 +16,7 @@ public class Rentify {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        new Login().setVisible(true);
     }
     
 }

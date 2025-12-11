@@ -4,15 +4,15 @@
  */
 package userdata;
 import Model.User_model;
-import database.MySQLConnection;
+import database.MySqlConnection;
 import java.sql.*;
 
-public class userDao {
-    MySQLConnection mysql = new MySQLConnection();
+public class UserDao {
+    MySqlConnection mysql = new MySqlConnection();
     
     public void signup(User_model user){
         Connection conn = mysql.openConnection();
-        String sql = "insert into user (username, email, password) values(?,?,?)";
+        String sql = "insert into users (username, email, password) values(?,?,?)";
         try (PreparedStatement pstm = conn.prepareStatement(sql)){
             pstm.setString(1, user.getUsername());
             pstm.setString(2, user.getEmail());
@@ -27,7 +27,7 @@ public class userDao {
     }
     public boolean check(User_model user){
         Connection conn = mysql.openConnection();
-        String sql = "select * from user where email = ? or username = ?";
+        String sql = "select * from users where email = ? or username = ?";
         try (PreparedStatement pstm = conn.prepareStatement(sql)){
             pstm.setString(1, user.getEmail());
             pstm.setString(2, user.getUsername());
@@ -40,4 +40,26 @@ public class userDao {
         }
         return false;
     }
+    
+    public boolean login(User_model user){
+    Connection conn = mysql.openConnection();
+    String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+
+    try(PreparedStatement pstm = conn.prepareStatement(sql)) {
+
+        pstm.setString(1, user.getUsername());
+        pstm.setString(2, user.getPassword());
+
+        ResultSet rs = pstm.executeQuery();
+
+        return rs.next();  // true if login success
+
+    } catch (Exception ex) {
+        System.out.println("Login error: " + ex);
+        return false;
+    } finally {
+        mysql.closeConnection(conn);
+    }
+}
+
 }
