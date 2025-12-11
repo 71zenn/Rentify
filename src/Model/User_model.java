@@ -9,14 +9,21 @@ package Model;
  * @author zenni
  */
 public class User_model {
-    private String username, password, email;
+    private String fullname, username, password, email;
     private int user_id;
     
-    public User_model(String username, String email, String password){
+    public User_model(String fullname, String username, String email, String password){
+        this.fullname = fullname;
         this.username = username;
         this.email = email;
         this.password = password;
     }
+    public void setfullname(String fullname){
+        this.fullname = fullname;
+}
+    public String setfullname(){
+        return fullname;
+}
     public void setUsername(String username){
         this.username = username; 
 }

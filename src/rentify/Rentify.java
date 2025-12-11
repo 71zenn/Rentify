@@ -3,6 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package rentify;
+import controller.userController;
+import database.*;
+
+import view.*;
 
 /**
  *
@@ -14,7 +18,9 @@ public class Rentify {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+        registration registration_obj = new registration();
+        userController controller = new userController();
+        controller.open();
     }
-    
-}
+}     
