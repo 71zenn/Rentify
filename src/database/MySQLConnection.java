@@ -19,10 +19,11 @@ public class MySQLConnection implements Database{
     @Override
     public Connection openConnection() {
         
-        
-        try {
+      try {
+          Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://localhost:3306/rentify";
             String username = "root";
-            String password = "SQL_@bi2025";
+            String password = "Rentification123!";
             String database = "rentify";
             Connection connection; 
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + database, username, password);
@@ -32,7 +33,7 @@ public class MySQLConnection implements Database{
                 System.out.println("Database connecton success.");
             }
             return connection;
-        } catch (Exception e){
+            } catch (Exception e){
             System.out.println(e);
             return null;
         }
@@ -91,4 +92,13 @@ public class MySQLConnection implements Database{
       }
     }
     
+
+    public static void main(String[] args){
+        MySQLConnection db = new MySQLConnection();
+         Connection conn = db.openConnection();
+         if (conn != null){
+            db.closeConnection(conn);
+        }
+    }
 }
+
