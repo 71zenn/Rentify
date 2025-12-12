@@ -28,22 +28,381 @@ public class manageproducts extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        background = new javax.swing.JPanel();
+        mainlogo = new javax.swing.JPanel();
+        rentifylogo = new javax.swing.JLabel();
+        profile = new javax.swing.JPanel();
+        profileicon = new javax.swing.JButton();
+        notification = new javax.swing.JPanel();
+        notificationicon = new javax.swing.JButton();
+        center = new javax.swing.JPanel();
+        jSeparator1 = new javax.swing.JSeparator();
+        dashboard = new javax.swing.JButton();
+        Users = new javax.swing.JButton();
+        Statistics = new javax.swing.JButton();
+        ManageProducts = new javax.swing.JButton();
+        Invoice = new javax.swing.JButton();
+        Calender = new javax.swing.JButton();
+        logout = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1280, 720));
+
+        background.setBackground(new java.awt.Color(249, 250, 251));
+        background.setPreferredSize(new java.awt.Dimension(1280, 720));
+
+        mainlogo.setBackground(new java.awt.Color(249, 250, 251));
+
+        rentifylogo.setBackground(new java.awt.Color(249, 250, 251));
+        rentifylogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/rentifyohnebg (1).png"))); // NOI18N
+
+        javax.swing.GroupLayout mainlogoLayout = new javax.swing.GroupLayout(mainlogo);
+        mainlogo.setLayout(mainlogoLayout);
+        mainlogoLayout.setHorizontalGroup(
+            mainlogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainlogoLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(rentifylogo))
+        );
+        mainlogoLayout.setVerticalGroup(
+            mainlogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainlogoLayout.createSequentialGroup()
+                .addGap(0, 7, Short.MAX_VALUE)
+                .addComponent(rentifylogo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        profile.setPreferredSize(new java.awt.Dimension(60, 60));
+
+        profileicon.setBackground(new java.awt.Color(249, 250, 251));
+        profileicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/profile icon.png"))); // NOI18N
+        profileicon.setBorder(null);
+        profileicon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        profileicon.setPreferredSize(new java.awt.Dimension(60, 60));
+
+        javax.swing.GroupLayout profileLayout = new javax.swing.GroupLayout(profile);
+        profile.setLayout(profileLayout);
+        profileLayout.setHorizontalGroup(
+            profileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, profileLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(profileicon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        profileLayout.setVerticalGroup(
+            profileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(profileLayout.createSequentialGroup()
+                .addComponent(profileicon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        notification.setBackground(new java.awt.Color(249, 250, 251));
+        notification.setPreferredSize(new java.awt.Dimension(32, 32));
+
+        notificationicon.setBackground(new java.awt.Color(249, 250, 251));
+        notificationicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/notification.png"))); // NOI18N
+        notificationicon.setBorder(null);
+        notificationicon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        notificationicon.setPreferredSize(new java.awt.Dimension(32, 32));
+        notificationicon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                notificationiconMouseClicked(evt);
+            }
+        });
+        notificationicon.addActionListener(this::notificationiconActionPerformed);
+
+        javax.swing.GroupLayout notificationLayout = new javax.swing.GroupLayout(notification);
+        notification.setLayout(notificationLayout);
+        notificationLayout.setHorizontalGroup(
+            notificationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, notificationLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(notificationicon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        notificationLayout.setVerticalGroup(
+            notificationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(notificationLayout.createSequentialGroup()
+                .addComponent(notificationicon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        center.setBackground(new java.awt.Color(255, 255, 255));
+
+        jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
+        jSeparator1.setForeground(new java.awt.Color(209, 213, 219));
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        dashboard.setBackground(new java.awt.Color(229, 231, 235));
+        dashboard.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        dashboard.setForeground(new java.awt.Color(107, 114, 128));
+        dashboard.setText("Dashboard");
+        dashboard.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        dashboard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dashboardMouseClicked(evt);
+            }
+        });
+        dashboard.addActionListener(this::dashboardActionPerformed);
+
+        Users.setBackground(new java.awt.Color(229, 231, 235));
+        Users.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Users.setForeground(new java.awt.Color(107, 114, 128));
+        Users.setText("Users");
+        Users.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Users.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                UsersMouseClicked(evt);
+            }
+        });
+        Users.addActionListener(this::UsersActionPerformed);
+
+        Statistics.setBackground(new java.awt.Color(229, 231, 235));
+        Statistics.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Statistics.setForeground(new java.awt.Color(107, 114, 128));
+        Statistics.setText("Statistics");
+        Statistics.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Statistics.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                StatisticsMouseClicked(evt);
+            }
+        });
+        Statistics.addActionListener(this::StatisticsActionPerformed);
+
+        ManageProducts.setBackground(new java.awt.Color(229, 231, 235));
+        ManageProducts.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ManageProducts.setForeground(new java.awt.Color(107, 114, 128));
+        ManageProducts.setText("Manage Products");
+        ManageProducts.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ManageProducts.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ManageProductsMouseClicked(evt);
+            }
+        });
+        ManageProducts.addActionListener(this::ManageProductsActionPerformed);
+
+        Invoice.setBackground(new java.awt.Color(229, 231, 235));
+        Invoice.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Invoice.setForeground(new java.awt.Color(107, 114, 128));
+        Invoice.setText("Invoice");
+        Invoice.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Invoice.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                InvoiceMouseClicked(evt);
+            }
+        });
+        Invoice.addActionListener(this::InvoiceActionPerformed);
+
+        Calender.setBackground(new java.awt.Color(229, 231, 235));
+        Calender.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Calender.setForeground(new java.awt.Color(107, 114, 128));
+        Calender.setText("Calender");
+        Calender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Calender.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CalenderMouseClicked(evt);
+            }
+        });
+        Calender.addActionListener(this::CalenderActionPerformed);
+
+        logout.setBackground(new java.awt.Color(38, 166, 154));
+        logout.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        logout.setForeground(new java.awt.Color(255, 255, 255));
+        logout.setText("Log out");
+        logout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutMouseClicked(evt);
+            }
+        });
+        logout.addActionListener(this::logoutActionPerformed);
+
+        javax.swing.GroupLayout centerLayout = new javax.swing.GroupLayout(center);
+        center.setLayout(centerLayout);
+        centerLayout.setHorizontalGroup(
+            centerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(centerLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(centerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Users, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Statistics, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ManageProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Invoice, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Calender, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1000, Short.MAX_VALUE))
+        );
+        centerLayout.setVerticalGroup(
+            centerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(centerLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(dashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Users, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Statistics, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(ManageProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Invoice, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Calender, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 271, Short.MAX_VALUE)
+                .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
+        );
+
+        javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
+        background.setLayout(backgroundLayout);
+        backgroundLayout.setHorizontalGroup(
+            backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createSequentialGroup()
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(backgroundLayout.createSequentialGroup()
+                        .addComponent(mainlogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(877, 877, 877)
+                        .addComponent(notification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(profile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(center, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21))
+        );
+        backgroundLayout.setVerticalGroup(
+            backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(backgroundLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(profile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(backgroundLayout.createSequentialGroup()
+                        .addComponent(notification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15))
+                    .addComponent(mainlogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(center, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1280, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
+            .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    private notification adWindow; 
+    private void notificationiconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_notificationiconMouseClicked
+
+        if (adWindow == null) {
+            adWindow = new notification();
+            adWindow.setSize(300, 400);
+            adWindow.setLocation(870, 110);
+        }
+
+        if (adWindow.isVisible()) {
+            adWindow.setVisible(false);
+        } else {
+            adWindow.setVisible(true);
+            adWindow.toFront();
+        }
+    }//GEN-LAST:event_notificationiconMouseClicked
+
+    private void notificationiconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationiconActionPerformed
+        // TODO add your handling code here
+    }//GEN-LAST:event_notificationiconActionPerformed
+
+    private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+
+        admindashboard ad = new admindashboard();
+        ad.setVisible(true);
+    }//GEN-LAST:event_dashboardMouseClicked
+
+    private void dashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dashboardActionPerformed
+
+    private void UsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UsersMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+
+        users ad = new users();
+        ad.setVisible(true);
+    }//GEN-LAST:event_UsersMouseClicked
+
+    private void UsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsersActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UsersActionPerformed
+
+    private void StatisticsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StatisticsMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+
+        statistics ad = new statistics();
+        ad.setVisible(true);
+    }//GEN-LAST:event_StatisticsMouseClicked
+
+    private void StatisticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatisticsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_StatisticsActionPerformed
+
+    private void ManageProductsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ManageProductsMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+
+        manageproducts ad = new manageproducts();
+        ad.setVisible(true);
+    }//GEN-LAST:event_ManageProductsMouseClicked
+
+    private void ManageProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageProductsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ManageProductsActionPerformed
+
+    private void InvoiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InvoiceMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+
+        invoice ad = new invoice();
+        ad.setVisible(true);
+    }//GEN-LAST:event_InvoiceMouseClicked
+
+    private void InvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InvoiceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InvoiceActionPerformed
+
+    private void CalenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CalenderMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+
+        calender ad = new calender();
+        ad.setVisible(true);
+    }//GEN-LAST:event_CalenderMouseClicked
+
+    private void CalenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalenderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CalenderActionPerformed
+
+    private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+
+        login loginPage = new login();
+        loginPage.setVisible(true);
+    }//GEN-LAST:event_logoutMouseClicked
+
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_logoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -71,5 +430,21 @@ public class manageproducts extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Calender;
+    private javax.swing.JButton Invoice;
+    private javax.swing.JButton ManageProducts;
+    private javax.swing.JButton Statistics;
+    private javax.swing.JButton Users;
+    private javax.swing.JPanel background;
+    private javax.swing.JPanel center;
+    private javax.swing.JButton dashboard;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton logout;
+    private javax.swing.JPanel mainlogo;
+    private javax.swing.JPanel notification;
+    private javax.swing.JButton notificationicon;
+    private javax.swing.JPanel profile;
+    private javax.swing.JButton profileicon;
+    private javax.swing.JLabel rentifylogo;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,6 +4,12 @@
  */
 package view;
 
+import Model.User_model;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import userdata.userDao;
+import controller.userController;
 /**
  *
  * @author sthaa
@@ -17,8 +23,10 @@ public class users extends javax.swing.JFrame {
      */
     public users() {
         initComponents();
+        loadUsersIntoTable();
+        userController uc = new userController(this);    
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,15 +39,10 @@ public class users extends javax.swing.JFrame {
         background = new javax.swing.JPanel();
         mainlogo = new javax.swing.JPanel();
         rentifylogo = new javax.swing.JLabel();
-        searchbox = new javax.swing.JPanel();
-        searchtext = new javax.swing.JTextField();
-        searchicon = new javax.swing.JButton();
         profile = new javax.swing.JPanel();
         profileicon = new javax.swing.JButton();
         notification = new javax.swing.JPanel();
         notificationicon = new javax.swing.JButton();
-        settings = new javax.swing.JPanel();
-        settingsicon = new javax.swing.JButton();
         center = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         dashboard = new javax.swing.JButton();
@@ -49,6 +52,10 @@ public class users extends javax.swing.JFrame {
         Invoice = new javax.swing.JButton();
         Calender = new javax.swing.JButton();
         logout = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        UserTable = new javax.swing.JTable();
+        edit = new javax.swing.JButton();
+        delete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,66 +65,21 @@ public class users extends javax.swing.JFrame {
         mainlogo.setBackground(new java.awt.Color(249, 250, 251));
 
         rentifylogo.setBackground(new java.awt.Color(249, 250, 251));
-        rentifylogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/rentify-200.png"))); // NOI18N
-        rentifylogo.setText("jLabel2");
+        rentifylogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/rentifyohnebg (1).png"))); // NOI18N
 
         javax.swing.GroupLayout mainlogoLayout = new javax.swing.GroupLayout(mainlogo);
         mainlogo.setLayout(mainlogoLayout);
         mainlogoLayout.setHorizontalGroup(
             mainlogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainlogoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(rentifylogo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainlogoLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(rentifylogo))
         );
         mainlogoLayout.setVerticalGroup(
             mainlogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainlogoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(rentifylogo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
-        );
-
-        searchbox.setBackground(new java.awt.Color(229, 231, 235));
-        searchbox.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-
-        searchtext.setBackground(new java.awt.Color(229, 231, 235));
-        searchtext.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        searchtext.setForeground(new java.awt.Color(107, 114, 128));
-        searchtext.setText("Search in Rentify");
-        searchtext.setBorder(null);
-        searchtext.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        searchtext.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                searchtextFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                searchtextFocusLost(evt);
-            }
-        });
-        searchtext.addActionListener(this::searchtextActionPerformed);
-
-        searchicon.setBackground(new java.awt.Color(229, 231, 235));
-        searchicon.setForeground(new java.awt.Color(107, 114, 128));
-        searchicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search-icon.png"))); // NOI18N
-        searchicon.setBorder(null);
-        searchicon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        searchicon.setPreferredSize(new java.awt.Dimension(117, 23));
-        searchicon.addActionListener(this::searchiconActionPerformed);
-
-        javax.swing.GroupLayout searchboxLayout = new javax.swing.GroupLayout(searchbox);
-        searchbox.setLayout(searchboxLayout);
-        searchboxLayout.setHorizontalGroup(
-            searchboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchboxLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(searchtext, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(searchicon, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))
-        );
-        searchboxLayout.setVerticalGroup(
-            searchboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(searchicon, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-            .addComponent(searchtext, javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(0, 7, Short.MAX_VALUE)
+                .addComponent(rentifylogo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         profile.setPreferredSize(new java.awt.Dimension(60, 60));
@@ -170,30 +132,6 @@ public class users extends javax.swing.JFrame {
             notificationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(notificationLayout.createSequentialGroup()
                 .addComponent(notificationicon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        settings.setBackground(new java.awt.Color(249, 250, 251));
-        settings.setPreferredSize(new java.awt.Dimension(32, 32));
-
-        settingsicon.setBackground(new java.awt.Color(249, 250, 251));
-        settingsicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/settingsicon.png"))); // NOI18N
-        settingsicon.setBorder(null);
-        settingsicon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        settingsicon.setPreferredSize(new java.awt.Dimension(32, 32));
-
-        javax.swing.GroupLayout settingsLayout = new javax.swing.GroupLayout(settings);
-        settings.setLayout(settingsLayout);
-        settingsLayout.setHorizontalGroup(
-            settingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, settingsLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(settingsicon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        settingsLayout.setVerticalGroup(
-            settingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(settingsLayout.createSequentialGroup()
-                .addComponent(settingsicon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -288,6 +226,35 @@ public class users extends javax.swing.JFrame {
         });
         logout.addActionListener(this::logoutActionPerformed);
 
+        UserTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "#", "Username", "Email", "Password"
+            }
+        ));
+        jScrollPane1.setViewportView(UserTable);
+
+        edit.setText("EDIT");
+        edit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        edit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                editMouseClicked(evt);
+            }
+        });
+
+        delete.setText("DELETE");
+        delete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        delete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deleteMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout centerLayout = new javax.swing.GroupLayout(center);
         center.setLayout(centerLayout);
         centerLayout.setHorizontalGroup(
@@ -304,7 +271,17 @@ public class users extends javax.swing.JFrame {
                     .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1000, Short.MAX_VALUE))
+                .addGroup(centerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(centerLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
+                    .addGroup(centerLayout.createSequentialGroup()
+                        .addGap(387, 387, 387)
+                        .addComponent(edit, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
+                        .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(387, Short.MAX_VALUE))))
         );
         centerLayout.setVerticalGroup(
             centerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -325,6 +302,14 @@ public class users extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 246, Short.MAX_VALUE)
                 .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
+            .addGroup(centerLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(centerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edit, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23))
         );
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
@@ -332,36 +317,27 @@ public class users extends javax.swing.JFrame {
         backgroundLayout.setHorizontalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createSequentialGroup()
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(backgroundLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(center, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(backgroundLayout.createSequentialGroup()
-                        .addContainerGap(12, Short.MAX_VALUE)
                         .addComponent(mainlogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(searchbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 463, Short.MAX_VALUE)
-                        .addComponent(settings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(877, 877, 877)
                         .addComponent(notification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(profile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(profile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(center, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21))
         );
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backgroundLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
+                .addContainerGap()
                 .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(profile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(backgroundLayout.createSequentialGroup()
-                        .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(notification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(searchbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(settings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(notification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(15, 15, 15))
-                    .addComponent(mainlogo, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(mainlogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(center, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(19, Short.MAX_VALUE))
@@ -377,42 +353,44 @@ public class users extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void searchtextFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchtextFocusGained
-        // TODO add your handling code here:
-        if (searchtext.getText().equals("Search in Rentify")) {
-            searchtext.setText("");
-        }
-    }//GEN-LAST:event_searchtextFocusGained
+    private void loadUsersIntoTable() {
+    userDao dao = new userDao();
+    List<User_model> users = dao.getAllUsers();
 
-    private void searchtextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchtextFocusLost
-        // TODO add your handling code here:
-        if (searchtext.getText().trim().equals("")) {
-            searchtext.setText("Search in Rentify");
-        }
-    }//GEN-LAST:event_searchtextFocusLost
+    DefaultTableModel model = (DefaultTableModel) UserTable.getModel();
+    model.setRowCount(0);
 
-    private void searchtextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchtextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchtextActionPerformed
-
-    private void searchiconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchiconActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchiconActionPerformed
+    for (User_model u : users) {
+        model.addRow(new Object[]{
+            u.getUserID(),
+            u.getUsername(),
+            u.getEmail(),
+            u.getPassword(),
+            ""
+        });
+    }
+}
 
     private void notificationiconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_notificationiconMouseClicked
 
-        notification ad = new notification(); // this is a JPanel now
-        ad.setSize(250, 350);  // size of popup
-        ad.setLocation(930,100);
-        ad.setVisible(true);
+        if (adWindow == null) {
+            adWindow = new notification();
+            adWindow.setSize(300, 400);
+            adWindow.setLocation(870, 110);
+        }
+
+        if (adWindow.isVisible()) {
+            adWindow.setVisible(false);
+        } else {
+            adWindow.setVisible(true);
+            adWindow.toFront();
+        }
     }//GEN-LAST:event_notificationiconMouseClicked
 
     private void notificationiconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationiconActionPerformed
@@ -503,7 +481,56 @@ public class users extends javax.swing.JFrame {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_logoutActionPerformed
+    
+    private int getSelectedUserId() {
+    int row = UserTable.getSelectedRow();
 
+    if (row == -1) {
+        JOptionPane.showMessageDialog(this, "Please select a row first.");
+        return -1;
+    }
+
+    return (int) UserTable.getValueAt(row, 0); 
+}
+    private void editMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editMouseClicked
+        // TODO add your handling code here:
+        int userId = getSelectedUserId();
+        if (userId == -1) return;
+
+        userDao service = new userDao();
+        User_model user = service.getUserById(userId);
+
+        String newUsername = JOptionPane.showInputDialog(this, "Username:", user.getUsername());
+        String newEmail = JOptionPane.showInputDialog(this, "Email:", user.getEmail());
+        String newPassword = JOptionPane.showInputDialog(this, "Password:", user.getPassword());
+
+    if (newUsername != null && newEmail != null && newPassword != null) {
+        user.setUsername(newUsername);
+        user.setEmail(newEmail);
+        user.setPasssword(newPassword);
+
+        service.updateUser(user);
+        loadUsersIntoTable();
+    }
+    }//GEN-LAST:event_editMouseClicked
+
+    private void deleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseClicked
+        // TODO add your handling code here:
+        int userId = getSelectedUserId();
+    if (userId == -1) return;
+
+    int confirm = JOptionPane.showConfirmDialog(this,
+            "Delete this user?",
+            "Confirm",
+            JOptionPane.YES_NO_OPTION);
+
+    if (confirm == JOptionPane.YES_OPTION) {
+        userDao service = new userDao();
+        service.deleteUser(userId);
+        loadUsersIntoTable();
+    }
+    }//GEN-LAST:event_deleteMouseClicked
+    private notification adWindow; 
     /**
      * @param args the command line arguments
      */
@@ -534,10 +561,14 @@ public class users extends javax.swing.JFrame {
     private javax.swing.JButton Invoice;
     private javax.swing.JButton ManageProducts;
     private javax.swing.JButton Statistics;
+    private javax.swing.JTable UserTable;
     private javax.swing.JButton Users;
     private javax.swing.JPanel background;
     private javax.swing.JPanel center;
     private javax.swing.JButton dashboard;
+    private javax.swing.JButton delete;
+    private javax.swing.JButton edit;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton logout;
     private javax.swing.JPanel mainlogo;
@@ -546,10 +577,5 @@ public class users extends javax.swing.JFrame {
     private javax.swing.JPanel profile;
     private javax.swing.JButton profileicon;
     private javax.swing.JLabel rentifylogo;
-    private javax.swing.JPanel searchbox;
-    private javax.swing.JButton searchicon;
-    private javax.swing.JTextField searchtext;
-    private javax.swing.JPanel settings;
-    private javax.swing.JButton settingsicon;
     // End of variables declaration//GEN-END:variables
 }
