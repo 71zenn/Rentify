@@ -35,15 +35,44 @@ public class dashboard extends javax.swing.JFrame {
         History = new javax.swing.JButton();
         Wishlist = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
+<<<<<<< Updated upstream
         jLabel1 = new javax.swing.JLabel();
         Support = new javax.swing.JButton();
         Library1 = new javax.swing.JButton();
         Books1 = new javax.swing.JButton();
+=======
+        Profile_icon = new javax.swing.JLabel();
+        Profile_icon1 = new javax.swing.JLabel();
+        Profile_icon2 = new javax.swing.JLabel();
+        Logout = new javax.swing.JButton();
+        Profile_icon3 = new javax.swing.JLabel();
+        Profile_icon4 = new javax.swing.JLabel();
+        Profile_icon5 = new javax.swing.JLabel();
+        Profile_icon6 = new javax.swing.JLabel();
+        Profile_icon7 = new javax.swing.JLabel();
+        Profile_icon8 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        Profile_icon9 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        Support = new javax.swing.JButton();
+        Library1 = new javax.swing.JButton();
+>>>>>>> Stashed changes
         Movies1 = new javax.swing.JButton();
         Newest1 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+<<<<<<< Updated upstream
+=======
+        Books2 = new javax.swing.JButton();
+>>>>>>> Stashed changes
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -114,6 +143,81 @@ public class dashboard extends javax.swing.JFrame {
             .addGap(0, 604, Short.MAX_VALUE)
         );
 
+<<<<<<< Updated upstream
+=======
+        Profile_icon.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        Profile_icon.setForeground(new java.awt.Color(51, 51, 51));
+        Profile_icon.setText("ashishshrestha250@gmail.com");
+
+        Profile_icon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/harrypotterHBPcover.jpg"))); // NOI18N
+
+        Profile_icon2.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
+        Profile_icon2.setForeground(new java.awt.Color(51, 51, 51));
+        Profile_icon2.setText("Ashish Shrestha");
+
+        Logout.setBackground(new java.awt.Color(38, 166, 154));
+        Logout.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        Logout.setForeground(new java.awt.Color(255, 255, 255));
+        Logout.setText("Logout");
+        Logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LogoutActionPerformed(evt);
+            }
+        });
+
+        Profile_icon3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/profile-85x85.png"))); // NOI18N
+
+        Profile_icon4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/harrypotterTPScover.jpg"))); // NOI18N
+
+        Profile_icon5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/Transformersposter.jpg"))); // NOI18N
+
+        Profile_icon6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/Johnwickposter.jpg"))); // NOI18N
+
+        Profile_icon7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Profile_icon7.setForeground(new java.awt.Color(51, 51, 51));
+        Profile_icon7.setText("Transformers");
+
+        Profile_icon8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Profile_icon8.setForeground(new java.awt.Color(51, 51, 51));
+        Profile_icon8.setText("Harry Potter and");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel2.setText("The Half-blood Prince ");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel3.setText("Philosophers' stone");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel4.setText("Harry Potter and the");
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel5.setText("John wick");
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel6.setText("Rs. 1100");
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel7.setText("Rs. 999");
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel8.setText("Rs. 1299");
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel9.setText("Rs. 899");
+
+        Profile_icon9.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
+        Profile_icon9.setForeground(new java.awt.Color(51, 51, 51));
+        Profile_icon9.setText("Favourites");
+
+>>>>>>> Stashed changes
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -124,14 +228,77 @@ public class dashboard extends javax.swing.JFrame {
                     .addComponent(Wishlist, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(History, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Orders, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+<<<<<<< Updated upstream
                     .addComponent(Profile, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(949, Short.MAX_VALUE))
+=======
+                    .addComponent(Profile, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Logout, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(160, 160, 160)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Profile_icon2)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(Profile_icon)))
+                        .addContainerGap())
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(62, 62, 62)
+                                .addComponent(Profile_icon5))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(77, 77, 77)
+                                .addComponent(Profile_icon7))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(87, 87, 87)
+                                .addComponent(jLabel7)))
+                        .addGap(70, 70, 70)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Profile_icon1)
+                            .addComponent(Profile_icon8, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel8))
+                        .addGap(70, 70, 70)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addContainerGap())
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Profile_icon4)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                        .addComponent(Profile_icon6)
+                                        .addGap(37, 37, 37))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel9)
+                                            .addComponent(jLabel5))
+                                        .addGap(73, 73, 73))))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(Profile_icon9)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(341, 341, 341)
+                    .addComponent(Profile_icon3)
+                    .addContainerGap(798, Short.MAX_VALUE)))
+>>>>>>> Stashed changes
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+<<<<<<< Updated upstream
                 .addGap(77, 77, 77)
                 .addComponent(Profile, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
@@ -144,6 +311,63 @@ public class dashboard extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+=======
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(Profile, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(Orders, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(History, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(Wishlist, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(Profile_icon2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Profile_icon)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Profile_icon9, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Logout, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(71, 71, 71))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(Profile_icon4)
+                            .addComponent(Profile_icon1)
+                            .addComponent(Profile_icon6)
+                            .addComponent(Profile_icon5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Profile_icon7)
+                            .addComponent(Profile_icon8)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(48, 48, 48)
+                    .addComponent(Profile_icon3)
+                    .addContainerGap(473, Short.MAX_VALUE)))
+>>>>>>> Stashed changes
         );
 
         jPanel1.add(jPanel2);
@@ -177,6 +401,7 @@ public class dashboard extends javax.swing.JFrame {
         jPanel1.add(Library1);
         Library1.setBounds(310, 50, 146, 36);
 
+<<<<<<< Updated upstream
         Books1.setBackground(new java.awt.Color(232, 241, 253));
         Books1.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         Books1.setForeground(new java.awt.Color(17, 24, 39));
@@ -189,6 +414,8 @@ public class dashboard extends javax.swing.JFrame {
         jPanel1.add(Books1);
         Books1.setBounds(480, 50, 146, 36);
 
+=======
+>>>>>>> Stashed changes
         Movies1.setBackground(new java.awt.Color(232, 241, 253));
         Movies1.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         Movies1.setForeground(new java.awt.Color(17, 24, 39));
@@ -232,6 +459,21 @@ public class dashboard extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(810, 100, 250, 40);
 
+<<<<<<< Updated upstream
+=======
+        Books2.setBackground(new java.awt.Color(232, 241, 253));
+        Books2.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        Books2.setForeground(new java.awt.Color(17, 24, 39));
+        Books2.setText("Books");
+        Books2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Books2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Books2);
+        Books2.setBounds(480, 50, 146, 36);
+
+>>>>>>> Stashed changes
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 1280, 720);
 
@@ -262,9 +504,15 @@ public class dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Library1ActionPerformed
 
+<<<<<<< Updated upstream
     private void Books1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Books1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Books1ActionPerformed
+=======
+    private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LogoutActionPerformed
+>>>>>>> Stashed changes
 
     private void Movies1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Movies1ActionPerformed
         // TODO add your handling code here:
@@ -278,6 +526,13 @@ public class dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+<<<<<<< Updated upstream
+=======
+    private void Books2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Books2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Books2ActionPerformed
+
+>>>>>>> Stashed changes
     /**
      * @param args the command line arguments
      */
@@ -304,17 +559,48 @@ public class dashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+<<<<<<< Updated upstream
     private javax.swing.JButton Books1;
     private javax.swing.JButton History;
     private javax.swing.JButton Library1;
+=======
+    private javax.swing.JButton Books2;
+    private javax.swing.JButton History;
+    private javax.swing.JButton Library1;
+    private javax.swing.JButton Logout;
+>>>>>>> Stashed changes
     private javax.swing.JButton Movies1;
     private javax.swing.JButton Newest1;
     private javax.swing.JButton Orders;
     private javax.swing.JButton Profile;
+<<<<<<< Updated upstream
+=======
+    private javax.swing.JLabel Profile_icon;
+    private javax.swing.JLabel Profile_icon1;
+    private javax.swing.JLabel Profile_icon2;
+    private javax.swing.JLabel Profile_icon3;
+    private javax.swing.JLabel Profile_icon4;
+    private javax.swing.JLabel Profile_icon5;
+    private javax.swing.JLabel Profile_icon6;
+    private javax.swing.JLabel Profile_icon7;
+    private javax.swing.JLabel Profile_icon8;
+    private javax.swing.JLabel Profile_icon9;
+>>>>>>> Stashed changes
     private javax.swing.JButton Support;
     private javax.swing.JButton Wishlist;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+<<<<<<< Updated upstream
+=======
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+>>>>>>> Stashed changes
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
