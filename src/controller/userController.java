@@ -17,7 +17,6 @@ public class userController{
     
     public userController(registration userView){
          this.userView = userView;
-        
          this.userView.addUserListener(new SignUpListener());
         
     }
@@ -41,7 +40,7 @@ public class userController{
                     User_model usermodel = new User_model(fullname, username, email, password);
                     boolean check = userdao.check(usermodel);
                     if(check){
-                        JOptionPane.showMessageDialog(userView, "Duplicated");
+                        JOptionPane.showMessageDialog(userView, "Already exist");
                     }else{
                         userdao.signUp(usermodel);
                         JOptionPane.showMessageDialog(userView, "Successfull");
