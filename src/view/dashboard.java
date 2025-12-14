@@ -35,12 +35,6 @@ public class dashboard extends javax.swing.JFrame {
         History = new javax.swing.JButton();
         Wishlist = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-<<<<<<< Updated upstream
-        jLabel1 = new javax.swing.JLabel();
-        Support = new javax.swing.JButton();
-        Library1 = new javax.swing.JButton();
-        Books1 = new javax.swing.JButton();
-=======
         Profile_icon = new javax.swing.JLabel();
         Profile_icon1 = new javax.swing.JLabel();
         Profile_icon2 = new javax.swing.JLabel();
@@ -63,16 +57,12 @@ public class dashboard extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         Support = new javax.swing.JButton();
         Library1 = new javax.swing.JButton();
->>>>>>> Stashed changes
         Movies1 = new javax.swing.JButton();
         Newest1 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-<<<<<<< Updated upstream
-=======
         Books2 = new javax.swing.JButton();
->>>>>>> Stashed changes
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -143,8 +133,6 @@ public class dashboard extends javax.swing.JFrame {
             .addGap(0, 604, Short.MAX_VALUE)
         );
 
-<<<<<<< Updated upstream
-=======
         Profile_icon.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         Profile_icon.setForeground(new java.awt.Color(51, 51, 51));
         Profile_icon.setText("ashishshrestha250@gmail.com");
@@ -217,7 +205,6 @@ public class dashboard extends javax.swing.JFrame {
         Profile_icon9.setForeground(new java.awt.Color(51, 51, 51));
         Profile_icon9.setText("Favourites");
 
->>>>>>> Stashed changes
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -228,12 +215,6 @@ public class dashboard extends javax.swing.JFrame {
                     .addComponent(Wishlist, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(History, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Orders, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-<<<<<<< Updated upstream
-                    .addComponent(Profile, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(949, Short.MAX_VALUE))
-=======
                     .addComponent(Profile, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Logout, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
@@ -293,25 +274,10 @@ public class dashboard extends javax.swing.JFrame {
                     .addGap(341, 341, 341)
                     .addComponent(Profile_icon3)
                     .addContainerGap(798, Short.MAX_VALUE)))
->>>>>>> Stashed changes
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-<<<<<<< Updated upstream
-                .addGap(77, 77, 77)
-                .addComponent(Profile, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(Orders, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(History, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(Wishlist, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-=======
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -367,7 +333,6 @@ public class dashboard extends javax.swing.JFrame {
                     .addGap(48, 48, 48)
                     .addComponent(Profile_icon3)
                     .addContainerGap(473, Short.MAX_VALUE)))
->>>>>>> Stashed changes
         );
 
         jPanel1.add(jPanel2);
@@ -401,21 +366,6 @@ public class dashboard extends javax.swing.JFrame {
         jPanel1.add(Library1);
         Library1.setBounds(310, 50, 146, 36);
 
-<<<<<<< Updated upstream
-        Books1.setBackground(new java.awt.Color(232, 241, 253));
-        Books1.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
-        Books1.setForeground(new java.awt.Color(17, 24, 39));
-        Books1.setText("Books");
-        Books1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Books1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(Books1);
-        Books1.setBounds(480, 50, 146, 36);
-
-=======
->>>>>>> Stashed changes
         Movies1.setBackground(new java.awt.Color(232, 241, 253));
         Movies1.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         Movies1.setForeground(new java.awt.Color(17, 24, 39));
@@ -459,8 +409,6 @@ public class dashboard extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(810, 100, 250, 40);
 
-<<<<<<< Updated upstream
-=======
         Books2.setBackground(new java.awt.Color(232, 241, 253));
         Books2.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         Books2.setForeground(new java.awt.Color(17, 24, 39));
@@ -473,7 +421,6 @@ public class dashboard extends javax.swing.JFrame {
         jPanel1.add(Books2);
         Books2.setBounds(480, 50, 146, 36);
 
->>>>>>> Stashed changes
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 1280, 720);
 
@@ -504,15 +451,9 @@ public class dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Library1ActionPerformed
 
-<<<<<<< Updated upstream
-    private void Books1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Books1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Books1ActionPerformed
-=======
     private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_LogoutActionPerformed
->>>>>>> Stashed changes
 
     private void Movies1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Movies1ActionPerformed
         // TODO add your handling code here:
@@ -526,13 +467,10 @@ public class dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-<<<<<<< Updated upstream
-=======
     private void Books2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Books2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Books2ActionPerformed
 
->>>>>>> Stashed changes
     /**
      * @param args the command line arguments
      */
@@ -559,22 +497,14 @@ public class dashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-<<<<<<< Updated upstream
-    private javax.swing.JButton Books1;
-    private javax.swing.JButton History;
-    private javax.swing.JButton Library1;
-=======
     private javax.swing.JButton Books2;
     private javax.swing.JButton History;
     private javax.swing.JButton Library1;
     private javax.swing.JButton Logout;
->>>>>>> Stashed changes
     private javax.swing.JButton Movies1;
     private javax.swing.JButton Newest1;
     private javax.swing.JButton Orders;
     private javax.swing.JButton Profile;
-<<<<<<< Updated upstream
-=======
     private javax.swing.JLabel Profile_icon;
     private javax.swing.JLabel Profile_icon1;
     private javax.swing.JLabel Profile_icon2;
@@ -585,13 +515,10 @@ public class dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel Profile_icon7;
     private javax.swing.JLabel Profile_icon8;
     private javax.swing.JLabel Profile_icon9;
->>>>>>> Stashed changes
     private javax.swing.JButton Support;
     private javax.swing.JButton Wishlist;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-<<<<<<< Updated upstream
-=======
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -600,7 +527,6 @@ public class dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
->>>>>>> Stashed changes
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
