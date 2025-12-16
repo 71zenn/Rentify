@@ -4,6 +4,14 @@
  */
 package view;
 
+import java.awt.BorderLayout;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.category.DefaultCategoryDataset;
+
+import javax.swing.JFrame;
+import org.jfree.chart.plot.PlotOrientation;
 /**
  *
  * @author sthaa
@@ -17,6 +25,30 @@ public class statistics extends javax.swing.JFrame {
      */
     public statistics() {
         initComponents();
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        dataset.addValue(120, "Books", "Books");
+        dataset.addValue(200, "Movies", "Movies");
+
+        JFreeChart chart = ChartFactory.createBarChart(
+            "Product Sales",
+            "Product",
+            "Units Sold",
+            dataset,
+            PlotOrientation.VERTICAL,
+            true,
+            true,
+            false
+        );
+
+        ChartPanel chartPanel = new ChartPanel(chart);
+        chartPanel.setMouseWheelEnabled(true);
+
+        jLabel1.removeAll();                    
+        jLabel1.setLayout(new BorderLayout()); 
+        jLabel1.add(chartPanel, BorderLayout.CENTER);
+
+        jLabel1.revalidate();
+        jLabel1.repaint();
     }
 
     /**
@@ -44,6 +76,7 @@ public class statistics extends javax.swing.JFrame {
         Invoice = new javax.swing.JButton();
         Calender = new javax.swing.JButton();
         logout = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -214,6 +247,8 @@ public class statistics extends javax.swing.JFrame {
         });
         logout.addActionListener(this::logoutActionPerformed);
 
+        jLabel1.setText("chart");
+
         javax.swing.GroupLayout centerLayout = new javax.swing.GroupLayout(center);
         center.setLayout(centerLayout);
         centerLayout.setHorizontalGroup(
@@ -230,7 +265,9 @@ public class statistics extends javax.swing.JFrame {
                     .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1000, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 954, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         centerLayout.setVerticalGroup(
             centerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -251,6 +288,10 @@ public class statistics extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 246, Short.MAX_VALUE)
                 .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, centerLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
@@ -299,7 +340,7 @@ public class statistics extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private notification adWindow; 
+
     private void notificationiconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_notificationiconMouseClicked
 
         if (adWindow == null) {
@@ -403,7 +444,7 @@ public class statistics extends javax.swing.JFrame {
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_logoutActionPerformed
-
+    private notification adWindow; 
     /**
      * @param args the command line arguments
      */
@@ -438,6 +479,7 @@ public class statistics extends javax.swing.JFrame {
     private javax.swing.JPanel background;
     private javax.swing.JPanel center;
     private javax.swing.JButton dashboard;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton logout;
     private javax.swing.JPanel mainlogo;

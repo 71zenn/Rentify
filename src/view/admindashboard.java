@@ -478,7 +478,7 @@ public class admindashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutActionPerformed
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
-        // TODO add your handling code here:
+        // TODO add your handlilogoutMouseClng code here:
         this.dispose();
 
         login loginPage = new login();

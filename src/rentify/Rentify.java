@@ -6,7 +6,6 @@ package rentify;
 
 import view.admindashboard;
 
-
 /**
  *
  * @author zenni
