@@ -4,6 +4,8 @@
  */
 package view;
 
+import javax.swing.Timer;
+
 /**
  *
  * @author sthaa
@@ -298,21 +300,66 @@ public class manageproducts extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private notification adWindow; 
+    private notification adWindow;
+    private javax.swing.Timer rollTimer;
+
+    private final int X = 870;
+    private final int Y = 110;
+    private final int FULL_HEIGHT = 400;;
+    private boolean isOpen = false;
     private void notificationiconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_notificationiconMouseClicked
 
         if (adWindow == null) {
             adWindow = new notification();
-            adWindow.setSize(300, 400);
-            adWindow.setLocation(870, 110);
+            adWindow.setLocation(X, Y);
+            adWindow.setSize(300, 0);
         }
 
-        if (adWindow.isVisible()) {
-            adWindow.setVisible(false);
-        } else {
-            adWindow.setVisible(true);
-            adWindow.toFront();
+        if (rollTimer != null && rollTimer.isRunning()) {
+            rollTimer.stop();
         }
+
+        if (!isOpen) {
+            rollDown();
+        } else {
+            rollUp();
+        }
+    }
+
+    private void rollDown() {
+        adWindow.setVisible(true);
+        adWindow.toFront();
+
+        rollTimer = new Timer(10, e -> {
+            int h = adWindow.getHeight();
+
+            if (h < FULL_HEIGHT) {
+                adWindow.setSize(300, h + 20);
+            } else {
+                adWindow.setSize(300, FULL_HEIGHT);
+                isOpen = true;
+                rollTimer.stop();
+            }
+        });
+
+        rollTimer.start();
+    }
+
+    private void rollUp() {
+        rollTimer = new Timer(10, e -> {
+            int h = adWindow.getHeight();
+
+            if (h > 0) {
+                adWindow.setSize(300, h - 10);
+            } else {
+                adWindow.setSize(300, 0);
+                adWindow.setVisible(false);
+                isOpen = false;
+                rollTimer.stop();
+            }
+        });
+
+        rollTimer.start();
     }//GEN-LAST:event_notificationiconMouseClicked
 
     private void notificationiconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationiconActionPerformed
