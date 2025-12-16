@@ -67,7 +67,7 @@ public class statistics extends javax.swing.JFrame {
         mainlogo = new javax.swing.JPanel();
         rentifylogo = new javax.swing.JLabel();
         profile = new javax.swing.JPanel();
-        profileicon = new javax.swing.JButton();
+        ProfileIcon = new javax.swing.JLabel();
         notification = new javax.swing.JPanel();
         notificationicon = new javax.swing.JButton();
         center = new javax.swing.JPanel();
@@ -106,26 +106,25 @@ public class statistics extends javax.swing.JFrame {
                 .addComponent(rentifylogo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        profile.setBackground(new java.awt.Color(249, 250, 251));
         profile.setPreferredSize(new java.awt.Dimension(60, 60));
 
-        profileicon.setBackground(new java.awt.Color(249, 250, 251));
-        profileicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/profile icon.png"))); // NOI18N
-        profileicon.setBorder(null);
-        profileicon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        profileicon.setPreferredSize(new java.awt.Dimension(60, 60));
+        ProfileIcon.setBackground(new java.awt.Color(249, 250, 251));
+        ProfileIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/profile icon.png"))); // NOI18N
+        ProfileIcon.setPreferredSize(new java.awt.Dimension(60, 60));
 
         javax.swing.GroupLayout profileLayout = new javax.swing.GroupLayout(profile);
         profile.setLayout(profileLayout);
         profileLayout.setHorizontalGroup(
             profileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, profileLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(profileicon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(profileLayout.createSequentialGroup()
+                .addComponent(ProfileIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         profileLayout.setVerticalGroup(
             profileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(profileLayout.createSequentialGroup()
-                .addComponent(profileicon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ProfileIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -160,6 +159,7 @@ public class statistics extends javax.swing.JFrame {
         );
 
         center.setBackground(new java.awt.Color(255, 255, 255));
+        center.setPreferredSize(new java.awt.Dimension(1237, 600));
 
         jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator1.setForeground(new java.awt.Color(209, 213, 219));
@@ -270,7 +270,7 @@ public class statistics extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 954, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         centerLayout.setVerticalGroup(
             centerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -477,6 +477,7 @@ public class statistics extends javax.swing.JFrame {
     private javax.swing.JButton Calender;
     private javax.swing.JButton Invoice;
     private javax.swing.JButton ManageProducts;
+    private javax.swing.JLabel ProfileIcon;
     private javax.swing.JButton Statistics;
     private javax.swing.JButton Users;
     private javax.swing.JPanel background;
@@ -489,7 +490,6 @@ public class statistics extends javax.swing.JFrame {
     private javax.swing.JPanel notification;
     private javax.swing.JButton notificationicon;
     private javax.swing.JPanel profile;
-    private javax.swing.JButton profileicon;
     private javax.swing.JLabel rentifylogo;
     // End of variables declaration//GEN-END:variables
 }

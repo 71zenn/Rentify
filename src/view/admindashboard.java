@@ -63,7 +63,7 @@ public class admindashboard extends javax.swing.JFrame {
         mainlogo = new javax.swing.JPanel();
         rentifylogo = new javax.swing.JLabel();
         profile = new javax.swing.JPanel();
-        profileicon = new javax.swing.JButton();
+        ProfileIcon = new javax.swing.JLabel();
         notification = new javax.swing.JPanel();
         notificationicon = new javax.swing.JButton();
         center = new javax.swing.JPanel();
@@ -76,7 +76,7 @@ public class admindashboard extends javax.swing.JFrame {
         Calender = new javax.swing.JButton();
         logout = new javax.swing.JButton();
         admin = new javax.swing.JPanel();
-        adminicon = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         Admintext = new javax.swing.JLabel();
         sales = new javax.swing.JPanel();
         salestext = new javax.swing.JLabel();
@@ -125,26 +125,24 @@ public class admindashboard extends javax.swing.JFrame {
                 .addComponent(rentifylogo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        profile.setBackground(new java.awt.Color(249, 250, 251));
         profile.setPreferredSize(new java.awt.Dimension(60, 60));
 
-        profileicon.setBackground(new java.awt.Color(249, 250, 251));
-        profileicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/profile icon.png"))); // NOI18N
-        profileicon.setBorder(null);
-        profileicon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        profileicon.setPreferredSize(new java.awt.Dimension(60, 60));
+        ProfileIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/profile icon.png"))); // NOI18N
+        ProfileIcon.setPreferredSize(new java.awt.Dimension(60, 60));
 
         javax.swing.GroupLayout profileLayout = new javax.swing.GroupLayout(profile);
         profile.setLayout(profileLayout);
         profileLayout.setHorizontalGroup(
             profileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, profileLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(profileicon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(profileLayout.createSequentialGroup()
+                .addComponent(ProfileIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         profileLayout.setVerticalGroup(
             profileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(profileLayout.createSequentialGroup()
-                .addComponent(profileicon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ProfileIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -273,20 +271,21 @@ public class admindashboard extends javax.swing.JFrame {
         admin.setBackground(new java.awt.Color(255, 255, 255));
         admin.setPreferredSize(new java.awt.Dimension(85, 85));
 
-        adminicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/profile-85x85.png"))); // NOI18N
-        adminicon.setBorder(null);
-        adminicon.addActionListener(this::adminiconActionPerformed);
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/profile-85x85.png"))); // NOI18N
+        jLabel4.setPreferredSize(new java.awt.Dimension(85, 85));
 
         javax.swing.GroupLayout adminLayout = new javax.swing.GroupLayout(admin);
         admin.setLayout(adminLayout);
         adminLayout.setHorizontalGroup(
             adminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(adminicon)
+            .addGroup(adminLayout.createSequentialGroup()
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         adminLayout.setVerticalGroup(
             adminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, adminLayout.createSequentialGroup()
-                .addComponent(adminicon)
+            .addGroup(adminLayout.createSequentialGroup()
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -458,10 +457,10 @@ public class admindashboard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(profile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mainlogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(backgroundLayout.createSequentialGroup()
                         .addComponent(notification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15))
-                    .addComponent(mainlogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(15, 15, 15)))
                 .addGap(18, 18, 18)
                 .addComponent(center, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(19, Short.MAX_VALUE))
@@ -519,10 +518,6 @@ public class admindashboard extends javax.swing.JFrame {
         login loginPage = new login();
         loginPage.setVisible(true);
     }//GEN-LAST:event_logoutMouseClicked
-
-    private void adminiconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminiconActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_adminiconActionPerformed
 
     private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
         // TODO add your handling code here:
@@ -623,15 +618,16 @@ public class admindashboard extends javax.swing.JFrame {
     private javax.swing.JButton Calender;
     private javax.swing.JButton Invoice;
     private javax.swing.JButton ManageProducts;
+    private javax.swing.JLabel ProfileIcon;
     private javax.swing.JButton Statistics;
     private javax.swing.JButton Users;
     private javax.swing.JPanel admin;
-    private javax.swing.JButton adminicon;
     private javax.swing.JPanel background;
     private javax.swing.JPanel center;
     private javax.swing.JButton dashboard;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanelChart;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton logout;
@@ -639,7 +635,6 @@ public class admindashboard extends javax.swing.JFrame {
     private javax.swing.JPanel notification;
     private javax.swing.JButton notificationicon;
     private javax.swing.JPanel profile;
-    private javax.swing.JButton profileicon;
     private javax.swing.JLabel rentifylogo;
     private javax.swing.JPanel sales;
     private javax.swing.JLabel salestext;
