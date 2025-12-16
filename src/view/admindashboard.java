@@ -4,6 +4,11 @@
  */
 package view;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import org.jfree.chart.ChartPanel;
+
 
 /**
  *
@@ -18,6 +23,30 @@ public class admindashboard extends javax.swing.JFrame {
      */
     public admindashboard() {
         initComponents();
+        statistics stats = new statistics();
+        ChartPanel chartPanel = null;
+        for (java.awt.Component comp : stats.getChartLabel().getComponents()) {
+        if (comp instanceof ChartPanel) {
+            chartPanel = (ChartPanel) comp;
+            break;
+            }
+    }
+
+        if (chartPanel != null) {
+            chartPanel.setPreferredSize(new java.awt.Dimension(400, 300));
+
+            javax.swing.JPanel container = new javax.swing.JPanel();
+            container.setBackground(Color.WHITE);
+            container.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 195));
+
+            container.add(chartPanel);
+
+            jPanelChart.removeAll();
+            jPanelChart.setLayout(new BorderLayout());
+            jPanelChart.add(container, BorderLayout.CENTER);
+            jPanelChart.revalidate();
+            jPanelChart.repaint();
+        }
     }
 
     /**
@@ -53,7 +82,7 @@ public class admindashboard extends javax.swing.JFrame {
         salestext = new javax.swing.JLabel();
         tickets = new javax.swing.JPanel();
         ticketstext = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        jPanelChart = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -150,6 +179,7 @@ public class admindashboard extends javax.swing.JFrame {
         );
 
         center.setBackground(new java.awt.Color(255, 255, 255));
+        center.setPreferredSize(new java.awt.Dimension(1237, 600));
 
         jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator1.setForeground(new java.awt.Color(209, 213, 219));
@@ -307,15 +337,17 @@ public class admindashboard extends javax.swing.JFrame {
                 .addContainerGap(154, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelChart.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanelChartLayout = new javax.swing.GroupLayout(jPanelChart);
+        jPanelChart.setLayout(jPanelChartLayout);
+        jPanelChartLayout.setHorizontalGroup(
+            jPanelChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 430, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 260, Short.MAX_VALUE)
+        jPanelChartLayout.setVerticalGroup(
+            jPanelChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -350,9 +382,7 @@ public class admindashboard extends javax.swing.JFrame {
                             .addGroup(centerLayout.createSequentialGroup()
                                 .addComponent(sales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(68, 68, 68)
-                                .addComponent(tickets, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(69, 69, 69)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(tickets, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(Admintext)))
                     .addGroup(centerLayout.createSequentialGroup()
                         .addGap(22, 22, 22)
@@ -361,7 +391,9 @@ public class admindashboard extends javax.swing.JFrame {
                         .addGroup(centerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2))))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addGap(69, 69, 69)
+                .addComponent(jPanelChart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         centerLayout.setVerticalGroup(
             centerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -396,9 +428,12 @@ public class admindashboard extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addComponent(Admintext)
                         .addGap(91, 91, 91)
-                        .addComponent(sales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(sales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(170, Short.MAX_VALUE))
+            .addGroup(centerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanelChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
@@ -597,7 +632,7 @@ public class admindashboard extends javax.swing.JFrame {
     private javax.swing.JButton dashboard;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanelChart;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton logout;
     private javax.swing.JPanel mainlogo;

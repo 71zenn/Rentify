@@ -50,6 +50,9 @@ public class statistics extends javax.swing.JFrame {
         jLabel1.revalidate();
         jLabel1.repaint();
     }
+    public javax.swing.JLabel getChartLabel() {
+    return jLabel1;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
