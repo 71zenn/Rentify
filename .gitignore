@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 nbproject/private/
 nbproject/private.xml
 nbproject/Makefile-variables.mk
@@ -20,3 +21,11 @@ out/
 *.log
 *.tmp
 *.swp
+=======
+
+nbproject/build/private/private.xml
+nbproject/build
+src/database
+/nbproject/private
+/dist/
+>>>>>>> abijeet_userdashboard
