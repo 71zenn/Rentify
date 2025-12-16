@@ -88,8 +88,11 @@ public class calender extends javax.swing.JFrame {
                 .addComponent(rentifylogo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        profile.setBackground(new java.awt.Color(249, 250, 251));
         profile.setPreferredSize(new java.awt.Dimension(60, 60));
 
+        ProfileIcon.setBackground(new java.awt.Color(249, 250, 251));
+        ProfileIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ProfileIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/profile icon.png"))); // NOI18N
         ProfileIcon.setPreferredSize(new java.awt.Dimension(60, 60));
 
@@ -139,6 +142,7 @@ public class calender extends javax.swing.JFrame {
         );
 
         center.setBackground(new java.awt.Color(255, 255, 255));
+        center.setPreferredSize(new java.awt.Dimension(1237, 600));
 
         jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator1.setForeground(new java.awt.Color(209, 213, 219));
@@ -280,7 +284,7 @@ public class calender extends javax.swing.JFrame {
                     .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 336, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 337, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(298, 298, 298))
         );

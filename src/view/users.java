@@ -84,6 +84,7 @@ public class users extends javax.swing.JFrame {
         profile.setBackground(new java.awt.Color(249, 250, 251));
         profile.setPreferredSize(new java.awt.Dimension(60, 60));
 
+        ProfileIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ProfileIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/profile icon.png"))); // NOI18N
         ProfileIcon.setPreferredSize(new java.awt.Dimension(60, 60));
 
