@@ -4,11 +4,11 @@
  */
 package userdata;
 import Model.User_model;
-import database.MySqlConnection;
+import database.MySQLConnection;
 import java.sql.*;
 
 public class userDao {
-    MySqlConnection mysql = new MySqlConnection();
+    MySQLConnection mysql = new MySQLConnection();
     
     public void signup(User_model user){
         Connection conn = mysql.openConnection();

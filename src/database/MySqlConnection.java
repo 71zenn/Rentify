@@ -14,7 +14,7 @@ import java.sql.*;
  *
  * @author zenni
  */
-public class MySqlConnection implements Database{
+public class MySQLConnection implements Database{
 
     @Override
     public Connection openConnection() {
