@@ -1,6 +1,4 @@
-nbproject/private/
-nbproject/private.xml
-nbproject/Makefile-variables.mk
+nbproject/
 nbbuild/
 nbdist/
 .nb-gradle/
