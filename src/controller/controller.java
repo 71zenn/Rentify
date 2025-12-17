@@ -4,12 +4,12 @@
  */
 package controller;
 
-import userdata.UserDao;
+import userdata.userDao;
 
 import Model.User_model;
 
-public class UserController {
-    private final UserDao userdao = new UserDao();
+public class controller {
+    private final userDao userdao = new userDao();
 
     public boolean loginUser(String username, String password) {
 

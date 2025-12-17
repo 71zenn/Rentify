@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
-import controller.UserController;
+import controller.controller;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,14 +13,14 @@ import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Login.class.getName());
-    private final UserController userController;
+    private final controller userController;
 
     /**
      * Creates new form login
      */
     public Login() {
         initComponents();
-        userController = new UserController();
+        userController = new controller();
         setSize(1280,720);
     }
 

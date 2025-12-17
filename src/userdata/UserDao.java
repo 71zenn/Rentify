@@ -7,7 +7,7 @@ import Model.User_model;
 import database.MySqlConnection;
 import java.sql.*;
 
-public class UserDao {
+public class userDao {
     MySqlConnection mysql = new MySqlConnection();
     
     public void signup(User_model user){
