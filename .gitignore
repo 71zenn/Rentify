@@ -1,3 +1,20 @@
-/build/
-/database/Database.java
-/database/MySQLConnection.java
+nbproject/
+nbbuild/
+nbdist/
+.nb-gradle/
+ 
+# Build folders
+build/
+dist/
+out/
+ 
+# Compiled files
+*.class
+*.jar
+*.war
+*.ear
+ 
+# Logs & temp
+*.log
+*.tmp
+*.swp
