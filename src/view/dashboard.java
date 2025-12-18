@@ -8,14 +8,14 @@ package view;
  *
  * @author zenni
  */
-public class dashboard extends javax.swing.JFrame {
+public class Dashboard extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(dashboard.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Dashboard.class.getName());
 
     /**
      * Creates new form dashboard
      */
-    public dashboard() {
+    public Dashboard() {
         initComponents();
     }
 
@@ -56,13 +56,12 @@ public class dashboard extends javax.swing.JFrame {
         Profile_icon9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         Support = new javax.swing.JButton();
-        Library1 = new javax.swing.JButton();
-        Movies1 = new javax.swing.JButton();
-        Newest1 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        Books2 = new javax.swing.JButton();
+        Library = new javax.swing.JButton();
+        Movies = new javax.swing.JButton();
+        Newest = new javax.swing.JButton();
+        Books = new javax.swing.JButton();
+        jTextArea2 = new javax.swing.JTextArea();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -221,7 +220,9 @@ public class dashboard extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(160, 160, 160)
+                        .addGap(63, 63, 63)
+                        .addComponent(Profile_icon3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Profile_icon2)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -269,11 +270,6 @@ public class dashboard extends javax.swing.JFrame {
                         .addGap(62, 62, 62)
                         .addComponent(Profile_icon9)
                         .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(341, 341, 341)
-                    .addComponent(Profile_icon3)
-                    .addContainerGap(798, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,17 +289,16 @@ public class dashboard extends javax.swing.JFrame {
                         .addComponent(Wishlist, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(35, 35, 35)
-                        .addComponent(Profile_icon2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Profile_icon)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(Profile_icon2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Profile_icon))
+                            .addComponent(Profile_icon3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Profile_icon9, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Logout, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(71, 71, 71))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -327,12 +322,10 @@ public class dashboard extends javax.swing.JFrame {
                             .addComponent(jLabel7)
                             .addComponent(jLabel8)
                             .addComponent(jLabel9))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(48, 48, 48)
-                    .addComponent(Profile_icon3)
-                    .addContainerGap(473, Short.MAX_VALUE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(Logout, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(62, 62, 62))))
         );
 
         jPanel1.add(jPanel2);
@@ -354,72 +347,71 @@ public class dashboard extends javax.swing.JFrame {
         jPanel1.add(Support);
         Support.setBounds(990, 50, 146, 36);
 
-        Library1.setBackground(new java.awt.Color(232, 241, 253));
-        Library1.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
-        Library1.setForeground(new java.awt.Color(17, 24, 39));
-        Library1.setText("Library");
-        Library1.addActionListener(new java.awt.event.ActionListener() {
+        Library.setBackground(new java.awt.Color(232, 241, 253));
+        Library.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        Library.setForeground(new java.awt.Color(17, 24, 39));
+        Library.setText("Library");
+        Library.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Library1ActionPerformed(evt);
+                LibraryActionPerformed(evt);
             }
         });
-        jPanel1.add(Library1);
-        Library1.setBounds(310, 50, 146, 36);
+        jPanel1.add(Library);
+        Library.setBounds(310, 50, 146, 36);
 
-        Movies1.setBackground(new java.awt.Color(232, 241, 253));
-        Movies1.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
-        Movies1.setForeground(new java.awt.Color(17, 24, 39));
-        Movies1.setText("Movies");
-        Movies1.addActionListener(new java.awt.event.ActionListener() {
+        Movies.setBackground(new java.awt.Color(232, 241, 253));
+        Movies.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        Movies.setForeground(new java.awt.Color(17, 24, 39));
+        Movies.setText("Movies");
+        Movies.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Movies1ActionPerformed(evt);
+                MoviesActionPerformed(evt);
             }
         });
-        jPanel1.add(Movies1);
-        Movies1.setBounds(650, 50, 146, 36);
+        jPanel1.add(Movies);
+        Movies.setBounds(650, 50, 146, 36);
 
-        Newest1.setBackground(new java.awt.Color(232, 241, 253));
-        Newest1.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
-        Newest1.setForeground(new java.awt.Color(17, 24, 39));
-        Newest1.setText("Newest");
-        Newest1.addActionListener(new java.awt.event.ActionListener() {
+        Newest.setBackground(new java.awt.Color(232, 241, 253));
+        Newest.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        Newest.setForeground(new java.awt.Color(17, 24, 39));
+        Newest.setText("Newest");
+        Newest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Newest1ActionPerformed(evt);
+                NewestActionPerformed(evt);
             }
         });
-        jPanel1.add(Newest1);
-        Newest1.setBounds(820, 50, 146, 36);
+        jPanel1.add(Newest);
+        Newest.setBounds(820, 50, 146, 36);
 
-        jButton1.setBackground(new java.awt.Color(229, 231, 235));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search-icon.png"))); // NOI18N
-        jButton1.setBorder(null);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Books.setBackground(new java.awt.Color(232, 241, 253));
+        Books.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        Books.setForeground(new java.awt.Color(17, 24, 39));
+        Books.setText("Books");
+        Books.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BooksActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1);
-        jButton1.setBounds(1040, 100, 50, 40);
+        jPanel1.add(Books);
+        Books.setBounds(480, 50, 146, 36);
 
-        jTextArea1.setBackground(new java.awt.Color(229, 231, 235));
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jTextArea2.setBackground(new java.awt.Color(229, 231, 235));
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jTextArea2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel1.add(jTextArea2);
+        jTextArea2.setBounds(820, 100, 230, 30);
 
-        jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(810, 100, 250, 40);
-
-        Books2.setBackground(new java.awt.Color(232, 241, 253));
-        Books2.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
-        Books2.setForeground(new java.awt.Color(17, 24, 39));
-        Books2.setText("Books");
-        Books2.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setBackground(new java.awt.Color(229, 231, 235));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search-icon.png"))); // NOI18N
+        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Books2ActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(Books2);
-        Books2.setBounds(480, 50, 146, 36);
+        jPanel1.add(jButton2);
+        jButton2.setBounds(1050, 100, 40, 30);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 1280, 720);
@@ -447,29 +439,35 @@ public class dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_SupportActionPerformed
 
-    private void Library1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Library1ActionPerformed
+    private void LibraryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LibraryActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Library1ActionPerformed
+        
+    }//GEN-LAST:event_LibraryActionPerformed
 
     private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_LogoutActionPerformed
 
-    private void Movies1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Movies1ActionPerformed
+    private void MoviesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MoviesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Movies1ActionPerformed
+    // Navigate to Profile Page
+        ProductPage productPage = new ProductPage();
+        productPage.setVisible(true);
+        this.dispose(); // Close current dashboard
 
-    private void Newest1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Newest1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Newest1ActionPerformed
+    }//GEN-LAST:event_MoviesActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void NewestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewestActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_NewestActionPerformed
 
-    private void Books2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Books2ActionPerformed
+    private void BooksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BooksActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Books2ActionPerformed
+    }//GEN-LAST:event_BooksActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -493,16 +491,16 @@ public class dashboard extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new dashboard().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new Dashboard().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Books2;
+    private javax.swing.JButton Books;
     private javax.swing.JButton History;
-    private javax.swing.JButton Library1;
+    private javax.swing.JButton Library;
     private javax.swing.JButton Logout;
-    private javax.swing.JButton Movies1;
-    private javax.swing.JButton Newest1;
+    private javax.swing.JButton Movies;
+    private javax.swing.JButton Newest;
     private javax.swing.JButton Orders;
     private javax.swing.JButton Profile;
     private javax.swing.JLabel Profile_icon;
@@ -517,7 +515,7 @@ public class dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel Profile_icon9;
     private javax.swing.JButton Support;
     private javax.swing.JButton Wishlist;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -530,7 +528,7 @@ public class dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
     // End of variables declaration//GEN-END:variables
+    
 }
