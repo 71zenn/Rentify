@@ -20,4 +20,8 @@ public class controller {
         return userdao.login(user);
     }
 
+    public boolean Login(String username, String password) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

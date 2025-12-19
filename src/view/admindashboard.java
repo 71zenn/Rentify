@@ -578,7 +578,7 @@ public class admindashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
 
-        login loginPage = new login();
+        Login loginPage = new Login();
         loginPage.setVisible(true);
     }//GEN-LAST:event_logoutMouseClicked
 
