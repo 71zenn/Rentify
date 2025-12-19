@@ -36,6 +36,7 @@ public class ProductPage extends javax.swing.JFrame {
         itemName = new javax.swing.JLabel();
         directorName = new javax.swing.JLabel();
         Synopsis = new javax.swing.JTextArea();
+        rateBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jTextArea1 = new javax.swing.JTextArea();
         Support = new javax.swing.JButton();
@@ -89,16 +90,18 @@ public class ProductPage extends javax.swing.JFrame {
         Synopsis.setForeground(new java.awt.Color(0, 0, 0));
         Synopsis.setText("After the death of his wife, retired hitman John Wick mourns in solitude, finding solace in memories and the companionship of a dog \nshe left behind. When a violent act by local criminals destroys this final connection, John is pulled back into the criminal underworld he \nhad left behind. As he confronts former allies and enemies, his unmatched skills and tactical precision are revealed, and he systematically\ndismantles those responsible. The story explores themes of loss, revenge, and the strict codes governing the shadowy world of assassins, \nshowcasing John's relentless determination and the consequences of crossing him.");
 
+        rateBtn.setBackground(new java.awt.Color(255, 255, 255));
+        rateBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        rateBtn.setForeground(new java.awt.Color(0, 0, 0));
+        rateBtn.setText("Rate this movie?");
+        rateBtn.setBorder(null);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(jLabel9)
-                        .addGap(820, 820, 820))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(75, 75, 75)
                         .addComponent(Profile_icon6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -107,7 +110,16 @@ public class ProductPage extends javax.swing.JFrame {
                             .addComponent(directorName)
                             .addComponent(itemName)
                             .addComponent(Synopsis, javax.swing.GroupLayout.PREFERRED_SIZE, 733, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(23, 23, 23)))
+                        .addGap(23, 23, 23))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(114, 114, 114)
+                                .addComponent(jLabel9))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(96, 96, 96)
+                                .addComponent(rateBtn)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(245, 245, 245))
         );
@@ -125,6 +137,8 @@ public class ProductPage extends javax.swing.JFrame {
                         .addComponent(Synopsis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel9)
+                .addGap(18, 18, 18)
+                .addComponent(rateBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -314,5 +328,6 @@ public class ProductPage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JButton rateBtn;
     // End of variables declaration//GEN-END:variables
 }

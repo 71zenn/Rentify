@@ -8,14 +8,14 @@ package view;
  *
  * @author zenni
  */
-public class Dashboard extends javax.swing.JFrame {
+public class BooksPage extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Dashboard.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(BooksPage.class.getName());
 
     /**
      * Creates new form dashboard
      */
-    public Dashboard() {
+    public BooksPage() {
         initComponents();
     }
 
@@ -30,16 +30,9 @@ public class Dashboard extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        ProfileBTN = new javax.swing.JButton();
-        OrdersBTN = new javax.swing.JButton();
-        HistoryBTN = new javax.swing.JButton();
-        WishlistBTN = new javax.swing.JButton();
+        FilterBTN = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        Profile_icon = new javax.swing.JLabel();
         Profile_icon1 = new javax.swing.JLabel();
-        Profile_icon2 = new javax.swing.JLabel();
-        LogoutBTN = new javax.swing.JButton();
-        Profile_icon3 = new javax.swing.JLabel();
         Profile_icon4 = new javax.swing.JLabel();
         Profile_icon5 = new javax.swing.JLabel();
         Profile_icon6 = new javax.swing.JLabel();
@@ -53,7 +46,6 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        Profile_icon9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         SupportBTN = new javax.swing.JButton();
         LibraryBTN = new javax.swing.JButton();
@@ -75,47 +67,14 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(229, 231, 235), 3));
 
-        ProfileBTN.setBackground(new java.awt.Color(255, 255, 255));
-        ProfileBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
-        ProfileBTN.setForeground(new java.awt.Color(107, 114, 128));
-        ProfileBTN.setText("Profile");
-        ProfileBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 166, 154)));
-        ProfileBTN.addActionListener(new java.awt.event.ActionListener() {
+        FilterBTN.setBackground(new java.awt.Color(255, 255, 255));
+        FilterBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        FilterBTN.setForeground(new java.awt.Color(107, 114, 128));
+        FilterBTN.setText("Filter");
+        FilterBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 166, 154)));
+        FilterBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ProfileBTNActionPerformed(evt);
-            }
-        });
-
-        OrdersBTN.setBackground(new java.awt.Color(255, 255, 255));
-        OrdersBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
-        OrdersBTN.setForeground(new java.awt.Color(107, 114, 128));
-        OrdersBTN.setText("Orders");
-        OrdersBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 166, 154)));
-        OrdersBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                OrdersBTNActionPerformed(evt);
-            }
-        });
-
-        HistoryBTN.setBackground(new java.awt.Color(255, 255, 255));
-        HistoryBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
-        HistoryBTN.setForeground(new java.awt.Color(107, 114, 128));
-        HistoryBTN.setText("History");
-        HistoryBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 166, 154)));
-        HistoryBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                HistoryBTNActionPerformed(evt);
-            }
-        });
-
-        WishlistBTN.setBackground(new java.awt.Color(255, 255, 255));
-        WishlistBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
-        WishlistBTN.setForeground(new java.awt.Color(107, 114, 128));
-        WishlistBTN.setText("Wishlist");
-        WishlistBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 166, 154)));
-        WishlistBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                WishlistBTNActionPerformed(evt);
+                FilterBTNActionPerformed(evt);
             }
         });
 
@@ -134,27 +93,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGap(0, 604, Short.MAX_VALUE)
         );
 
-        Profile_icon.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        Profile_icon.setForeground(new java.awt.Color(51, 51, 51));
-        Profile_icon.setText("ashishshrestha250@gmail.com");
-
         Profile_icon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/harrypotterHBPcover.jpg"))); // NOI18N
-
-        Profile_icon2.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
-        Profile_icon2.setForeground(new java.awt.Color(51, 51, 51));
-        Profile_icon2.setText("Ashish Shrestha");
-
-        LogoutBTN.setBackground(new java.awt.Color(38, 166, 154));
-        LogoutBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
-        LogoutBTN.setForeground(new java.awt.Color(255, 255, 255));
-        LogoutBTN.setText("Logout");
-        LogoutBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LogoutBTNActionPerformed(evt);
-            }
-        });
-
-        Profile_icon3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/profile-85x85.png"))); // NOI18N
 
         Profile_icon4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/harrypotterTPScover.jpg"))); // NOI18N
 
@@ -202,76 +141,49 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(255, 51, 51));
         jLabel9.setText("Rs. 899");
 
-        Profile_icon9.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
-        Profile_icon9.setForeground(new java.awt.Color(51, 51, 51));
-        Profile_icon9.setText("Favourites");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(54, 54, 54)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(WishlistBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(HistoryBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(OrdersBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ProfileBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LogoutBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(FilterBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Profile_icon5)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(Profile_icon7))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel7)))
+                .addGap(70, 70, 70)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Profile_icon1)
+                    .addComponent(Profile_icon8, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel8))
+                .addGap(70, 70, 70)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(Profile_icon3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Profile_icon2)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(Profile_icon)))
-                        .addContainerGap())
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 323, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(62, 62, 62)
-                                .addComponent(Profile_icon5))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(77, 77, 77)
-                                .addComponent(Profile_icon7))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(87, 87, 87)
-                                .addComponent(jLabel7)))
-                        .addGap(70, 70, 70)
+                            .addComponent(Profile_icon4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Profile_icon1)
-                            .addComponent(Profile_icon8, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel8))
-                        .addGap(70, 70, 70)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addContainerGap())
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(Profile_icon6, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Profile_icon4)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                        .addComponent(Profile_icon6)
-                                        .addGap(37, 37, 37))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel9)
-                                            .addComponent(jLabel5))
-                                        .addGap(73, 73, 73))))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(Profile_icon9)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel5))
+                                .addGap(36, 36, 36)))))
+                .addGap(47, 47, 47))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,30 +191,12 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(ProfileBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(OrdersBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addComponent(HistoryBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(WishlistBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(Profile_icon2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Profile_icon))
-                            .addComponent(Profile_icon3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Profile_icon9, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGap(34, 34, 34)
+                        .addComponent(FilterBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(Profile_icon4)
                             .addComponent(Profile_icon1)
@@ -323,11 +217,8 @@ public class Dashboard extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(jLabel7)
                             .addComponent(jLabel8)
-                            .addComponent(jLabel9))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(LogoutBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62))))
+                            .addComponent(jLabel9))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2);
@@ -436,22 +327,6 @@ public class Dashboard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ProfileBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileBTNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ProfileBTNActionPerformed
-
-    private void OrdersBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrdersBTNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_OrdersBTNActionPerformed
-
-    private void HistoryBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistoryBTNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_HistoryBTNActionPerformed
-
-    private void WishlistBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WishlistBTNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_WishlistBTNActionPerformed
-
     private void SupportBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupportBTNActionPerformed
         // TODO add your handling code here:
         ProductPage productPage = new ProductPage();
@@ -465,11 +340,6 @@ public class Dashboard extends javax.swing.JFrame {
         libraryPage.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_LibraryBTNActionPerformed
-
-    private void LogoutBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutBTNActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_LogoutBTNActionPerformed
 
     private void MoviesBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MoviesBTNActionPerformed
         // TODO add your handling code here:
@@ -506,6 +376,10 @@ public class Dashboard extends javax.swing.JFrame {
         
     }//GEN-LAST:event_cartActionPerformed
 
+    private void FilterBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FilterBTNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FilterBTNActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -528,31 +402,23 @@ public class Dashboard extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Dashboard().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new BooksPage().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BooksBTN;
-    private javax.swing.JButton HistoryBTN;
+    private javax.swing.JButton FilterBTN;
     private javax.swing.JButton LibraryBTN;
-    private javax.swing.JButton LogoutBTN;
     private javax.swing.JButton MoviesBTN;
     private javax.swing.JButton NewestBTN;
-    private javax.swing.JButton OrdersBTN;
-    private javax.swing.JButton ProfileBTN;
-    private javax.swing.JLabel Profile_icon;
     private javax.swing.JLabel Profile_icon1;
-    private javax.swing.JLabel Profile_icon2;
-    private javax.swing.JLabel Profile_icon3;
     private javax.swing.JLabel Profile_icon4;
     private javax.swing.JLabel Profile_icon5;
     private javax.swing.JLabel Profile_icon6;
     private javax.swing.JLabel Profile_icon7;
     private javax.swing.JLabel Profile_icon8;
-    private javax.swing.JLabel Profile_icon9;
     private javax.swing.JButton SearchBTN;
     private javax.swing.JButton SupportBTN;
-    private javax.swing.JButton WishlistBTN;
     private javax.swing.JButton cart;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
