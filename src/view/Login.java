@@ -173,8 +173,6 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         String username = Username.getText();  
         String password = Password.getText();
-        System.out.println("USER = [" + Username.getText() + "]");
-        System.out.println("PASS = [" + Password.getText() + "]");
 
 
         boolean success = controller.loginUser(username, password);
