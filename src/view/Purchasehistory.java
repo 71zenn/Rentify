@@ -63,9 +63,11 @@ public class Purchasehistory extends javax.swing.JFrame {
         DownloadHP = new javax.swing.JButton();
         DownloadLibrary = new javax.swing.JButton();
         DownloadHamlet = new javax.swing.JButton();
+        Backgroundcolorpanel = new javax.swing.JPanel();
         Background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(null);
 
         Rentifylogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Rentifylogo.png"))); // NOI18N
@@ -328,6 +330,24 @@ public class Purchasehistory extends javax.swing.JFrame {
 
         getContentPane().add(scrlPaneOne);
         scrlPaneOne.setBounds(80, 260, 1130, 410);
+
+        Backgroundcolorpanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout BackgroundcolorpanelLayout = new javax.swing.GroupLayout(Backgroundcolorpanel);
+        Backgroundcolorpanel.setLayout(BackgroundcolorpanelLayout);
+        BackgroundcolorpanelLayout.setHorizontalGroup(
+            BackgroundcolorpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1280, Short.MAX_VALUE)
+        );
+        BackgroundcolorpanelLayout.setVerticalGroup(
+            BackgroundcolorpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 720, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(Backgroundcolorpanel);
+        Backgroundcolorpanel.setBounds(0, 0, 1280, 720);
+
+        Background.setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().add(Background);
         Background.setBounds(0, 0, 1280, 720);
 
@@ -382,6 +402,7 @@ public class Purchasehistory extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Allbutton;
     private javax.swing.JLabel Background;
+    private javax.swing.JPanel Backgroundcolorpanel;
     private javax.swing.JButton Booksbutton;
     private javax.swing.JLabel CartIcon;
     private javax.swing.JButton DownloadHP;
