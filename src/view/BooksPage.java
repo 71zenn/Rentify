@@ -276,7 +276,7 @@ public class BooksPage extends javax.swing.JFrame {
         jPanel1.add(NewestBTN);
         NewestBTN.setBounds(820, 50, 146, 36);
 
-        BooksBTN.setBackground(new java.awt.Color(232, 241, 253));
+        BooksBTN.setBackground(new java.awt.Color(196, 215, 239));
         BooksBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         BooksBTN.setForeground(new java.awt.Color(17, 24, 39));
         BooksBTN.setText("Books");

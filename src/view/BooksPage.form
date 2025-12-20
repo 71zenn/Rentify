@@ -463,7 +463,7 @@
         <Component class="javax.swing.JButton" name="BooksBTN">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="fd" green="f1" red="e8" type="rgb"/>
+              <Color blue="ef" green="d7" red="c4" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="22" style="0"/>
