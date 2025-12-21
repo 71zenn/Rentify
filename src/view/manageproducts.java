@@ -253,6 +253,7 @@ public class manageproducts extends javax.swing.JFrame {
         logout.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         logout.setForeground(new java.awt.Color(255, 255, 255));
         logout.setText("Log out");
+        logout.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 2, true));
         logout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         logout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
