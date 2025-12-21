@@ -213,6 +213,7 @@ public class calender extends javax.swing.JFrame {
         Calender.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Calender.setForeground(new java.awt.Color(107, 114, 128));
         Calender.setText("Calender");
+        Calender.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(38, 166, 154), 2, true));
         Calender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Calender.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

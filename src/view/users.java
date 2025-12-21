@@ -157,6 +157,7 @@ public class users extends javax.swing.JFrame {
         Users.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Users.setForeground(new java.awt.Color(107, 114, 128));
         Users.setText("Users");
+        Users.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(38, 166, 154), 2, true));
         Users.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Users.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -248,6 +249,7 @@ public class users extends javax.swing.JFrame {
             }
         });
         UserTable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        UserTable.setIntercellSpacing(new java.awt.Dimension(15, 0));
         UserTable.setRowHeight(30);
         UserTable.setSelectionBackground(new java.awt.Color(229, 231, 235));
         UserTable.setSelectionForeground(new java.awt.Color(107, 114, 128));
@@ -319,7 +321,7 @@ public class users extends javax.swing.JFrame {
                 .addGap(19, 19, 19))
             .addGroup(centerLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(centerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)

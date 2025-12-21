@@ -196,6 +196,7 @@ public class statistics extends javax.swing.JFrame {
         Statistics.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Statistics.setForeground(new java.awt.Color(107, 114, 128));
         Statistics.setText("Statistics");
+        Statistics.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(38, 166, 154), 2, true));
         Statistics.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Statistics.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

@@ -7,6 +7,7 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import javax.swing.BorderFactory;
 import javax.swing.Timer;
 import org.jfree.chart.ChartPanel;
 
@@ -47,7 +48,7 @@ public class admindashboard extends javax.swing.JFrame {
             jPanelChart.add(container, BorderLayout.CENTER);
             jPanelChart.revalidate();
             jPanelChart.repaint();
-        }
+        }  
     }
 
     /**
@@ -189,10 +190,17 @@ public class admindashboard extends javax.swing.JFrame {
         dashboard.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         dashboard.setForeground(new java.awt.Color(107, 114, 128));
         dashboard.setText("Dashboard");
+        dashboard.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(38, 166, 154), 2, true));
         dashboard.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         dashboard.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 dashboardMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                dashboardMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                dashboardMouseExited(evt);
             }
         });
         dashboard.addActionListener(this::dashboardActionPerformed);
@@ -201,10 +209,17 @@ public class admindashboard extends javax.swing.JFrame {
         Users.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Users.setForeground(new java.awt.Color(107, 114, 128));
         Users.setText("Users");
+        Users.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 2, true));
         Users.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Users.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 UsersMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                UsersMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                UsersMouseExited(evt);
             }
         });
         Users.addActionListener(this::UsersActionPerformed);
@@ -213,10 +228,17 @@ public class admindashboard extends javax.swing.JFrame {
         Statistics.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Statistics.setForeground(new java.awt.Color(107, 114, 128));
         Statistics.setText("Statistics");
+        Statistics.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 2, true));
         Statistics.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Statistics.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 StatisticsMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                StatisticsMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                StatisticsMouseExited(evt);
             }
         });
         Statistics.addActionListener(this::StatisticsActionPerformed);
@@ -225,10 +247,17 @@ public class admindashboard extends javax.swing.JFrame {
         ManageProducts.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ManageProducts.setForeground(new java.awt.Color(107, 114, 128));
         ManageProducts.setText("Manage Products");
+        ManageProducts.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 2, true));
         ManageProducts.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ManageProducts.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ManageProductsMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ManageProductsMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ManageProductsMouseExited(evt);
             }
         });
         ManageProducts.addActionListener(this::ManageProductsActionPerformed);
@@ -237,10 +266,17 @@ public class admindashboard extends javax.swing.JFrame {
         Invoice.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Invoice.setForeground(new java.awt.Color(107, 114, 128));
         Invoice.setText("Invoice");
+        Invoice.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 2, true));
         Invoice.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Invoice.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 InvoiceMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                InvoiceMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                InvoiceMouseExited(evt);
             }
         });
         Invoice.addActionListener(this::InvoiceActionPerformed);
@@ -249,10 +285,17 @@ public class admindashboard extends javax.swing.JFrame {
         Calender.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Calender.setForeground(new java.awt.Color(107, 114, 128));
         Calender.setText("Calender");
+        Calender.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 2, true));
         Calender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Calender.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CalenderMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CalenderMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                CalenderMouseExited(evt);
             }
         });
         Calender.addActionListener(this::CalenderActionPerformed);
@@ -261,10 +304,17 @@ public class admindashboard extends javax.swing.JFrame {
         logout.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         logout.setForeground(new java.awt.Color(255, 255, 255));
         logout.setText("Log out");
+        logout.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 2, true));
         logout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         logout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 logoutMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                logoutMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                logoutMouseExited(evt);
             }
         });
         logout.addActionListener(this::logoutActionPerformed);
@@ -273,20 +323,19 @@ public class admindashboard extends javax.swing.JFrame {
         admin.setPreferredSize(new java.awt.Dimension(85, 85));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/profile-85x85.png"))); // NOI18N
-        jLabel4.setPreferredSize(new java.awt.Dimension(85, 85));
 
         javax.swing.GroupLayout adminLayout = new javax.swing.GroupLayout(admin);
         admin.setLayout(adminLayout);
         adminLayout.setHorizontalGroup(
             adminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(adminLayout.createSequentialGroup()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel4)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         adminLayout.setVerticalGroup(
             adminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(adminLayout.createSequentialGroup()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel4)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -633,6 +682,139 @@ public class admindashboard extends javax.swing.JFrame {
     private void notificationiconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationiconActionPerformed
         // TODO add your handling code here
     }//GEN-LAST:event_notificationiconActionPerformed
+
+    private void dashboardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseEntered
+        // TODO add your handling code here:
+        dashboard.setBackground(new java.awt.Color(38,166,154)); 
+        dashboard.setForeground(java.awt.Color.WHITE);
+        dashboard.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(38,166,154), 2)
+    );
+        dashboard.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_dashboardMouseEntered
+
+    private void dashboardMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseExited
+        // TODO add your handling code here:
+        dashboard.setBackground(new java.awt.Color(229,231,235)); 
+        dashboard.setForeground(new java.awt.Color(107,114,128));
+        dashboard.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(38,166,154), 2)
+    );
+    }//GEN-LAST:event_dashboardMouseExited
+
+    private void UsersMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UsersMouseEntered
+        // TODO add your handling code here:
+        Users.setBackground(new java.awt.Color(38,166,154)); 
+        Users.setForeground(java.awt.Color.WHITE);
+        Users.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(38,166,154), 2)
+    );
+        Users.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_UsersMouseEntered
+
+    private void UsersMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UsersMouseExited
+        // TODO add your handling code here:
+        Users.setBackground(new java.awt.Color(229,231,235)); 
+        Users.setForeground(new java.awt.Color(107,114,128));
+        Users.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(193,193,193), 2)
+    );
+    }//GEN-LAST:event_UsersMouseExited
+
+    private void StatisticsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StatisticsMouseEntered
+        // TODO add your handling code here:
+        Statistics.setBackground(new java.awt.Color(38,166,154)); 
+        Statistics.setForeground(java.awt.Color.WHITE);
+        Statistics.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(38,166,154), 2)
+    );
+        Statistics.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_StatisticsMouseEntered
+
+    private void StatisticsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StatisticsMouseExited
+        // TODO add your handling code here:
+        Statistics.setBackground(new java.awt.Color(229,231,235)); 
+        Statistics.setForeground(new java.awt.Color(107,114,128));
+        Statistics.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(193,193,193), 2)
+        );
+    }//GEN-LAST:event_StatisticsMouseExited
+
+    private void ManageProductsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ManageProductsMouseEntered
+        // TODO add your handling code here:
+        ManageProducts.setBackground(new java.awt.Color(38,166,154)); 
+        ManageProducts.setForeground(java.awt.Color.WHITE);
+        ManageProducts.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(38,166,154), 2)
+    );
+        ManageProducts.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_ManageProductsMouseEntered
+
+    private void ManageProductsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ManageProductsMouseExited
+        // TODO add your handling code here:
+        ManageProducts.setBackground(new java.awt.Color(229,231,235)); 
+        ManageProducts.setForeground(new java.awt.Color(107,114,128));
+        ManageProducts.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(193,193,193), 2)
+        );
+    }//GEN-LAST:event_ManageProductsMouseExited
+
+    private void InvoiceMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InvoiceMouseEntered
+        // TODO add your handling code here:
+        Invoice.setBackground(new java.awt.Color(38,166,154)); 
+        Invoice.setForeground(java.awt.Color.WHITE);
+        Invoice.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(38,166,154), 2)
+    );
+        Invoice.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_InvoiceMouseEntered
+
+    private void InvoiceMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InvoiceMouseExited
+        // TODO add your handling code here:
+        Invoice.setBackground(new java.awt.Color(229,231,235)); 
+        Invoice.setForeground(new java.awt.Color(107,114,128));
+        Invoice.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(193,193,193), 2)
+        );
+    }//GEN-LAST:event_InvoiceMouseExited
+
+    private void CalenderMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CalenderMouseEntered
+        // TODO add your handling code here:
+        Calender.setBackground(new java.awt.Color(38,166,154)); 
+        Calender.setForeground(java.awt.Color.WHITE);
+        Calender.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(38,166,154), 2)
+    );
+        Calender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_CalenderMouseEntered
+
+    private void CalenderMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CalenderMouseExited
+        // TODO add your handling code here:
+        Calender.setBackground(new java.awt.Color(229,231,235)); 
+        Calender.setForeground(new java.awt.Color(107,114,128));
+        Calender.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(193,193,193), 2)
+        );
+    }//GEN-LAST:event_CalenderMouseExited
+
+    private void logoutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseEntered
+        // TODO add your handling code here:
+        logout.setBackground(new java.awt.Color(38,166,154)); 
+        logout.setForeground(java.awt.Color.WHITE);
+        logout.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(38,166,154), 2)
+    );
+        logout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_logoutMouseEntered
+
+    private void logoutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseExited
+        // TODO add your handling code here:
+        logout.setBackground(new java.awt.Color(38,166,154)); 
+        logout.setForeground(new java.awt.Color(255,255,255));
+        logout.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(193,193,193), 2)
+        );
+    }//GEN-LAST:event_logoutMouseExited
 
     /**
      * @param args the command line arguments

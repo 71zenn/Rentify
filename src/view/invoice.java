@@ -184,6 +184,7 @@ public class invoice extends javax.swing.JFrame {
         Invoice.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Invoice.setForeground(new java.awt.Color(107, 114, 128));
         Invoice.setText("Invoice");
+        Invoice.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(38, 166, 154), 2, true));
         Invoice.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Invoice.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
