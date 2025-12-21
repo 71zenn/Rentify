@@ -9,8 +9,11 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import controller.adminController;
+import java.awt.Color;
+import java.awt.Cursor;
 import javax.swing.BorderFactory;
 import javax.swing.Timer;
+import javax.swing.border.Border;
 /**
  *
  * @author sthaa
@@ -22,9 +25,25 @@ public class users extends javax.swing.JFrame {
     /**
      * Creates new form users
      */
+    Color defaultBg;
+    Color defaultFg;
+    Cursor defaultCursor;
+    Border defaultBorder;
+    Color normalBg;
+    Color normalFg;
+    Cursor normalCursor;
+    Border normalBorder;
     public users() {
         initComponents();
-        loadUsersIntoTable();   
+        loadUsersIntoTable();
+        defaultBg = delete.getBackground();
+        defaultFg = delete.getForeground();
+        defaultCursor = delete.getCursor();
+        defaultBorder = delete.getBorder();
+        normalBg = edit.getBackground();
+        normalFg = edit.getForeground();
+        normalCursor = edit.getCursor();
+        normalBorder = edit.getBorder();
     }
     
     /**
@@ -280,17 +299,17 @@ public class users extends javax.swing.JFrame {
         UserTable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         UserTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "UserID", "Username", "Email", "Password"
+                "UserID", "Username", "Email"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -298,6 +317,7 @@ public class users extends javax.swing.JFrame {
             }
         });
         UserTable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        UserTable.setFillsViewportHeight(true);
         UserTable.setIntercellSpacing(new java.awt.Dimension(15, 0));
         UserTable.setRowHeight(30);
         UserTable.setSelectionBackground(new java.awt.Color(229, 231, 235));
@@ -305,19 +325,36 @@ public class users extends javax.swing.JFrame {
         UserTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(UserTable);
 
+        edit.setForeground(new java.awt.Color(2, 62, 138));
         edit.setText("EDIT");
+        edit.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 2, true));
         edit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         edit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 editMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                editMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                editMouseExited(evt);
+            }
         });
 
+        delete.setForeground(new java.awt.Color(220, 38, 38));
         delete.setText("DELETE");
+        delete.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 2, true));
         delete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        delete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         delete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 deleteMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                deleteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                deleteMouseExited(evt);
             }
         });
 
@@ -437,8 +474,7 @@ public class users extends javax.swing.JFrame {
             model.addRow(new Object[]{
             u.getUserID(),
             u.getUsername(),
-            u.getEmail(),
-            u.getPassword()
+            u.getEmail()
         });
         }   
     }
@@ -623,13 +659,10 @@ public class users extends javax.swing.JFrame {
         String newEmail = JOptionPane.showInputDialog(
             this, "Email:", user.getEmail());
 
-        String newPassword = JOptionPane.showInputDialog(
-            this, "Password:", user.getPassword());
 
-        if (newUsername != null && newEmail != null && newPassword != null) {
+        if (newUsername != null && newEmail != null) {
         user.setUsername(newUsername);
         user.setEmail(newEmail);
-        user.setPasssword(newPassword);
 
         controller.updateUser(user);
         loadUsersIntoTable();
@@ -787,6 +820,42 @@ public class users extends javax.swing.JFrame {
         BorderFactory.createLineBorder(new java.awt.Color(193,193,193), 2)
     );
     }//GEN-LAST:event_logoutMouseExited
+
+    private void deleteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseEntered
+        // TODO add your handling code here:
+        delete.setBackground(new java.awt.Color(193, 18, 31)); 
+        delete.setForeground(java.awt.Color.WHITE);
+        delete.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(193, 18, 31), 2)
+    );
+        delete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_deleteMouseEntered
+    
+    private void deleteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseExited
+        // TODO add your handling code here:
+        delete.setBackground(defaultBg);
+        delete.setForeground(defaultFg);
+        delete.setBorder(defaultBorder);
+        delete.setCursor(defaultCursor);
+    }//GEN-LAST:event_deleteMouseExited
+
+    private void editMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editMouseEntered
+        // TODO add your handling code here:
+        edit.setBackground(new java.awt.Color(2, 62, 138)); 
+        edit.setForeground(java.awt.Color.WHITE);
+        edit.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(2, 62, 138), 2)
+    );
+        edit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_editMouseEntered
+
+    private void editMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editMouseExited
+        // TODO add your handling code here:
+        edit.setBackground(normalBg);
+        edit.setForeground(normalFg);
+        edit.setBorder(normalBorder);
+        edit.setCursor(normalCursor);
+    }//GEN-LAST:event_editMouseExited
     
  
     /**
