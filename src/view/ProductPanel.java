@@ -4,6 +4,10 @@
  */
 package view;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import model.ProductModel;
+
 /**
  *
  * @author zenni
@@ -26,33 +30,40 @@ public class ProductPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Profile_icon5 = new javax.swing.JLabel();
-        Profile_icon7 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        image = new javax.swing.JLabel();
+        name = new javax.swing.JLabel();
+        price = new javax.swing.JLabel();
 
         setLayout(null);
 
-        Profile_icon5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/Transformersposter.jpg"))); // NOI18N
-        add(Profile_icon5);
-        Profile_icon5.setBounds(0, 0, 150, 150);
+        image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/Transformersposter.jpg"))); // NOI18N
+        add(image);
+        image.setBounds(0, 0, 150, 150);
 
-        Profile_icon7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Profile_icon7.setForeground(new java.awt.Color(51, 51, 51));
-        Profile_icon7.setText("Transformers");
-        add(Profile_icon7);
-        Profile_icon7.setBounds(0, 150, 150, 25);
+        name.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        name.setForeground(new java.awt.Color(51, 51, 51));
+        name.setText("Transformers");
+        add(name);
+        name.setBounds(0, 150, 150, 25);
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel7.setText("Rs. 999");
-        add(jLabel7);
-        jLabel7.setBounds(0, 210, 51, 22);
+        price.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        price.setForeground(new java.awt.Color(255, 51, 51));
+        price.setText("Rs. 999");
+        add(price);
+        price.setBounds(0, 210, 51, 22);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Profile_icon5;
-    private javax.swing.JLabel Profile_icon7;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel image;
+    private javax.swing.JLabel name;
+    private javax.swing.JLabel price;
     // End of variables declaration//GEN-END:variables
+public void setProductPanel(ProductModel product) {
+    name.setText("Name: " + product.getProductName());
+    price.setText("Price: Rs " + product.getProductPrice());
+    ImageIcon icon = new ImageIcon(product.getProductImage());
+    Image img = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+    image.setIcon(new ImageIcon(img));
+}
 }
