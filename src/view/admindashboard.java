@@ -342,6 +342,8 @@ public class admindashboard extends javax.swing.JFrame {
         Admintext.setFont(new java.awt.Font("Segoe UI Emoji", 1, 24)); // NOI18N
         Admintext.setText("Admin");
 
+        sales.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(38, 166, 154), 1, true));
+
         salestext.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         salestext.setForeground(new java.awt.Color(107, 114, 128));
         salestext.setText("Sales of today");
@@ -363,6 +365,8 @@ public class admindashboard extends javax.swing.JFrame {
                 .addComponent(salestext, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(154, Short.MAX_VALUE))
         );
+
+        tickets.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(38, 166, 154), 1, true));
 
         ticketstext.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ticketstext.setForeground(new java.awt.Color(107, 114, 128));
@@ -442,7 +446,7 @@ public class admindashboard extends javax.swing.JFrame {
                             .addComponent(jLabel2))))
                 .addGap(69, 69, 69)
                 .addComponent(jPanelChart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         centerLayout.setVerticalGroup(
             centerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -478,7 +482,7 @@ public class admindashboard extends javax.swing.JFrame {
                         .addComponent(Admintext)
                         .addGap(91, 91, 91)
                         .addComponent(sales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addContainerGap(168, Short.MAX_VALUE))
             .addGroup(centerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanelChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

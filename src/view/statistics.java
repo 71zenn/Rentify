@@ -5,15 +5,16 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import javax.swing.BorderFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.category.DefaultCategoryDataset;
-
-import javax.swing.JFrame;
 import javax.swing.Timer;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
 /**
  *
  * @author sthaa
@@ -41,7 +42,15 @@ public class statistics extends javax.swing.JFrame {
             true,
             false
         );
-
+        
+        CategoryPlot plot = chart.getCategoryPlot();
+        plot.setRangeGridlinePaint(new Color(230, 230, 230)); // Subtle grid lines
+    
+        BarRenderer renderer = (BarRenderer) plot.getRenderer();
+    
+        // Set Colors
+        renderer.setSeriesPaint(0, new Color(231, 76, 60));   // Books: Soft Red
+        renderer.setSeriesPaint(1, new Color(38,166,154));  // Movies: Teal/Green
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setMouseWheelEnabled(true);
 
