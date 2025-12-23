@@ -4,19 +4,49 @@
  */
 package view;
 
+import Model.Product;
+import userdata.ProductDao;
 /**
  *
  * @author ASUS
  */
 public class products extends javax.swing.JPanel {
-
+    
     /**
      * Creates new form products
      */
     public products() {
         initComponents();
+        loadBooksFromDatabase();
     }
-
+private void loadBooksFromDatabase(){
+    ProductDao dao = new ProductDao();
+    java.util.List<Product> books = dao.getAll();
+    
+    jPanel5.removeAll();
+    jPanel5.setLayout(new java.awt.GridLayout(0, 1, 0, 5));
+    
+    for(Product p : books){
+        javax.swing.JPanel row = new javax.swing.JPanel();
+        javax.swing.JLabel lblName = new
+            javax.swing.JLabel(p.name);
+        javax.swing.JLabel lblType = new
+            javax.swing.JLabel(p.type);
+        javax.swing.JLabel lblImage = new
+            javax.swing.JLabel(p.imagepath);
+        javax.swing.JLabel lblCategory = new
+            javax.swing.JLabel(p.category);
+        
+        row.add(lblName);
+        row.add(lblType);
+        row.add(lblImage);
+        row.add(lblCategory);
+        jPanel5.add(row);
+    }
+    
+    jPanel5.revalidate();
+    jPanel5.repaint();
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -98,7 +128,7 @@ public class products extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel14;
