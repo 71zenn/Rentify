@@ -8,14 +8,14 @@ package view;
  *
  * @author zenni
  */
-public class Dashboard extends javax.swing.JFrame {
+public class UserDashboard extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Dashboard.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(UserDashboard.class.getName());
 
     /**
      * Creates new form dashboard
      */
-    public Dashboard() {
+    public UserDashboard() {
         initComponents();
     }
 
@@ -528,7 +528,7 @@ public class Dashboard extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Dashboard().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new UserDashboard().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

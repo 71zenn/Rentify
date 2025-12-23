@@ -1,7 +1,8 @@
 netbeans java
-|--reviewmodel
-|--productdao
-|--review panel
+|--reviewmodel (done)
+|--productdao (done)
+|--review panel (done)
+|--dashboardcontoller 
 
 sql
 |--producttable(left to create)

@@ -35,10 +35,8 @@ public class ProductPanel extends javax.swing.JPanel {
         price = new javax.swing.JLabel();
 
         setLayout(null);
-
-        image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/Transformersposter.jpg"))); // NOI18N
         add(image);
-        image.setBounds(0, 0, 150, 150);
+        image.setBounds(0, 0, 0, 0);
 
         name.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         name.setForeground(new java.awt.Color(51, 51, 51));

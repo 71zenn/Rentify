@@ -4,16 +4,16 @@ import java.awt.event.ActionListener;
 import javax.swing.JFileChooser;
 import userdata.ProductDao;
 import model.ProductModel;
-import view.Dashboard;
+import view.UserDashboard;
 /**
 *
 * @author User
 */
 public class DashboardController {
     private final ProductDao productDao = new ProductDao();
-    private final Dashboard dashboardView;
+    private final UserDashboard dashboardView;
     
-    public DashboardController(Dashboard dashboardView) {
+    public DashboardController(UserDashboard dashboardView) {
         this.dashboardView = dashboardView;
         
         dashboardView.addProductModelListener(new AddProductListener());

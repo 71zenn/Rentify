@@ -4,6 +4,10 @@
  */
 package view;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import model.ReviewModel;
+
 /**
  *
  * @author zenni
@@ -27,7 +31,7 @@ public class reviewPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         username = new javax.swing.JLabel();
-        review = new javax.swing.JTextField();
+        reviewBox = new javax.swing.JTextField();
         rating = new javax.swing.JLabel();
 
         setLayout(null);
@@ -37,14 +41,14 @@ public class reviewPanel extends javax.swing.JPanel {
         add(username);
         username.setBounds(20, 20, 101, 30);
 
-        review.setText("review");
-        review.addActionListener(new java.awt.event.ActionListener() {
+        reviewBox.setText("review");
+        reviewBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reviewActionPerformed(evt);
+                reviewBoxActionPerformed(evt);
             }
         });
-        add(review);
-        review.setBounds(20, 80, 941, 26);
+        add(reviewBox);
+        reviewBox.setBounds(20, 80, 941, 26);
 
         rating.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         rating.setText("rating");
@@ -52,21 +56,21 @@ public class reviewPanel extends javax.swing.JPanel {
         rating.setBounds(20, 50, 37, 20);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void reviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reviewActionPerformed
+    private void reviewBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reviewBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_reviewActionPerformed
+    }//GEN-LAST:event_reviewBoxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel rating;
-    private javax.swing.JTextField review;
+    private javax.swing.JTextField reviewBox;
     private javax.swing.JLabel username;
     // End of variables declaration//GEN-END:variables
-    public void setProduct(UserModel user) {
-    username.setText(user.getProductName());
-    review.setText(user.getProductPrice());
-    ImageIcon icon = new ImageIcon(user.getProductImage());
-    Image img = icon.getImage().getScaledInstance(100, 100,
-    Image.SCALE_SMOOTH);
-    image.setIcon(new ImageIcon(img));
-}}
+    public void setReview(ReviewModel review) {
+        String productRating; 
+        username.setText(review.getUserName());
+        rating.setText(productRating = Float.toString(review.getProductRating()));
+        reviewBox.setText(review.getProductReview());
+        
+    }
+    }

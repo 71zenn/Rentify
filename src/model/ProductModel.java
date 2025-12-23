@@ -53,27 +53,27 @@ package model;
             this.productPrice = productPrice;
         }
         
-        public String ProductSynopsis() {
+        public String getProductSynopsis() {
             return productSynopsis;
         }
         
-        public void ProductSynopsis(String productSynopsis) {
+        public void setProductSynopsis(String productSynopsis) {
             this.productSynopsis = productSynopsis;
         }
         
-        public Boolean ProductType() {
+        public Boolean getProductType() {
             return productType;
         }
         
-        public void ProductSynopsis(Boolean productType) {
+        public void setProductSynopsis(Boolean productType) {
             this.productType = productType;
         }
         
-        public Boolean ProductForm() {
+        public Boolean getProductForm() {
             return productForm;
         }
         
-        public void productForm(Boolean productForm) {
+        public void setProductForm(Boolean productForm) {
             this.productForm = productForm;
         }
         

@@ -10,47 +10,54 @@ package model;
  */
 public class ReviewModel {
         private String userName; 
-        private String productImage;
-        private String productSynopsis;
-        private Boolean productType;
-        private Boolean productForm;
-        private int productPrice; 
+        private String productReview;
+        private String profileImage; 
+        private float productRating;
+               
         
-        
-        public ReviewModel(String productName, String productImage , int productPrice, String productSynopsis, Boolean productType, Boolean productForm){
-            this.productName = productName;
-            this.productImage = productImage;
-            this.productPrice = productPrice;
-            this.productSynopsis = productSynopsis;
-            this.productType = productType;
-            this.productForm = productForm;
+        public ReviewModel(String userName, String productReview, String profileImage , float productRating, String productSynopsis, Boolean productType, Boolean productForm){
+            this.userName = userName;
+            this.productReview = productReview; 
+            this.profileImage = profileImage;
+            this.productRating = productRating;
+            
         }
         
-        public String getProductName() {
-            return productName;
+        public String getUserName() {
+            return userName;
         }
         
-        public void setProductName(String productName) {
-            this.productName = productName;
+        public void setUserName(String userName) {
+            this.userName = userName;
         }
         
-        public String getProductImage() {
-            return productImage;
+        public String getProductReview() {
+            return productReview;
         }
         
-        public void setProductImage(String productImage) {
-            this.productImage = productImage;
+        public void setProductReview(String productReview) {
+            this.productReview = productReview;
         }
         
-        public int getProductPrice() {
-            return productPrice;
+        public void setProductImage(String productReview) {
+            this.productReview = productReview;
         }
         
-        public void setProductPrice(int productPrice) {
-            this.productPrice = productPrice;
+        public String getProfileImage(){
+            return profileImage; 
         }
         
-        public String ProductSynopsis() {
-            return productSynopsis;
+        public void setProfileImage(String profileImage) {
+            this.profileImage = profileImage;
         }
+        
+        public float getProductRating() {
+            return productRating;
+        }
+        
+        public void ProductRating(float productRating) {
+            this.productRating = productRating;
+        }
+        
+        
 }
