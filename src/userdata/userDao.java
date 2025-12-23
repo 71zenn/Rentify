@@ -12,11 +12,12 @@ public class userDao {
     
     public void signup(User_model user){
         Connection conn = mysql.openConnection();
-        String sql = "insert into user (username, email, password) values(?,?,?)";
+        String sql = "insert into users (fullname, username, email, password) values(?,?,?,?)";
         try (PreparedStatement pstm = conn.prepareStatement(sql)){
-            pstm.setString(1, user.getUsername());
-            pstm.setString(2, user.getEmail());
-            pstm.setString(3, user.getPassword());
+            pstm.setString(1, user.getFullname());
+            pstm.setString(2, user.getUsername());
+            pstm.setString(3, user.getEmail());
+            pstm.setString(4, user.getPassword());
             pstm.executeUpdate();
             
         } catch(Exception ex){
@@ -27,7 +28,7 @@ public class userDao {
     }
     public boolean check(User_model user){
         Connection conn = mysql.openConnection();
-        String sql = "select * from user where email = ? or username = ?";
+        String sql = "select * from users where email = ? or username = ?";
         try (PreparedStatement pstm = conn.prepareStatement(sql)){
             pstm.setString(1, user.getEmail());
             pstm.setString(2, user.getUsername());
@@ -41,7 +42,7 @@ public class userDao {
         return false;
     }
 
-    public void signUp(User_model usermodel) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void signUp(User_model usermodel){
+        signup(usermodel);
     }
 }
