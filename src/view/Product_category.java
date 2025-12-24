@@ -43,9 +43,6 @@ public class Product_category extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         checkbox1 = new java.awt.Checkbox();
         checkbox2 = new java.awt.Checkbox();
-        jPanel3 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         booksjPanel2 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -69,10 +66,13 @@ public class Product_category extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         libraryBTN = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        Bookbtn = new javax.swing.JButton();
+        Moviesbtn = new javax.swing.JButton();
+        Supportbtn = new javax.swing.JButton();
+        Newestbtn = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -131,51 +131,10 @@ public class Product_category extends javax.swing.JFrame {
         jPanel1.add(checkbox2);
         checkbox2.setBounds(170, 200, 75, 21);
 
-        jTextField1.setBackground(new java.awt.Color(184, 179, 179));
-        jTextField1.setText("Search");
-        jTextField1.setPreferredSize(new java.awt.Dimension(400, 33));
-        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextField1FocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextField1FocusLost(evt);
-            }
-        });
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search.png"))); // NOI18N
-        jLabel7.setText("jLabel7");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)))
-        );
-
-        jPanel1.add(jPanel3);
-        jPanel3.setBounds(790, 120, 440, 30);
-
         jScrollPane1.setPreferredSize(new java.awt.Dimension(1192, 436));
 
         booksjPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        booksjPanel2.setPreferredSize(new java.awt.Dimension(1192, 1192));
         booksjPanel2.setLayout(new java.awt.GridLayout(5, 1));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -193,27 +152,27 @@ public class Product_category extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(23, 23, 23)
                 .addComponent(jLabel6)
-                .addGap(45, 45, 45)
+                .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(996, Short.MAX_VALUE))
+                .addContainerGap(885, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(85, 85, 85)
+                        .addGap(55, 55, 55)
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel13)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel13))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         booksjPanel2.add(jPanel2);
@@ -235,26 +194,26 @@ public class Product_category extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(33, 33, 33)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14))
-                .addContainerGap(962, Short.MAX_VALUE))
+                .addContainerGap(907, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel14)))
-                .addGap(48, 48, 48))
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel14)
+                .addGap(131, 131, 131))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         booksjPanel2.add(jPanel4);
@@ -275,13 +234,13 @@ public class Product_category extends javax.swing.JFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(41, 41, 41)
+                .addComponent(jLabel9)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel17))
-                .addContainerGap(1060, Short.MAX_VALUE))
+                .addContainerGap(949, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -290,23 +249,23 @@ public class Product_category extends javax.swing.JFrame {
                 .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel17)
-                .addContainerGap(148, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         booksjPanel2.add(jPanel5);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel6.setPreferredSize(new java.awt.Dimension(1280, 202));
 
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/homo.png"))); // NOI18N
 
         jLabel11.setText("Homosapiens");
 
-        jLabel19.setText("Type: Physical");
+        jLabel19.setText("Type: Book");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -319,7 +278,7 @@ public class Product_category extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
                     .addComponent(jLabel19))
-                .addContainerGap())
+                .addContainerGap(1035, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -353,7 +312,7 @@ public class Product_category extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel20)
                     .addComponent(jLabel21))
-                .addContainerGap(1071, Short.MAX_VALUE))
+                .addContainerGap(960, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -382,53 +341,93 @@ public class Product_category extends javax.swing.JFrame {
             }
         });
         jPanel1.add(libraryBTN);
-        libraryBTN.setBounds(310, 30, 178, 40);
+        libraryBTN.setBounds(310, 30, 156, 36);
 
-        jButton2.setBackground(new java.awt.Color(232, 241, 253));
-        jButton2.setText("Books");
-        jButton2.setPreferredSize(new java.awt.Dimension(136, 136));
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        Bookbtn.setBackground(new java.awt.Color(232, 241, 253));
+        Bookbtn.setText("Books");
+        Bookbtn.setPreferredSize(new java.awt.Dimension(136, 136));
+        Bookbtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                BookbtnMouseClicked(evt);
             }
         });
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Bookbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                BookbtnActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2);
-        jButton2.setBounds(510, 30, 150, 40);
+        jPanel1.add(Bookbtn);
+        Bookbtn.setBounds(490, 30, 156, 36);
 
-        jButton3.setBackground(new java.awt.Color(232, 241, 253));
-        jButton3.setText("Movies");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        Moviesbtn.setBackground(new java.awt.Color(232, 241, 253));
+        Moviesbtn.setText("Movies");
+        Moviesbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                MoviesbtnActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3);
-        jButton3.setBounds(670, 30, 150, 40);
+        jPanel1.add(Moviesbtn);
+        Moviesbtn.setBounds(670, 30, 156, 36);
 
-        jButton5.setBackground(new java.awt.Color(232, 241, 253));
-        jButton5.setText("Support");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        Supportbtn.setBackground(new java.awt.Color(232, 241, 253));
+        Supportbtn.setText("Support");
+        Supportbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                SupportbtnActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton5);
-        jButton5.setBounds(990, 30, 190, 40);
+        jPanel1.add(Supportbtn);
+        Supportbtn.setBounds(1030, 30, 156, 36);
 
-        jButton4.setBackground(new java.awt.Color(232, 241, 253));
-        jButton4.setText("Newest");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        Newestbtn.setBackground(new java.awt.Color(232, 241, 253));
+        Newestbtn.setText("Newest");
+        Newestbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                NewestbtnActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4);
-        jButton4.setBounds(850, 30, 130, 40);
+        jPanel1.add(Newestbtn);
+        Newestbtn.setBounds(850, 30, 156, 36);
+
+        jTextField1.setBackground(new java.awt.Color(184, 179, 179));
+        jTextField1.setText("Search");
+        jTextField1.setPreferredSize(new java.awt.Dimension(400, 33));
+        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField1FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField1FocusLost(evt);
+            }
+        });
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(jPanel3);
+        jPanel3.setBounds(790, 120, 400, 33);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 1280, 720);
@@ -437,7 +436,7 @@ public class Product_category extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void NewestbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewestbtnActionPerformed
    javax.swing.JFrame f = new javax.swing.JFrame("Newest");
       
       f.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -447,29 +446,17 @@ public class Product_category extends javax.swing.JFrame {
       f.setVisible(true);              
       
             // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_NewestbtnActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1FocusGained
-
-    private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1FocusLost
-
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton8ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void SupportbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupportbtnActionPerformed
    javax.swing.JFrame f = new javax.swing.JFrame("Support");
       
       f.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -480,9 +467,9 @@ public class Product_category extends javax.swing.JFrame {
 
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_SupportbtnActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void MoviesbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MoviesbtnActionPerformed
            javax.swing.JFrame f = new javax.swing.JFrame("Movies");
       
       f.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -492,9 +479,9 @@ public class Product_category extends javax.swing.JFrame {
       f.setVisible(true);
         
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_MoviesbtnActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void BookbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookbtnActionPerformed
          javax.swing.JFrame f = new javax.swing.JFrame("Books");
       
       f.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -504,11 +491,11 @@ public class Product_category extends javax.swing.JFrame {
       f.setVisible(true);
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_BookbtnActionPerformed
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    private void BookbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BookbtnMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2MouseClicked
+    }//GEN-LAST:event_BookbtnMouseClicked
 
     private void libraryBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_libraryBTNActionPerformed
       javax.swing.JFrame f = new javax.swing.JFrame("Library");
@@ -519,6 +506,18 @@ public class Product_category extends javax.swing.JFrame {
       f.setLocationRelativeTo(this);
       f.setVisible(true);
     }//GEN-LAST:event_libraryBTNActionPerformed
+
+    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1FocusGained
+
+    private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1FocusLost
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -546,13 +545,13 @@ public class Product_category extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Bookbtn;
+    private javax.swing.JButton Moviesbtn;
+    private javax.swing.JButton Newestbtn;
+    private javax.swing.JButton Supportbtn;
     private javax.swing.JPanel booksjPanel2;
     private java.awt.Checkbox checkbox1;
     private java.awt.Checkbox checkbox2;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
@@ -573,7 +572,7 @@ public class Product_category extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
