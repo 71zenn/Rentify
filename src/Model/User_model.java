@@ -18,10 +18,10 @@ public class User_model {
         this.email = email;
         this.password = password;
     }
-    public void setfullname(String fullname){
+    public void setFullname(String fullname){
         this.fullname = fullname;
 }
-    public String setfullname(){
+    public String getFullname(){
         return fullname;
 }
     public void setUsername(String username){
@@ -49,5 +49,7 @@ public class User_model {
     public int getUserID(){
         return user_id;
 }
-}
+    
 
+
+}
