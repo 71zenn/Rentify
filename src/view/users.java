@@ -11,6 +11,9 @@ import javax.swing.table.DefaultTableModel;
 import controller.adminController;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.Timer;
 import javax.swing.border.Border;
@@ -35,6 +38,13 @@ public class users extends javax.swing.JFrame {
     Border normalBorder;
     public users() {
         initComponents();
+        background.addMouseListener(new MouseAdapter() {
+            @Override
+        public void mousePressed(MouseEvent e) {
+            closeNotificationIfOpen();
+            }
+        });
+        
         loadUsersIntoTable();
         defaultBg = delete.getBackground();
         defaultFg = delete.getForeground();
@@ -482,21 +492,25 @@ public class users extends javax.swing.JFrame {
     private notification adWindow;     
     private javax.swing.Timer rollTimer;
 
-    private final int X = 870;
-    private final int Y = 110;
     private final int FULL_HEIGHT = 400;;
     private boolean isOpen = false;
     private void notificationiconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_notificationiconMouseClicked
 
         if (adWindow == null) {
             adWindow = new notification();
-            adWindow.setLocation(X, Y);
             adWindow.setSize(300, 0);
         }
 
         if (rollTimer != null && rollTimer.isRunning()) {
             rollTimer.stop();
         }
+        
+        int xOffset = -14;   
+        int yOffset = 5;  
+        Point p = notificationicon.getLocationOnScreen();   
+        int x = p.x + notificationicon.getWidth() - adWindow.getWidth() + xOffset; 
+        int y = p.y + notificationicon.getHeight() + yOffset;
+        adWindow.setLocation(x, y);
 
         if (!isOpen) {
             rollDown();
@@ -540,16 +554,30 @@ public class users extends javax.swing.JFrame {
 
         rollTimer.start();
     }//GEN-LAST:event_notificationiconMouseClicked
-
+    
+    private void closeNotificationIfOpen() {
+    if (adWindow != null && adWindow.isVisible()) {
+        if (rollTimer != null && rollTimer.isRunning()) {
+            rollTimer.stop();
+        }
+        adWindow.setVisible(false);
+        adWindow.dispose();   
+        adWindow = null;
+        isOpen = false;
+        }
+    }
+    
     private void notificationiconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationiconActionPerformed
         // TODO add your handling code here
     }//GEN-LAST:event_notificationiconActionPerformed
 
     private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
         // TODO add your handling code here:
+        Point loc = this.getLocation();
         this.dispose();
 
         admindashboard ad = new admindashboard();
+        ad.setLocation(loc);
         ad.setVisible(true);
     }//GEN-LAST:event_dashboardMouseClicked
 
@@ -559,9 +587,11 @@ public class users extends javax.swing.JFrame {
 
     private void UsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UsersMouseClicked
         // TODO add your handling code here:
+        Point loc = this.getLocation();
         this.dispose();
 
         users ad = new users();
+        ad.setLocation(loc);
         ad.setVisible(true);
     }//GEN-LAST:event_UsersMouseClicked
 
@@ -571,9 +601,11 @@ public class users extends javax.swing.JFrame {
 
     private void StatisticsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StatisticsMouseClicked
         // TODO add your handling code here:
+        Point loc = this.getLocation();
         this.dispose();
 
         statistics ad = new statistics();
+        ad.setLocation(loc);
         ad.setVisible(true);
     }//GEN-LAST:event_StatisticsMouseClicked
 
@@ -583,9 +615,11 @@ public class users extends javax.swing.JFrame {
 
     private void ManageProductsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ManageProductsMouseClicked
         // TODO add your handling code here:
+        Point loc = this.getLocation();
         this.dispose();
 
         manageproducts ad = new manageproducts();
+        ad.setLocation(loc);
         ad.setVisible(true);
     }//GEN-LAST:event_ManageProductsMouseClicked
 
@@ -595,9 +629,11 @@ public class users extends javax.swing.JFrame {
 
     private void InvoiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InvoiceMouseClicked
         // TODO add your handling code here:
+        Point loc = this.getLocation();
         this.dispose();
 
         invoice ad = new invoice();
+        ad.setLocation(loc);
         ad.setVisible(true);
     }//GEN-LAST:event_InvoiceMouseClicked
 
@@ -607,9 +643,11 @@ public class users extends javax.swing.JFrame {
 
     private void CalenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CalenderMouseClicked
         // TODO add your handling code here:
+        Point loc = this.getLocation();
         this.dispose();
 
         calender ad = new calender();
+        ad.setLocation(loc);
         ad.setVisible(true);
     }//GEN-LAST:event_CalenderMouseClicked
 
@@ -619,9 +657,11 @@ public class users extends javax.swing.JFrame {
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
         // TODO add your handling code here:
+        Point loc = this.getLocation();
         this.dispose();
 
         login loginPage = new login();
+        loginPage.setLocation(loc);
         loginPage.setVisible(true);
     }//GEN-LAST:event_logoutMouseClicked
 
