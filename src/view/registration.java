@@ -5,7 +5,8 @@
 package view;
 
 import controller.userController;
-
+     
+ 
 /**
  *
  * @author ASUS
@@ -19,6 +20,7 @@ public class registration extends javax.swing.JFrame {
      */
     public registration() {
         initComponents();
+        new userController(this);
     }
 
     /**
@@ -49,7 +51,7 @@ public class registration extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Registration");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(150, 100, 127, 32);
+        jLabel1.setBounds(150, 100, 130, 32);
 
         jTextField1.setBackground(new java.awt.Color(247, 249, 255));
         jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -69,7 +71,7 @@ public class registration extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jTextField1);
-        jTextField1.setBounds(80, 160, 300, 31);
+        jTextField1.setBounds(60, 160, 319, 39);
 
         jTextField2.setBackground(new java.awt.Color(247, 249, 255));
         jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -89,9 +91,9 @@ public class registration extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jTextField2);
-        jTextField2.setBounds(80, 220, 300, 31);
+        jTextField2.setBounds(60, 220, 319, 39);
 
-        jTextField3.setEditable(false);
+        jTextField3.setEditable(true);
         jTextField3.setBackground(new java.awt.Color(247, 249, 255));
         jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jTextField3.setForeground(new java.awt.Color(150, 150, 150));
@@ -104,8 +106,13 @@ public class registration extends javax.swing.JFrame {
                 jTextField3FocusLost(evt);
             }
         });
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jTextField3);
-        jTextField3.setBounds(80, 280, 300, 31);
+        jTextField3.setBounds(60, 280, 319, 39);
 
         jPasswordField1.setBackground(new java.awt.Color(247, 249, 255));
         jPasswordField1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -118,8 +125,13 @@ public class registration extends javax.swing.JFrame {
                 jPasswordField1FocusLost(evt);
             }
         });
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jPasswordField1);
-        jPasswordField1.setBounds(80, 340, 300, 31);
+        jPasswordField1.setBounds(60, 340, 319, 39);
 
         jButton1.setBackground(new java.awt.Color(13, 106, 210));
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -131,21 +143,20 @@ public class registration extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(130, 420, 180, 40);
+        jButton1.setBounds(80, 420, 250, 45);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icon (1).png"))); // NOI18N
-        jLabel2.setText("jLabel2");
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/rentify-200.png"))); // NOI18N
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(70, 10, 300, 90);
+        jLabel2.setBounds(110, 10, 210, 80);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(425, 100, 430, 520);
+        jPanel1.setBounds(425, 100, 430, 567);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
+     // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -193,21 +204,27 @@ public class registration extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3FocusLost
 
     private void jPasswordField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordField1FocusGained
-      if (String.valueOf (jPasswordField1.getPassword()).equals("Password")){
-         jPasswordField1.setText("");
+          jPasswordField1.setText("");
          jPasswordField1.setEchoChar('*');
-    }
+    
       
       // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField1FocusGained
 
     private void jPasswordField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordField1FocusLost
        if(String.valueOf(jPasswordField1.getPassword()).isEmpty()){
-         jPasswordField1.setText("");
-         jPasswordField1.setEchoChar('*');
-       }
+          
+         }
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField1FocusLost
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     /**
      * @param args the command line arguments
