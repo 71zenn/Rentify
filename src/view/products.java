@@ -5,7 +5,7 @@
 package view;
 
 import Model.Product;
-import userdata.ProductDao;
+import dao.ProductDao;
 /**
  *
  * @author ASUS
