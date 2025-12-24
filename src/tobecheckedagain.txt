@@ -1,0 +1,10 @@
+netbeans java
+|--reviewmodel (done)
+|--productdao (done)
+|--review panel (done)
+|--dashboardcontoller 
+
+sql
+|--producttable(left to create)
+|--reviewtable(left to create)
+|--usertable(left to pull)

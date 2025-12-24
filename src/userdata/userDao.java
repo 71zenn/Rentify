@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package userdata;
-import Model.User_model;
+import model.User_model;
 import database.MySQLConnection;
 import java.sql.*;
 
