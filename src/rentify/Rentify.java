@@ -4,9 +4,8 @@
  */
 package rentify;
 import controller.userController;
-import database.*;
+import view.registration;
 
-import view.*;
 
 /**
  *
@@ -20,7 +19,7 @@ public class Rentify {
     public static void main(String[] args) {
         
         registration registration_obj = new registration();
-        userController controller = new userController();
+        userController controller = new userController(registration_obj);
         controller.open();
     }
 }     
