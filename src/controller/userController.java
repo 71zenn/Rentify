@@ -4,7 +4,6 @@
  */
 package controller;
 
-import view.users;
 
 /**
  *
@@ -12,6 +11,4 @@ import view.users;
  */
 public class userController {
 
-    public userController(users aThis) {
-    }
 }
