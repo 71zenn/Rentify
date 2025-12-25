@@ -27,6 +27,7 @@ public class userController{
             this.userView.dispose();
     }
     
+    
     class SignUpListener implements ActionListener {
 @Override
             public void actionPerformed(ActionEvent e){
