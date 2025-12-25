@@ -18,6 +18,7 @@ package model;
         private Boolean productType;
         private Boolean productForm;
         private int productPrice; 
+        private int product_ID;
         
         
         public ProductModel(String productName, String productImage , int productPrice, String productSynopsis, Boolean productType, Boolean productForm){
@@ -27,6 +28,25 @@ package model;
             this.productSynopsis = productSynopsis;
             this.productType = productType;
             this.productForm = productForm;
+        }
+
+        // Used when creating a new product (no ID yet)
+        public ProductModel(int product_ID, String productName, String productImage , int productPrice, String productSynopsis, Boolean productType, Boolean productForm) {
+            this.product_ID = product_ID;
+            this.productName = productName;
+            this.productImage = productImage;
+            this.productPrice = productPrice;
+            this.productSynopsis = productSynopsis;
+            this.productType = productType; //true for book and false for movie
+            this.productForm = productForm; //true for digital and false for phyical copy !!movies are always true no exception!!
+        }
+        
+        public int getProductID() {
+            return product_ID;
+        }
+        
+        public void setProductID(int product_ID) {
+            this.product_ID = product_ID;
         }
         
         public String getProductName() {

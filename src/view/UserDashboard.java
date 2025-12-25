@@ -4,6 +4,9 @@
  */
 package view;
 
+import java.awt.event.ActionListener;
+import userdata.BooksPage;
+
 /**
  *
  * @author zenni
@@ -17,6 +20,8 @@ public class UserDashboard extends javax.swing.JFrame {
      */
     public UserDashboard() {
         initComponents();
+        setSize(1293,760);
+        
     }
 
     /**
@@ -35,9 +40,9 @@ public class UserDashboard extends javax.swing.JFrame {
         HistoryBTN = new javax.swing.JButton();
         WishlistBTN = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        Profile_icon = new javax.swing.JLabel();
+        userEmail = new javax.swing.JLabel();
         Profile_icon1 = new javax.swing.JLabel();
-        Profile_icon2 = new javax.swing.JLabel();
+        userFullName = new javax.swing.JLabel();
         LogoutBTN = new javax.swing.JButton();
         Profile_icon3 = new javax.swing.JLabel();
         Profile_icon4 = new javax.swing.JLabel();
@@ -54,16 +59,16 @@ public class UserDashboard extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         Profile_icon9 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         SupportBTN = new javax.swing.JButton();
         LibraryBTN = new javax.swing.JButton();
         MoviesBTN = new javax.swing.JButton();
         NewestBTN = new javax.swing.JButton();
         BooksBTN = new javax.swing.JButton();
-        jTextArea2 = new javax.swing.JTextArea();
+        SearchBOX = new javax.swing.JTextArea();
         SearchBTN = new javax.swing.JButton();
-        profileIconBTN = new javax.swing.JButton();
         cart = new javax.swing.JButton();
+        profileIconBTN = new javax.swing.JButton();
+        LogoBTN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -134,15 +139,15 @@ public class UserDashboard extends javax.swing.JFrame {
             .addGap(0, 604, Short.MAX_VALUE)
         );
 
-        Profile_icon.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        Profile_icon.setForeground(new java.awt.Color(51, 51, 51));
-        Profile_icon.setText("ashishshrestha250@gmail.com");
+        userEmail.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        userEmail.setForeground(new java.awt.Color(51, 51, 51));
+        userEmail.setText("ashishshrestha250@gmail.com");
 
         Profile_icon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/harrypotterHBPcover.jpg"))); // NOI18N
 
-        Profile_icon2.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
-        Profile_icon2.setForeground(new java.awt.Color(51, 51, 51));
-        Profile_icon2.setText("Ashish Shrestha");
+        userFullName.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
+        userFullName.setForeground(new java.awt.Color(51, 51, 51));
+        userFullName.setText("Ashish Shrestha");
 
         LogoutBTN.setBackground(new java.awt.Color(38, 166, 154));
         LogoutBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
@@ -226,10 +231,10 @@ public class UserDashboard extends javax.swing.JFrame {
                         .addComponent(Profile_icon3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Profile_icon2)
+                            .addComponent(userFullName)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addComponent(Profile_icon)))
+                                .addComponent(userEmail)))
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,9 +298,9 @@ public class UserDashboard extends javax.swing.JFrame {
                         .addGap(35, 35, 35)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(Profile_icon2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(userFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Profile_icon))
+                                .addComponent(userEmail))
                             .addComponent(Profile_icon3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Profile_icon9, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -332,10 +337,6 @@ public class UserDashboard extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(25, 140, 1230, 565);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/rentifyohnebg (1).png"))); // NOI18N
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(10, 10, 260, 60);
 
         SupportBTN.setBackground(new java.awt.Color(232, 241, 253));
         SupportBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
@@ -397,12 +398,12 @@ public class UserDashboard extends javax.swing.JFrame {
         jPanel1.add(BooksBTN);
         BooksBTN.setBounds(480, 50, 146, 36);
 
-        jTextArea2.setBackground(new java.awt.Color(229, 231, 235));
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jTextArea2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        jPanel1.add(jTextArea2);
-        jTextArea2.setBounds(820, 100, 230, 30);
+        SearchBOX.setBackground(new java.awt.Color(229, 231, 235));
+        SearchBOX.setColumns(20);
+        SearchBOX.setRows(5);
+        SearchBOX.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel1.add(SearchBOX);
+        SearchBOX.setBounds(820, 100, 230, 30);
 
         SearchBTN.setBackground(new java.awt.Color(229, 231, 235));
         SearchBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search-icon.png"))); // NOI18N
@@ -415,11 +416,6 @@ public class UserDashboard extends javax.swing.JFrame {
         jPanel1.add(SearchBTN);
         SearchBTN.setBounds(1050, 100, 40, 30);
 
-        profileIconBTN.setBackground(new java.awt.Color(255, 255, 255));
-        profileIconBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/profile icon.png"))); // NOI18N
-        jPanel1.add(profileIconBTN);
-        profileIconBTN.setBounds(1180, 20, 80, 80);
-
         cart.setBackground(new java.awt.Color(255, 255, 255));
         cart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cart40x40.png"))); // NOI18N
         cart.addActionListener(new java.awt.event.ActionListener() {
@@ -429,6 +425,29 @@ public class UserDashboard extends javax.swing.JFrame {
         });
         jPanel1.add(cart);
         cart.setBounds(1100, 100, 40, 40);
+
+        profileIconBTN.setBackground(new java.awt.Color(255, 255, 255));
+        profileIconBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        profileIconBTN.setForeground(new java.awt.Color(17, 24, 39));
+        profileIconBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/profile-85x85.png"))); // NOI18N
+        profileIconBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                profileIconBTNActionPerformed(evt);
+            }
+        });
+        jPanel1.add(profileIconBTN);
+        profileIconBTN.setBounds(1180, 10, 90, 90);
+
+        LogoBTN.setBackground(new java.awt.Color(255, 255, 255));
+        LogoBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/rentifyohnebg (1).png"))); // NOI18N
+        LogoBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        LogoBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LogoBTNActionPerformed(evt);
+            }
+        });
+        jPanel1.add(LogoBTN);
+        LogoBTN.setBounds(10, 10, 260, 70);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 1280, 720);
@@ -506,6 +525,20 @@ public class UserDashboard extends javax.swing.JFrame {
         
     }//GEN-LAST:event_cartActionPerformed
 
+    private void profileIconBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileIconBTNActionPerformed
+        // TODO add your handling code here:
+        UserDashboard userDashboard = new UserDashboard();
+        userDashboard.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_profileIconBTNActionPerformed
+
+    private void LogoBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoBTNActionPerformed
+        // TODO add your handling code here:
+        HomePage homePage = new HomePage();
+        homePage.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_LogoBTNActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -535,14 +568,13 @@ public class UserDashboard extends javax.swing.JFrame {
     private javax.swing.JButton BooksBTN;
     private javax.swing.JButton HistoryBTN;
     private javax.swing.JButton LibraryBTN;
+    private javax.swing.JButton LogoBTN;
     private javax.swing.JButton LogoutBTN;
     private javax.swing.JButton MoviesBTN;
     private javax.swing.JButton NewestBTN;
     private javax.swing.JButton OrdersBTN;
     private javax.swing.JButton ProfileBTN;
-    private javax.swing.JLabel Profile_icon;
     private javax.swing.JLabel Profile_icon1;
-    private javax.swing.JLabel Profile_icon2;
     private javax.swing.JLabel Profile_icon3;
     private javax.swing.JLabel Profile_icon4;
     private javax.swing.JLabel Profile_icon5;
@@ -550,11 +582,11 @@ public class UserDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel Profile_icon7;
     private javax.swing.JLabel Profile_icon8;
     private javax.swing.JLabel Profile_icon9;
+    private javax.swing.JTextArea SearchBOX;
     private javax.swing.JButton SearchBTN;
     private javax.swing.JButton SupportBTN;
     private javax.swing.JButton WishlistBTN;
     private javax.swing.JButton cart;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -566,8 +598,10 @@ public class UserDashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JButton profileIconBTN;
+    private javax.swing.JLabel userEmail;
+    private javax.swing.JLabel userFullName;
     // End of variables declaration//GEN-END:variables
     
+  
 }

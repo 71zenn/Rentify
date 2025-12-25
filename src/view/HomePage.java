@@ -17,6 +17,7 @@ public class HomePage extends javax.swing.JFrame {
      */
     public HomePage() {
         initComponents();
+        setSize(1293,760);
     }
 
     /**
@@ -29,7 +30,7 @@ public class HomePage extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        Logo = new javax.swing.JLabel();
+        profileIconBTN = new javax.swing.JButton();
         SupportBTN = new javax.swing.JButton();
         LibraryBTN = new javax.swing.JButton();
         MoviesBTN = new javax.swing.JButton();
@@ -37,10 +38,10 @@ public class HomePage extends javax.swing.JFrame {
         BooksBTN = new javax.swing.JButton();
         jTextArea2 = new javax.swing.JTextArea();
         SearchBTN = new javax.swing.JButton();
-        profileIconBTN = new javax.swing.JButton();
         cart = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel3 = new javax.swing.JPanel();
+        LogoBTN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -49,9 +50,17 @@ public class HomePage extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(null);
 
-        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/rentifyohnebg (1).png"))); // NOI18N
-        jPanel1.add(Logo);
-        Logo.setBounds(10, 10, 260, 60);
+        profileIconBTN.setBackground(new java.awt.Color(255, 255, 255));
+        profileIconBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        profileIconBTN.setForeground(new java.awt.Color(17, 24, 39));
+        profileIconBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/profile-85x85.png"))); // NOI18N
+        profileIconBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                profileIconBTNActionPerformed(evt);
+            }
+        });
+        jPanel1.add(profileIconBTN);
+        profileIconBTN.setBounds(1180, 10, 90, 90);
 
         SupportBTN.setBackground(new java.awt.Color(232, 241, 253));
         SupportBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
@@ -131,11 +140,6 @@ public class HomePage extends javax.swing.JFrame {
         jPanel1.add(SearchBTN);
         SearchBTN.setBounds(1050, 100, 40, 30);
 
-        profileIconBTN.setBackground(new java.awt.Color(255, 255, 255));
-        profileIconBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/profile icon.png"))); // NOI18N
-        jPanel1.add(profileIconBTN);
-        profileIconBTN.setBounds(1180, 20, 80, 80);
-
         cart.setBackground(new java.awt.Color(255, 255, 255));
         cart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cart40x40.png"))); // NOI18N
         cart.addActionListener(new java.awt.event.ActionListener() {
@@ -167,6 +171,16 @@ public class HomePage extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane2);
         jScrollPane2.setBounds(20, 170, 1250, 530);
+
+        LogoBTN.setBackground(new java.awt.Color(255, 255, 255));
+        LogoBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/rentifyohnebg (1).png"))); // NOI18N
+        LogoBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LogoBTNActionPerformed(evt);
+            }
+        });
+        jPanel1.add(LogoBTN);
+        LogoBTN.setBounds(10, 10, 260, 70);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 1280, 720);
@@ -223,6 +237,20 @@ public class HomePage extends javax.swing.JFrame {
         
     }//GEN-LAST:event_cartActionPerformed
 
+    private void LogoBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoBTNActionPerformed
+        // TODO add your handling code here:
+        HomePage homePage = new HomePage();
+        homePage.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_LogoBTNActionPerformed
+
+    private void profileIconBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileIconBTNActionPerformed
+                // TODO add your handling code here:
+        UserDashboard userDashboard = new UserDashboard();
+        userDashboard.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_profileIconBTNActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -251,7 +279,7 @@ public class HomePage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BooksBTN;
     private javax.swing.JButton LibraryBTN;
-    private javax.swing.JLabel Logo;
+    private javax.swing.JButton LogoBTN;
     private javax.swing.JButton MoviesBTN;
     private javax.swing.JButton NewestBTN;
     private javax.swing.JButton SearchBTN;
