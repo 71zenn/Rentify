@@ -5,6 +5,7 @@
 package view;
 
 import java.awt.Image;
+import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import model.ProductModel;
 
@@ -30,38 +31,47 @@ public class ProductPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        image = new javax.swing.JLabel();
-        name = new javax.swing.JLabel();
-        price = new javax.swing.JLabel();
+        productImage = new javax.swing.JLabel();
+        productName = new javax.swing.JLabel();
+        productPrice = new javax.swing.JLabel();
 
         setLayout(null);
-        add(image);
-        image.setBounds(0, 0, 0, 0);
+        add(productImage);
+        productImage.setBounds(0, 0, 150, 140);
 
-        name.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        name.setForeground(new java.awt.Color(51, 51, 51));
-        name.setText("Transformers");
-        add(name);
-        name.setBounds(0, 150, 150, 25);
+        productName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        productName.setForeground(new java.awt.Color(51, 51, 51));
+        productName.setText("Transformers");
+        add(productName);
+        productName.setBounds(0, 150, 150, 25);
 
-        price.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        price.setForeground(new java.awt.Color(255, 51, 51));
-        price.setText("Rs. 999");
-        add(price);
-        price.setBounds(0, 210, 51, 22);
+        productPrice.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        productPrice.setForeground(new java.awt.Color(255, 51, 51));
+        productPrice.setText("Rs. 999");
+        add(productPrice);
+        productPrice.setBounds(0, 210, 51, 22);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel image;
-    private javax.swing.JLabel name;
-    private javax.swing.JLabel price;
+    private javax.swing.JLabel productImage;
+    private javax.swing.JLabel productName;
+    private javax.swing.JLabel productPrice;
     // End of variables declaration//GEN-END:variables
-public void setProductPanel(ProductModel product) {
-    name.setText("Name: " + product.getProductName());
-    price.setText("Price: Rs " + product.getProductPrice());
-    ImageIcon icon = new ImageIcon(product.getProductImage());
-    Image img = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-    image.setIcon(new ImageIcon(img));
-}
+    /**public void addProductListener(ActionListener listener) {
+        addProduct.addActionListener(listener);
+    }**/
+    
+    public javax.swing.JLabel getProductImage() {
+        return productImage;
+    }
+    
+    public javax.swing.JLabel getProductName() {
+        return productName;
+    }
+    
+    public javax.swing.JLabel getProductPrice() {
+        return productPrice;
+    }
+
 }
