@@ -21,6 +21,7 @@ public class Product_category extends javax.swing.JFrame {
      */
     public Product_category() {
         initComponents();
+        loadProductsFromDatabase();
        
 
     }
@@ -585,4 +586,15 @@ public class Product_category extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JButton libraryBTN;
     // End of variables declaration//GEN-END:variables
+    
+private void loadProductsFromDatabase() {
+        dao.ProductDao dao = new dao.ProductDao();
+        java.util.List<Model.Product> list = dao.getAll();
+        
+        for(Model.Product p : list){
+            System.out.println(p.id + " - " + p.name + " - " + p.type + " - " + p.category );
+        }
+    }
+  
 }
+
