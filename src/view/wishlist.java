@@ -53,6 +53,19 @@ public class wishlist extends javax.swing.JPanel {
         OrderPanel = new javax.swing.JPanel();
         HistoryPanel = new javax.swing.JPanel();
         WishlistPanel = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(249, 250, 251));
         setLayout(null);
@@ -240,17 +253,73 @@ public class wishlist extends javax.swing.JPanel {
         ContentPanel.add(HistoryPanel, "card2");
 
         WishlistPanel.setBackground(new java.awt.Color(255, 255, 255));
+        WishlistPanel.setLayout(null);
 
-        javax.swing.GroupLayout WishlistPanelLayout = new javax.swing.GroupLayout(WishlistPanel);
-        WishlistPanel.setLayout(WishlistPanelLayout);
-        WishlistPanelLayout.setHorizontalGroup(
-            WishlistPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 968, Short.MAX_VALUE)
-        );
-        WishlistPanelLayout.setVerticalGroup(
-            WishlistPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 563, Short.MAX_VALUE)
-        );
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
+        jLabel2.setText("Wishlist");
+        WishlistPanel.add(jLabel2);
+        jLabel2.setBounds(60, 30, 160, 54);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Harry_Potter.png"))); // NOI18N
+        jLabel4.setText("jLabel4");
+        WishlistPanel.add(jLabel4);
+        jLabel4.setBounds(60, 140, 200, 150);
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/hamlet.png"))); // NOI18N
+        WishlistPanel.add(jLabel5);
+        jLabel5.setBounds(610, 120, 120, 170);
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Johnwickposter.png"))); // NOI18N
+        WishlistPanel.add(jLabel6);
+        jLabel6.setBounds(800, 140, 150, 150);
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/The secret library.png"))); // NOI18N
+        WishlistPanel.add(jLabel7);
+        jLabel7.setBounds(360, 140, 150, 150);
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        jLabel8.setText("Harry Potter");
+        WishlistPanel.add(jLabel8);
+        jLabel8.setBounds(820, 310, 120, 40);
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(220, 38, 38));
+        jLabel9.setText("Rs. 1999");
+        WishlistPanel.add(jLabel9);
+        jLabel9.setBounds(820, 350, 100, 20);
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        jLabel10.setText("Harry Potter");
+        WishlistPanel.add(jLabel10);
+        jLabel10.setBounds(100, 310, 160, 40);
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        jLabel11.setText("The Secret Library");
+        WishlistPanel.add(jLabel11);
+        jLabel11.setBounds(360, 310, 180, 40);
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        jLabel12.setText("Hamlet");
+        WishlistPanel.add(jLabel12);
+        jLabel12.setBounds(610, 310, 160, 40);
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(220, 38, 38));
+        jLabel13.setText("Rs. 2199");
+        WishlistPanel.add(jLabel13);
+        jLabel13.setBounds(100, 350, 100, 20);
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(220, 38, 38));
+        jLabel14.setText("Rs. 1499");
+        WishlistPanel.add(jLabel14);
+        jLabel14.setBounds(360, 350, 100, 20);
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(220, 38, 38));
+        jLabel15.setText("Rs. 1499");
+        WishlistPanel.add(jLabel15);
+        jLabel15.setBounds(610, 350, 100, 20);
 
         ContentPanel.add(WishlistPanel, "card2");
 
@@ -360,7 +429,20 @@ public class wishlist extends javax.swing.JPanel {
     private javax.swing.JButton bookbutton;
     private javax.swing.JPanel buttonpanel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JButton libraryBTN;
     private javax.swing.JButton newestbtn;
     private javax.swing.JButton supportbtn;
