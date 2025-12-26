@@ -4,6 +4,10 @@
  */
 package view;
 
+import javax.swing.JPopupMenu;
+import javax.swing.JMenuItem;
+
+
 /**
  *
  * @author Dell
@@ -17,7 +21,45 @@ public class RentalHistory extends javax.swing.JFrame {
      */
     public RentalHistory() {
         initComponents();
-    }
+        
+        javax.swing.table.DefaultTableCellRenderer centerRenderer =
+        new javax.swing.table.DefaultTableCellRenderer();
+
+centerRenderer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+// apply to all columns
+for (int i = 0; i < jTable1.getColumnCount(); i++) {
+    jTable1.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+}
+
+ // ---- Make header a little bigger ----
+    jTable1.getTableHeader().setPreferredSize(
+            new java.awt.Dimension(
+                    jTable1.getTableHeader().getPreferredSize().width,
+                    50   // increase/decrease this number if needed
+            )
+    );
+
+
+        // Create popup menu for Sort button
+JPopupMenu sortMenu = new JPopupMenu();
+
+JMenuItem sortName = new JMenuItem("Sort by Name");
+JMenuItem sortDate = new JMenuItem("Sort by Date");
+JMenuItem sortStatus = new JMenuItem("Sort by Status");
+
+// Add items to popup
+sortMenu.add(sortName);
+sortMenu.add(sortDate);
+sortMenu.add(sortStatus);
+
+// Show popup when Sort button is clicked
+SortButton.addActionListener(e -> {
+    sortMenu.show(SortButton, 0, SortButton.getHeight());
+    
+});
+
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,21 +71,195 @@ public class RentalHistory extends javax.swing.JFrame {
     private void initComponents() {
 
         BackroundPanelColor = new javax.swing.JPanel();
+        Rentifylogo = new javax.swing.JLabel();
+        Librarybutton = new javax.swing.JButton();
+        Moviesbutton = new javax.swing.JButton();
+        Booksbutton = new javax.swing.JButton();
+        Newestbutton = new javax.swing.JButton();
+        Supportbutton = new javax.swing.JButton();
+        Profileicon = new javax.swing.JLabel();
+        Viewpurchasebutton = new javax.swing.JButton();
+        Search_Icon = new javax.swing.JLabel();
+        Mainsearchbar = new javax.swing.JTextField();
+        sorticon = new javax.swing.JLabel();
+        CartIcon = new javax.swing.JLabel();
+        AllButton = new javax.swing.JButton();
+        SortButton = new javax.swing.JButton();
+        HPtxt = new javax.swing.JLabel();
+        TSLtxt = new javax.swing.JLabel();
+        Table = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        MiddleLabel = new javax.swing.JLabel();
         Background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        javax.swing.GroupLayout BackroundPanelColorLayout = new javax.swing.GroupLayout(BackroundPanelColor);
-        BackroundPanelColor.setLayout(BackroundPanelColorLayout);
-        BackroundPanelColorLayout.setHorizontalGroup(
-            BackroundPanelColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1280, Short.MAX_VALUE)
-        );
-        BackroundPanelColorLayout.setVerticalGroup(
-            BackroundPanelColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
-        );
+        BackroundPanelColor.setBackground(new java.awt.Color(255, 255, 255));
+        BackroundPanelColor.setPreferredSize(new java.awt.Dimension(1280, 720));
+        BackroundPanelColor.setRequestFocusEnabled(false);
+        BackroundPanelColor.setLayout(null);
+
+        Rentifylogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Rentifylogo.png"))); // NOI18N
+        BackroundPanelColor.add(Rentifylogo);
+        Rentifylogo.setBounds(20, 10, 250, 120);
+
+        Librarybutton.setBackground(new java.awt.Color(232, 241, 253));
+        Librarybutton.setText("Library");
+        Librarybutton.setPreferredSize(new java.awt.Dimension(146, 36));
+        Librarybutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LibrarybuttonActionPerformed(evt);
+            }
+        });
+        BackroundPanelColor.add(Librarybutton);
+        Librarybutton.setBounds(310, 60, 120, 30);
+
+        Moviesbutton.setBackground(new java.awt.Color(232, 241, 253));
+        Moviesbutton.setText("Movies");
+        Moviesbutton.setPreferredSize(new java.awt.Dimension(146, 36));
+        Moviesbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MoviesbuttonActionPerformed(evt);
+            }
+        });
+        BackroundPanelColor.add(Moviesbutton);
+        Moviesbutton.setBounds(610, 60, 120, 30);
+
+        Booksbutton.setBackground(new java.awt.Color(232, 241, 253));
+        Booksbutton.setText("Books");
+        Booksbutton.setPreferredSize(new java.awt.Dimension(146, 36));
+        Booksbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BooksbuttonActionPerformed(evt);
+            }
+        });
+        BackroundPanelColor.add(Booksbutton);
+        Booksbutton.setBounds(450, 60, 120, 30);
+
+        Newestbutton.setBackground(new java.awt.Color(232, 241, 253));
+        Newestbutton.setText("Newest");
+        Newestbutton.setPreferredSize(new java.awt.Dimension(146, 36));
+        Newestbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NewestbuttonActionPerformed(evt);
+            }
+        });
+        BackroundPanelColor.add(Newestbutton);
+        Newestbutton.setBounds(770, 60, 120, 30);
+
+        Supportbutton.setBackground(new java.awt.Color(232, 241, 253));
+        Supportbutton.setText("Support");
+        Supportbutton.setPreferredSize(new java.awt.Dimension(146, 36));
+        Supportbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SupportbuttonActionPerformed(evt);
+            }
+        });
+        BackroundPanelColor.add(Supportbutton);
+        Supportbutton.setBounds(930, 60, 120, 30);
+
+        Profileicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/profile icon.png"))); // NOI18N
+        BackroundPanelColor.add(Profileicon);
+        Profileicon.setBounds(1140, 40, 60, 60);
+
+        Viewpurchasebutton.setBackground(new java.awt.Color(249, 250, 251));
+        Viewpurchasebutton.setForeground(new java.awt.Color(102, 102, 102));
+        Viewpurchasebutton.setText("Rental History");
+        Viewpurchasebutton.setPreferredSize(new java.awt.Dimension(146, 36));
+        BackroundPanelColor.add(Viewpurchasebutton);
+        Viewpurchasebutton.setBounds(90, 190, 110, 30);
+
+        Search_Icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Search_Icon.png"))); // NOI18N
+        BackroundPanelColor.add(Search_Icon);
+        Search_Icon.setBounds(1140, 150, 30, 30);
+
+        Mainsearchbar.setBackground(new java.awt.Color(229, 231, 235));
+        Mainsearchbar.setForeground(new java.awt.Color(107, 114, 128));
+        Mainsearchbar.setText("Search");
+        Mainsearchbar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
+        Mainsearchbar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                MainsearchbarFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                MainsearchbarFocusLost(evt);
+            }
+        });
+        Mainsearchbar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MainsearchbarActionPerformed(evt);
+            }
+        });
+        BackroundPanelColor.add(Mainsearchbar);
+        Mainsearchbar.setBounds(850, 150, 320, 30);
+
+        sorticon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sort-icon.png"))); // NOI18N
+        BackroundPanelColor.add(sorticon);
+        sorticon.setBounds(1140, 256, 40, 20);
+
+        CartIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cart_icon.png"))); // NOI18N
+        BackroundPanelColor.add(CartIcon);
+        CartIcon.setBounds(1180, 150, 30, 25);
+
+        AllButton.setText("All");
+        AllButton.setAlignmentY(0.0F);
+        AllButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        AllButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        AllButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AllButtonActionPerformed(evt);
+            }
+        });
+        BackroundPanelColor.add(AllButton);
+        AllButton.setBounds(110, 250, 50, 30);
+
+        SortButton.setText("Sort");
+        SortButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        BackroundPanelColor.add(SortButton);
+        SortButton.setBounds(1080, 250, 100, 30);
+
+        HPtxt.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        HPtxt.setForeground(new java.awt.Color(143, 137, 137));
+        HPtxt.setText("10 days left");
+        BackroundPanelColor.add(HPtxt);
+        HPtxt.setBounds(1020, 390, 50, 20);
+
+        TSLtxt.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        TSLtxt.setForeground(new java.awt.Color(143, 137, 137));
+        TSLtxt.setText("3 days left");
+        BackroundPanelColor.add(TSLtxt);
+        TSLtxt.setBounds(1020, 470, 50, 20);
+
+        jTable1.setBackground(new java.awt.Color(248, 248, 248));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"Harry Potter", "11 Nov, 2025", "29 Dec, 2025", "Active"},
+                {"The Secret Library", "11 Nov, 2025", "31 Dec,  2025", "Active"},
+                {"Hamlet", "12 Nov, 2025", "Expired", "Expired"},
+                {"Little women", "15 Nov, 2025", "Expired", "Expired"}
+            },
+            new String [] {
+                "Rented Items", "Rented on", "Expiry date", "status"
+            }
+        ));
+        jTable1.setRowHeight(78);
+        jTable1.setShowGrid(true);
+        jTable1.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                jTable1InputMethodTextChanged(evt);
+            }
+        });
+        Table.setViewportView(jTable1);
+
+        BackroundPanelColor.add(Table);
+        Table.setBounds(110, 320, 1080, 330);
+
+        MiddleLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(209, 213, 219)));
+        BackroundPanelColor.add(MiddleLabel);
+        MiddleLabel.setBounds(90, 230, 1120, 440);
 
         getContentPane().add(BackroundPanelColor);
         BackroundPanelColor.setBounds(0, 0, 1280, 720);
@@ -52,6 +268,73 @@ public class RentalHistory extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void LibrarybuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LibrarybuttonActionPerformed
+       javax.swing.JFrame blank = new javax.swing.JFrame("Library");
+    blank.setSize(800, 600); // window size
+    blank.setLocationRelativeTo(this); // center on screen
+    blank.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+    blank.setVisible(true);
+
+    }//GEN-LAST:event_LibrarybuttonActionPerformed
+
+    private void MainsearchbarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MainsearchbarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MainsearchbarActionPerformed
+
+    private void AllButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AllButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AllButtonActionPerformed
+
+    private void jTable1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTable1InputMethodTextChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable1InputMethodTextChanged
+
+    private void BooksbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BooksbuttonActionPerformed
+      javax.swing.JFrame blank = new javax.swing.JFrame("Books");
+    blank.setSize(800, 600);
+    blank.setLocationRelativeTo(this);
+    blank.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+    blank.setVisible(true);    
+    }//GEN-LAST:event_BooksbuttonActionPerformed
+
+    private void MoviesbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MoviesbuttonActionPerformed
+     javax.swing.JFrame blank = new javax.swing.JFrame("Movies");
+    blank.setSize(800, 600);
+    blank.setLocationRelativeTo(this);
+    blank.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+    blank.setVisible(true);  
+    }//GEN-LAST:event_MoviesbuttonActionPerformed
+
+    private void NewestbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewestbuttonActionPerformed
+      javax.swing.JFrame blank = new javax.swing.JFrame("Newest");
+    blank.setSize(800, 600);
+    blank.setLocationRelativeTo(this);
+    blank.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+    blank.setVisible(true);   
+    }//GEN-LAST:event_NewestbuttonActionPerformed
+
+    private void SupportbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupportbuttonActionPerformed
+       javax.swing.JFrame blank = new javax.swing.JFrame("Support");
+    blank.setSize(800, 600);
+    blank.setLocationRelativeTo(this);
+    blank.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+    blank.setVisible(true);
+    }//GEN-LAST:event_SupportbuttonActionPerformed
+
+    private void MainsearchbarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_MainsearchbarFocusGained
+     if (Mainsearchbar.getText().equals("Search")) {
+        Mainsearchbar.setText("");
+        Mainsearchbar.setForeground(new java.awt.Color(0, 0, 0));
+        }    
+    }//GEN-LAST:event_MainsearchbarFocusGained
+
+    private void MainsearchbarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_MainsearchbarFocusLost
+   if (Mainsearchbar.getText().trim().isEmpty()) {
+        Mainsearchbar.setText("Search");
+        Mainsearchbar.setForeground(new java.awt.Color(107, 114, 128)); // your grey
+        }     
+    }//GEN-LAST:event_MainsearchbarFocusLost
 
     /**
      * @param args the command line arguments
@@ -79,7 +362,26 @@ public class RentalHistory extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AllButton;
     private javax.swing.JLabel Background;
     private javax.swing.JPanel BackroundPanelColor;
+    private javax.swing.JButton Booksbutton;
+    private javax.swing.JLabel CartIcon;
+    private javax.swing.JLabel HPtxt;
+    private javax.swing.JButton Librarybutton;
+    private javax.swing.JTextField Mainsearchbar;
+    private javax.swing.JLabel MiddleLabel;
+    private javax.swing.JButton Moviesbutton;
+    private javax.swing.JButton Newestbutton;
+    private javax.swing.JLabel Profileicon;
+    private javax.swing.JLabel Rentifylogo;
+    private javax.swing.JLabel Search_Icon;
+    private javax.swing.JButton SortButton;
+    private javax.swing.JButton Supportbutton;
+    private javax.swing.JLabel TSLtxt;
+    private javax.swing.JScrollPane Table;
+    private javax.swing.JButton Viewpurchasebutton;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel sorticon;
     // End of variables declaration//GEN-END:variables
 }

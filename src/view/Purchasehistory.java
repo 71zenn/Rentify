@@ -28,18 +28,16 @@ public class Purchasehistory extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
         Rentifylogo = new javax.swing.JLabel();
         Librarybutton = new javax.swing.JButton();
         Booksbutton = new javax.swing.JButton();
         Moviesbutton = new javax.swing.JButton();
         Newestbutton = new javax.swing.JButton();
         Supportbutton = new javax.swing.JButton();
-        Viewpurchasebutton = new javax.swing.JButton();
         Search_Icon = new javax.swing.JLabel();
-        searchbar = new javax.swing.JTextField();
         CartIcon = new javax.swing.JLabel();
-        Allbutton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         Mainsearchbar = new javax.swing.JTextField();
         Profileicon = new javax.swing.JLabel();
         Pageone = new javax.swing.JButton();
@@ -63,7 +61,12 @@ public class Purchasehistory extends javax.swing.JFrame {
         DownloadHP = new javax.swing.JButton();
         DownloadLibrary = new javax.swing.JButton();
         DownloadHamlet = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
         Backgroundcolorpanel = new javax.swing.JPanel();
+        Viewpurchasebutton = new javax.swing.JButton();
+        Allbutton = new javax.swing.JButton();
+        NewButton2 = new javax.swing.JButton();
         Background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -88,69 +91,67 @@ public class Purchasehistory extends javax.swing.JFrame {
         Booksbutton.setBackground(new java.awt.Color(232, 241, 253));
         Booksbutton.setText("Books");
         Booksbutton.setPreferredSize(new java.awt.Dimension(146, 36));
+        Booksbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BooksbuttonActionPerformed(evt);
+            }
+        });
         getContentPane().add(Booksbutton);
         Booksbutton.setBounds(450, 60, 120, 30);
 
         Moviesbutton.setBackground(new java.awt.Color(232, 241, 253));
         Moviesbutton.setText("Movies");
         Moviesbutton.setPreferredSize(new java.awt.Dimension(146, 36));
+        Moviesbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MoviesbuttonActionPerformed(evt);
+            }
+        });
         getContentPane().add(Moviesbutton);
         Moviesbutton.setBounds(610, 60, 120, 30);
 
         Newestbutton.setBackground(new java.awt.Color(232, 241, 253));
         Newestbutton.setText("Newest");
         Newestbutton.setPreferredSize(new java.awt.Dimension(146, 36));
+        Newestbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NewestbuttonActionPerformed(evt);
+            }
+        });
         getContentPane().add(Newestbutton);
         Newestbutton.setBounds(770, 60, 120, 30);
 
         Supportbutton.setBackground(new java.awt.Color(232, 241, 253));
         Supportbutton.setText("Support");
         Supportbutton.setPreferredSize(new java.awt.Dimension(146, 36));
+        Supportbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SupportbuttonActionPerformed(evt);
+            }
+        });
         getContentPane().add(Supportbutton);
         Supportbutton.setBounds(930, 60, 120, 30);
-
-        Viewpurchasebutton.setBackground(new java.awt.Color(249, 250, 251));
-        Viewpurchasebutton.setForeground(new java.awt.Color(102, 102, 102));
-        Viewpurchasebutton.setText("View Purchase");
-        Viewpurchasebutton.setPreferredSize(new java.awt.Dimension(146, 36));
-        getContentPane().add(Viewpurchasebutton);
-        Viewpurchasebutton.setBounds(80, 150, 140, 30);
 
         Search_Icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Search_Icon.png"))); // NOI18N
         getContentPane().add(Search_Icon);
         Search_Icon.setBounds(1110, 150, 30, 30);
 
-        searchbar.setBackground(new java.awt.Color(229, 231, 235));
-        searchbar.setForeground(new java.awt.Color(107, 114, 128));
-        searchbar.setText("search");
-        getContentPane().add(searchbar);
-        searchbar.setBounds(80, 210, 140, 22);
-
         CartIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cart_icon.png"))); // NOI18N
         getContentPane().add(CartIcon);
         CartIcon.setBounds(1150, 150, 30, 25);
-
-        Allbutton.setBackground(new java.awt.Color(229, 231, 235));
-        Allbutton.setForeground(new java.awt.Color(107, 114, 128));
-        Allbutton.setText("All");
-        Allbutton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AllbuttonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(Allbutton);
-        Allbutton.setBounds(240, 210, 50, 23);
-
-        jButton1.setBackground(new java.awt.Color(229, 231, 235));
-        jButton1.setForeground(new java.awt.Color(107, 114, 128));
-        jButton1.setText("Newest");
-        getContentPane().add(jButton1);
-        jButton1.setBounds(310, 210, 75, 23);
 
         Mainsearchbar.setBackground(new java.awt.Color(229, 231, 235));
         Mainsearchbar.setForeground(new java.awt.Color(107, 114, 128));
         Mainsearchbar.setText("Search");
         Mainsearchbar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
+        Mainsearchbar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                MainsearchbarFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                MainsearchbarFocusLost(evt);
+            }
+        });
         Mainsearchbar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MainsearchbarActionPerformed(evt);
@@ -173,10 +174,20 @@ public class Purchasehistory extends javax.swing.JFrame {
         Pageone.setBounds(570, 680, 20, 20);
 
         Pagetwo.setText("2");
+        Pagetwo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PagetwoActionPerformed(evt);
+            }
+        });
         getContentPane().add(Pagetwo);
         Pagetwo.setBounds(600, 680, 20, 20);
 
         Pagethree.setText("3");
+        Pagethree.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PagethreeActionPerformed(evt);
+            }
+        });
         getContentPane().add(Pagethree);
         Pagethree.setBounds(630, 680, 20, 20);
 
@@ -190,6 +201,7 @@ public class Purchasehistory extends javax.swing.JFrame {
         Pagefour.setBounds(660, 680, 20, 20);
 
         scrlPaneOne.setBackground(new java.awt.Color(255, 255, 255));
+        scrlPaneOne.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -278,6 +290,11 @@ public class Purchasehistory extends javax.swing.JFrame {
                                 .addComponent(HPDate, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(71, 71, 71))))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1)
+                    .addComponent(jSeparator4))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,10 +312,11 @@ public class Purchasehistory extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(DownloadHP)
                             .addComponent(HPtype))))
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TheLibraryBox, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
                         .addComponent(Librarytxt)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,8 +326,13 @@ public class Purchasehistory extends javax.swing.JFrame {
                                 .addComponent(LibraryType))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(DownloadLibrary)
-                                .addGap(18, 18, 18)))))
-                .addGap(18, 18, 18)
+                                .addGap(15, 15, 15))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TheLibraryBox, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(7, 7, 7)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(HamletBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -332,20 +355,59 @@ public class Purchasehistory extends javax.swing.JFrame {
         scrlPaneOne.setBounds(80, 260, 1130, 410);
 
         Backgroundcolorpanel.setBackground(new java.awt.Color(255, 255, 255));
+        Backgroundcolorpanel.setMinimumSize(new java.awt.Dimension(1280, 720));
+
+        Viewpurchasebutton.setBackground(new java.awt.Color(249, 250, 251));
+        Viewpurchasebutton.setForeground(new java.awt.Color(102, 102, 102));
+        Viewpurchasebutton.setText("View Purchase");
+        Viewpurchasebutton.setPreferredSize(new java.awt.Dimension(146, 36));
+
+        Allbutton.setBackground(new java.awt.Color(229, 231, 235));
+        Allbutton.setForeground(new java.awt.Color(107, 114, 128));
+        Allbutton.setText("All");
+        Allbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AllbuttonActionPerformed(evt);
+            }
+        });
+
+        NewButton2.setBackground(new java.awt.Color(229, 231, 235));
+        NewButton2.setForeground(new java.awt.Color(107, 114, 128));
+        NewButton2.setText("Newest");
+        NewButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NewButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout BackgroundcolorpanelLayout = new javax.swing.GroupLayout(Backgroundcolorpanel);
         Backgroundcolorpanel.setLayout(BackgroundcolorpanelLayout);
         BackgroundcolorpanelLayout.setHorizontalGroup(
             BackgroundcolorpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1280, Short.MAX_VALUE)
+            .addGroup(BackgroundcolorpanelLayout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addGroup(BackgroundcolorpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Viewpurchasebutton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(BackgroundcolorpanelLayout.createSequentialGroup()
+                        .addComponent(Allbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(NewButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(1063, Short.MAX_VALUE))
         );
         BackgroundcolorpanelLayout.setVerticalGroup(
             BackgroundcolorpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
+            .addGroup(BackgroundcolorpanelLayout.createSequentialGroup()
+                .addGap(192, 192, 192)
+                .addComponent(Viewpurchasebutton, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(BackgroundcolorpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Allbutton)
+                    .addComponent(NewButton2))
+                .addContainerGap(471, Short.MAX_VALUE))
         );
 
         getContentPane().add(Backgroundcolorpanel);
-        Backgroundcolorpanel.setBounds(0, 0, 1280, 720);
+        Backgroundcolorpanel.setBounds(0, 0, 1270, 720);
 
         Background.setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().add(Background);
@@ -355,24 +417,112 @@ public class Purchasehistory extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void LibrarybuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LibrarybuttonActionPerformed
-        // TODO add your handling code here:
+     javax.swing.JFrame page = new javax.swing.JFrame("Library");
+    page.setSize(800, 600);
+    page.setLocationRelativeTo(this);
+    page.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+    page.setVisible(true);   // TODO add your handling code here:
     }//GEN-LAST:event_LibrarybuttonActionPerformed
 
     private void AllbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AllbuttonActionPerformed
-        // TODO add your handling code here:
+      javax.swing.JOptionPane.showMessageDialog(
+        this,
+        "Showing all purchases",
+        "All",
+        javax.swing.JOptionPane.INFORMATION_MESSAGE
+    );  
     }//GEN-LAST:event_AllbuttonActionPerformed
 
     private void PageoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PageoneActionPerformed
-        // TODO add your handling code here:
+     javax.swing.JFrame page = new javax.swing.JFrame("Page 1");
+    page.setSize(800, 600);
+    page.setLocationRelativeTo(this);
+    page.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+    page.setVisible(true);   // TODO add your handling code here:
     }//GEN-LAST:event_PageoneActionPerformed
 
     private void PagefourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PagefourActionPerformed
-        // TODO add your handling code here:
+        javax.swing.JFrame page = new javax.swing.JFrame("Page 4");
+    page.setSize(800, 600);
+    page.setLocationRelativeTo(this);
+    page.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+    page.setVisible(true); 
     }//GEN-LAST:event_PagefourActionPerformed
 
     private void MainsearchbarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MainsearchbarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_MainsearchbarActionPerformed
+
+    private void BooksbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BooksbuttonActionPerformed
+      javax.swing.JFrame page = new javax.swing.JFrame("Books");
+    page.setSize(800, 600);
+    page.setLocationRelativeTo(this);
+    page.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+    page.setVisible(true);  
+    }//GEN-LAST:event_BooksbuttonActionPerformed
+
+    private void MoviesbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MoviesbuttonActionPerformed
+     javax.swing.JFrame page = new javax.swing.JFrame("Movies");
+    page.setSize(800, 600);
+    page.setLocationRelativeTo(this);
+    page.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+    page.setVisible(true);  
+    }//GEN-LAST:event_MoviesbuttonActionPerformed
+
+    private void NewestbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewestbuttonActionPerformed
+     javax.swing.JFrame page = new javax.swing.JFrame("Newest");
+    page.setSize(800, 600);
+    page.setLocationRelativeTo(this);
+    page.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+    page.setVisible(true);    // TODO add your handling code here:
+    }//GEN-LAST:event_NewestbuttonActionPerformed
+
+    private void SupportbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupportbuttonActionPerformed
+      javax.swing.JFrame page = new javax.swing.JFrame("Support");
+    page.setSize(800, 600);
+    page.setLocationRelativeTo(this);
+    page.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+    page.setVisible(true);  // TODO add your handling code here:
+    }//GEN-LAST:event_SupportbuttonActionPerformed
+
+    private void MainsearchbarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_MainsearchbarFocusGained
+      if (Mainsearchbar.getText().equals("Search")) {
+        Mainsearchbar.setText("");
+        Mainsearchbar.setForeground(new java.awt.Color(0, 0, 0));
+    }  
+    }//GEN-LAST:event_MainsearchbarFocusGained
+
+    private void MainsearchbarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_MainsearchbarFocusLost
+        if (Mainsearchbar.getText().trim().isEmpty()) {
+        Mainsearchbar.setText("Search");
+        Mainsearchbar.setForeground(new java.awt.Color(107, 114, 128));
+    } 
+    }//GEN-LAST:event_MainsearchbarFocusLost
+
+    private void NewButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewButton2ActionPerformed
+      javax.swing.JOptionPane.showMessageDialog(
+        this,
+        "Showing newest purchases first",
+        "Newest",
+        javax.swing.JOptionPane.INFORMATION_MESSAGE
+    );
+    }//GEN-LAST:event_NewButton2ActionPerformed
+
+    private void PagetwoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PagetwoActionPerformed
+        javax.swing.JFrame page = new javax.swing.JFrame("Page 2");
+    page.setSize(800, 600);
+    page.setLocationRelativeTo(this);
+    page.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+    page.setVisible(true); 
+    }//GEN-LAST:event_PagetwoActionPerformed
+
+    private void PagethreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PagethreeActionPerformed
+       javax.swing.JFrame page = new javax.swing.JFrame("Page 3");
+    page.setSize(800, 600);
+    page.setLocationRelativeTo(this);
+    page.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+    page.setVisible(true);  
+    }//GEN-LAST:event_PagethreeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -422,6 +572,7 @@ public class Purchasehistory extends javax.swing.JFrame {
     private javax.swing.JLabel Librarytxt;
     private javax.swing.JTextField Mainsearchbar;
     private javax.swing.JButton Moviesbutton;
+    private javax.swing.JButton NewButton2;
     private javax.swing.JButton Newestbutton;
     private javax.swing.JButton Pagefour;
     private javax.swing.JButton Pageone;
@@ -433,9 +584,11 @@ public class Purchasehistory extends javax.swing.JFrame {
     private javax.swing.JButton Supportbutton;
     private javax.swing.JLabel TheLibraryBox;
     private javax.swing.JButton Viewpurchasebutton;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JScrollPane scrlPaneOne;
-    private javax.swing.JTextField searchbar;
     // End of variables declaration//GEN-END:variables
 }
