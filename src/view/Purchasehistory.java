@@ -13,7 +13,7 @@ public class Purchasehistory extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Purchasehistory.class.getName());
 
     /**
-     * Creates new form Purchasehistory
+     * Creates new form 
      */
     public Purchasehistory() {
         initComponents();
