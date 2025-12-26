@@ -4,6 +4,19 @@
  */
 package view;
 
+import model.User_model;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import controller.adminController;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.BorderFactory;
+import javax.swing.Timer;
+import javax.swing.border.Border;
 /**
  *
  * @author sthaa
@@ -15,10 +28,34 @@ public class users extends javax.swing.JFrame {
     /**
      * Creates new form users
      */
+    Color defaultBg;
+    Color defaultFg;
+    Cursor defaultCursor;
+    Border defaultBorder;
+    Color normalBg;
+    Color normalFg;
+    Cursor normalCursor;
+    Border normalBorder;
     public users() {
         initComponents();
+        background.addMouseListener(new MouseAdapter() {
+            @Override
+        public void mousePressed(MouseEvent e) {
+            closeNotificationIfOpen();
+            }
+        });
+        
+        loadUsersIntoTable();
+        defaultBg = delete.getBackground();
+        defaultFg = delete.getForeground();
+        defaultCursor = delete.getCursor();
+        defaultBorder = delete.getBorder();
+        normalBg = edit.getBackground();
+        normalFg = edit.getForeground();
+        normalCursor = edit.getCursor();
+        normalBorder = edit.getBorder();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,15 +68,10 @@ public class users extends javax.swing.JFrame {
         background = new javax.swing.JPanel();
         mainlogo = new javax.swing.JPanel();
         rentifylogo = new javax.swing.JLabel();
-        searchbox = new javax.swing.JPanel();
-        searchtext = new javax.swing.JTextField();
-        searchicon = new javax.swing.JButton();
         profile = new javax.swing.JPanel();
-        profileicon = new javax.swing.JButton();
+        ProfileIcon = new javax.swing.JLabel();
         notification = new javax.swing.JPanel();
         notificationicon = new javax.swing.JButton();
-        settings = new javax.swing.JPanel();
-        settingsicon = new javax.swing.JButton();
         center = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         dashboard = new javax.swing.JButton();
@@ -49,6 +81,10 @@ public class users extends javax.swing.JFrame {
         Invoice = new javax.swing.JButton();
         Calender = new javax.swing.JButton();
         logout = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        UserTable = new javax.swing.JTable();
+        edit = new javax.swing.JButton();
+        delete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,88 +94,42 @@ public class users extends javax.swing.JFrame {
         mainlogo.setBackground(new java.awt.Color(249, 250, 251));
 
         rentifylogo.setBackground(new java.awt.Color(249, 250, 251));
-        rentifylogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/rentify-200.png"))); // NOI18N
-        rentifylogo.setText("jLabel2");
+        rentifylogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/rentifyohnebg (1).png"))); // NOI18N
 
         javax.swing.GroupLayout mainlogoLayout = new javax.swing.GroupLayout(mainlogo);
         mainlogo.setLayout(mainlogoLayout);
         mainlogoLayout.setHorizontalGroup(
             mainlogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainlogoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(rentifylogo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainlogoLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(rentifylogo))
         );
         mainlogoLayout.setVerticalGroup(
             mainlogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainlogoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(rentifylogo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
+                .addGap(0, 7, Short.MAX_VALUE)
+                .addComponent(rentifylogo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        searchbox.setBackground(new java.awt.Color(229, 231, 235));
-        searchbox.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-
-        searchtext.setBackground(new java.awt.Color(229, 231, 235));
-        searchtext.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        searchtext.setForeground(new java.awt.Color(107, 114, 128));
-        searchtext.setText("Search in Rentify");
-        searchtext.setBorder(null);
-        searchtext.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        searchtext.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                searchtextFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                searchtextFocusLost(evt);
-            }
-        });
-        searchtext.addActionListener(this::searchtextActionPerformed);
-
-        searchicon.setBackground(new java.awt.Color(229, 231, 235));
-        searchicon.setForeground(new java.awt.Color(107, 114, 128));
-        searchicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search-icon.png"))); // NOI18N
-        searchicon.setBorder(null);
-        searchicon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        searchicon.setPreferredSize(new java.awt.Dimension(117, 23));
-        searchicon.addActionListener(this::searchiconActionPerformed);
-
-        javax.swing.GroupLayout searchboxLayout = new javax.swing.GroupLayout(searchbox);
-        searchbox.setLayout(searchboxLayout);
-        searchboxLayout.setHorizontalGroup(
-            searchboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchboxLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(searchtext, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(searchicon, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))
-        );
-        searchboxLayout.setVerticalGroup(
-            searchboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(searchicon, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-            .addComponent(searchtext, javax.swing.GroupLayout.Alignment.TRAILING)
-        );
-
+        profile.setBackground(new java.awt.Color(249, 250, 251));
         profile.setPreferredSize(new java.awt.Dimension(60, 60));
 
-        profileicon.setBackground(new java.awt.Color(249, 250, 251));
-        profileicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/profile icon.png"))); // NOI18N
-        profileicon.setBorder(null);
-        profileicon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        profileicon.setPreferredSize(new java.awt.Dimension(60, 60));
+        ProfileIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ProfileIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/profile icon.png"))); // NOI18N
+        ProfileIcon.setPreferredSize(new java.awt.Dimension(60, 60));
 
         javax.swing.GroupLayout profileLayout = new javax.swing.GroupLayout(profile);
         profile.setLayout(profileLayout);
         profileLayout.setHorizontalGroup(
             profileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, profileLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(profileicon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(profileLayout.createSequentialGroup()
+                .addComponent(ProfileIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         profileLayout.setVerticalGroup(
             profileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(profileLayout.createSequentialGroup()
-                .addComponent(profileicon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ProfileIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -173,31 +163,8 @@ public class users extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        settings.setBackground(new java.awt.Color(249, 250, 251));
-        settings.setPreferredSize(new java.awt.Dimension(32, 32));
-
-        settingsicon.setBackground(new java.awt.Color(249, 250, 251));
-        settingsicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/settingsicon.png"))); // NOI18N
-        settingsicon.setBorder(null);
-        settingsicon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        settingsicon.setPreferredSize(new java.awt.Dimension(32, 32));
-
-        javax.swing.GroupLayout settingsLayout = new javax.swing.GroupLayout(settings);
-        settings.setLayout(settingsLayout);
-        settingsLayout.setHorizontalGroup(
-            settingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, settingsLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(settingsicon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        settingsLayout.setVerticalGroup(
-            settingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(settingsLayout.createSequentialGroup()
-                .addComponent(settingsicon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
         center.setBackground(new java.awt.Color(255, 255, 255));
+        center.setPreferredSize(new java.awt.Dimension(1237, 600));
 
         jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator1.setForeground(new java.awt.Color(209, 213, 219));
@@ -208,10 +175,17 @@ public class users extends javax.swing.JFrame {
         dashboard.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         dashboard.setForeground(new java.awt.Color(107, 114, 128));
         dashboard.setText("Dashboard");
+        dashboard.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 2, true));
         dashboard.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         dashboard.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 dashboardMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                dashboardMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                dashboardMouseExited(evt);
             }
         });
         dashboard.addActionListener(this::dashboardActionPerformed);
@@ -220,10 +194,17 @@ public class users extends javax.swing.JFrame {
         Users.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Users.setForeground(new java.awt.Color(107, 114, 128));
         Users.setText("Users");
+        Users.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(38, 166, 154), 2, true));
         Users.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Users.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 UsersMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                UsersMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                UsersMouseExited(evt);
             }
         });
         Users.addActionListener(this::UsersActionPerformed);
@@ -232,10 +213,17 @@ public class users extends javax.swing.JFrame {
         Statistics.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Statistics.setForeground(new java.awt.Color(107, 114, 128));
         Statistics.setText("Statistics");
+        Statistics.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 2, true));
         Statistics.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Statistics.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 StatisticsMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                StatisticsMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                StatisticsMouseExited(evt);
             }
         });
         Statistics.addActionListener(this::StatisticsActionPerformed);
@@ -244,10 +232,17 @@ public class users extends javax.swing.JFrame {
         ManageProducts.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ManageProducts.setForeground(new java.awt.Color(107, 114, 128));
         ManageProducts.setText("Manage Products");
+        ManageProducts.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 2, true));
         ManageProducts.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ManageProducts.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ManageProductsMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ManageProductsMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ManageProductsMouseExited(evt);
             }
         });
         ManageProducts.addActionListener(this::ManageProductsActionPerformed);
@@ -256,10 +251,17 @@ public class users extends javax.swing.JFrame {
         Invoice.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Invoice.setForeground(new java.awt.Color(107, 114, 128));
         Invoice.setText("Invoice");
+        Invoice.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 2, true));
         Invoice.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Invoice.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 InvoiceMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                InvoiceMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                InvoiceMouseExited(evt);
             }
         });
         Invoice.addActionListener(this::InvoiceActionPerformed);
@@ -268,10 +270,17 @@ public class users extends javax.swing.JFrame {
         Calender.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Calender.setForeground(new java.awt.Color(107, 114, 128));
         Calender.setText("Calender");
+        Calender.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 2, true));
         Calender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Calender.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CalenderMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CalenderMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                CalenderMouseExited(evt);
             }
         });
         Calender.addActionListener(this::CalenderActionPerformed);
@@ -280,13 +289,84 @@ public class users extends javax.swing.JFrame {
         logout.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         logout.setForeground(new java.awt.Color(255, 255, 255));
         logout.setText("Log out");
+        logout.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 2, true));
         logout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         logout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 logoutMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                logoutMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                logoutMouseExited(evt);
+            }
         });
         logout.addActionListener(this::logoutActionPerformed);
+
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+
+        UserTable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        UserTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "UserID", "Username", "Email"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        UserTable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        UserTable.setFillsViewportHeight(true);
+        UserTable.setIntercellSpacing(new java.awt.Dimension(15, 0));
+        UserTable.setRowHeight(30);
+        UserTable.setSelectionBackground(new java.awt.Color(229, 231, 235));
+        UserTable.setSelectionForeground(new java.awt.Color(107, 114, 128));
+        UserTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(UserTable);
+
+        edit.setForeground(new java.awt.Color(2, 62, 138));
+        edit.setText("EDIT");
+        edit.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 2, true));
+        edit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        edit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                editMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                editMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                editMouseExited(evt);
+            }
+        });
+
+        delete.setForeground(new java.awt.Color(220, 38, 38));
+        delete.setText("DELETE");
+        delete.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 2, true));
+        delete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        delete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        delete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deleteMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                deleteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                deleteMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout centerLayout = new javax.swing.GroupLayout(center);
         center.setLayout(centerLayout);
@@ -304,7 +384,17 @@ public class users extends javax.swing.JFrame {
                     .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1000, Short.MAX_VALUE))
+                .addGroup(centerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(centerLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
+                    .addGroup(centerLayout.createSequentialGroup()
+                        .addGap(387, 387, 387)
+                        .addComponent(edit, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
+                        .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(391, Short.MAX_VALUE))))
         );
         centerLayout.setVerticalGroup(
             centerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -325,6 +415,14 @@ public class users extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 246, Short.MAX_VALUE)
                 .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
+            .addGroup(centerLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(centerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edit, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23))
         );
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
@@ -332,36 +430,27 @@ public class users extends javax.swing.JFrame {
         backgroundLayout.setHorizontalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createSequentialGroup()
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(backgroundLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(center, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(backgroundLayout.createSequentialGroup()
-                        .addContainerGap(12, Short.MAX_VALUE)
                         .addComponent(mainlogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(searchbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 463, Short.MAX_VALUE)
-                        .addComponent(settings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(877, 877, 877)
                         .addComponent(notification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(profile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(profile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(center, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21))
         );
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backgroundLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
+                .addContainerGap()
                 .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(profile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(backgroundLayout.createSequentialGroup()
-                        .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(notification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(searchbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(settings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(notification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(15, 15, 15))
-                    .addComponent(mainlogo, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(mainlogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(center, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(19, Short.MAX_VALUE))
@@ -377,53 +466,118 @@ public class users extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void searchtextFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchtextFocusGained
-        // TODO add your handling code here:
-        if (searchtext.getText().equals("Search in Rentify")) {
-            searchtext.setText("");
-        }
-    }//GEN-LAST:event_searchtextFocusGained
+    private void loadUsersIntoTable() {
 
-    private void searchtextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchtextFocusLost
-        // TODO add your handling code here:
-        if (searchtext.getText().trim().equals("")) {
-            searchtext.setText("Search in Rentify");
-        }
-    }//GEN-LAST:event_searchtextFocusLost
+        adminController controller = new adminController();
+        List<User_model> list = controller.getAllUsers();
 
-    private void searchtextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchtextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchtextActionPerformed
+        DefaultTableModel model = (DefaultTableModel) UserTable.getModel();
+        model.setRowCount(0); 
 
-    private void searchiconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchiconActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchiconActionPerformed
+        for (User_model u : list) {
+            model.addRow(new Object[]{
+            u.getUserID(),
+            u.getUsername(),
+            u.getEmail()
+        });
+        }   
+    }
 
+    private notification adWindow;     
+    private javax.swing.Timer rollTimer;
+
+    private final int FULL_HEIGHT = 400;;
+    private boolean isOpen = false;
     private void notificationiconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_notificationiconMouseClicked
 
-        notification ad = new notification(); // this is a JPanel now
-        ad.setSize(250, 350);  // size of popup
-        ad.setLocation(930,100);
-        ad.setVisible(true);
-    }//GEN-LAST:event_notificationiconMouseClicked
+        if (adWindow == null) {
+            adWindow = new notification();
+            adWindow.setSize(300, 0);
+        }
 
+        if (rollTimer != null && rollTimer.isRunning()) {
+            rollTimer.stop();
+        }
+        
+        int xOffset = -14;   
+        int yOffset = 5;  
+        Point p = notificationicon.getLocationOnScreen();   
+        int x = p.x + notificationicon.getWidth() - adWindow.getWidth() + xOffset; 
+        int y = p.y + notificationicon.getHeight() + yOffset;
+        adWindow.setLocation(x, y);
+
+        if (!isOpen) {
+            rollDown();
+        } else {
+            rollUp();
+        }
+    }
+
+    private void rollDown() {
+        adWindow.setVisible(true);
+        adWindow.toFront();
+
+        rollTimer = new Timer(10, e -> {
+            int h = adWindow.getHeight();
+
+            if (h < FULL_HEIGHT) {
+                adWindow.setSize(300, h + 20);
+            } else {
+                adWindow.setSize(300, FULL_HEIGHT);
+                isOpen = true;
+                rollTimer.stop();
+            }
+        });
+
+        rollTimer.start();
+    }
+
+    private void rollUp() {
+        rollTimer = new Timer(10, e -> {
+            int h = adWindow.getHeight();
+
+            if (h > 0) {
+                adWindow.setSize(300, h - 10);
+            } else {
+                adWindow.setSize(300, 0);
+                adWindow.setVisible(false);
+                isOpen = false;
+                rollTimer.stop();
+            }
+        });
+
+        rollTimer.start();
+    }//GEN-LAST:event_notificationiconMouseClicked
+    
+    private void closeNotificationIfOpen() {
+    if (adWindow != null && adWindow.isVisible()) {
+        if (rollTimer != null && rollTimer.isRunning()) {
+            rollTimer.stop();
+        }
+        adWindow.setVisible(false);
+        adWindow.dispose();   
+        adWindow = null;
+        isOpen = false;
+        }
+    }
+    
     private void notificationiconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationiconActionPerformed
         // TODO add your handling code here
     }//GEN-LAST:event_notificationiconActionPerformed
 
     private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
         // TODO add your handling code here:
+        Point loc = this.getLocation();
         this.dispose();
 
         admindashboard ad = new admindashboard();
+        ad.setLocation(loc);
         ad.setVisible(true);
     }//GEN-LAST:event_dashboardMouseClicked
 
@@ -433,9 +587,11 @@ public class users extends javax.swing.JFrame {
 
     private void UsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UsersMouseClicked
         // TODO add your handling code here:
+        Point loc = this.getLocation();
         this.dispose();
 
         users ad = new users();
+        ad.setLocation(loc);
         ad.setVisible(true);
     }//GEN-LAST:event_UsersMouseClicked
 
@@ -445,9 +601,11 @@ public class users extends javax.swing.JFrame {
 
     private void StatisticsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StatisticsMouseClicked
         // TODO add your handling code here:
+        Point loc = this.getLocation();
         this.dispose();
 
         statistics ad = new statistics();
+        ad.setLocation(loc);
         ad.setVisible(true);
     }//GEN-LAST:event_StatisticsMouseClicked
 
@@ -457,9 +615,11 @@ public class users extends javax.swing.JFrame {
 
     private void ManageProductsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ManageProductsMouseClicked
         // TODO add your handling code here:
+        Point loc = this.getLocation();
         this.dispose();
 
         manageproducts ad = new manageproducts();
+        ad.setLocation(loc);
         ad.setVisible(true);
     }//GEN-LAST:event_ManageProductsMouseClicked
 
@@ -469,9 +629,11 @@ public class users extends javax.swing.JFrame {
 
     private void InvoiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InvoiceMouseClicked
         // TODO add your handling code here:
+        Point loc = this.getLocation();
         this.dispose();
 
         invoice ad = new invoice();
+        ad.setLocation(loc);
         ad.setVisible(true);
     }//GEN-LAST:event_InvoiceMouseClicked
 
@@ -481,9 +643,11 @@ public class users extends javax.swing.JFrame {
 
     private void CalenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CalenderMouseClicked
         // TODO add your handling code here:
+        Point loc = this.getLocation();
         this.dispose();
 
         calender ad = new calender();
+        ad.setLocation(loc);
         ad.setVisible(true);
     }//GEN-LAST:event_CalenderMouseClicked
 
@@ -493,9 +657,11 @@ public class users extends javax.swing.JFrame {
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
         // TODO add your handling code here:
+        Point loc = this.getLocation();
         this.dispose();
 
         Login loginPage = new Login();
+        loginPage.setLocation(loc);
         loginPage.setVisible(true);
     }//GEN-LAST:event_logoutMouseClicked
 
@@ -503,7 +669,235 @@ public class users extends javax.swing.JFrame {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_logoutActionPerformed
+    
+    private int getSelectedUserId() {
+    int row = UserTable.getSelectedRow();
 
+    if (row == -1) {
+        JOptionPane.showMessageDialog(this, "Please select a row first.");
+        return -1;
+    }
+
+    return (int) UserTable.getValueAt(row, 0); 
+}
+    private void editMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editMouseClicked
+        // TODO add your handling code here:
+        int userId = getSelectedUserId();
+        if (userId == -1) return;
+
+        adminController controller = new adminController();
+        User_model user = controller.getUserById(userId);
+        
+        if (user == null) {
+        JOptionPane.showMessageDialog(this, "User not found.");
+        return;
+        }
+
+        String newUsername = JOptionPane.showInputDialog(
+            this, "Username:", user.getUsername());
+
+        String newEmail = JOptionPane.showInputDialog(
+            this, "Email:", user.getEmail());
+
+
+        if (newUsername != null && newEmail != null) {
+        user.setUsername(newUsername);
+        user.setEmail(newEmail);
+
+        controller.updateUser(user);
+        loadUsersIntoTable();
+        }
+    }//GEN-LAST:event_editMouseClicked
+
+    private void deleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseClicked
+        // TODO add your handling code here:
+        int userId = getSelectedUserId();
+        if (userId == -1) return;
+
+        int confirm = JOptionPane.showConfirmDialog(
+            this,
+            "Delete this user?",
+            "Confirm",
+            JOptionPane.YES_NO_OPTION
+        );
+
+        if (confirm == JOptionPane.YES_OPTION) {
+        adminController controller = new adminController();
+        controller.deleteUser(userId);
+        loadUsersIntoTable();
+        }
+    }//GEN-LAST:event_deleteMouseClicked
+
+    private void dashboardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseEntered
+        // TODO add your handling code here:
+        dashboard.setBackground(new java.awt.Color(38,166,154)); 
+        dashboard.setForeground(java.awt.Color.WHITE);
+        dashboard.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(38,166,154), 2)
+    );
+        dashboard.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_dashboardMouseEntered
+
+    private void dashboardMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseExited
+        // TODO add your handling code here:
+        dashboard.setBackground(new java.awt.Color(229,231,235)); 
+        dashboard.setForeground(new java.awt.Color(107,114,128));
+        dashboard.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(193,193,193), 2)
+    );
+    }//GEN-LAST:event_dashboardMouseExited
+
+    private void UsersMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UsersMouseEntered
+        // TODO add your handling code here:
+        Users.setBackground(new java.awt.Color(38,166,154)); 
+        Users.setForeground(java.awt.Color.WHITE);
+        Users.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(38,166,154), 2)
+    );
+        Users.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_UsersMouseEntered
+
+    private void UsersMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UsersMouseExited
+        // TODO add your handling code here:
+        Users.setBackground(new java.awt.Color(229,231,235)); 
+        Users.setForeground(new java.awt.Color(107,114,128));
+        Users.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(38,166,154), 2)
+    );
+    }//GEN-LAST:event_UsersMouseExited
+
+    private void StatisticsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StatisticsMouseEntered
+        // TODO add your handling code here:
+        Statistics.setBackground(new java.awt.Color(38,166,154)); 
+        Statistics.setForeground(java.awt.Color.WHITE);
+        Statistics.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(38,166,154), 2)
+    );
+        Statistics.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_StatisticsMouseEntered
+
+    private void StatisticsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StatisticsMouseExited
+        // TODO add your handling code here:
+        Statistics.setBackground(new java.awt.Color(229,231,235)); 
+        Statistics.setForeground(new java.awt.Color(107,114,128));
+        Statistics.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(193,193,193), 2)
+    );
+    }//GEN-LAST:event_StatisticsMouseExited
+
+    private void ManageProductsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ManageProductsMouseEntered
+        // TODO add your handling code here:
+        ManageProducts.setBackground(new java.awt.Color(38,166,154)); 
+        ManageProducts.setForeground(java.awt.Color.WHITE);
+        ManageProducts.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(38,166,154), 2)
+    );
+        ManageProducts.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_ManageProductsMouseEntered
+
+    private void ManageProductsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ManageProductsMouseExited
+        // TODO add your handling code here:
+        ManageProducts.setBackground(new java.awt.Color(229,231,235)); 
+        ManageProducts.setForeground(new java.awt.Color(107,114,128));
+        ManageProducts.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(193,193,193), 2)
+    );
+    }//GEN-LAST:event_ManageProductsMouseExited
+
+    private void InvoiceMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InvoiceMouseEntered
+        // TODO add your handling code here:
+        Invoice.setBackground(new java.awt.Color(38,166,154)); 
+        Invoice.setForeground(java.awt.Color.WHITE);
+        Invoice.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(38,166,154), 2)
+    );
+        Invoice.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_InvoiceMouseEntered
+
+    private void InvoiceMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InvoiceMouseExited
+        // TODO add your handling code here:
+        Invoice.setBackground(new java.awt.Color(229,231,235)); 
+        Invoice.setForeground(new java.awt.Color(107,114,128));
+        Invoice.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(193,193,193), 2)
+    );
+    }//GEN-LAST:event_InvoiceMouseExited
+
+    private void CalenderMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CalenderMouseEntered
+        // TODO add your handling code here:
+        Calender.setBackground(new java.awt.Color(38,166,154)); 
+        Calender.setForeground(java.awt.Color.WHITE);
+        Calender.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(38,166,154), 2)
+    );
+        Calender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_CalenderMouseEntered
+
+    private void CalenderMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CalenderMouseExited
+        // TODO add your handling code here:
+        Calender.setBackground(new java.awt.Color(229,231,235)); 
+        Calender.setForeground(new java.awt.Color(107,114,128));
+        Calender.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(193,193,193), 2)
+    );
+    }//GEN-LAST:event_CalenderMouseExited
+
+    private void logoutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseEntered
+        // TODO add your handling code here:
+        logout.setBackground(new java.awt.Color(38,166,154)); 
+        logout.setForeground(java.awt.Color.WHITE);
+        logout.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(38,166,154), 2)
+    );
+        logout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_logoutMouseEntered
+
+    private void logoutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseExited
+        // TODO add your handling code here:
+        logout.setBackground(new java.awt.Color(38,166,154)); 
+        logout.setForeground(new java.awt.Color(255,255,255));
+        logout.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(193,193,193), 2)
+    );
+    }//GEN-LAST:event_logoutMouseExited
+
+    private void deleteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseEntered
+        // TODO add your handling code here:
+        delete.setBackground(new java.awt.Color(193, 18, 31)); 
+        delete.setForeground(java.awt.Color.WHITE);
+        delete.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(193, 18, 31), 2)
+    );
+        delete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_deleteMouseEntered
+    
+    private void deleteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseExited
+        // TODO add your handling code here:
+        delete.setBackground(defaultBg);
+        delete.setForeground(defaultFg);
+        delete.setBorder(defaultBorder);
+        delete.setCursor(defaultCursor);
+    }//GEN-LAST:event_deleteMouseExited
+
+    private void editMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editMouseEntered
+        // TODO add your handling code here:
+        edit.setBackground(new java.awt.Color(2, 62, 138)); 
+        edit.setForeground(java.awt.Color.WHITE);
+        edit.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(2, 62, 138), 2)
+    );
+        edit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_editMouseEntered
+
+    private void editMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editMouseExited
+        // TODO add your handling code here:
+        edit.setBackground(normalBg);
+        edit.setForeground(normalFg);
+        edit.setBorder(normalBorder);
+        edit.setCursor(normalCursor);
+    }//GEN-LAST:event_editMouseExited
+    
+ 
     /**
      * @param args the command line arguments
      */
@@ -533,23 +927,22 @@ public class users extends javax.swing.JFrame {
     private javax.swing.JButton Calender;
     private javax.swing.JButton Invoice;
     private javax.swing.JButton ManageProducts;
+    private javax.swing.JLabel ProfileIcon;
     private javax.swing.JButton Statistics;
+    private javax.swing.JTable UserTable;
     private javax.swing.JButton Users;
     private javax.swing.JPanel background;
     private javax.swing.JPanel center;
     private javax.swing.JButton dashboard;
+    private javax.swing.JButton delete;
+    private javax.swing.JButton edit;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton logout;
     private javax.swing.JPanel mainlogo;
     private javax.swing.JPanel notification;
     private javax.swing.JButton notificationicon;
     private javax.swing.JPanel profile;
-    private javax.swing.JButton profileicon;
     private javax.swing.JLabel rentifylogo;
-    private javax.swing.JPanel searchbox;
-    private javax.swing.JButton searchicon;
-    private javax.swing.JTextField searchtext;
-    private javax.swing.JPanel settings;
-    private javax.swing.JButton settingsicon;
     // End of variables declaration//GEN-END:variables
 }
