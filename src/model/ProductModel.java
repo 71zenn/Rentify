@@ -16,7 +16,7 @@ package model;
         private String productImage;
         private String productSynopsis;
         private Boolean productType;
-        private Boolean productForm;
+        private Boolean productForm; 
         private int productPrice; 
         private int product_ID;
         

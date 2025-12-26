@@ -18,6 +18,13 @@ public class User_model {
         this.password = password;
         this.fullname = fullname;
     }
+    
+    public User_model(String username, String password){
+        this.username = username;
+        this.password = password;
+    }
+
+    
     public void setUsername(String username){
         this.username = username; 
 }
