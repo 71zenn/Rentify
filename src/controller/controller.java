@@ -4,9 +4,8 @@
  */
 package controller;
 
+import model.User_model;
 import userdata.userDao;
-
-import Model.User_model;
 
 public class controller {
     private final userDao userdao = new userDao();
