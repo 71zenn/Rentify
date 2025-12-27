@@ -169,6 +169,7 @@ public class admindashboard extends javax.swing.JFrame {
         notificationicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/notification.png"))); // NOI18N
         notificationicon.setBorder(null);
         notificationicon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        notificationicon.setFocusPainted(false);
         notificationicon.setPreferredSize(new java.awt.Dimension(32, 32));
         notificationicon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
