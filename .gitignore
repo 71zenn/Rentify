@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-nbproject/private/
-nbproject/private.xml
-nbproject/Makefile-variables.mk
-nbbuild/
-nbdist/
-.nb-gradle/
- 
 # Build folders
 build/
 dist/

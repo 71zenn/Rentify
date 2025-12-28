@@ -1,0 +1,1 @@
+I was unable to commit on Git daily because I was focusing on designing the UI and learning the NetBeans code structure. As a result, I completed the required work first and then committed all the code at once after everything was functioning properly.
