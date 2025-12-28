@@ -11,7 +11,6 @@ package view;
 public class notification extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(notification.class.getName());
-
     /**
      * Creates new form notification
      */
@@ -29,39 +28,69 @@ public class notification extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        notificationpanel = new javax.swing.JPanel();
+        clean = new javax.swing.JButton();
+        notificationmessage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(249, 250, 251));
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel1.setPreferredSize(new java.awt.Dimension(300, 400));
+        notificationpanel.setBackground(new java.awt.Color(249, 250, 251));
+        notificationpanel.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), new javax.swing.border.LineBorder(new java.awt.Color(38, 166, 154), 1, true)));
+        notificationpanel.setPreferredSize(new java.awt.Dimension(300, 400));
+        notificationpanel.setLayout(null);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 296, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 396, Short.MAX_VALUE)
-        );
+        clean.setBackground(new java.awt.Color(238, 238, 238));
+        clean.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        clean.setText("Clean");
+        clean.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 10, 4, 10));
+        clean.setBorderPainted(false);
+        clean.setFocusPainted(false);
+        clean.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cleanMouseClicked(evt);
+            }
+        });
+        clean.addActionListener(this::cleanActionPerformed);
+        notificationpanel.add(clean);
+        clean.setBounds(224, 358, 60, 30);
+
+        notificationmessage.setBackground(new java.awt.Color(249, 250, 251));
+        notificationmessage.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        notificationmessage.setForeground(new java.awt.Color(38, 166, 154));
+        notificationmessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        notificationpanel.add(notificationmessage);
+        notificationmessage.setBounds(10, 30, 280, 360);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(notificationpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(notificationpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cleanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cleanMouseClicked
+        // TODO add your handling code here:
+        if (notificationmessage != null) {
+        notificationmessage.setText("");
+    }
+    }//GEN-LAST:event_cleanMouseClicked
+
+    private void cleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cleanActionPerformed
+    public void setMessage(String msg) {
+    notificationmessage.setText(msg);
+}
+    public void clearMessage() {
+    notificationmessage.setText("");
+}
     /**
      * @param args the command line arguments
      */
@@ -88,6 +117,8 @@ public class notification extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton clean;
+    private javax.swing.JLabel notificationmessage;
+    private javax.swing.JPanel notificationpanel;
     // End of variables declaration//GEN-END:variables
 }

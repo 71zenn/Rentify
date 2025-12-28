@@ -4,11 +4,25 @@
  */
 package view;
 
+import controller.ProductController;
+import java.awt.Color;
+import java.awt.Cursor;
+import model.ProductModel;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import javax.swing.BorderFactory;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import javax.swing.border.Border;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,19 +31,46 @@ import javax.swing.Timer;
 public class manageproducts extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(manageproducts.class.getName());
+    private ProductController productController;
 
     /**
      * Creates new form manageproducts
      */
+    Color defaultBg;
+    Color defaultFg;
+    Cursor defaultCursor;
+    Border defaultBorder;
+    Color normalBg;
+    Color normalFg;
+    Cursor normalCursor;
+    Border normalBorder;
+    Color originalBg;
+    Color originalFg;
+    Cursor originalCursor;
+    Border originalBorder;
     public manageproducts() {
         initComponents();
-        
+        productController = new ProductController();
+        loadProductsToTable();
+       
         background.addMouseListener(new MouseAdapter() {
             @Override
         public void mousePressed(MouseEvent e) {
             closeNotificationIfOpen();
             }
         });
+        defaultBg = delete.getBackground();
+        defaultFg = delete.getForeground();
+        defaultCursor = delete.getCursor();
+        defaultBorder = delete.getBorder();
+        normalBg = edit.getBackground();
+        normalFg = edit.getForeground();
+        normalCursor = edit.getCursor();
+        normalBorder = edit.getBorder();
+        originalBg = addproduct.getBackground();
+        originalFg = addproduct.getForeground();
+        originalCursor = addproduct.getCursor();
+        originalBorder = addproduct.getBorder();
     }
 
     /**
@@ -58,7 +99,10 @@ public class manageproducts extends javax.swing.JFrame {
         Calender = new javax.swing.JButton();
         logout = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        ProductTable = new javax.swing.JTable();
+        edit = new javax.swing.JButton();
+        delete = new javax.swing.JButton();
+        addproduct = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -114,6 +158,7 @@ public class manageproducts extends javax.swing.JFrame {
         notificationicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/notification.png"))); // NOI18N
         notificationicon.setBorder(null);
         notificationicon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        notificationicon.setFocusPainted(false);
         notificationicon.setPreferredSize(new java.awt.Dimension(32, 32));
         notificationicon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -278,18 +323,82 @@ public class manageproducts extends javax.swing.JFrame {
         });
         logout.addActionListener(this::logoutActionPerformed);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        ProductTable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ProductTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "Name", "Image", "Price", "Synopsis", "Type", "Form", "QTY"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        ProductTable.setRowHeight(30);
+        jScrollPane1.setViewportView(ProductTable);
+
+        edit.setForeground(new java.awt.Color(2, 62, 138));
+        edit.setText("EDIT");
+        edit.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 2, true));
+        edit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        edit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                editMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                editMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                editMouseExited(evt);
+            }
+        });
+
+        delete.setForeground(new java.awt.Color(220, 38, 38));
+        delete.setText("DELETE");
+        delete.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 2, true));
+        delete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        delete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        delete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deleteMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                deleteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                deleteMouseExited(evt);
+            }
+        });
+
+        addproduct.setBackground(new java.awt.Color(0, 102, 204));
+        addproduct.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        addproduct.setForeground(new java.awt.Color(255, 255, 255));
+        addproduct.setText("ADD PRODCT");
+        addproduct.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 2, true));
+        addproduct.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addproduct.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addproductMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                addproductMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                addproductMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout centerLayout = new javax.swing.GroupLayout(center);
         center.setLayout(centerLayout);
@@ -307,9 +416,21 @@ public class manageproducts extends javax.swing.JFrame {
                     .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 989, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(centerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(centerLayout.createSequentialGroup()
+                        .addGap(388, 388, 388)
+                        .addComponent(edit, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
+                        .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(centerLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(centerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 989, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, centerLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(addproduct, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())))
         );
         centerLayout.setVerticalGroup(
             centerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -331,9 +452,15 @@ public class manageproducts extends javax.swing.JFrame {
                 .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, centerLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(79, 79, 79))
+                .addGap(15, 15, 15)
+                .addComponent(addproduct, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1)
+                .addGap(18, 18, 18)
+                .addGroup(centerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edit, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29))
         );
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
@@ -382,6 +509,63 @@ public class manageproducts extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+     private void loadProductsToTable() {
+        DefaultTableModel model = (DefaultTableModel) ProductTable.getModel();
+        model.setRowCount(0); 
+
+        for (ProductModel p : productController.getAllProducts()) {
+            model.addRow(new Object[]{
+                p.getProductID(),
+                p.getProductName(),
+                p.getProductImage(),
+                p.getProductPrice(),
+                p.getProductSynopsis(),
+                p.getProductType(),
+                p.getProductForm(),
+                p.getProductQuantity()
+            });
+        }
+    }
+     private static final int LOW_QTY_THRESHOLD = 10;
+
+    private java.util.List<ProductModel> getLowStockPhysicalBooks() {
+    java.util.List<ProductModel> low = new java.util.ArrayList<>();
+    for (ProductModel p : productController.getAllProducts()) {
+        if ("Book".equalsIgnoreCase(p.getProductType())
+                && "Physical".equalsIgnoreCase(p.getProductForm())
+                && p.getProductQuantity() <= LOW_QTY_THRESHOLD) {
+            low.add(p);
+        }
+    }
+    return low;
+}
+
+    String buildLowStockMessage() {
+    java.util.List<ProductModel> low = getLowStockPhysicalBooks();
+    if (low.isEmpty()) {
+        return "No low-stock physical books.";
+    }
+
+    URL imgUrl = getClass().getResource("/icons/low-stock.png");
+
+    StringBuilder sb = new StringBuilder();
+    sb.append("<html>")
+      .append("<div style='display:flex;align-items:center;'>")
+      .append("<img src='").append(imgUrl).append("' ")
+      .append("style='width:40px;height:40px;margin-right:10px;'/>")
+      .append("<div>")
+      .append("<div><b>Low stock books:</b></div>");
+
+    for (ProductModel p : low) {
+        sb.append(p.getProductName())
+          .append(" (QTY: ")
+          .append(p.getProductQuantity())
+          .append(")<br>");
+    }
+    sb.append("</html>");
+    return sb.toString();
+}
+    
     private notification adWindow;
     private javax.swing.Timer rollTimer;
 
@@ -395,6 +579,10 @@ public class manageproducts extends javax.swing.JFrame {
             adWindow = new notification();
             adWindow.setSize(300, 0);
         }
+        
+        String msg = buildLowStockMessage();
+        adWindow.setMessage(msg);
+        
 
         if (rollTimer != null && rollTimer.isRunning()) {
             rollTimer.stop();
@@ -469,6 +657,11 @@ public class manageproducts extends javax.swing.JFrame {
     private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
         // TODO add your handling code here:
         Point loc = this.getLocation();
+        if (adWindow != null && adWindow.isVisible()) {
+        adWindow.setVisible(false);
+        adWindow.dispose();
+        adWindow = null;
+        }
         this.dispose();
 
         admindashboard ad = new admindashboard();
@@ -483,6 +676,11 @@ public class manageproducts extends javax.swing.JFrame {
     private void UsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UsersMouseClicked
         // TODO add your handling code here:
         Point loc = this.getLocation();
+        if (adWindow != null && adWindow.isVisible()) {
+        adWindow.setVisible(false);
+        adWindow.dispose();
+        adWindow = null;
+        }
         this.dispose();
 
         users ad = new users();
@@ -497,6 +695,11 @@ public class manageproducts extends javax.swing.JFrame {
     private void StatisticsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StatisticsMouseClicked
         // TODO add your handling code here:
         Point loc = this.getLocation();
+        if (adWindow != null && adWindow.isVisible()) {
+        adWindow.setVisible(false);
+        adWindow.dispose();
+        adWindow = null;
+        }
         this.dispose();
 
         statistics ad = new statistics();
@@ -511,6 +714,11 @@ public class manageproducts extends javax.swing.JFrame {
     private void ManageProductsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ManageProductsMouseClicked
         // TODO add your handling code here:
         Point loc = this.getLocation();
+        if (adWindow != null && adWindow.isVisible()) {
+        adWindow.setVisible(false);
+        adWindow.dispose();
+        adWindow = null;
+        }
         this.dispose();
 
         manageproducts ad = new manageproducts();
@@ -525,6 +733,11 @@ public class manageproducts extends javax.swing.JFrame {
     private void InvoiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InvoiceMouseClicked
         // TODO add your handling code here:
         Point loc = this.getLocation();
+        if (adWindow != null && adWindow.isVisible()) {
+        adWindow.setVisible(false);
+        adWindow.dispose();
+        adWindow = null;
+        }
         this.dispose();
 
         invoice ad = new invoice();
@@ -539,6 +752,11 @@ public class manageproducts extends javax.swing.JFrame {
     private void CalenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CalenderMouseClicked
         // TODO add your handling code here:
         Point loc = this.getLocation();
+        if (adWindow != null && adWindow.isVisible()) {
+        adWindow.setVisible(false);
+        adWindow.dispose();
+        adWindow = null;
+        }
         this.dispose();
 
         calender ad = new calender();
@@ -553,6 +771,11 @@ public class manageproducts extends javax.swing.JFrame {
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
         // TODO add your handling code here:
         Point loc = this.getLocation();
+        if (adWindow != null && adWindow.isVisible()) {
+        adWindow.setVisible(false);
+        adWindow.dispose();
+        adWindow = null;
+        }
         this.dispose();
 
         Login loginPage = new Login();
@@ -696,6 +919,327 @@ public class manageproducts extends javax.swing.JFrame {
         BorderFactory.createLineBorder(new java.awt.Color(193,193,193), 2)
     );
     }//GEN-LAST:event_logoutMouseExited
+    
+    private int getSelectedProductId() {
+    int row = ProductTable.getSelectedRow();
+    if (row == -1) {
+        JOptionPane.showMessageDialog(this, "Please select a row first.");
+        return -1;
+    }
+    return (int) ProductTable.getValueAt(row, 0); 
+}
+    
+    private void restoreOldImageIfMissing(String oldImageName) {
+    if (oldImageName == null || oldImageName.isBlank()) return;
+
+    File f = new File("src/pictures", oldImageName);
+    if (!f.exists()) {
+        
+        System.out.println("Old image " + oldImageName +
+                           " is missing, cannot restore.");
+    }
+}
+
+    
+    private String chooseImageAndCopy() {
+    JFileChooser chooser = new JFileChooser();
+    chooser.setDialogTitle("Select product image");
+
+    FileNameExtensionFilter filter =
+        new FileNameExtensionFilter("Image files", "jpg", "jpeg", "png", "gif");
+    chooser.setFileFilter(filter);
+
+    int result = chooser.showOpenDialog(this);
+    if (result != JFileChooser.APPROVE_OPTION) {
+        return null; 
+    }
+
+    File selectedFile = chooser.getSelectedFile();
+    String imageName = selectedFile.getName();      
+
+    
+    File destDir = new File("src/pictures");
+    if (!destDir.exists() && !destDir.mkdirs()) {
+        JOptionPane.showMessageDialog(this,
+                "Cannot create src/pictures folder.");
+        return null;
+    }
+
+    File destFile = new File(destDir, imageName);
+
+    try {
+        Files.copy(selectedFile.toPath(), destFile.toPath(),
+                   StandardCopyOption.REPLACE_EXISTING);
+    } catch (IOException ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(this,
+            "Could not copy image: " + ex.getMessage());
+        return null;
+    }
+
+    return imageName;  
+}
+    
+    private void editMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editMouseClicked
+        // TODO add your handling code here:
+        int productId = getSelectedProductId();
+    if (productId == -1) return;
+
+    ProductController controller = new ProductController();
+    ProductModel product = controller.getProductById(productId);
+    if (product == null) {
+        JOptionPane.showMessageDialog(this, "Product not found.");
+        return;
+    }
+
+    String newName = JOptionPane.showInputDialog(
+            this, "Name:", product.getProductName());
+    String oldImageName = product.getProductImage();
+
+    
+    String newImage = chooseImageAndCopy();       
+    if (newImage == null) {
+        
+        newImage = oldImageName;
+    }
+
+    String newPriceStr = JOptionPane.showInputDialog(
+            this, "Price:", product.getProductPrice());
+    String newSynopsis = JOptionPane.showInputDialog(
+            this, "Synopsis:", product.getProductSynopsis());
+    String newType = JOptionPane.showInputDialog(
+            this, "Type:", product.getProductType());
+    String newForm = JOptionPane.showInputDialog(
+            this, "Form:", product.getProductForm());
+    String newQtyStr = JOptionPane.showInputDialog(
+            this, "QTY:", product.getProductQuantity());
+
+    
+    
+    if (newName == null || newImage == null || newPriceStr == null ||
+        newSynopsis == null || newType == null || newForm == null ||
+        newQtyStr == null) {
+
+        if (newImage != null && !newImage.equals(oldImageName)) {
+            File f = new File("src/pictures", newImage);
+            if (f.exists()) f.delete();
+        }
+        return;
+    }
+
+    int newPrice = Integer.parseInt(newPriceStr);
+    int newQty = Integer.parseInt(newQtyStr);
+
+    product.setProductName(newName);
+    product.setProductImage(newImage);
+    product.setProductPrice(newPrice);
+    product.setProductSynopsis(newSynopsis);
+    product.setProductType(newType);
+    product.setProductForm(newForm);
+    product.setProductQuantity(newQty);
+
+    try {
+        controller.updateProduct(product);    
+
+       
+        if (oldImageName != null && !oldImageName.isBlank()
+                && !oldImageName.equals(newImage)) {
+            File oldFile = new File("src/pictures", oldImageName);
+            if (oldFile.exists()) {
+                boolean deleted = oldFile.delete();
+                System.out.println("Old image deleted: " + deleted);
+            }
+        }
+    } catch (Exception ex) {
+        
+        if (newImage != null && !newImage.equals(oldImageName)) {
+            File newFile = new File("src/pictures", newImage);
+            if (newFile.exists()) newFile.delete();
+        }
+        JOptionPane.showMessageDialog(this,
+                "Error updating product: " + ex.getMessage());
+        restoreOldImageIfMissing(oldImageName);
+        return;
+    }
+
+    loadProductsToTable();
+    }//GEN-LAST:event_editMouseClicked
+
+    private void editMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editMouseEntered
+        // TODO add your handling code here:
+        edit.setBackground(new java.awt.Color(2, 62, 138));
+        edit.setForeground(java.awt.Color.WHITE);
+        edit.setBorder(
+            BorderFactory.createLineBorder(new java.awt.Color(2, 62, 138), 2)
+        );
+        edit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_editMouseEntered
+
+    private void editMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editMouseExited
+        // TODO add your handling code here:
+        edit.setBackground(normalBg);
+        edit.setForeground(normalFg);
+        edit.setBorder(normalBorder);
+        edit.setCursor(normalCursor);
+    }//GEN-LAST:event_editMouseExited
+    
+    private String getSelectedProductImageName() {
+    int row = ProductTable.getSelectedRow();
+    if (row == -1) return null;
+    Object val = ProductTable.getValueAt(row, 2); 
+    return val == null ? null : val.toString();
+}
+    private void deleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseClicked
+        // TODO add your handling code here:
+        int productId = getSelectedProductId();
+    if (productId == -1) return;
+
+    String imageName = getSelectedProductImageName();
+
+    int confirm = JOptionPane.showConfirmDialog(
+            this,
+            "Delete this product?",
+            "Confirm delete",
+            JOptionPane.YES_NO_OPTION);
+
+    if (confirm != JOptionPane.YES_OPTION) return;
+
+    
+    try {
+        productController.deleteProduct(productId);  
+    } catch (Exception ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error deleting product: " + ex.getMessage());
+        return;
+    }
+
+    
+    if (imageName != null && !imageName.isBlank()) {
+        File img = new File("src/pictures", imageName);
+        if (img.exists()) {
+            boolean deleted = img.delete();
+            System.out.println("Deleted image " + imageName + ": " + deleted);
+        }
+    }
+
+    
+    loadProductsToTable();
+    }//GEN-LAST:event_deleteMouseClicked
+
+    private void deleteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseEntered
+        // TODO add your handling code here:
+        delete.setBackground(new java.awt.Color(193, 18, 31));
+        delete.setForeground(java.awt.Color.WHITE);
+        delete.setBorder(
+            BorderFactory.createLineBorder(new java.awt.Color(193, 18, 31), 2)
+        );
+        delete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_deleteMouseEntered
+
+    private void deleteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseExited
+        // TODO add your handling code here:
+        delete.setBackground(defaultBg);
+        delete.setForeground(defaultFg);
+        delete.setBorder(defaultBorder);
+        delete.setCursor(defaultCursor);
+    }//GEN-LAST:event_deleteMouseExited
+    
+    private void deleteImageIfExists(String imageName) {
+    if (imageName == null || imageName.isBlank()) return;
+    File f = new File("src/pictures", imageName);
+    if (f.exists()) {
+        boolean deleted = f.delete();
+        System.out.println("Rollback image delete " + imageName + ": " + deleted);
+    }
+}
+
+    private void addproductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addproductMouseClicked
+        // TODO add your handling code here:                                       
+     String imageName = null;
+
+    try {
+        
+        String name = JOptionPane.showInputDialog(this, "Name:");
+        if (name == null || name.isBlank()) return;   
+
+       
+        imageName = chooseImageAndCopy();             
+        if (imageName == null) return;                
+
+        
+        String priceStr = JOptionPane.showInputDialog(this, "Price:");
+        if (priceStr == null || priceStr.isBlank()) {
+            deleteImageIfExists(imageName);
+            return;
+        }
+
+     
+        String synopsis = JOptionPane.showInputDialog(this, "Synopsis:");
+        if (synopsis == null) synopsis = "";
+
+        
+        String type = JOptionPane.showInputDialog(this, "Type (Book/Movie):");
+        if (type == null) {
+            deleteImageIfExists(imageName);
+            return;
+        }
+
+        
+        String form = JOptionPane.showInputDialog(this, "Form (Physical/Digital):");
+        if (form == null) {
+            deleteImageIfExists(imageName);
+            return;
+        }
+
+        
+        String qtyStr = JOptionPane.showInputDialog(this, "QTY:");
+        if (qtyStr == null || qtyStr.isBlank()) {
+            deleteImageIfExists(imageName);
+            return;
+        }
+
+        int price = Integer.parseInt(priceStr);
+        int qty   = Integer.parseInt(qtyStr);
+
+        ProductModel product = new ProductModel(
+            name, imageName, price, synopsis, type, form, qty
+        );
+
+        
+        productController.addProduct(product);    
+        loadProductsToTable();
+        JOptionPane.showMessageDialog(this, "Product added.");
+
+        
+        imageName = null;
+    } catch (Exception ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error adding product: " + ex.getMessage());
+    } finally {
+        
+        if (imageName != null) {
+            deleteImageIfExists(imageName);
+        }
+    }
+    }//GEN-LAST:event_addproductMouseClicked
+
+    private void addproductMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addproductMouseEntered
+        // TODO add your handling code here:
+        addproduct.setBackground(new java.awt.Color(255, 255, 255));
+        addproduct.setForeground(new java.awt.Color(2, 62, 138));
+        addproduct.setBorder(
+            BorderFactory.createLineBorder(new java.awt.Color(2, 62, 138), 2)
+        );
+        addproduct.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_addproductMouseEntered
+
+    private void addproductMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addproductMouseExited
+        // TODO add your handling code here:
+        addproduct.setBackground(originalBg);
+        addproduct.setForeground(originalFg);
+        addproduct.setBorder(originalBorder);
+        addproduct.setCursor(originalCursor);
+    }//GEN-LAST:event_addproductMouseExited
 
     /**
      * @param args the command line arguments
@@ -726,15 +1270,18 @@ public class manageproducts extends javax.swing.JFrame {
     private javax.swing.JButton Calender;
     private javax.swing.JButton Invoice;
     private javax.swing.JButton ManageProducts;
+    private javax.swing.JTable ProductTable;
     private javax.swing.JLabel ProfileIcon;
     private javax.swing.JButton Statistics;
     private javax.swing.JButton Users;
+    private javax.swing.JButton addproduct;
     private javax.swing.JPanel background;
     private javax.swing.JPanel center;
     private javax.swing.JButton dashboard;
+    private javax.swing.JButton delete;
+    private javax.swing.JButton edit;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton logout;
     private javax.swing.JPanel mainlogo;
     private javax.swing.JPanel notification;

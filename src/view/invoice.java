@@ -57,6 +57,16 @@ public class invoice extends javax.swing.JFrame {
         Invoice = new javax.swing.JButton();
         Calender = new javax.swing.JButton();
         logout = new javax.swing.JButton();
+        order = new javax.swing.JLabel();
+        ordernumber = new javax.swing.JTextField();
+        order1 = new javax.swing.JLabel();
+        ordernumber1 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        logout1 = new javax.swing.JButton();
+        Calender1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,6 +122,7 @@ public class invoice extends javax.swing.JFrame {
         notificationicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/notification.png"))); // NOI18N
         notificationicon.setBorder(null);
         notificationicon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        notificationicon.setFocusPainted(false);
         notificationicon.setPreferredSize(new java.awt.Dimension(32, 32));
         notificationicon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -276,6 +287,85 @@ public class invoice extends javax.swing.JFrame {
         });
         logout.addActionListener(this::logoutActionPerformed);
 
+        order.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        order.setText("User ID :");
+
+        ordernumber.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ordernumber.setForeground(new java.awt.Color(107, 114, 128));
+        ordernumber.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        ordernumber.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 2, true));
+        ordernumber.addActionListener(this::ordernumberActionPerformed);
+
+        order1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        order1.setText("Order Number :");
+
+        ordernumber1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ordernumber1.setForeground(new java.awt.Color(107, 114, 128));
+        ordernumber1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        ordernumber1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 2, true));
+        ordernumber1.addActionListener(this::ordernumber1ActionPerformed);
+
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Name", "QTY", "Price", "Total"
+            }
+        ));
+        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
+        jTable1.setRowHeight(50);
+        jScrollPane1.setViewportView(jTable1);
+
+        logout1.setBackground(new java.awt.Color(38, 166, 154));
+        logout1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        logout1.setForeground(new java.awt.Color(255, 255, 255));
+        logout1.setText("Generate");
+        logout1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 2, true));
+        logout1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        logout1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logout1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                logout1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                logout1MouseExited(evt);
+            }
+        });
+        logout1.addActionListener(this::logout1ActionPerformed);
+
+        Calender1.setBackground(new java.awt.Color(229, 231, 235));
+        Calender1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Calender1.setForeground(new java.awt.Color(107, 114, 128));
+        Calender1.setText("Clear");
+        Calender1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(38, 166, 154), 1, true));
+        Calender1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Calender1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Calender1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Calender1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Calender1MouseExited(evt);
+            }
+        });
+        Calender1.addActionListener(this::Calender1ActionPerformed);
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setText("Subtotal (10% Tax)");
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setText("Grand Total :");
+
         javax.swing.GroupLayout centerLayout = new javax.swing.GroupLayout(center);
         center.setLayout(centerLayout);
         centerLayout.setHorizontalGroup(
@@ -292,7 +382,30 @@ public class invoice extends javax.swing.JFrame {
                     .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1001, Short.MAX_VALUE))
+                .addGap(50, 50, 50)
+                .addGroup(centerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(centerLayout.createSequentialGroup()
+                        .addGroup(centerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(centerLayout.createSequentialGroup()
+                                .addGroup(centerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(order1)
+                                    .addComponent(order))
+                                .addGap(60, 60, 60)
+                                .addGroup(centerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ordernumber1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ordernumber, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(logout1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Calender1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(centerLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                        .addGroup(centerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, centerLayout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(93, 93, 93)))
+                        .addGap(42, 42, 42))))
         );
         centerLayout.setVerticalGroup(
             centerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -313,6 +426,29 @@ public class invoice extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 246, Short.MAX_VALUE)
                 .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
+            .addGroup(centerLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(centerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(ordernumber, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(order1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(centerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(order, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ordernumber1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(centerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(centerLayout.createSequentialGroup()
+                        .addGap(165, 165, 165)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(centerLayout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(55, 55, 55)
+                .addComponent(logout1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Calender1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
@@ -372,7 +508,9 @@ public class invoice extends javax.swing.JFrame {
             adWindow = new notification();
             adWindow.setSize(300, 0);
         }
-
+        String msg = new manageproducts().buildLowStockMessage();
+        adWindow.setMessage(msg);
+        
         if (rollTimer != null && rollTimer.isRunning()) {
             rollTimer.stop();
         }
@@ -446,6 +584,11 @@ public class invoice extends javax.swing.JFrame {
     private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
         // TODO add your handling code here:
         Point loc = this.getLocation();
+        if (adWindow != null && adWindow.isVisible()) {
+        adWindow.setVisible(false);
+        adWindow.dispose();
+        adWindow = null;
+        }
         this.dispose();
 
         admindashboard ad = new admindashboard();
@@ -460,6 +603,11 @@ public class invoice extends javax.swing.JFrame {
     private void UsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UsersMouseClicked
         // TODO add your handling code here:
         Point loc = this.getLocation();
+        if (adWindow != null && adWindow.isVisible()) {
+        adWindow.setVisible(false);
+        adWindow.dispose();
+        adWindow = null;
+        }
         this.dispose();
 
         users ad = new users();
@@ -474,6 +622,11 @@ public class invoice extends javax.swing.JFrame {
     private void StatisticsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StatisticsMouseClicked
         // TODO add your handling code here:
         Point loc = this.getLocation();
+        if (adWindow != null && adWindow.isVisible()) {
+        adWindow.setVisible(false);
+        adWindow.dispose();
+        adWindow = null;
+        }
         this.dispose();
 
         statistics ad = new statistics();
@@ -488,6 +641,11 @@ public class invoice extends javax.swing.JFrame {
     private void ManageProductsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ManageProductsMouseClicked
         // TODO add your handling code here:
         Point loc = this.getLocation();
+        if (adWindow != null && adWindow.isVisible()) {
+        adWindow.setVisible(false);
+        adWindow.dispose();
+        adWindow = null;
+        }
         this.dispose();
 
         manageproducts ad = new manageproducts();
@@ -502,6 +660,11 @@ public class invoice extends javax.swing.JFrame {
     private void InvoiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InvoiceMouseClicked
         // TODO add your handling code here:
         Point loc = this.getLocation();
+        if (adWindow != null && adWindow.isVisible()) {
+        adWindow.setVisible(false);
+        adWindow.dispose();
+        adWindow = null;
+        }
         this.dispose();
 
         invoice ad = new invoice();
@@ -516,6 +679,11 @@ public class invoice extends javax.swing.JFrame {
     private void CalenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CalenderMouseClicked
         // TODO add your handling code here:
         Point loc = this.getLocation();
+        if (adWindow != null && adWindow.isVisible()) {
+        adWindow.setVisible(false);
+        adWindow.dispose();
+        adWindow = null;
+        }
         this.dispose();
 
         calender ad = new calender();
@@ -530,6 +698,11 @@ public class invoice extends javax.swing.JFrame {
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
         // TODO add your handling code here:
         Point loc = this.getLocation();
+        if (adWindow != null && adWindow.isVisible()) {
+        adWindow.setVisible(false);
+        adWindow.dispose();
+        adWindow = null;
+        }
         this.dispose();
 
         Login loginPage = new Login();
@@ -674,6 +847,46 @@ public class invoice extends javax.swing.JFrame {
     );
     }//GEN-LAST:event_logoutMouseExited
 
+    private void ordernumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ordernumberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ordernumberActionPerformed
+
+    private void ordernumber1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ordernumber1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ordernumber1ActionPerformed
+
+    private void logout1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logout1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_logout1MouseClicked
+
+    private void logout1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logout1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_logout1MouseEntered
+
+    private void logout1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logout1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_logout1MouseExited
+
+    private void logout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_logout1ActionPerformed
+
+    private void Calender1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Calender1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Calender1MouseClicked
+
+    private void Calender1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Calender1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Calender1MouseEntered
+
+    private void Calender1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Calender1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Calender1MouseExited
+
+    private void Calender1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Calender1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Calender1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -701,6 +914,7 @@ public class invoice extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Calender;
+    private javax.swing.JButton Calender1;
     private javax.swing.JButton Invoice;
     private javax.swing.JButton ManageProducts;
     private javax.swing.JLabel ProfileIcon;
@@ -709,11 +923,20 @@ public class invoice extends javax.swing.JFrame {
     private javax.swing.JPanel background;
     private javax.swing.JPanel center;
     private javax.swing.JButton dashboard;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JButton logout;
+    private javax.swing.JButton logout1;
     private javax.swing.JPanel mainlogo;
     private javax.swing.JPanel notification;
     private javax.swing.JButton notificationicon;
+    private javax.swing.JLabel order;
+    private javax.swing.JLabel order1;
+    private javax.swing.JTextField ordernumber;
+    private javax.swing.JTextField ordernumber1;
     private javax.swing.JPanel profile;
     private javax.swing.JLabel rentifylogo;
     // End of variables declaration//GEN-END:variables
