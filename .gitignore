@@ -28,4 +28,7 @@ nbproject/build
 src/database
 /nbproject/private
 /dist/
+/.idea
+manifest.mf
+Rentify.iml
 >>>>>>> abijeet_userdashboard

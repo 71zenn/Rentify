@@ -43,15 +43,7 @@ public class ProductDao {
     List<ProductModel> products = new ArrayList<>();
     Connection conn = mysql.openConnection();
     String sql = "SELECT * FROM products";
-/**
- *  private String productName; 
-        private String productImage;
-        private String productSynopsis;
-        private Boolean productType;
-        private Boolean productForm;
-        private int productPrice; 
-        * (int product_ID, String productName, String productImage , int productPrice, String productSynopsis, Boolean productType, Boolean productForm)
- */
+
     try (PreparedStatement pstmt = conn.prepareStatement(sql);
          ResultSet rs = pstmt.executeQuery()) {
         while (rs.next()) {
