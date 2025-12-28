@@ -61,7 +61,15 @@ public class ProductPanel extends javax.swing.JPanel {
     /**public void addProductListener(ActionListener listener) {
         addProduct.addActionListener(listener);
     }**/
-    
+    public void setProduct(ProductModel product){
+        
+        productName.setText(product.getProductName());
+        productPrice.setText("Rs." + product.getProductPrice());
+        
+        ImageIcon icon = new ImageIcon(product.getProductImage());
+        Image img = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        productImage.setIcon(new ImageIcon(img));
+    }
     public javax.swing.JLabel getProductImage() {
         return productImage;
     }

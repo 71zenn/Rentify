@@ -19,6 +19,7 @@ package model;
         private Boolean productForm;
         private int productPrice; 
         private int product_ID;
+        private int productQuantity;
         
         
         public ProductModel(String productName, String productImage , int productPrice, String productSynopsis, Boolean productType, Boolean productForm){
@@ -28,6 +29,7 @@ package model;
             this.productSynopsis = productSynopsis;
             this.productType = productType;
             this.productForm = productForm;
+            this.productQuantity = productQuantity;
         }
 
         // Used when creating a new product (no ID yet)
@@ -39,6 +41,7 @@ package model;
             this.productSynopsis = productSynopsis;
             this.productType = productType; //true for book and false for movie
             this.productForm = productForm; //true for digital and false for phyical copy !!movies are always true no exception!!
+            this.productQuantity = productQuantity;
         }
         
         public int getProductID() {
@@ -95,6 +98,14 @@ package model;
         
         public void setProductForm(Boolean productForm) {
             this.productForm = productForm;
+        }
+        
+        public int getProductQuantity() {
+            return productQuantity;
+        }
+
+        public void setProductQuantity(int productQuantity) {
+            this.productQuantity = productQuantity;
         }
         
 }

@@ -17,6 +17,7 @@ import view.UserDashboard;
  * @author zenni
  */
 public class MoviespageController {
+    ProductDao products = new ProductDao();
     
   
 }

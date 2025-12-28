@@ -40,52 +40,79 @@ public class ProductDao {
 
      
     public List<ProductModel> getAllProducts() {
-    List<ProductModel> products = new ArrayList<>();
-    Connection conn = mysql.openConnection();
-    String sql = "SELECT * FROM products";
+        List<ProductModel> products = new ArrayList<>();
+        Connection conn = mysql.openConnection();
+        String sql = "SELECT * FROM products";
 
-    try (PreparedStatement pstmt = conn.prepareStatement(sql);
-         ResultSet rs = pstmt.executeQuery()) {
-        while (rs.next()) {
-            ProductModel product = new ProductModel(
-                rs.getInt("id"),
-                rs.getString("productName"),
-                rs.getString("productImage"),
-                rs.getInt("productPrice"),
-                rs.getString("productSynopsis"),
-                rs.getBoolean("productType"),
-                rs.getBoolean("productType")   
-            );
-            products.add(product);
+        try (PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+            while (rs.next()) {
+                ProductModel product = new ProductModel(
+                    rs.getInt("id"),
+                    rs.getString("productName"),
+                    rs.getString("productImage"),
+                    rs.getInt("productPrice"),
+                    rs.getString("productSynopsis"),
+                    rs.getBoolean("productType"),
+                    rs.getBoolean("productType")   
+                );
+                products.add(product);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            mysql.closeConnection(conn);
         }
-    } catch (SQLException ex) {
-        ex.printStackTrace();
-    } finally {
-        mysql.closeConnection(conn);
+        return products;
     }
-    return products;
-}
+    
+    public List<ProductModel> getAllFavouriteProducts() {
+        List<ProductModel> products = new ArrayList<>();
+        Connection conn = mysql.openConnection();
+        String sql = "SELECT * FROM products";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+            while (rs.next()) {
+                ProductModel product = new ProductModel(
+                    rs.getInt("id"),
+                    rs.getString("productName"),
+                    rs.getString("productImage"),
+                    rs.getInt("productPrice"),
+                    rs.getString("productSynopsis"),
+                    rs.getBoolean("productType"),
+                    rs.getBoolean("productType")   
+                );
+                products.add(product);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            mysql.closeConnection(conn);
+        }
+        return products;
+    }
 
 
-public void updateProduct(ProductModel product) {
-    Connection conn = mysql.openConnection();
-    String sql = "UPDATE products SET productName=?, productImage=?, productPrice=? WHERE id=?";
+    public void updateProduct(ProductModel product) {
+        Connection conn = mysql.openConnection();
+        String sql = "UPDATE products SET productName=?, productImage=?, productPrice=? WHERE id=?";
 
 
-    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-      
-    pstmt.setString(1, product.getProductName());
-    pstmt.setString(2, product.getProductImage());
-    pstmt.setInt(3, product.getProductPrice());
-    pstmt.setInt(4, product.getProductID()); 
-    pstmt.executeUpdate();
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-
+        pstmt.setString(1, product.getProductName());
+        pstmt.setString(2, product.getProductImage());
+        pstmt.setInt(3, product.getProductPrice());
+        pstmt.setInt(4, product.getProductID()); 
         pstmt.executeUpdate();
-    } catch (SQLException ex) {
-        ex.printStackTrace();
-    } finally {
-        mysql.closeConnection(conn);
+
+
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            mysql.closeConnection(conn);
+        }
     }
-}
 }

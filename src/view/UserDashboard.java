@@ -5,6 +5,7 @@
 package view;
 
 import java.awt.event.ActionListener;
+import javax.swing.JPanel;
 
 
 /**
@@ -41,24 +42,12 @@ public class UserDashboard extends javax.swing.JFrame {
         WishlistBTN = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         userEmail = new javax.swing.JLabel();
-        Profile_icon1 = new javax.swing.JLabel();
         userFullName = new javax.swing.JLabel();
         LogoutBTN = new javax.swing.JButton();
         Profile_icon3 = new javax.swing.JLabel();
-        Profile_icon4 = new javax.swing.JLabel();
-        Profile_icon5 = new javax.swing.JLabel();
-        Profile_icon6 = new javax.swing.JLabel();
-        Profile_icon7 = new javax.swing.JLabel();
-        Profile_icon8 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         Profile_icon9 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        productPanelReal = new javax.swing.JPanel();
         SupportBTN = new javax.swing.JButton();
         LibraryBTN = new javax.swing.JButton();
         MoviesBTN = new javax.swing.JButton();
@@ -143,8 +132,6 @@ public class UserDashboard extends javax.swing.JFrame {
         userEmail.setForeground(new java.awt.Color(51, 51, 51));
         userEmail.setText("ashishshrestha250@gmail.com");
 
-        Profile_icon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/harrypotterHBPcover.jpg"))); // NOI18N
-
         userFullName.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
         userFullName.setForeground(new java.awt.Color(51, 51, 51));
         userFullName.setText("Ashish Shrestha");
@@ -161,55 +148,12 @@ public class UserDashboard extends javax.swing.JFrame {
 
         Profile_icon3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/profile-85x85.png"))); // NOI18N
 
-        Profile_icon4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/harrypotterTPScover.jpg"))); // NOI18N
-
-        Profile_icon5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/Transformersposter.jpg"))); // NOI18N
-
-        Profile_icon6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/Johnwickposter.jpg"))); // NOI18N
-
-        Profile_icon7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Profile_icon7.setForeground(new java.awt.Color(51, 51, 51));
-        Profile_icon7.setText("Transformers");
-
-        Profile_icon8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Profile_icon8.setForeground(new java.awt.Color(51, 51, 51));
-        Profile_icon8.setText("Harry Potter and");
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel2.setText("The Half-blood Prince ");
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel3.setText("Philosophers' stone");
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel4.setText("Harry Potter and the");
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel5.setText("John wick");
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel6.setText("Rs. 1100");
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel7.setText("Rs. 999");
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel8.setText("Rs. 1299");
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel9.setText("Rs. 899");
-
         Profile_icon9.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
         Profile_icon9.setForeground(new java.awt.Color(51, 51, 51));
         Profile_icon9.setText("Favourites");
+
+        productPanelReal.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setViewportView(productPanelReal);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -235,48 +179,16 @@ public class UserDashboard extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(userEmail)))
-                        .addContainerGap())
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(62, 62, 62)
-                                .addComponent(Profile_icon5))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(77, 77, 77)
-                                .addComponent(Profile_icon7))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(87, 87, 87)
-                                .addComponent(jLabel7)))
-                        .addGap(70, 70, 70)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Profile_icon1)
-                            .addComponent(Profile_icon8, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel8))
-                        .addGap(70, 70, 70)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addContainerGap())
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Profile_icon4)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                        .addComponent(Profile_icon6)
-                                        .addGap(37, 37, 37))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel9)
-                                            .addComponent(jLabel5))
-                                        .addGap(73, 73, 73))))))
+                        .addContainerGap(456, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(62, 62, 62)
-                        .addComponent(Profile_icon9)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(Profile_icon9)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jScrollPane1)
+                                .addContainerGap())))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,55 +196,30 @@ public class UserDashboard extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(ProfileBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(OrdersBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addComponent(HistoryBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(WishlistBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(userFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(userEmail))
-                            .addComponent(Profile_icon3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Profile_icon9, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)))
+                .addGap(34, 34, 34)
+                .addComponent(ProfileBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(OrdersBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(HistoryBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(WishlistBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(LogoutBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Profile_icon4)
-                            .addComponent(Profile_icon1)
-                            .addComponent(Profile_icon6)
-                            .addComponent(Profile_icon5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Profile_icon7)
-                            .addComponent(Profile_icon8)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
+                        .addComponent(userFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(LogoutBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62))))
+                        .addComponent(userEmail))
+                    .addComponent(Profile_icon3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Profile_icon9, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66))
         );
 
         jPanel1.add(jPanel2);
@@ -574,34 +461,27 @@ public class UserDashboard extends javax.swing.JFrame {
     private javax.swing.JButton NewestBTN;
     private javax.swing.JButton OrdersBTN;
     private javax.swing.JButton ProfileBTN;
-    private javax.swing.JLabel Profile_icon1;
     private javax.swing.JLabel Profile_icon3;
-    private javax.swing.JLabel Profile_icon4;
-    private javax.swing.JLabel Profile_icon5;
-    private javax.swing.JLabel Profile_icon6;
-    private javax.swing.JLabel Profile_icon7;
-    private javax.swing.JLabel Profile_icon8;
     private javax.swing.JLabel Profile_icon9;
     private javax.swing.JTextArea SearchBOX;
     private javax.swing.JButton SearchBTN;
     private javax.swing.JButton SupportBTN;
     private javax.swing.JButton WishlistBTN;
     private javax.swing.JButton cart;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel productPanelReal;
     private javax.swing.JButton profileIconBTN;
     private javax.swing.JLabel userEmail;
     private javax.swing.JLabel userFullName;
     // End of variables declaration//GEN-END:variables
+   
     
+    
+    public JPanel getProductPanel(){
+        return productPanelReal;
+    }
   
 }

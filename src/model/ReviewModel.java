@@ -9,18 +9,34 @@ package model;
  * @author zenni
  */
 public class ReviewModel {
+        private int reviewID;
         private String userName; 
         private String productReview;
         private String profileImage; 
         private float productRating;
                
         
-        public ReviewModel(String userName, String productReview, String profileImage , float productRating, String productSynopsis, Boolean productType, Boolean productForm){
+        public ReviewModel(int reviewID, String userName, String productReview, String profileImage, float productRating){
+            this.reviewID = reviewID;
             this.userName = userName;
             this.productReview = productReview; 
             this.profileImage = profileImage;
             this.productRating = productRating;
-            
+        }
+        
+        public ReviewModel(String userName, String productReview, String profileImage,float productRating){
+            this.userName = userName;
+            this.productReview = productReview; 
+            this.profileImage = profileImage;
+            this.productRating = productRating;
+        }
+        
+        public int getReviewID(){
+            return reviewID;
+        }
+        
+        public int setReviewID(int reviewID){
+            return reviewID;
         }
         
         public String getUserName() {
