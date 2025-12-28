@@ -82,7 +82,7 @@ public class adminDao {
             pstm.setInt(1, userId);
             ResultSet result = pstm.executeQuery();
             if (result.next()) {
-                user = new User_model(result.getString("username"), result.getString("email"), result.getString("password"), result.getString("fullname"));
+                user = new User_model(result.getString("username"), result.getString("email"), result.getString("password"));
                 user.setUserID(result.getInt("UserID"));
             }
         } catch (Exception ex) {
@@ -100,7 +100,7 @@ public class adminDao {
         try (PreparedStatement pstm = conn.prepareStatement(sql)) {
             ResultSet result = pstm.executeQuery();
             while (result.next()) {
-                User_model user = new User_model(result.getString("username"), result.getString("email"), result.getString("password"), result.getString("fullname"));
+                User_model user = new User_model(result.getString("username"), result.getString("email"), result.getString("password"));
                 user.setUserID(result.getInt("UserID"));
                 users.add(user);
             }

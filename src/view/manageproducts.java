@@ -13,6 +13,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import javax.swing.BorderFactory;
@@ -510,7 +511,7 @@ public class manageproducts extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
      private void loadProductsToTable() {
         DefaultTableModel model = (DefaultTableModel) ProductTable.getModel();
-        model.setRowCount(0); // clear existing rows
+        model.setRowCount(0); 
 
         for (ProductModel p : productController.getAllProducts()) {
             model.addRow(new Object[]{
@@ -525,6 +526,45 @@ public class manageproducts extends javax.swing.JFrame {
             });
         }
     }
+     private static final int LOW_QTY_THRESHOLD = 10;
+
+    private java.util.List<ProductModel> getLowStockPhysicalBooks() {
+    java.util.List<ProductModel> low = new java.util.ArrayList<>();
+    for (ProductModel p : productController.getAllProducts()) {
+        if ("Book".equalsIgnoreCase(p.getProductType())
+                && "Physical".equalsIgnoreCase(p.getProductForm())
+                && p.getProductQuantity() <= LOW_QTY_THRESHOLD) {
+            low.add(p);
+        }
+    }
+    return low;
+}
+
+    String buildLowStockMessage() {
+    java.util.List<ProductModel> low = getLowStockPhysicalBooks();
+    if (low.isEmpty()) {
+        return "No low-stock physical books.";
+    }
+
+    URL imgUrl = getClass().getResource("/icons/low-stock.png");
+
+    StringBuilder sb = new StringBuilder();
+    sb.append("<html>")
+      .append("<div style='display:flex;align-items:center;'>")
+      .append("<img src='").append(imgUrl).append("' ")
+      .append("style='width:40px;height:40px;margin-right:10px;'/>")
+      .append("<div>")
+      .append("<div><b>Low stock books:</b></div>");
+
+    for (ProductModel p : low) {
+        sb.append(p.getProductName())
+          .append(" (QTY: ")
+          .append(p.getProductQuantity())
+          .append(")<br>");
+    }
+    sb.append("</html>");
+    return sb.toString();
+}
     
     private notification adWindow;
     private javax.swing.Timer rollTimer;
@@ -539,6 +579,10 @@ public class manageproducts extends javax.swing.JFrame {
             adWindow = new notification();
             adWindow.setSize(300, 0);
         }
+        
+        String msg = buildLowStockMessage();
+        adWindow.setMessage(msg);
+        
 
         if (rollTimer != null && rollTimer.isRunning()) {
             rollTimer.stop();
@@ -613,6 +657,11 @@ public class manageproducts extends javax.swing.JFrame {
     private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
         // TODO add your handling code here:
         Point loc = this.getLocation();
+        if (adWindow != null && adWindow.isVisible()) {
+        adWindow.setVisible(false);
+        adWindow.dispose();
+        adWindow = null;
+        }
         this.dispose();
 
         admindashboard ad = new admindashboard();
@@ -627,6 +676,11 @@ public class manageproducts extends javax.swing.JFrame {
     private void UsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UsersMouseClicked
         // TODO add your handling code here:
         Point loc = this.getLocation();
+        if (adWindow != null && adWindow.isVisible()) {
+        adWindow.setVisible(false);
+        adWindow.dispose();
+        adWindow = null;
+        }
         this.dispose();
 
         users ad = new users();
@@ -641,6 +695,11 @@ public class manageproducts extends javax.swing.JFrame {
     private void StatisticsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StatisticsMouseClicked
         // TODO add your handling code here:
         Point loc = this.getLocation();
+        if (adWindow != null && adWindow.isVisible()) {
+        adWindow.setVisible(false);
+        adWindow.dispose();
+        adWindow = null;
+        }
         this.dispose();
 
         statistics ad = new statistics();
@@ -655,6 +714,11 @@ public class manageproducts extends javax.swing.JFrame {
     private void ManageProductsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ManageProductsMouseClicked
         // TODO add your handling code here:
         Point loc = this.getLocation();
+        if (adWindow != null && adWindow.isVisible()) {
+        adWindow.setVisible(false);
+        adWindow.dispose();
+        adWindow = null;
+        }
         this.dispose();
 
         manageproducts ad = new manageproducts();
@@ -669,6 +733,11 @@ public class manageproducts extends javax.swing.JFrame {
     private void InvoiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InvoiceMouseClicked
         // TODO add your handling code here:
         Point loc = this.getLocation();
+        if (adWindow != null && adWindow.isVisible()) {
+        adWindow.setVisible(false);
+        adWindow.dispose();
+        adWindow = null;
+        }
         this.dispose();
 
         invoice ad = new invoice();
@@ -683,6 +752,11 @@ public class manageproducts extends javax.swing.JFrame {
     private void CalenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CalenderMouseClicked
         // TODO add your handling code here:
         Point loc = this.getLocation();
+        if (adWindow != null && adWindow.isVisible()) {
+        adWindow.setVisible(false);
+        adWindow.dispose();
+        adWindow = null;
+        }
         this.dispose();
 
         calender ad = new calender();
@@ -697,6 +771,11 @@ public class manageproducts extends javax.swing.JFrame {
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
         // TODO add your handling code here:
         Point loc = this.getLocation();
+        if (adWindow != null && adWindow.isVisible()) {
+        adWindow.setVisible(false);
+        adWindow.dispose();
+        adWindow = null;
+        }
         this.dispose();
 
         Login loginPage = new Login();
@@ -850,6 +929,18 @@ public class manageproducts extends javax.swing.JFrame {
     return (int) ProductTable.getValueAt(row, 0); 
 }
     
+    private void restoreOldImageIfMissing(String oldImageName) {
+    if (oldImageName == null || oldImageName.isBlank()) return;
+
+    File f = new File("src/pictures", oldImageName);
+    if (!f.exists()) {
+        
+        System.out.println("Old image " + oldImageName +
+                           " is missing, cannot restore.");
+    }
+}
+
+    
     private String chooseImageAndCopy() {
     JFileChooser chooser = new JFileChooser();
     chooser.setDialogTitle("Select product image");
@@ -860,13 +951,13 @@ public class manageproducts extends javax.swing.JFrame {
 
     int result = chooser.showOpenDialog(this);
     if (result != JFileChooser.APPROVE_OPTION) {
-        return null; // user cancelled
+        return null; 
     }
 
     File selectedFile = chooser.getSelectedFile();
-    String imageName = selectedFile.getName();      // only file name
+    String imageName = selectedFile.getName();      
 
-    // src/pictures relative to project root
+    
     File destDir = new File("src/pictures");
     if (!destDir.exists() && !destDir.mkdirs()) {
         JOptionPane.showMessageDialog(this,
@@ -886,60 +977,54 @@ public class manageproducts extends javax.swing.JFrame {
         return null;
     }
 
-    return imageName;  // to be stored in DB and shown in table
+    return imageName;  
 }
     
     private void editMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editMouseClicked
         // TODO add your handling code here:
         int productId = getSelectedProductId();
-        System.out.println("Selected row productId = " + productId);
-        if (productId == -1) return;
+    if (productId == -1) return;
 
-        ProductController controller = new ProductController();
-        ProductModel product = controller.getProductById(productId);
-
-        if (product == null) {
-            JOptionPane.showMessageDialog(this, "Product not found.");
-            return;
-        }
-
-        String newName = JOptionPane.showInputDialog(
-            this, "Name:", product.getProductName());
-
-        String oldImageName = product.getProductImage();
-    if (oldImageName != null && !oldImageName.isBlank()) {
-        File oldFile = new File("src/pictures", oldImageName);
-        if (oldFile.exists()) {
-            boolean deleted = oldFile.delete();
-            System.out.println("Old image deleted: " + deleted);
-        }
+    ProductController controller = new ProductController();
+    ProductModel product = controller.getProductById(productId);
+    if (product == null) {
+        JOptionPane.showMessageDialog(this, "Product not found.");
+        return;
     }
 
-    String newImage = chooseImageAndCopy();   // copies new file to src/pictures
+    String newName = JOptionPane.showInputDialog(
+            this, "Name:", product.getProductName());
+    String oldImageName = product.getProductImage();
+
+    
+    String newImage = chooseImageAndCopy();       
     if (newImage == null) {
-        // if user cancels, keep old image and do not delete it
+        
         newImage = oldImageName;
     }
 
     String newPriceStr = JOptionPane.showInputDialog(
-        this, "Price:", product.getProductPrice());
-
+            this, "Price:", product.getProductPrice());
     String newSynopsis = JOptionPane.showInputDialog(
-        this, "Synopsis:", product.getProductSynopsis());
-
+            this, "Synopsis:", product.getProductSynopsis());
     String newType = JOptionPane.showInputDialog(
-        this, "Type:", product.getProductType());
-
+            this, "Type:", product.getProductType());
     String newForm = JOptionPane.showInputDialog(
-        this, "Form:", product.getProductForm());
-
+            this, "Form:", product.getProductForm());
     String newQtyStr = JOptionPane.showInputDialog(
-        this, "QTY:", product.getProductQuantity());
+            this, "QTY:", product.getProductQuantity());
 
+    
+    
     if (newName == null || newImage == null || newPriceStr == null ||
         newSynopsis == null || newType == null || newForm == null ||
         newQtyStr == null) {
-        return; // user cancelled
+
+        if (newImage != null && !newImage.equals(oldImageName)) {
+            File f = new File("src/pictures", newImage);
+            if (f.exists()) f.delete();
+        }
+        return;
     }
 
     int newPrice = Integer.parseInt(newPriceStr);
@@ -953,7 +1038,30 @@ public class manageproducts extends javax.swing.JFrame {
     product.setProductForm(newForm);
     product.setProductQuantity(newQty);
 
-    controller.updateProduct(product);
+    try {
+        controller.updateProduct(product);    
+
+       
+        if (oldImageName != null && !oldImageName.isBlank()
+                && !oldImageName.equals(newImage)) {
+            File oldFile = new File("src/pictures", oldImageName);
+            if (oldFile.exists()) {
+                boolean deleted = oldFile.delete();
+                System.out.println("Old image deleted: " + deleted);
+            }
+        }
+    } catch (Exception ex) {
+        
+        if (newImage != null && !newImage.equals(oldImageName)) {
+            File newFile = new File("src/pictures", newImage);
+            if (newFile.exists()) newFile.delete();
+        }
+        JOptionPane.showMessageDialog(this,
+                "Error updating product: " + ex.getMessage());
+        restoreOldImageIfMissing(oldImageName);
+        return;
+    }
+
     loadProductsToTable();
     }//GEN-LAST:event_editMouseClicked
 
@@ -978,7 +1086,7 @@ public class manageproducts extends javax.swing.JFrame {
     private String getSelectedProductImageName() {
     int row = ProductTable.getSelectedRow();
     if (row == -1) return null;
-    Object val = ProductTable.getValueAt(row, 2); // Image column
+    Object val = ProductTable.getValueAt(row, 2); 
     return val == null ? null : val.toString();
 }
     private void deleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseClicked
@@ -996,16 +1104,16 @@ public class manageproducts extends javax.swing.JFrame {
 
     if (confirm != JOptionPane.YES_OPTION) return;
 
-    // 1) Delete from database
+    
     try {
-        productController.deleteProduct(productId);   // calls DAO.deleteProduct
+        productController.deleteProduct(productId);  
     } catch (Exception ex) {
         ex.printStackTrace();
         JOptionPane.showMessageDialog(this, "Error deleting product: " + ex.getMessage());
         return;
     }
 
-    // 2) Delete image file in src/pictures (if any)
+    
     if (imageName != null && !imageName.isBlank()) {
         File img = new File("src/pictures", imageName);
         if (img.exists()) {
@@ -1014,7 +1122,7 @@ public class manageproducts extends javax.swing.JFrame {
         }
     }
 
-    // 3) Refresh table
+    
     loadProductsToTable();
     }//GEN-LAST:event_deleteMouseClicked
 
@@ -1050,40 +1158,40 @@ public class manageproducts extends javax.swing.JFrame {
      String imageName = null;
 
     try {
-        // 1) Name
+        
         String name = JOptionPane.showInputDialog(this, "Name:");
-        if (name == null || name.isBlank()) return;   // nothing created yet
+        if (name == null || name.isBlank()) return;   
 
-        // 2) Image
-        imageName = chooseImageAndCopy();             // copies to src/pictures
-        if (imageName == null) return;                // user cancelled chooser
+       
+        imageName = chooseImageAndCopy();             
+        if (imageName == null) return;                
 
-        // 3) Price
+        
         String priceStr = JOptionPane.showInputDialog(this, "Price:");
         if (priceStr == null || priceStr.isBlank()) {
             deleteImageIfExists(imageName);
             return;
         }
 
-        // 4) Synopsis
+     
         String synopsis = JOptionPane.showInputDialog(this, "Synopsis:");
         if (synopsis == null) synopsis = "";
 
-        // 5) Type
+        
         String type = JOptionPane.showInputDialog(this, "Type (Book/Movie):");
         if (type == null) {
             deleteImageIfExists(imageName);
             return;
         }
 
-        // 6) Form
+        
         String form = JOptionPane.showInputDialog(this, "Form (Physical/Digital):");
         if (form == null) {
             deleteImageIfExists(imageName);
             return;
         }
 
-        // 7) QTY
+        
         String qtyStr = JOptionPane.showInputDialog(this, "QTY:");
         if (qtyStr == null || qtyStr.isBlank()) {
             deleteImageIfExists(imageName);
@@ -1097,18 +1205,18 @@ public class manageproducts extends javax.swing.JFrame {
             name, imageName, price, synopsis, type, form, qty
         );
 
-        // 8) Try DB insert
-        productController.addProduct(product);    // may throw
+        
+        productController.addProduct(product);    
         loadProductsToTable();
         JOptionPane.showMessageDialog(this, "Product added.");
 
-        // success: do NOT delete image
+        
         imageName = null;
     } catch (Exception ex) {
         ex.printStackTrace();
         JOptionPane.showMessageDialog(this, "Error adding product: " + ex.getMessage());
     } finally {
-        // if something failed after image was copied, remove it
+        
         if (imageName != null) {
             deleteImageIfExists(imageName);
         }

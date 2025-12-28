@@ -14,7 +14,7 @@ public class controller {
     public boolean loginUser(String username, String password) {
 
         // We don't need email for login right now, so we pass empty string
-        User_model user = new User_model(username, password);
+        User_model user = new User_model(username,"", password);
 
         // Call DAO to check in database
         return userdao.login(user);

@@ -583,6 +583,11 @@ public class admindashboard extends javax.swing.JFrame {
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
         // TODO add your handlilogoutMouseClng code here:
         Point loc = this.getLocation();
+        if (adWindow != null && adWindow.isVisible()) {
+        adWindow.setVisible(false);
+        adWindow.dispose();
+        adWindow = null;
+        }
         this.dispose();
 
         Login loginPage = new Login();
@@ -593,6 +598,11 @@ public class admindashboard extends javax.swing.JFrame {
     private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
         // TODO add your handling code here:
         Point loc = this.getLocation();
+        if (adWindow != null && adWindow.isVisible()) {
+        adWindow.setVisible(false);
+        adWindow.dispose();
+        adWindow = null;
+        }
         this.dispose();
 
         admindashboard ad = new admindashboard();
@@ -603,6 +613,11 @@ public class admindashboard extends javax.swing.JFrame {
     private void UsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UsersMouseClicked
         // TODO add your handling code here:
         Point loc = this.getLocation();
+        if (adWindow != null && adWindow.isVisible()) {
+        adWindow.setVisible(false);
+        adWindow.dispose();
+        adWindow = null;
+        }
         this.dispose();
 
         users ad = new users();
@@ -621,7 +636,8 @@ public class admindashboard extends javax.swing.JFrame {
             adWindow = new notification();
             adWindow.setSize(300, 0);
         }
-
+        String msg = new manageproducts().buildLowStockMessage();
+        adWindow.setMessage(msg);
         if (rollTimer != null && rollTimer.isRunning()) {
             rollTimer.stop();
         }
@@ -691,6 +707,11 @@ public class admindashboard extends javax.swing.JFrame {
     private void StatisticsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StatisticsMouseClicked
         // TODO add your handling code here:
         Point loc = this.getLocation();
+        if (adWindow != null && adWindow.isVisible()) {
+        adWindow.setVisible(false);
+        adWindow.dispose();
+        adWindow = null;
+        }
         this.dispose();
 
         statistics ad = new statistics();
@@ -701,6 +722,11 @@ public class admindashboard extends javax.swing.JFrame {
     private void ManageProductsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ManageProductsMouseClicked
         // TODO add your handling code here:
         Point loc = this.getLocation();
+        if (adWindow != null && adWindow.isVisible()) {
+        adWindow.setVisible(false);
+        adWindow.dispose();
+        adWindow = null;
+        }
         this.dispose();
 
         manageproducts ad = new manageproducts();
@@ -711,6 +737,11 @@ public class admindashboard extends javax.swing.JFrame {
     private void InvoiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InvoiceMouseClicked
         // TODO add your handling code here:
         Point loc = this.getLocation();
+        if (adWindow != null && adWindow.isVisible()) {
+        adWindow.setVisible(false);
+        adWindow.dispose();
+        adWindow = null;
+        }
         this.dispose();
 
         invoice ad = new invoice();
@@ -721,6 +752,11 @@ public class admindashboard extends javax.swing.JFrame {
     private void CalenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CalenderMouseClicked
         // TODO add your handling code here:
         Point loc = this.getLocation();
+        if (adWindow != null && adWindow.isVisible()) {
+        adWindow.setVisible(false);
+        adWindow.dispose();
+        adWindow = null;
+        }
         this.dispose();
 
         calender ad = new calender();
