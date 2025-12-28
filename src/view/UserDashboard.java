@@ -4,6 +4,7 @@
  */
 package view;
 
+import controller.DashboardController;
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 
@@ -22,6 +23,7 @@ public class UserDashboard extends javax.swing.JFrame {
     public UserDashboard() {
         initComponents();
         setSize(1293,760);
+        
         
     }
 
