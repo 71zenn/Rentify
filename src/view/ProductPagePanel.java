@@ -4,21 +4,16 @@
  */
 package view;
 
-import java.awt.Image;
-import java.awt.event.ActionListener;
-import javax.swing.ImageIcon;
-import model.ProductModel;
-
 /**
  *
  * @author zenni
  */
-public class ProductPanel extends javax.swing.JPanel {
-private ProductModel currentProduct;
+public class ProductPagePanel extends javax.swing.JPanel {
+
     /**
-     * Creates new form productPanel
+     * Creates new form ProductPagePanel
      */
-    public ProductPanel() {
+    public ProductPagePanel() {
         initComponents();
     }
 
@@ -34,22 +29,27 @@ private ProductModel currentProduct;
         productImage = new javax.swing.JLabel();
         productName = new javax.swing.JLabel();
         productPrice = new javax.swing.JLabel();
+        productSynopsis = new javax.swing.JLabel();
 
         setLayout(null);
         add(productImage);
-        productImage.setBounds(20, 0, 150, 140);
+        productImage.setBounds(50, 20, 150, 140);
 
-        productName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        productName.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         productName.setForeground(new java.awt.Color(51, 51, 51));
         productName.setText("Transformers");
         add(productName);
-        productName.setBounds(20, 150, 150, 25);
+        productName.setBounds(230, 20, 530, 32);
 
         productPrice.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         productPrice.setForeground(new java.awt.Color(255, 51, 51));
         productPrice.setText("Rs. 999");
         add(productPrice);
-        productPrice.setBounds(20, 210, 70, 22);
+        productPrice.setBounds(50, 170, 70, 22);
+
+        productSynopsis.setText("Synopsis of the product");
+        add(productSynopsis);
+        productSynopsis.setBounds(230, 80, 510, 16);
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -57,32 +57,6 @@ private ProductModel currentProduct;
     private javax.swing.JLabel productImage;
     private javax.swing.JLabel productName;
     private javax.swing.JLabel productPrice;
+    private javax.swing.JLabel productSynopsis;
     // End of variables declaration//GEN-END:variables
-    /**public void addProductListener(ActionListener listener) {
-        addProduct.addActionListener(listener);
-    }**/
-    public void setProduct(ProductModel product){
-        
-        productName.setText(product.getProductName());
-        productPrice.setText("Rs." + product.getProductPrice());
-        
-        ImageIcon icon = new ImageIcon(product.getProductImage());
-        Image img = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-        productImage.setIcon(new ImageIcon(img));
-    }
-    public javax.swing.JLabel getProductImage() {
-        return productImage;
-    }
-    
-    public javax.swing.JLabel getProductName() {
-        return productName;
-    }
-    
-    public javax.swing.JLabel getProductPrice() {
-        return productPrice;
-    }
-    
-    public ProductModel getCurrentProduct() {
-        return currentProduct;
-    }
 }

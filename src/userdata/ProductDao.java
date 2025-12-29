@@ -17,11 +17,52 @@ import model.ProductModel;
 
 public class ProductDao {
     MySQLConnection mysql = new MySQLConnection();
+    public List<ProductModel> getAllProducts() {
+        List<ProductModel> products = new ArrayList<>();
+        
+        try {
+            // Use your mysqlconnection class
+            MySQLConnection db = new MySQLConnection();
+            Connection conn = db.openConnection();
+            
+            if (conn != null) {
+                String sql = "SELECT * FROM products";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(sql);
+                 ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    ProductModel product = new ProductModel(
+                        rs.getInt("id"),
+                        rs.getString("productName"),
+                        rs.getString("productImage"),
+                        rs.getInt("productPrice"),
+                        rs.getString("productSynopsis"),
+                        rs.getString("productType"),
+                        rs.getString("productForm"),  
+                        rs.getInt("productQuantity")
+                    );
+                    products.add(product);
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            } finally {
+                mysql.closeConnection(conn);
+            }
+                
+                System.out.println("Loaded " + products.size() + " products from database");
+                db.closeConnection(conn);
+            }
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+        
+        return products;
+    }
     public void createProduct(ProductModel product) {
         Connection conn = mysql.openConnection();
-String sql = "INSERT INTO products (productName , productImage, productPrice, " +
-             "productSynopsis, productType, productForm, productQuantity) " +
-             "VALUES ( ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO products (productName , productImage, productPrice, " +
+                     "productSynopsis, productType, productForm, productQuantity) " +
+                     "VALUES ( ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, product.getProductName());
             pstmt.setString(2, product.getProductImage());
@@ -39,7 +80,7 @@ String sql = "INSERT INTO products (productName , productImage, productPrice, " 
         }
     } 
 
-     
+    /** 
     public List<ProductModel> getAllProducts() {
         List<ProductModel> products = new ArrayList<>();
         Connection conn = mysql.openConnection();
@@ -67,6 +108,7 @@ String sql = "INSERT INTO products (productName , productImage, productPrice, " 
         }
         return products;
     }
+    **/
 
     public List<ProductModel> getAllFavouriteProducts() {
             List<ProductModel> products = new ArrayList<>();

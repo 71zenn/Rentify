@@ -35,19 +35,6 @@ public class BooksPage extends javax.swing.JFrame {
         FilterBTN = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         Profile_icon1 = new javax.swing.JLabel();
-        Profile_icon4 = new javax.swing.JLabel();
-        Profile_icon5 = new javax.swing.JLabel();
-        Profile_icon6 = new javax.swing.JLabel();
-        Profile_icon7 = new javax.swing.JLabel();
-        Profile_icon8 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         SupportBTN = new javax.swing.JButton();
         LibraryBTN = new javax.swing.JButton();
         MoviesBTN = new javax.swing.JButton();
@@ -97,52 +84,6 @@ public class BooksPage extends javax.swing.JFrame {
 
         Profile_icon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/harrypotterHBPcover.jpg"))); // NOI18N
 
-        Profile_icon4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/harrypotterTPScover.jpg"))); // NOI18N
-
-        Profile_icon5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/Transformersposter.jpg"))); // NOI18N
-
-        Profile_icon6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/Johnwickposter.jpg"))); // NOI18N
-
-        Profile_icon7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Profile_icon7.setForeground(new java.awt.Color(51, 51, 51));
-        Profile_icon7.setText("Transformers");
-
-        Profile_icon8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Profile_icon8.setForeground(new java.awt.Color(51, 51, 51));
-        Profile_icon8.setText("Harry Potter and");
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel2.setText("The Half-blood Prince ");
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel3.setText("Philosophers' stone");
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel4.setText("Harry Potter and the");
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel5.setText("John wick");
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel6.setText("Rs. 1100");
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel7.setText("Rs. 999");
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel8.setText("Rs. 1299");
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel9.setText("Rs. 899");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -152,40 +93,9 @@ public class BooksPage extends javax.swing.JFrame {
                 .addComponent(FilterBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Profile_icon5)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(Profile_icon7))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel7)))
-                .addGap(70, 70, 70)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Profile_icon1)
-                    .addComponent(Profile_icon8, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel8))
-                .addGap(70, 70, 70)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 323, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Profile_icon4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Profile_icon6, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel5))
-                                .addGap(36, 36, 36)))))
-                .addGap(47, 47, 47))
+                .addGap(272, 272, 272)
+                .addComponent(Profile_icon1)
+                .addContainerGap(677, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,28 +108,8 @@ public class BooksPage extends javax.swing.JFrame {
                         .addGap(34, 34, 34)
                         .addComponent(FilterBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Profile_icon4)
-                            .addComponent(Profile_icon1)
-                            .addComponent(Profile_icon6)
-                            .addComponent(Profile_icon5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Profile_icon7)
-                            .addComponent(Profile_icon8)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9))))
+                        .addGap(183, 183, 183)
+                        .addComponent(Profile_icon1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -342,58 +232,12 @@ public class BooksPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void SupportBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupportBTNActionPerformed
+    private void LogoBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoBTNActionPerformed
         // TODO add your handling code here:
-        ProductPage productPage = new ProductPage();
-        productPage.setVisible(true);
+        HomePage homePage = new HomePage();
+        homePage.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_SupportBTNActionPerformed
-
-    private void LibraryBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LibraryBTNActionPerformed
-        // TODO add your handling code here:
-        LibraryPage libraryPage = new LibraryPage();
-        libraryPage.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_LibraryBTNActionPerformed
-
-    private void MoviesBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MoviesBTNActionPerformed
-        // TODO add your handling code here:
-    // Navigate to Profile Page
-        BooksPage moviePage = new BooksPage();
-        moviePage.setVisible(true);
-        this.dispose(); // Close current dashboard
-
-    }//GEN-LAST:event_MoviesBTNActionPerformed
-
-    private void NewestBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewestBTNActionPerformed
-        // TODO add your handling code here:
-        NewestPage newestPage = new NewestPage();
-        newestPage.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_NewestBTNActionPerformed
-
-    private void BooksBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BooksBTNActionPerformed
-        // TODO add your handling code here:
-        BooksPage booksPage = new BooksPage();
-        booksPage.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_BooksBTNActionPerformed
-
-    private void SearchBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchBTNActionPerformed
-        // TODO add your handling code here:
-        ProductPage productPage = new ProductPage();
-        productPage.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_SearchBTNActionPerformed
-
-    private void cartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cartActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_cartActionPerformed
-
-    private void FilterBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FilterBTNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FilterBTNActionPerformed
+    }//GEN-LAST:event_LogoBTNActionPerformed
 
     private void profileIconBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileIconBTNActionPerformed
         // TODO add your handling code here:
@@ -402,12 +246,57 @@ public class BooksPage extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_profileIconBTNActionPerformed
 
-    private void LogoBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoBTNActionPerformed
+    private void cartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cartActionPerformed
         // TODO add your handling code here:
-        HomePage homePage = new HomePage();
-        homePage.setVisible(true);
+
+    }//GEN-LAST:event_cartActionPerformed
+
+    private void SearchBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchBTNActionPerformed
+        // TODO add your handling code here:
+        ProductPage productPage = new ProductPage();
+        productPage.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_LogoBTNActionPerformed
+    }//GEN-LAST:event_SearchBTNActionPerformed
+
+    private void BooksBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BooksBTNActionPerformed
+        // TODO add your handling code here:
+        BooksPage booksPage = new BooksPage();
+        booksPage.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BooksBTNActionPerformed
+
+    private void NewestBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewestBTNActionPerformed
+        // TODO add your handling code here:
+        NewestPage newestPage = new NewestPage();
+        newestPage.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_NewestBTNActionPerformed
+
+    private void MoviesBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MoviesBTNActionPerformed
+        // TODO add your handling code here:
+        // Navigate to Profile Page
+        BooksPage moviePage = new BooksPage();
+        moviePage.setVisible(true);
+        this.dispose(); // Close current dashboard
+    }//GEN-LAST:event_MoviesBTNActionPerformed
+
+    private void LibraryBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LibraryBTNActionPerformed
+        // TODO add your handling code here:
+        LibraryPage libraryPage = new LibraryPage();
+        libraryPage.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_LibraryBTNActionPerformed
+
+    private void SupportBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupportBTNActionPerformed
+        // TODO add your handling code here:
+        ProductPage productPage = new ProductPage();
+        productPage.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_SupportBTNActionPerformed
+
+    private void FilterBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FilterBTNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FilterBTNActionPerformed
     
    
     /**
@@ -443,22 +332,9 @@ public class BooksPage extends javax.swing.JFrame {
     private javax.swing.JButton MoviesBTN;
     private javax.swing.JButton NewestBTN;
     private javax.swing.JLabel Profile_icon1;
-    private javax.swing.JLabel Profile_icon4;
-    private javax.swing.JLabel Profile_icon5;
-    private javax.swing.JLabel Profile_icon6;
-    private javax.swing.JLabel Profile_icon7;
-    private javax.swing.JLabel Profile_icon8;
     private javax.swing.JButton SearchBTN;
     private javax.swing.JButton SupportBTN;
     private javax.swing.JButton cart;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

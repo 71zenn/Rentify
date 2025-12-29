@@ -593,8 +593,10 @@ public class admindashboard extends javax.swing.JFrame {
         Login loginPage = new Login();
         loginPage.setLocation(loc);
         loginPage.setVisible(true);
+        
     }//GEN-LAST:event_logoutMouseClicked
 
+    
     private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
         // TODO add your handling code here:
         Point loc = this.getLocation();
