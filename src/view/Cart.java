@@ -3,12 +3,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
+import controller.CartController;
+import model.CartItem;
+import userdata.UserSession;
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
+
 
 /**
  *
  * @author Dell
  */
 public class Cart extends javax.swing.JFrame {
+    private CartController cartController;
+    private JPanel contentPanel;
+private JSplitPane split;
+private int loggedInUserId;
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Cart.class.getName());
 
@@ -16,8 +28,60 @@ public class Cart extends javax.swing.JFrame {
      * Creates new form Cart
      */
     public Cart() {
-        initComponents();
-    }
+
+    initComponents();
+    cartController = new CartController();
+    loggedInUserId = UserSession.getUserId();
+
+    setLocationRelativeTo(null);
+    setResizable(true);
+
+    // ✅ Make "Proceed to checkout" behave like a button
+    jTextField2.setEditable(false);
+    jTextField2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    jTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
+        @Override
+        public void mouseClicked(java.awt.event.MouseEvent e) {
+            doCheckout();
+        }
+    });
+
+    // ✅ Build contentPanel (center area under header)
+    contentPanel = new JPanel(new BorderLayout());
+    contentPanel.setOpaque(false);
+
+    // ✅ Remove old components that NetBeans put there (cart + summary)
+    jPanel1.remove(Cartbox);
+    jPanel1.remove(jPanel4);
+
+    // ✅ Wrap cart in scroll
+    Cartbox.removeAll();
+    Cartbox.setLayout(new BoxLayout(Cartbox, BoxLayout.Y_AXIS));
+    JScrollPane cartScroll = new JScrollPane(Cartbox);
+    cartScroll.setBorder(null);
+
+    // ✅ Split pane 50/50
+    split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, cartScroll, jPanel4);
+    split.setResizeWeight(0.50);
+    split.setDividerSize(6);
+    split.setBorder(null);
+
+    contentPanel.add(split, BorderLayout.CENTER);
+
+    // ✅ Add contentPanel into jPanel1 with manual positioning (since you use null layout)
+    contentPanel.setBounds(18, 210, 1240, 430); // adjust if needed
+    jPanel1.setLayout(null); // important if not already null
+    jPanel1.add(contentPanel);
+
+    // ✅ Make divider exact after UI shows
+    SwingUtilities.invokeLater(() -> split.setDividerLocation(0.50));
+
+    // ✅ Load DB items
+    loadCartItems();
+
+    pack();
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,7 +107,6 @@ public class Cart extends javax.swing.JFrame {
         Mainsearchbar = new javax.swing.JTextField();
         pSelectALLBar = new javax.swing.JPanel();
         chkSelectALL = new javax.swing.JCheckBox();
-        jScrollPane1 = new javax.swing.JScrollPane();
         Cartbox = new javax.swing.JPanel();
         Cartbox1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -781,9 +844,7 @@ public class Cart extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(Cartbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
+                        .addGap(52, 52, 52)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -812,16 +873,14 @@ public class Cart extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(pSelectALLBar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Cartbox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(133, 133, 133)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(Cartbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         getContentPane().add(jPanel1);
@@ -912,6 +971,154 @@ public class Cart extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new Cart().setVisible(true));
     }
+    
+    
+    
+    
+    private void doCheckout() {
+    if (loggedInUserId == -1) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Please login again.");
+        return;
+    }
+
+    java.util.List<CartItem> cartItems = cartController.getCartItems(loggedInUserId);
+
+    if (cartItems == null || cartItems.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Your cart is empty.");
+        return;
+    }
+
+    int confirm = javax.swing.JOptionPane.showConfirmDialog(
+            this,
+            "Checkout " + cartItems.size() + " item(s)?",
+            "Confirm Checkout",
+            javax.swing.JOptionPane.YES_NO_OPTION
+    );
+
+    if (confirm != javax.swing.JOptionPane.YES_OPTION) return;
+
+    cartController.checkoutCart(cartItems, loggedInUserId);
+
+    javax.swing.JOptionPane.showMessageDialog(this, "Checkout successful!");
+    loadCartItems(); // refresh UI (cart should be empty now)
+
+    // Optional: open purchase history after checkout
+    // new Purchasehistory().setVisible(true);
+    // dispose();
+}
+
+    private void loadCartItems() {
+
+    Cartbox.removeAll(); // clear old UI
+    if (loggedInUserId == -1) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Please login again.");
+        dispose();
+        return;
+    }
+
+    Cartbox.removeAll();
+
+    var cartItems = cartController.getCartItems(loggedInUserId);
+
+    for (CartItem item : cartItems) {
+    Cartbox.add(createCartItemPanel(item));
+    Cartbox.add(Box.createVerticalStrut(10));  // spacing between cards
+}
+
+    int count = cartItems.size();
+jTextField2.setText("PROCEED TO CHECKOUT(" + count + ")");
+jLabel17.setText("Subtotal (" + count + " items)");
+
+    Cartbox.revalidate();
+    Cartbox.repaint();
+
+
+
+}
+    
+    
+   private javax.swing.JPanel createCartItemPanel(CartItem item) {
+
+    JPanel row = new JPanel(new BorderLayout(15, 10));
+    row.setBackground(Color.WHITE);
+    row.setBorder(BorderFactory.createLineBorder(new Color(204, 204, 204)));
+    row.setMaximumSize(new Dimension(950, 150));   // similar height like static
+    row.setPreferredSize(new Dimension(950, 150));
+
+    // ✅ LEFT: checkbox + image
+    JPanel left = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 20));
+    left.setBackground(Color.WHITE);
+
+    JCheckBox cb = new JCheckBox();
+    cb.setBackground(Color.WHITE);
+
+    JLabel img = new JLabel();
+    img.setPreferredSize(new Dimension(99, 122));
+
+    try {
+        // DB image example: "/icons/Harry.png"
+        img.setIcon(new ImageIcon(getClass().getResource(item.getImage())));
+    } catch (Exception e) {
+        img.setText("No Image");
+    }
+
+    left.add(cb);
+    left.add(img);
+    row.add(left, BorderLayout.WEST);
+
+    // ✅ CENTER: name + brand + stock/type
+    JPanel center = new JPanel();
+    center.setBackground(Color.WHITE);
+    center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
+    center.setBorder(new EmptyBorder(15, 0, 0, 0));
+
+    JLabel name = new JLabel(item.getItemName());
+    name.setFont(new Font("Segoe UI", Font.BOLD, 12));
+
+    JLabel brand = new JLabel("No Brand");
+    brand.setForeground(new Color(153, 153, 153));
+
+    JLabel type = new JLabel(item.getItemType() + " | " + item.getActionType());
+    type.setForeground(new Color(153, 153, 153));
+
+    center.add(name);
+    center.add(Box.createVerticalStrut(10));
+    center.add(brand);
+    center.add(Box.createVerticalStrut(5));
+    center.add(type);
+
+    row.add(center, BorderLayout.CENTER);
+
+    // ✅ RIGHT: price + qty + +/- + remove
+    JPanel right = new JPanel(new FlowLayout(FlowLayout.RIGHT, 15, 45));
+    right.setBackground(Color.WHITE);
+
+    JLabel price = new JLabel("Rs. " + item.getPrice());
+
+    JButton minus = new JButton("-");
+    JLabel qty = new JLabel(String.valueOf(item.getQuantity()));
+    qty.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+    JButton plus = new JButton("+");
+
+    JButton removeBtn = new JButton("Remove");
+    removeBtn.addActionListener(e -> {
+        cartController.removeItemFromCart(item.getCartId());
+        loadCartItems();
+    });
+
+    right.add(price);
+    right.add(minus);
+    right.add(qty);
+    right.add(plus);
+    right.add(removeBtn);
+
+    row.add(right, BorderLayout.EAST);
+
+    return row;
+}
+
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Booksbutton;
@@ -982,7 +1189,6 @@ public class Cart extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;

@@ -1,26 +1,53 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controller;
 
 import model.User_model;
+import userdata.UserSession;
 import userdata.userDao;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import view.Purchasehistory; // ✅ open this after login
+
 public class controller {
+
     private final userDao userdao = new userDao();
 
-    public boolean loginUser(String username, String password) {
+    public void loginAndOpenPurchaseHistory(String username, String password, JFrame loginFrame) {
 
-        // We don't need email for login right now, so we pass empty string
-        User_model user = new User_model(username, "", password);
+        if (username == null) username = "";
+        if (password == null) password = "";
 
-        // Call DAO to check in database
-        return userdao.login(user);
+        username = username.trim();
+        password = password.trim();
+
+        if (username.isEmpty() || password.isEmpty()
+                || "Username".equalsIgnoreCase(username)
+                || "Password".equalsIgnoreCase(password)) {
+            JOptionPane.showMessageDialog(loginFrame, "Please enter username and password!");
+            return;
+        }
+
+        User_model logged = userdao.loginAndGetUser(new User_model(username, "", password));
+
+        System.out.println("Login result = " + (logged != null));
+
+        if (logged != null) {
+            // ✅ STORE SESSION HERE
+            UserSession.setCurrentUser(logged);
+
+            JOptionPane.showMessageDialog(loginFrame,
+                    "Login Successful! Welcome " + logged.getUsername());
+
+            // ✅ OPEN PURCHASE HISTORY
+            Purchasehistory p = new Purchasehistory();
+            p.setLocationRelativeTo(null);
+            p.setVisible(true);
+
+            // ✅ CLOSE LOGIN
+            if (loginFrame != null) loginFrame.dispose();
+
+        } else {
+            JOptionPane.showMessageDialog(loginFrame, "Invalid username or password!");
+        }
     }
-
-    public boolean Login(String username, String password) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
 }

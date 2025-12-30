@@ -62,5 +62,39 @@ public class userDao {
         mysql.closeConnection(conn);
     }
 }
+    
+ public User_model loginAndGetUser(User_model user) {
+    Connection conn = mysql.openConnection();
+    if (conn == null) {
+        System.out.println("Connection is NULL!");
+        return null;
+    }
+
+    String sql = "SELECT user_id, username, email FROM users WHERE username = ? AND password = ?";
+
+    try (PreparedStatement pstm = conn.prepareStatement(sql)) {
+
+        pstm.setString(1, user.getUsername());
+        pstm.setString(2, user.getPassword());
+
+        try (ResultSet rs = pstm.executeQuery()) {
+            if (rs.next()) {
+                User_model u = new User_model();
+                u.setUserID(rs.getInt("user_id"));
+                u.setUsername(rs.getString("username"));
+                u.setEmail(rs.getString("email"));
+                return u;
+            }
+        }
+
+    } catch (Exception ex) {
+        System.out.println("Login error: " + ex);
+    } finally {
+        mysql.closeConnection(conn);
+    }
+
+    return null;
+}
+
 
 }

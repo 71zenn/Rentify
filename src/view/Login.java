@@ -5,6 +5,7 @@
 package view;
 import controller.controller;
 import javax.swing.JOptionPane;
+import model.User_model;
 
 /**
  *
@@ -169,22 +170,6 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_PasswordActionPerformed
 
-    private void LoginbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginbuttonActionPerformed
-        // TODO add your handling code here:
-        String username = Username.getText();  
-        String password = Password.getText();
-
-
-        boolean success = controller.loginUser(username, password);
-
-        if (success) {
-            JOptionPane.showMessageDialog(this, "Login Successful!");
-        // TODO: open dashboard page here if you want
-        } else {
-        JOptionPane.showMessageDialog(this, "Invalid username or password!");
-        }
-    }//GEN-LAST:event_LoginbuttonActionPerformed
-
     private void RegisterbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterbuttonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_RegisterbuttonActionPerformed
@@ -220,6 +205,11 @@ public class Login extends javax.swing.JFrame {
             Password.setText("Password");
         }
     }//GEN-LAST:event_PasswordFocusLost
+
+    private void LoginbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginbuttonActionPerformed
+        // TODO add your handling code here:
+controller.loginAndOpenPurchaseHistory(Username.getText(), Password.getText(), this);
+    }//GEN-LAST:event_LoginbuttonActionPerformed
 
     /**
      * @param args the command line arguments
