@@ -26,7 +26,7 @@ public class Purchasehistory extends javax.swing.JFrame {
 private int getLoggedInUserId() {
     // Example only:
     // return Session.getCurrentUser().getUserId();
-  System.out.println();
+  ;
     return userdata.UserSession.getUserId(); // change to your real session class
 }
 
@@ -40,15 +40,7 @@ private final SimpleDateFormat sdf = new SimpleDateFormat("dd MMM, yyyy");
      */
     public Purchasehistory() {
     initComponents();
-    CartIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    CartIcon.addMouseListener(new java.awt.event.MouseAdapter() {
-        @Override
-        public void mouseClicked(java.awt.event.MouseEvent evt) {
-            new Cart().setVisible(true);
-            dispose();
-        }
-    });
-
+    
 
     // ✅ Make jPanel2 dynamic list
     // ✅ bring the scroll pane above the background panel
@@ -629,7 +621,19 @@ private JPanel createPurchaseCard(Order order) {
     }//GEN-LAST:event_NewestbuttonActionPerformed
 
     private void HandleCartOpen(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HandleCartOpen
-        // TODO add your handling code here:
+       int userId = getLoggedInUserId();
+
+    if (userId == -1) {
+        JOptionPane.showMessageDialog(this, "Please login again.");
+        return;
+    }
+
+    // Open cart view
+    Cart cartPage = new Cart();
+    cartPage.setVisible(true);
+
+    // Optional: close purchase history
+    this.dispose();
     }//GEN-LAST:event_HandleCartOpen
    
     /**

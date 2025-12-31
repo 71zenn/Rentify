@@ -67,4 +67,59 @@ public class CartDAO {
             e.printStackTrace();
         }
     }
+    
+    public void updateQuantity(int cartId, int newQty) {
+        String sql = "UPDATE cart_items SET quantity = ? WHERE cart_id = ?";
+
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setInt(1, newQty);
+            ps.setInt(2, cartId);
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // ✅ NEW: delete ALL items for user (top DELETE button)
+    public void clearCart(int userId) {
+        String sql = "DELETE FROM cart_items WHERE user_id = ?";
+
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setInt(1, userId);
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void removeSelected(java.util.List<Integer> cartIds) {
+    if (cartIds == null || cartIds.isEmpty()) return;
+
+    // Build: DELETE FROM cart_items WHERE cart_id IN (?,?,?)
+    StringBuilder sb = new StringBuilder("DELETE FROM cart_items WHERE cart_id IN (");
+    for (int i = 0; i < cartIds.size(); i++) {
+        sb.append("?");
+        if (i < cartIds.size() - 1) sb.append(",");
+    }
+    sb.append(")");
+
+    try (Connection con = DBConnection.getConnection();
+         PreparedStatement ps = con.prepareStatement(sb.toString())) {
+
+        for (int i = 0; i < cartIds.size(); i++) {
+            ps.setInt(i + 1, cartIds.get(i));
+        }
+        ps.executeUpdate();
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
 }

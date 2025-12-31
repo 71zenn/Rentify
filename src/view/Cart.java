@@ -12,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 
 
 
+
 /**
  *
  * @author Dell
@@ -19,9 +20,22 @@ import javax.swing.border.EmptyBorder;
 public class Cart extends javax.swing.JFrame {
     private CartController cartController;
     private JPanel contentPanel;
-private JSplitPane split;
-private int loggedInUserId;
+    private JSplitPane split;
+    private int loggedInUserId;
+    // --- UI selection + cart line state ---
+private final java.util.Map<JCheckBox, CartLine> cbToLine = new java.util.LinkedHashMap<>();
+private boolean bulkChanging = false;
+private JButton btnDeleteAll;
+private JPanel summaryHost;
     
+private static class CartLine {
+    final CartItem item;
+    int qty;
+    CartLine(CartItem item) {
+        this.item = item;
+        this.qty = item.getQuantity();
+    }
+}
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Cart.class.getName());
 
     /**
@@ -30,13 +44,95 @@ private int loggedInUserId;
     public Cart() {
 
     initComponents();
+    
+    
+ 
     cartController = new CartController();
     loggedInUserId = UserSession.getUserId();
 
     setLocationRelativeTo(null);
     setResizable(true);
+    
+    // ===== TOP BAR (SELECT ALL + DELETE) like screenshot =====
+pSelectALLBar.removeAll();
+pSelectALLBar.setLayout(new BorderLayout());
+pSelectALLBar.setBackground(new Color(225, 231, 236));  // light gray bar
+
+chkSelectALL.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+chkSelectALL.setForeground(new Color(120, 120, 120));
+chkSelectALL.setOpaque(false);
+
+// ✅ Delete icon button
+btnDeleteAll = new JButton("DELETE");
+btnDeleteAll.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+btnDeleteAll.setForeground(new Color(120, 120, 120));
+btnDeleteAll.setCursor(new Cursor(Cursor.HAND_CURSOR));
+btnDeleteAll.setFocusPainted(false);
+btnDeleteAll.setBorderPainted(false);
+//btnDeleteAll.setPreferredSize(new Dimension(100, 75));
+btnDeleteAll.setIconTextGap(6);
+btnDeleteAll.setHorizontalTextPosition(SwingConstants.RIGHT);
+
+
+try {
+    ImageIcon raw = new ImageIcon(getClass().getResource("/pictures/trash.png"));
+
+    // Optional: scale icon to fit nicely
+    Image scaled = raw.getImage().getScaledInstance(14, 14, Image.SCALE_SMOOTH);
+    ImageIcon icon = new ImageIcon(scaled);
+
+    btnDeleteAll.setText("DELETE");
+    btnDeleteAll.setIcon(icon);
+
+    btnDeleteAll.setIconTextGap(6); // space between icon and text
+
+    // Put icon on the LEFT, text on the RIGHT (normal)
+    btnDeleteAll.setHorizontalAlignment(SwingConstants.RIGHT); // or LEFT depending on where your button sits
+    btnDeleteAll.setHorizontalTextPosition(SwingConstants.RIGHT);
+    btnDeleteAll.setVerticalTextPosition(SwingConstants.CENTER);
+
+    // Make sure it has enough width so text doesn't get cut
+//    btnDeleteAll.setPreferredSize(new Dimension(90, 30));
+
+    // "label-like" styling (optional)
+    btnDeleteAll.setContentAreaFilled(false);
+    btnDeleteAll.setBorderPainted(false);
+    btnDeleteAll.setFocusPainted(false);
+
+} catch (Exception e) {
+    e.printStackTrace();
+    btnDeleteAll.setText("DELETE");
+}
+
+
+btnDeleteAll.setContentAreaFilled(false); // looks like label/button in screenshot
+btnDeleteAll.addActionListener(e -> deleteSelectedItems());
+
+JPanel leftBar = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 5));
+leftBar.setOpaque(false);
+leftBar.add(chkSelectALL);
+
+JPanel rightBar = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 5));
+rightBar.setOpaque(false);
+rightBar.add(btnDeleteAll);
+
+pSelectALLBar.add(leftBar, BorderLayout.WEST);
+pSelectALLBar.add(rightBar, BorderLayout.EAST);
+
+chkSelectALL.addActionListener(e -> {
+    if (bulkChanging) return;
+    boolean select = chkSelectALL.isSelected();
+
+    bulkChanging = true;
+    for (JCheckBox cb : cbToLine.keySet()) cb.setSelected(select);
+    bulkChanging = false;
+
+    updateOrderSummary();
+});
+
 
     // ✅ Make "Proceed to checkout" behave like a button
+        
     jTextField2.setEditable(false);
     jTextField2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
     jTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -57,24 +153,50 @@ private int loggedInUserId;
     // ✅ Wrap cart in scroll
     Cartbox.removeAll();
     Cartbox.setLayout(new BoxLayout(Cartbox, BoxLayout.Y_AXIS));
-    JScrollPane cartScroll = new JScrollPane(Cartbox);
-    cartScroll.setBorder(null);
+   JScrollPane cartScroll = new JScrollPane(
+        Cartbox,
+        JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+        JScrollPane.HORIZONTAL_SCROLLBAR_NEVER   // ✅ important
+);
+cartScroll.setBorder(null);
+cartScroll.getVerticalScrollBar().setUnitIncrement(16); // smooth scroll
+cartScroll.getViewport().setBackground(Color.WHITE);
+cartScroll.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 12)); // 12px gap to the right
+jPanel4.setBorder(BorderFactory.createEmptyBorder(0, 12, 0, 0));    // 12px gap to the left
+
+
 
     // ✅ Split pane 50/50
-    split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, cartScroll, jPanel4);
-    split.setResizeWeight(0.50);
+    summaryHost = buildOrderSummaryPanel();
+
+split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, cartScroll, summaryHost);
+    split.setResizeWeight(0.6);
+SwingUtilities.invokeLater(() -> split.setDividerLocation(0.65));
     split.setDividerSize(6);
     split.setBorder(null);
+    split.setEnabled(false);          // disables divider mouse drag
+split.setDividerSize(2);          // thin line (or 0 to hide completely)
+split.setBorder(null);
+    split.setContinuousLayout(true);
+split.setOneTouchExpandable(false);
 
     contentPanel.add(split, BorderLayout.CENTER);
 
     // ✅ Add contentPanel into jPanel1 with manual positioning (since you use null layout)
-    contentPanel.setBounds(18, 210, 1240, 430); // adjust if needed
+    contentPanel.setBounds(50, 235, 1240, 430); // adjust if needed
+    contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0)); 
+//    pSelectALLBar.setBorder(BorderFactory.createEmptyBorder(6, 12, 10, 12));
+// top,left,bottom,right
+
     jPanel1.setLayout(null); // important if not already null
     jPanel1.add(contentPanel);
 
     // ✅ Make divider exact after UI shows
-    SwingUtilities.invokeLater(() -> split.setDividerLocation(0.50));
+  
+
+    Cartbox.setOpaque(true);
+    Cartbox.setBackground(Color.WHITE);
+    
 
     // ✅ Load DB items
     loadCartItems();
@@ -113,8 +235,6 @@ private int loggedInUserId;
         HPimg = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -124,7 +244,6 @@ private int loggedInUserId;
         Tslimg = new javax.swing.JLabel();
         jCheckBox2 = new javax.swing.JCheckBox();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -136,7 +255,6 @@ private int loggedInUserId;
         jCheckBox3 = new javax.swing.JCheckBox();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jButton9 = new javax.swing.JButton();
@@ -303,12 +421,6 @@ private int loggedInUserId;
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("Harry Potter ");
 
-        jLabel2.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel2.setText("No Brand");
-
-        jLabel3.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel3.setText("4 iems(s) left");
-
         jLabel4.setText("Rs.2199");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -333,12 +445,9 @@ private int loggedInUserId;
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(Cartbox1Layout.createSequentialGroup()
-                        .addGroup(Cartbox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(165, 165, 165)
+                        .addGap(0, 273, Short.MAX_VALUE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                        .addGap(49, 49, 49)
                         .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -366,18 +475,10 @@ private int loggedInUserId;
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(Cartbox1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGroup(Cartbox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(Cartbox1Layout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addComponent(jLabel2))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Cartbox1Layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(Cartbox1Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                        .addGap(29, 29, 29)
+                        .addGroup(Cartbox1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -409,9 +510,6 @@ private int loggedInUserId;
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("The Secret Library");
-
-        jLabel7.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel7.setText("No Brand");
 
         jLabel8.setForeground(new java.awt.Color(153, 153, 153));
         jLabel8.setText("5 iems(s) left");
@@ -449,9 +547,8 @@ private int loggedInUserId;
                     .addGroup(Cartbox2Layout.createSequentialGroup()
                         .addGroup(Cartbox2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel7))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jLabel8))
+                        .addContainerGap(483, Short.MAX_VALUE))))
         );
         Cartbox2Layout.setVerticalGroup(
             Cartbox2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -476,8 +573,6 @@ private int loggedInUserId;
                                     .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(55, 55, 55))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Cartbox2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel8)
                                 .addGap(16, 16, 16)))))
@@ -516,9 +611,6 @@ private int loggedInUserId;
         jLabel13.setForeground(new java.awt.Color(153, 153, 153));
         jLabel13.setText("ebook");
 
-        jLabel14.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel14.setText("No Brand");
-
         jLabel15.setText("Rs.1499");
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -543,14 +635,9 @@ private int loggedInUserId;
                         .addGroup(Cartbox3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel13)
                             .addGroup(Cartbox3Layout.createSequentialGroup()
-                                .addGroup(Cartbox3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(Cartbox3Layout.createSequentialGroup()
-                                        .addComponent(jLabel14)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Cartbox3Layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(50, 50, 50)))
+                                .addGap(0, 285, Short.MAX_VALUE)
+                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(50, 50, 50)
                                 .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(38, 38, 38)
                                 .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -585,8 +672,6 @@ private int loggedInUserId;
                             .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(56, 56, 56))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Cartbox3Layout.createSequentialGroup()
-                        .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel13)
                         .addGap(23, 23, 23))))
         );
@@ -655,7 +740,7 @@ private int loggedInUserId;
                             .addComponent(jLabel24, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(165, 165, 165)
                         .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                         .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37)
                         .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -826,7 +911,7 @@ private int loggedInUserId;
                         .addComponent(Newestbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)
                         .addComponent(Supportbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                         .addComponent(Profileicon, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(68, 68, 68))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -884,7 +969,7 @@ private int loggedInUserId;
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 1290, 720);
+        jPanel1.setBounds(0, 0, 1280, 720);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -977,147 +1062,430 @@ private int loggedInUserId;
     
     private void doCheckout() {
     if (loggedInUserId == -1) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Please login again.");
+        JOptionPane.showMessageDialog(this, "Please login again.");
+        return;
+    }
+
+    java.util.Set<Integer> selectedIds = getSelectedCartIds();
+    if (selectedIds.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please select at least 1 item.");
+        return;
+    }
+
+    // reload from DB so quantities are 100% correct
+    java.util.List<CartItem> all = cartController.getCartItems(loggedInUserId);
+    java.util.List<CartItem> selected = new java.util.ArrayList<>();
+    for (CartItem it : all) {
+        if (selectedIds.contains(it.getCartId())) selected.add(it);
+    }
+
+    int confirm = JOptionPane.showConfirmDialog(
+            this,
+            "Checkout " + selected.size() + " item(s)?",
+            "Confirm Checkout",
+            JOptionPane.YES_NO_OPTION
+    );
+    if (confirm != JOptionPane.YES_OPTION) return;
+
+    cartController.checkoutCart(selected, loggedInUserId);
+    JOptionPane.showMessageDialog(this, "Checkout successful!");
+    loadCartItems();
+}
+
+    private java.util.Set<Integer> getSelectedCartIds() {
+    java.util.Set<Integer> ids = new java.util.HashSet<>();
+    for (var entry : cbToLine.entrySet()) {
+        if (entry.getKey().isSelected()) ids.add(entry.getValue().item.getCartId());
+    }
+    return ids;
+}
+
+    private void loadCartItems() {
+    Cartbox.removeAll();
+    cbToLine.clear();
+
+    if (loggedInUserId == -1) {
+        JOptionPane.showMessageDialog(this, "Please login again.");
+        dispose();
         return;
     }
 
     java.util.List<CartItem> cartItems = cartController.getCartItems(loggedInUserId);
 
-    if (cartItems == null || cartItems.isEmpty()) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Your cart is empty.");
-        return;
-    }
-
-    int confirm = javax.swing.JOptionPane.showConfirmDialog(
-            this,
-            "Checkout " + cartItems.size() + " item(s)?",
-            "Confirm Checkout",
-            javax.swing.JOptionPane.YES_NO_OPTION
-    );
-
-    if (confirm != javax.swing.JOptionPane.YES_OPTION) return;
-
-    cartController.checkoutCart(cartItems, loggedInUserId);
-
-    javax.swing.JOptionPane.showMessageDialog(this, "Checkout successful!");
-    loadCartItems(); // refresh UI (cart should be empty now)
-
-    // Optional: open purchase history after checkout
-    // new Purchasehistory().setVisible(true);
-    // dispose();
-}
-
-    private void loadCartItems() {
-
-    Cartbox.removeAll(); // clear old UI
-    if (loggedInUserId == -1) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Please login again.");
-        dispose();
-        return;
-    }
-
-    Cartbox.removeAll();
-
-    var cartItems = cartController.getCartItems(loggedInUserId);
-
     for (CartItem item : cartItems) {
-    Cartbox.add(createCartItemPanel(item));
-    Cartbox.add(Box.createVerticalStrut(10));  // spacing between cards
-}
+        Cartbox.add(createCartItemPanel(item));
+        Cartbox.add(Box.createVerticalStrut(0)); // screenshot rows touch each other
+    }
 
-    int count = cartItems.size();
-jTextField2.setText("PROCEED TO CHECKOUT(" + count + ")");
-jLabel17.setText("Subtotal (" + count + " items)");
+    // reset top controls + summary
+    bulkChanging = true;
+    chkSelectALL.setSelected(false);
+    bulkChanging = false;
+
+    btnDeleteAll.setEnabled(!cartItems.isEmpty());
+    updateOrderSummary();
 
     Cartbox.revalidate();
     Cartbox.repaint();
-
-
-
 }
-    
-    
-   private javax.swing.JPanel createCartItemPanel(CartItem item) {
 
-    JPanel row = new JPanel(new BorderLayout(15, 10));
+    
+    
+  private JPanel createCartItemPanel(CartItem item) {
+
+    JPanel row = new JPanel(new GridBagLayout());
     row.setBackground(Color.WHITE);
-    row.setBorder(BorderFactory.createLineBorder(new Color(204, 204, 204)));
-    row.setMaximumSize(new Dimension(950, 150));   // similar height like static
-    row.setPreferredSize(new Dimension(950, 150));
+    row.setBorder(BorderFactory.createLineBorder(new Color(220, 220, 220)));
 
-    // ✅ LEFT: checkbox + image
-    JPanel left = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 20));
-    left.setBackground(Color.WHITE);
+    // ✅ DO NOT set a huge preferred width (causes horizontal scroll)
+    row.setMaximumSize(new Dimension(Integer.MAX_VALUE, 150));
+    row.setPreferredSize(new Dimension(10, 150)); // width ignored, height kept
+    row.setAlignmentX(Component.LEFT_ALIGNMENT);
 
+    GridBagConstraints gc = new GridBagConstraints();
+    gc.gridy = 0;
+    gc.fill = GridBagConstraints.BOTH;
+    gc.weighty = 1;
+
+    // ===== 1) Checkbox column =====
     JCheckBox cb = new JCheckBox();
     cb.setBackground(Color.WHITE);
 
-    JLabel img = new JLabel();
-    img.setPreferredSize(new Dimension(99, 122));
+    CartLine line = new CartLine(item);
+    cbToLine.put(cb, line);
 
-    try {
-        // DB image example: "/icons/Harry.png"
-        img.setIcon(new ImageIcon(getClass().getResource(item.getImage())));
-    } catch (Exception e) {
-        img.setText("No Image");
-    }
-
-    left.add(cb);
-    left.add(img);
-    row.add(left, BorderLayout.WEST);
-
-    // ✅ CENTER: name + brand + stock/type
-    JPanel center = new JPanel();
-    center.setBackground(Color.WHITE);
-    center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
-    center.setBorder(new EmptyBorder(15, 0, 0, 0));
-
-    JLabel name = new JLabel(item.getItemName());
-    name.setFont(new Font("Segoe UI", Font.BOLD, 12));
-
-    JLabel brand = new JLabel("No Brand");
-    brand.setForeground(new Color(153, 153, 153));
-
-    JLabel type = new JLabel(item.getItemType() + " | " + item.getActionType());
-    type.setForeground(new Color(153, 153, 153));
-
-    center.add(name);
-    center.add(Box.createVerticalStrut(10));
-    center.add(brand);
-    center.add(Box.createVerticalStrut(5));
-    center.add(type);
-
-    row.add(center, BorderLayout.CENTER);
-
-    // ✅ RIGHT: price + qty + +/- + remove
-    JPanel right = new JPanel(new FlowLayout(FlowLayout.RIGHT, 15, 45));
-    right.setBackground(Color.WHITE);
-
-    JLabel price = new JLabel("Rs. " + item.getPrice());
-
-    JButton minus = new JButton("-");
-    JLabel qty = new JLabel(String.valueOf(item.getQuantity()));
-    qty.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-    JButton plus = new JButton("+");
-
-    JButton removeBtn = new JButton("Remove");
-    removeBtn.addActionListener(e -> {
-        cartController.removeItemFromCart(item.getCartId());
-        loadCartItems();
+    cb.addActionListener(e -> {
+        if (bulkChanging) return;
+        updateOrderSummary();
     });
 
-    right.add(price);
-    right.add(minus);
-    right.add(qty);
-    right.add(plus);
-    right.add(removeBtn);
+    gc.gridx = 0;
+    gc.weightx = 0;
+    gc.insets = new Insets(0, 12, 0, 10);
+    row.add(cb, gc);
 
-    row.add(right, BorderLayout.EAST);
+    // ===== 2) Image column =====
+    JPanel imgWrap = new JPanel();
+    imgWrap.setBackground(Color.WHITE);
+    imgWrap.setLayout(new BoxLayout(imgWrap, BoxLayout.Y_AXIS));
+
+    JLabel seller = new JLabel("Rentify");
+    seller.setFont(new Font("Segoe UI", Font.PLAIN, 10));
+    seller.setForeground(new Color(160, 160, 160));
+
+    JLabel img = new JLabel();
+    img.setPreferredSize(new Dimension(120, 90));
+    img.setMinimumSize(new Dimension(120, 90));
+    img.setMaximumSize(new Dimension(120, 90));
+    img.setBorder(BorderFactory.createLineBorder(new Color(220, 220, 220)));
+
+    try {
+        img.setIcon(new ImageIcon(getClass().getResource(item.getImage())));
+    } catch (Exception ex) {
+        img.setText("No Image");
+        img.setHorizontalAlignment(SwingConstants.CENTER);
+    }
+
+    imgWrap.add(seller);
+    imgWrap.add(Box.createVerticalStrut(6));
+    imgWrap.add(img);
+
+    gc.gridx = 1;
+    gc.weightx = 0;
+    gc.insets = new Insets(10, 0, 10, 10);
+    row.add(imgWrap, gc);
+
+    // ===== 3) Title/Info column =====
+    JPanel info = new JPanel();
+    info.setBackground(Color.WHITE);
+    info.setLayout(new BoxLayout(info, BoxLayout.Y_AXIS));
+
+    JLabel title = new JLabel(item.getItemName());
+    title.setFont(new Font("Segoe UI", Font.BOLD, 18));
+
+    JLabel brand = new JLabel("No Brand");
+    brand.setFont(new Font("Segoe UI", Font.PLAIN, 11));
+    brand.setForeground(new Color(150, 150, 150));
+
+    JLabel stock = new JLabel("4 item(s) left");
+    stock.setFont(new Font("Segoe UI", Font.PLAIN, 11));
+    stock.setForeground(new Color(150, 150, 150));
+
+    info.add(Box.createVerticalStrut(6));
+    info.add(title);
+    info.add(Box.createVerticalStrut(18));
+    info.add(brand);
+    info.add(Box.createVerticalStrut(6));
+    info.add(stock);
+
+    gc.gridx = 2;
+    gc.weightx = 1; // ✅ this column expands, prevents overflow
+    gc.insets = new Insets(10, 10, 10, 10);
+    row.add(info, gc);
+
+    // ===== 4) Price + qty column =====
+    JPanel right = new JPanel(new FlowLayout(FlowLayout.RIGHT, 12, 52));
+    right.setBackground(Color.WHITE);
+
+    JLabel price = new JLabel("Rs." + (int) item.getPrice());
+    price.setFont(new Font("Segoe UI", Font.PLAIN, 16));
+    right.add(price);
+
+    boolean isBook = "BOOK".equalsIgnoreCase(item.getItemType());
+
+    JLabel qtyLabel = new JLabel(String.valueOf(line.qty));
+    qtyLabel.setFont(new Font("Segoe UI", Font.PLAIN, 16));
+    qtyLabel.setPreferredSize(new Dimension(20, 20));
+    qtyLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+    if (isBook) {
+       
+        JButton minus = smallQtyButton("-");
+        JButton plus = smallQtyButton("+");
+
+        minus.addActionListener(e -> {
+            if (line.qty <= 1) return;
+            line.qty--;
+            qtyLabel.setText(String.valueOf(line.qty));
+            cartController.updateCartQuantity(item.getCartId(), line.qty);
+            updateOrderSummary();
+        });
+
+        plus.addActionListener(e -> {
+            line.qty++;
+            qtyLabel.setText(String.valueOf(line.qty));
+            cartController.updateCartQuantity(item.getCartId(), line.qty);
+            updateOrderSummary();
+        });
+
+        right.add(minus);
+        right.add(qtyLabel);
+        right.add(plus);
+    } else {
+        // MOVIE fixed qty
+        line.qty = 1;
+        qtyLabel.setText("1");
+        right.add(qtyLabel);
+    }
+
+    gc.gridx = 3;
+    gc.weightx = 0;
+    gc.insets = new Insets(0, 0, 0, 18);
+    row.add(right, gc);
 
     return row;
 }
 
-    
+private JButton smallQtyButton(String txt) {
+    JButton b = new JButton(txt);
+    b.setPreferredSize(new Dimension(34, 24));
+    b.setFocusPainted(false);
+    b.setBackground(new Color(230, 230, 230));
+    b.setBorder(BorderFactory.createLineBorder(new Color(210, 210, 210)));
+    b.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    return b;
+}
+private JPanel buildOrderSummaryPanel() {
+
+    JPanel outer = new JPanel(new BorderLayout());
+    outer.setBackground(new Color(232, 241, 253));
+    outer.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+    JPanel card = new JPanel(new GridBagLayout());
+    card.setBackground(new Color(224, 238, 251));
+    card.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(new Color(210, 210, 210), 1, true),
+            BorderFactory.createEmptyBorder(28, 28, 28, 28)
+    ));
+
+    GridBagConstraints gc = new GridBagConstraints();
+    gc.gridx = 0;
+    gc.gridy = 0;
+    gc.gridwidth = 2;
+    gc.anchor = GridBagConstraints.WEST;
+    gc.fill = GridBagConstraints.HORIZONTAL;
+    gc.weightx = 1;
+
+    // Title
+    jLabel11.setText("Order Summary");
+    jLabel11.setFont(new Font("Segoe UI", Font.BOLD, 14));
+    card.add(jLabel11, gc);
+
+    // helper to add rows
+    java.util.function.BiConsumer<JLabel, JLabel> addRow = (left, right) -> {
+        left.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        right.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+
+        GridBagConstraints l = new GridBagConstraints();
+        l.gridx = 0;
+        l.gridy = ++gc.gridy;
+        l.anchor = GridBagConstraints.WEST;
+        l.insets = new Insets(18, 0, 0, 0);
+
+        GridBagConstraints r = new GridBagConstraints();
+        r.gridx = 1;
+        r.gridy = gc.gridy;
+        r.anchor = GridBagConstraints.EAST;
+        r.insets = new Insets(18, 0, 0, 0);
+
+        card.add(left, l);
+        card.add(right, r);
+    };
+
+    addRow.accept(jLabel17, jLabel19);
+    addRow.accept(jLabel18, jLabel20);
+
+    // Voucher row
+    JPanel voucherRow = new JPanel(new BorderLayout(12, 0));
+    voucherRow.setOpaque(false);
+
+    jTextField1.setPreferredSize(new Dimension(220, 30));
+    jTextField1.setBackground(new Color(245, 245, 245));
+    jTextField1.setBorder(BorderFactory.createLineBorder(new Color(210, 210, 210)));
+
+    jButton1.setText("APPLY");
+    jButton1.setPreferredSize(new Dimension(95, 30));
+    jButton1.setBackground(new Color(13, 106, 210));
+    jButton1.setForeground(Color.WHITE);
+    jButton1.setFocusPainted(false);
+
+    voucherRow.add(jTextField1, BorderLayout.CENTER);
+    voucherRow.add(jButton1, BorderLayout.EAST);
+
+    GridBagConstraints voucherGC = new GridBagConstraints();
+    voucherGC.gridx = 0;
+    voucherGC.gridy = ++gc.gridy;
+    voucherGC.gridwidth = 2;
+    voucherGC.fill = GridBagConstraints.HORIZONTAL;
+    voucherGC.insets = new Insets(26, 0, 0, 0);
+    card.add(voucherRow, voucherGC);
+
+    // Total row
+    jLabel21.setText("Total");
+    jLabel21.setFont(new Font("Segoe UI", Font.BOLD, 12));
+    jLabel22.setFont(new Font("Segoe UI", Font.BOLD, 12));
+
+    GridBagConstraints t1 = new GridBagConstraints();
+    t1.gridx = 0;
+    t1.gridy = ++gc.gridy;
+    t1.anchor = GridBagConstraints.WEST;
+    t1.insets = new Insets(36, 0, 0, 0);
+
+    GridBagConstraints t2 = new GridBagConstraints();
+    t2.gridx = 1;
+    t2.gridy = gc.gridy;
+    t2.anchor = GridBagConstraints.EAST;
+    t2.insets = new Insets(36, 0, 0, 0);
+
+    card.add(jLabel21, t1);
+    card.add(jLabel22, t2);
+
+    // Checkout "button"
+    jTextField2.setEditable(false);
+    jTextField2.setHorizontalAlignment(JTextField.CENTER);
+    jTextField2.setBackground(new Color(13, 106, 210));
+    jTextField2.setForeground(Color.WHITE);
+    jTextField2.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
+    jTextField2.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+    GridBagConstraints checkoutGC = new GridBagConstraints();
+    checkoutGC.gridx = 0;
+    checkoutGC.gridy = ++gc.gridy;
+    checkoutGC.gridwidth = 2;
+    checkoutGC.fill = GridBagConstraints.HORIZONTAL;
+    checkoutGC.insets = new Insets(12, 0, 0, 0);
+    card.add(jTextField2, checkoutGC);
+
+    outer.add(card, BorderLayout.NORTH);
+    return outer;
+}
+
+
+
+private void updateOrderSummary() {
+    int selectedCount = 0;
+    double subtotal = 0;
+
+    for (var entry : cbToLine.entrySet()) {
+        JCheckBox cb = entry.getKey();
+        CartLine line = entry.getValue();
+
+        if (cb.isSelected()) {
+            selectedCount++;
+            subtotal += (line.item.getPrice() * line.qty);
+        }
+    }
+
+    jLabel17.setText("Subtotal (" + selectedCount + " items )");
+    jLabel19.setText("Rs." + (int) subtotal);
+
+      
+    jLabel22.setText("Rs=" + (int) subtotal);
+    jTextField2.setText("PROCEED TO CHECKOUT(" + selectedCount + ")");
+
+    // keep Select All sync
+    if (!bulkChanging) {
+        bulkChanging = true;
+        chkSelectALL.setSelected(selectedCount > 0 && selectedCount == cbToLine.size());
+        bulkChanging = false;
+    }
+
+    // disable checkout if 0 selected
+    jTextField2.setEnabled(selectedCount > 0);
+}
+
+
+private void deleteSelectedItems() {
+    if (loggedInUserId == -1) return;
+
+    java.util.List<Integer> ids = new java.util.ArrayList<>();
+    for (var entry : cbToLine.entrySet()) {
+        if (entry.getKey().isSelected()) {
+            ids.add(entry.getValue().item.getCartId());
+        }
+    }
+
+    if (ids.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please select at least 1 item to delete.");
+        return;
+    }
+
+    int confirm = JOptionPane.showConfirmDialog(
+            this,
+            "Delete " + ids.size() + " selected item(s)?",
+            "Confirm Delete",
+            JOptionPane.YES_NO_OPTION
+    );
+
+    if (confirm != JOptionPane.YES_OPTION) return;
+
+    cartController.removeSelectedItems(ids);
+    loadCartItems();
+}
+
+    private void deleteAllItems() {
+    if (loggedInUserId == -1) return;
+
+    int confirm = JOptionPane.showConfirmDialog(
+            this,
+            "Delete ALL items from cart?",
+            "Confirm Delete",
+            JOptionPane.YES_NO_OPTION
+    );
+    if (confirm != JOptionPane.YES_OPTION) return;
+
+    // Best way (recommended): create cartController.clearCart(userId)
+    // cartController.clearCart(loggedInUserId);
+
+    // If you don't have clearCart(), do this:
+    java.util.List<CartItem> items = cartController.getCartItems(loggedInUserId);
+    for (CartItem it : items) {
+        cartController.removeItemFromCart(it.getCartId());
+    }
+
+    loadCartItems();
+}
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1159,13 +1527,11 @@ jLabel17.setText("Subtotal (" + count + " items)");
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -1174,11 +1540,9 @@ jLabel17.setText("Subtotal (" + count + " items)");
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;

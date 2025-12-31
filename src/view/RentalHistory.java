@@ -121,7 +121,7 @@ private final SimpleDateFormat sdf = new SimpleDateFormat("dd MMM, yyyy");
             new Object [][] {
                 {"Harry Potter", "11 Nov, 2025", "3 Jan, 2026", "Active "},
                 {"The Secret Library", "11 Nov, 2025", "7 Jan, 2026", "Active "},
-                {"Hamlet", "16 Nov, 2025", "Expired", "Expired "},
+                {"Hamlet", "16 Nov, 2025", "Returned ", " Returned "},
                 {"John Wick", "17 Nov, 2025", "Expired", "Expired "}
             },
             new String [] {

@@ -216,13 +216,13 @@
                             <Column editable="true" title="Expiry date" type="java.lang.Object">
                               <Data value="3 Jan, 2026"/>
                               <Data value="7 Jan, 2026"/>
-                              <Data value="Expired"/>
+                              <Data value="Returned "/>
                               <Data value="Expired"/>
                             </Column>
                             <Column editable="true" title="Status" type="java.lang.Object">
                               <Data value="Active "/>
                               <Data value="Active "/>
-                              <Data value="Expired "/>
+                              <Data value=" Returned "/>
                               <Data value="Expired "/>
                             </Column>
                           </Table>
