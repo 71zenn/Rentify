@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import userdata.UserSession;
-import userdata.RentalDAO;      // <-- create/use your DAO name
+import userdata.RentalDao;      // <-- create/use your DAO name
 import model.Rental;
 
 /**
@@ -18,7 +18,7 @@ import model.Rental;
  */
 public class RentalHistory extends javax.swing.JFrame {
   
-    private final RentalDAO rentalDAO = new RentalDAO();
+    private final RentalDao rentalDAO = new RentalDao();
 private final SimpleDateFormat sdf = new SimpleDateFormat("dd MMM, yyyy");
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(RentalHistory.class.getName());

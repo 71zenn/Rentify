@@ -9,15 +9,15 @@ package controller;
  * @author Dell
  */
 import model.Order;
-import userdata.OrderDAO;
+import userdata.OrderDao;
 import java.util.List;
 
 public class PurchaseHistoryController {
 
-    private OrderDAO orderDAO;
+    private OrderDao orderDAO;
 
     public PurchaseHistoryController() {
-        orderDAO = new OrderDAO();
+        orderDAO = new OrderDao();
     }
 
     public List<Order> getPurchaseHistory(int userId) {

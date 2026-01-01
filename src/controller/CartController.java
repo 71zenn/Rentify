@@ -8,7 +8,7 @@ package controller;
  *
  * @author Dell
  */
-import userdata.CartDAO;
+import userdata.CartDao;
 import services.CheckoutService;
 import model.CartItem;
 
@@ -18,12 +18,12 @@ import java.util.List;
 
 public class CartController {
 
-    private CartDAO cartDAO;
+    private CartDao cartDAO;
     private CheckoutService checkoutService;
     
 
     public CartController() {
-        cartDAO = new CartDAO();
+        cartDAO = new CartDao();
         checkoutService = new CheckoutService();
     }
 

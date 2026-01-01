@@ -18,7 +18,7 @@ import database.DBConnection;
 
 
 
-public class CartDAO {
+public class CartDao {
 
     public List<CartItem> getCartItems(int userId) {
 

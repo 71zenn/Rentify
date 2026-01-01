@@ -13,7 +13,7 @@ import database.MySQLConnection;
  *
  * @author Dell
  */
-public class ProductDAO {
+public class ProductDao {
     
  public ArrayList<Product> getAllProducts() {
         ArrayList<Product> products = new ArrayList<>();

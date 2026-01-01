@@ -10,14 +10,14 @@ package services;
  * @author Dell
  */
 import java.util.List;
-import userdata.CartDAO;
+import userdata.CartDao;
 import model.CartItem;
 public class CartService {
 
-    private CartDAO cartDAO;
+    private CartDao cartDAO;
 
     public CartService() {
-        cartDAO = new CartDAO();
+        cartDAO = new CartDao();
     }
 
     public List<CartItem> getCartItems(int userId) {

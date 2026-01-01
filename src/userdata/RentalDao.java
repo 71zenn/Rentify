@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Rental;
 import database.DBConnection;
-public class RentalDAO {
+public class RentalDao {
 
     public List<Rental> getRentalHistory(int userId) {
 

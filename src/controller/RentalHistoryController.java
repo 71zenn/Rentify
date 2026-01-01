@@ -11,14 +11,14 @@ package controller;
 
 import java.util.List;
 import model.Rental;
-import userdata.RentalDAO;
+import userdata.RentalDao;
 
 public class RentalHistoryController {
 
-    private RentalDAO rentalDAO;
+    private RentalDao rentalDAO;
 
     public RentalHistoryController() {
-        rentalDAO = new RentalDAO();
+        rentalDAO = new RentalDao();
     }
 
     public List<Rental> getRentalHistory(int userId) {

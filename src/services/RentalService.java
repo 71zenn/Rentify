@@ -9,14 +9,14 @@ package services;
  * @author Dell
  */
 import java.util.List;
-import userdata.RentalDAO;
+import userdata.RentalDao;
 import model.Rental;
 public class RentalService {
 
-    private RentalDAO rentalDAO;
+    private RentalDao rentalDAO;
 
     public RentalService() {
-        rentalDAO = new RentalDAO();
+        rentalDAO = new RentalDao();
     }
 
     public List<Rental> getRentalHistory(int userId) {

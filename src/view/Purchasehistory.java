@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat;
 import static java.util.Collections.list;
 import java.util.List;
 
-import userdata.OrderDAO;
+import userdata.OrderDao;
 import model.Order;
 
 /**
@@ -20,7 +20,7 @@ import model.Order;
  * @author Dell
  */
 public class Purchasehistory extends javax.swing.JFrame {
-    private final OrderDAO orderDAO = new OrderDAO();
+    private final OrderDao orderDAO = new OrderDao();
 
 // TODO: replace this with YOUR login/session user id provider
 private int getLoggedInUserId() {

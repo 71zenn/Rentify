@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class OrderDAO {
+public class OrderDao {
 
     private final MySQLConnection mysql = new MySQLConnection();
 

@@ -8,17 +8,17 @@ package services;
  *
  * @author Dell
  */
-import userdata.OrderDAO;
+import userdata.OrderDao;
 import java.util.List;
 import model.Order;
 
 
 public class OrderService {
 
-    private OrderDAO orderDAO;
+    private OrderDao orderDAO;
 
     public OrderService() {
-        orderDAO = new OrderDAO();
+        orderDAO = new OrderDao();
     }
 
     public List<Order> getPurchaseHistory(int userId) {
