@@ -9,17 +9,18 @@ import model.User_model;
 
 /**
  *
- * @author zenni
+ * @author Dell
  */
 public class Login extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Login.class.getName());
-
+    private final controller controller;
     /**
-     * Creates new form login
+     * Creates new form Login
      */
     public Login() {
         initComponents();
+        controller = new controller();
     }
 
     /**
@@ -31,39 +32,132 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        Loginpanel = new javax.swing.JPanel();
+        Rentifylogo = new javax.swing.JLabel();
+        Login = new javax.swing.JLabel();
+        Username = new javax.swing.JTextField();
+        Password = new javax.swing.JTextField();
+        Registerbutton = new javax.swing.JButton();
+        Forgotbutton = new javax.swing.JButton();
+        Loginbutton = new javax.swing.JButton();
+        Background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1280, 720));
+        getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        Loginpanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+        Rentifylogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/rentify-230.png"))); // NOI18N
+
+        Login.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        Login.setText("Login");
+
+        Username.setForeground(new java.awt.Color(107, 114, 128));
+        Username.setText("Username");
+        Username.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                UsernameFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                UsernameFocusLost(evt);
+            }
+        });
+        Username.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UsernameActionPerformed(evt);
+            }
+        });
+
+        Password.setForeground(new java.awt.Color(107, 114, 128));
+        Password.setText("Password");
+        Password.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                PasswordFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                PasswordFocusLost(evt);
+            }
+        });
+        Password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PasswordActionPerformed(evt);
+            }
+        });
+
+        Registerbutton.setBackground(new java.awt.Color(232, 241, 253));
+        Registerbutton.setText("Register");
+        Registerbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegisterbuttonActionPerformed(evt);
+            }
+        });
+
+        Forgotbutton.setBackground(new java.awt.Color(232, 241, 253));
+        Forgotbutton.setText("Forgot");
+        Forgotbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ForgotbuttonActionPerformed(evt);
+            }
+        });
+
+        Loginbutton.setBackground(new java.awt.Color(13, 106, 210));
+        Loginbutton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        Loginbutton.setForeground(new java.awt.Color(255, 255, 255));
+        Loginbutton.setText("Log in");
+        Loginbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LoginbuttonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout LoginpanelLayout = new javax.swing.GroupLayout(Loginpanel);
+        Loginpanel.setLayout(LoginpanelLayout);
+        LoginpanelLayout.setHorizontalGroup(
+            LoginpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LoginpanelLayout.createSequentialGroup()
+                .addGroup(LoginpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(LoginpanelLayout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(LoginpanelLayout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addGroup(LoginpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Username, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Rentifylogo)
+                            .addGroup(LoginpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, LoginpanelLayout.createSequentialGroup()
+                                    .addComponent(Registerbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Forgotbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(Password, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Loginbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+        LoginpanelLayout.setVerticalGroup(
+            LoginpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LoginpanelLayout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addComponent(Rentifylogo, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
+                .addComponent(Username, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addGroup(LoginpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Registerbutton)
+                    .addComponent(Forgotbutton))
+                .addGap(38, 38, 38)
+                .addComponent(Loginbutton)
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(567, 567, 567)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(613, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(258, 258, 258)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(362, Short.MAX_VALUE))
-        );
+        getContentPane().add(Loginpanel);
+        Loginpanel.setBounds(440, 90, 360, 530);
+        getContentPane().add(Background);
+        Background.setBounds(0, 0, 1280, 720);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -143,6 +237,14 @@ controller.loginAndOpenPurchaseHistory(Username.getText(), Password.getText(), t
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel Background;
+    private javax.swing.JButton Forgotbutton;
+    private javax.swing.JLabel Login;
+    private javax.swing.JButton Loginbutton;
+    private javax.swing.JPanel Loginpanel;
+    private javax.swing.JTextField Password;
+    private javax.swing.JButton Registerbutton;
+    private javax.swing.JLabel Rentifylogo;
+    private javax.swing.JTextField Username;
     // End of variables declaration//GEN-END:variables
 }
