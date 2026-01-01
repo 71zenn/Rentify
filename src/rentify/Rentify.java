@@ -5,7 +5,7 @@
 package rentify;
 
 import view.Login;
-// import view.admindashboard;
+import view.admindashboard;
 
 
 /**
@@ -19,7 +19,7 @@ public class Rentify {
      */
     public static void main(String[] args) {
         new Login().setVisible(true);
-        // new admindashboard().setVisible(true);
+        //new admindashboard().setVisible(true);
     }
     
 }
