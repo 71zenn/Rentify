@@ -14,22 +14,24 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import model.CartItem;
-import database.DBConnection;
+import database.MySQLConnection;
 
 
 
 public class CartDao {
+    MySQLConnection mysql = new MySQLConnection();
 
     public List<CartItem> getCartItems(int userId) {
+        
 
         List<CartItem> list = new ArrayList<>();
 
         String sql = """
-    SELECT cart_id, item_id, item_name, item_type, action_type, price, image, quantity
-    FROM cart_items
-    WHERE user_id = ?
-""";
-        try (Connection con = DBConnection.getConnection();
+                        SELECT cart_id, item_id, item_name, item_type, action_type, price, image, quantity
+                        FROM cart_items
+                        WHERE user_id = ?
+                    """;
+        try (Connection con = mysql.openConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setInt(1, userId);
@@ -57,7 +59,7 @@ public class CartDao {
 
         String sql = "DELETE FROM cart_items WHERE cart_id = ?";
 
-        try (Connection con = DBConnection.getConnection();
+        try (Connection con = mysql.openConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setInt(1, cartId);
@@ -71,7 +73,7 @@ public class CartDao {
     public void updateQuantity(int cartId, int newQty) {
         String sql = "UPDATE cart_items SET quantity = ? WHERE cart_id = ?";
 
-        try (Connection con = DBConnection.getConnection();
+        try (Connection con = mysql.openConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setInt(1, newQty);
@@ -87,7 +89,7 @@ public class CartDao {
     public void clearCart(int userId) {
         String sql = "DELETE FROM cart_items WHERE user_id = ?";
 
-        try (Connection con = DBConnection.getConnection();
+        try (Connection con = mysql.openConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setInt(1, userId);
@@ -109,7 +111,7 @@ public class CartDao {
     }
     sb.append(")");
 
-    try (Connection con = DBConnection.getConnection();
+    try (Connection con = mysql.openConnection();
          PreparedStatement ps = con.prepareStatement(sb.toString())) {
 
         for (int i = 0; i < cartIds.size(); i++) {
