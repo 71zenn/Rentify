@@ -17,6 +17,10 @@ public class User_model {
         this.email = email;
         this.password = password;
     }
+
+    public User_model() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     public void setUsername(String username){
         this.username = username; 
 }
