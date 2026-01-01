@@ -25,10 +25,10 @@ public class CartDAO {
         List<CartItem> list = new ArrayList<>();
 
         String sql = """
-    SELECT cart_id, item_id, item_name, item_type, action_type, price, image, quantity
-    FROM cart_items
-    WHERE user_id = ?
-""";
+                        SELECT cart_id, item_id, item_name, item_type, action_type, price, image, quantity
+                        FROM cart_items
+                        WHERE user_id = ?
+                    """;
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
