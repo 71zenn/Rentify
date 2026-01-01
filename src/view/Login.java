@@ -3,9 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
-import controller.controller;
-import javax.swing.JOptionPane;
-import model.User_model;
 
 /**
  *
@@ -67,55 +64,6 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void UsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_UsernameActionPerformed
-
-    private void PasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PasswordActionPerformed
-
-    private void RegisterbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterbuttonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RegisterbuttonActionPerformed
-
-    private void ForgotbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ForgotbuttonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ForgotbuttonActionPerformed
-
-    private void UsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UsernameFocusGained
-        // TODO add your handling code here:
-        if(Username.getText().equals("Username")) {
-            Username.setText("");
-        }
-    }//GEN-LAST:event_UsernameFocusGained
-
-    private void PasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PasswordFocusGained
-        // TODO add your handling code here:
-        if(Password.getText().equals("Password")) {
-            Password.setText("");
-        }
-    }//GEN-LAST:event_PasswordFocusGained
-
-    private void UsernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UsernameFocusLost
-        // TODO add your handling code here:
-        if (Username.getText().equals("")){
-            Username.setText("Username");
-        }
-    }//GEN-LAST:event_UsernameFocusLost
-
-    private void PasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PasswordFocusLost
-        // TODO add your handling code here:
-        if (Password.getText().equals("")){
-            Password.setText("Password");
-        }
-    }//GEN-LAST:event_PasswordFocusLost
-
-    private void LoginbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginbuttonActionPerformed
-        // TODO add your handling code here:
-controller.loginAndOpenPurchaseHistory(Username.getText(), Password.getText(), this);
-    }//GEN-LAST:event_LoginbuttonActionPerformed
 
     /**
      * @param args the command line arguments
