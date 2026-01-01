@@ -18,7 +18,6 @@ public class BooksPage extends javax.swing.JFrame {
     public BooksPage() {
         initComponents();
         setSize(1293,760);
-
     }
 
     /**

@@ -59,7 +59,7 @@ public class notification extends javax.swing.JFrame {
         notificationmessage.setForeground(new java.awt.Color(38, 166, 154));
         notificationmessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         notificationpanel.add(notificationmessage);
-        notificationmessage.setBounds(10, 30, 280, 360);
+        notificationmessage.setBounds(10, 10, 280, 380);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
