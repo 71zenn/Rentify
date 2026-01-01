@@ -7,6 +7,7 @@ import userdata.userDao;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import view.Purchasehistory; // ✅ open this after login
+import model.User_model;
 
 public class controller {
 
@@ -16,6 +17,8 @@ public class controller {
 
         if (username == null) username = "";
         if (password == null) password = "";
+        // We don't need email for login right now, so we pass empty string
+        User_model user = new User_model(username,"", password);
 
         username = username.trim();
         password = password.trim();
