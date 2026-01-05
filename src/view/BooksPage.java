@@ -4,6 +4,12 @@
  */
 package view;
 
+import java.awt.Color;
+import java.awt.Point;
+import javax.swing.BorderFactory;
+import javax.swing.JPanel;
+import model.Product;
+
 /**
  *
  * @author zenni
@@ -11,14 +17,24 @@ package view;
 public class BooksPage extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(BooksPage.class.getName());
+    private javax.swing.JPanel productsPanel;
+
 
     /**
      * Creates new form dashboard
      */
     public BooksPage() {
-        initComponents();
+        initComponents();       
         setSize(1293,760);
-
+       jTextArea2.getInputMap().put(
+        javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ENTER, 0),
+        "search");
+        jTextArea2.getActionMap().put("search", new javax.swing.AbstractAction() {
+            @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            performSearch();
+            }
+        });
     }
 
     /**
@@ -34,20 +50,8 @@ public class BooksPage extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         FilterBTN = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        Profile_icon1 = new javax.swing.JLabel();
-        Profile_icon4 = new javax.swing.JLabel();
-        Profile_icon5 = new javax.swing.JLabel();
-        Profile_icon6 = new javax.swing.JLabel();
-        Profile_icon7 = new javax.swing.JLabel();
-        Profile_icon8 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        bookPanelReal = new javax.swing.JPanel();
         SupportBTN = new javax.swing.JButton();
         LibraryBTN = new javax.swing.JButton();
         MoviesBTN = new javax.swing.JButton();
@@ -62,18 +66,27 @@ public class BooksPage extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(249, 250, 251));
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(229, 231, 235), 3));
 
-        FilterBTN.setBackground(new java.awt.Color(255, 255, 255));
+        FilterBTN.setBackground(new java.awt.Color(250, 248, 248));
         FilterBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         FilterBTN.setForeground(new java.awt.Color(107, 114, 128));
         FilterBTN.setText("Filter");
         FilterBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 166, 154)));
+        FilterBTN.setFocusPainted(false);
+        FilterBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                FilterBTNMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                FilterBTNMouseExited(evt);
+            }
+        });
         FilterBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 FilterBTNActionPerformed(evt);
@@ -95,53 +108,23 @@ public class BooksPage extends javax.swing.JFrame {
             .addGap(0, 604, Short.MAX_VALUE)
         );
 
-        Profile_icon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/harrypotterHBPcover.jpg"))); // NOI18N
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setBorder(null);
 
-        Profile_icon4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/harrypotterTPScover.jpg"))); // NOI18N
+        bookPanelReal.setBackground(new java.awt.Color(255, 255, 255));
 
-        Profile_icon5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/Transformersposter.jpg"))); // NOI18N
+        javax.swing.GroupLayout bookPanelRealLayout = new javax.swing.GroupLayout(bookPanelReal);
+        bookPanelReal.setLayout(bookPanelRealLayout);
+        bookPanelRealLayout.setHorizontalGroup(
+            bookPanelRealLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 937, Short.MAX_VALUE)
+        );
+        bookPanelRealLayout.setVerticalGroup(
+            bookPanelRealLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 546, Short.MAX_VALUE)
+        );
 
-        Profile_icon6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/Johnwickposter.jpg"))); // NOI18N
-
-        Profile_icon7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Profile_icon7.setForeground(new java.awt.Color(51, 51, 51));
-        Profile_icon7.setText("Transformers");
-
-        Profile_icon8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Profile_icon8.setForeground(new java.awt.Color(51, 51, 51));
-        Profile_icon8.setText("Harry Potter and");
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel2.setText("The Half-blood Prince ");
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel3.setText("Philosophers' stone");
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel4.setText("Harry Potter and the");
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel5.setText("John wick");
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel6.setText("Rs. 1100");
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel7.setText("Rs. 999");
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel8.setText("Rs. 1299");
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel9.setText("Rs. 899");
+        jScrollPane1.setViewportView(bookPanelReal);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -150,42 +133,11 @@ public class BooksPage extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addComponent(FilterBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Profile_icon5)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(Profile_icon7))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel7)))
-                .addGap(70, 70, 70)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Profile_icon1)
-                    .addComponent(Profile_icon8, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel8))
-                .addGap(70, 70, 70)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 323, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Profile_icon4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Profile_icon6, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel5))
-                                .addGap(36, 36, 36)))))
-                .addGap(47, 47, 47))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,28 +150,8 @@ public class BooksPage extends javax.swing.JFrame {
                         .addGap(34, 34, 34)
                         .addComponent(FilterBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Profile_icon4)
-                            .addComponent(Profile_icon1)
-                            .addComponent(Profile_icon6)
-                            .addComponent(Profile_icon5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Profile_icon7)
-                            .addComponent(Profile_icon8)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9))))
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -230,6 +162,15 @@ public class BooksPage extends javax.swing.JFrame {
         SupportBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         SupportBTN.setForeground(new java.awt.Color(17, 24, 39));
         SupportBTN.setText("Support");
+        SupportBTN.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(194, 194, 194), 1, true));
+        SupportBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                SupportBTNMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                SupportBTNMouseExited(evt);
+            }
+        });
         SupportBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SupportBTNActionPerformed(evt);
@@ -242,6 +183,15 @@ public class BooksPage extends javax.swing.JFrame {
         LibraryBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         LibraryBTN.setForeground(new java.awt.Color(17, 24, 39));
         LibraryBTN.setText("Library");
+        LibraryBTN.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(194, 194, 194), 1, true));
+        LibraryBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                LibraryBTNMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                LibraryBTNMouseExited(evt);
+            }
+        });
         LibraryBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LibraryBTNActionPerformed(evt);
@@ -254,6 +204,15 @@ public class BooksPage extends javax.swing.JFrame {
         MoviesBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         MoviesBTN.setForeground(new java.awt.Color(17, 24, 39));
         MoviesBTN.setText("Movies");
+        MoviesBTN.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(194, 194, 194), 1, true));
+        MoviesBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                MoviesBTNMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                MoviesBTNMouseExited(evt);
+            }
+        });
         MoviesBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MoviesBTNActionPerformed(evt);
@@ -266,6 +225,15 @@ public class BooksPage extends javax.swing.JFrame {
         NewestBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         NewestBTN.setForeground(new java.awt.Color(17, 24, 39));
         NewestBTN.setText("Newest");
+        NewestBTN.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(194, 194, 194), 1, true));
+        NewestBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                NewestBTNMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                NewestBTNMouseExited(evt);
+            }
+        });
         NewestBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NewestBTNActionPerformed(evt);
@@ -278,6 +246,15 @@ public class BooksPage extends javax.swing.JFrame {
         BooksBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         BooksBTN.setForeground(new java.awt.Color(17, 24, 39));
         BooksBTN.setText("Books");
+        BooksBTN.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(194, 194, 194), 1, true));
+        BooksBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                BooksBTNMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                BooksBTNMouseExited(evt);
+            }
+        });
         BooksBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BooksBTNActionPerformed(evt);
@@ -286,14 +263,17 @@ public class BooksPage extends javax.swing.JFrame {
         jPanel1.add(BooksBTN);
         BooksBTN.setBounds(480, 50, 146, 36);
 
-        jTextArea2.setBackground(new java.awt.Color(229, 231, 235));
+        jTextArea2.setBackground(new java.awt.Color(243, 243, 243));
         jTextArea2.setColumns(20);
+        jTextArea2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jTextArea2.setForeground(new java.awt.Color(107, 114, 128));
+        jTextArea2.setLineWrap(true);
         jTextArea2.setRows(5);
         jTextArea2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jPanel1.add(jTextArea2);
         jTextArea2.setBounds(820, 100, 230, 30);
 
-        SearchBTN.setBackground(new java.awt.Color(229, 231, 235));
+        SearchBTN.setBackground(new java.awt.Color(243, 243, 243));
         SearchBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search-icon.png"))); // NOI18N
         SearchBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         SearchBTN.addActionListener(new java.awt.event.ActionListener() {
@@ -304,20 +284,24 @@ public class BooksPage extends javax.swing.JFrame {
         jPanel1.add(SearchBTN);
         SearchBTN.setBounds(1050, 100, 40, 30);
 
-        cart.setBackground(new java.awt.Color(255, 255, 255));
+        cart.setBackground(new java.awt.Color(249, 250, 251));
         cart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cart40x40.png"))); // NOI18N
+        cart.setBorder(null);
+        cart.setFocusPainted(false);
         cart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cartActionPerformed(evt);
             }
         });
         jPanel1.add(cart);
-        cart.setBounds(1100, 100, 40, 40);
+        cart.setBounds(1100, 90, 40, 40);
 
-        profileIconBTN.setBackground(new java.awt.Color(255, 255, 255));
+        profileIconBTN.setBackground(new java.awt.Color(249, 250, 251));
         profileIconBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         profileIconBTN.setForeground(new java.awt.Color(17, 24, 39));
         profileIconBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/profile-85x85.png"))); // NOI18N
+        profileIconBTN.setBorder(null);
+        profileIconBTN.setFocusPainted(false);
         profileIconBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 profileIconBTNActionPerformed(evt);
@@ -326,8 +310,11 @@ public class BooksPage extends javax.swing.JFrame {
         jPanel1.add(profileIconBTN);
         profileIconBTN.setBounds(1180, 10, 90, 90);
 
-        LogoBTN.setBackground(new java.awt.Color(255, 255, 255));
+        LogoBTN.setBackground(new java.awt.Color(249, 250, 251));
         LogoBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/rentifyohnebg (1).png"))); // NOI18N
+        LogoBTN.setBorder(null);
+        LogoBTN.setBorderPainted(false);
+        LogoBTN.setFocusPainted(false);
         LogoBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LogoBTNActionPerformed(evt);
@@ -341,25 +328,75 @@ public class BooksPage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    private boolean containsText(java.awt.Component comp, String text) {
+    // If this component has text (e.g. JLabel, JButton, JTextComponent)
+    if (comp instanceof javax.swing.JLabel) {
+        String labelText = ((javax.swing.JLabel) comp).getText();
+        if (labelText != null && labelText.toLowerCase().contains(text)) {
+            return true;
+        }
+    } else if (comp instanceof javax.swing.JButton) {
+        String btnText = ((javax.swing.JButton) comp).getText();
+        if (btnText != null && btnText.toLowerCase().contains(text)) {
+            return true;
+        }
+    } else if (comp instanceof javax.swing.text.JTextComponent) {
+        String fieldText = ((javax.swing.text.JTextComponent) comp).getText();
+        if (fieldText != null && fieldText.toLowerCase().contains(text)) {
+            return true;
+        }
+    }
+
+    // If it's a container (like JPanel), search its children
+    if (comp instanceof java.awt.Container) {
+        for (java.awt.Component child : ((java.awt.Container) comp).getComponents()) {
+            if (containsText(child, text)) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+    private void performSearch() {
+    String text = jTextArea2.getText().trim().toLowerCase();
+    boolean showAll = text.isEmpty();
+
+    for (java.awt.Component comp : jPanel2.getComponents()) {
+        boolean visible = showAll;
+
+        if (!showAll) {
+            // Search in all child components' text
+            visible = containsText(comp, text);
+        }
+        comp.setVisible(visible);
+    }
+
+    jPanel2.revalidate();
+    jPanel2.repaint();
+}
+
+
 
     private void SupportBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupportBTNActionPerformed
         // TODO add your handling code here:
-        ProductPage productPage = new ProductPage();
-        productPage.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_SupportBTNActionPerformed
 
     private void LibraryBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LibraryBTNActionPerformed
         // TODO add your handling code here:
-        LibraryPage libraryPage = new LibraryPage();
-        libraryPage.setVisible(true);
+        Point loc = this.getLocation();
         this.dispose();
+        LibraryPage libraryPage = new LibraryPage();
+        libraryPage.setLocation(loc);
+        libraryPage.setVisible(true);
     }//GEN-LAST:event_LibraryBTNActionPerformed
 
     private void MoviesBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MoviesBTNActionPerformed
         // TODO add your handling code here:
     // Navigate to Profile Page
-        BooksPage moviePage = new BooksPage();
+        Point loc = this.getLocation();
+        MoviePage moviePage = new MoviePage();
+        moviePage.setLocation(loc);
         moviePage.setVisible(true);
         this.dispose(); // Close current dashboard
 
@@ -367,23 +404,25 @@ public class BooksPage extends javax.swing.JFrame {
 
     private void NewestBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewestBTNActionPerformed
         // TODO add your handling code here:
+        Point loc = this.getLocation();
         NewestPage newestPage = new NewestPage();
+        newestPage.setLocation(loc);
         newestPage.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_NewestBTNActionPerformed
 
     private void BooksBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BooksBTNActionPerformed
         // TODO add your handling code here:
+       Point loc = this.getLocation();
         BooksPage booksPage = new BooksPage();
+        booksPage.setLocation(loc);
         booksPage.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BooksBTNActionPerformed
 
     private void SearchBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchBTNActionPerformed
         // TODO add your handling code here:
-        ProductPage productPage = new ProductPage();
-        productPage.setVisible(true);
-        this.dispose();
+        performSearch();
     }//GEN-LAST:event_SearchBTNActionPerformed
 
     private void cartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cartActionPerformed
@@ -397,7 +436,9 @@ public class BooksPage extends javax.swing.JFrame {
 
     private void profileIconBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileIconBTNActionPerformed
         // TODO add your handling code here:
+        Point loc = this.getLocation();
         UserDashboard userDashboard = new UserDashboard();
+        userDashboard.setLocation(loc);
         userDashboard.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_profileIconBTNActionPerformed
@@ -408,6 +449,109 @@ public class BooksPage extends javax.swing.JFrame {
         homePage.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_LogoBTNActionPerformed
+
+    private void LibraryBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LibraryBTNMouseEntered
+        // TODO add your handling code here:
+        LibraryBTN.setBackground(new java.awt.Color(52, 115, 196)); 
+        LibraryBTN.setForeground(java.awt.Color.WHITE);
+        LibraryBTN.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(40, 90, 150), 2)
+    );
+        LibraryBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_LibraryBTNMouseEntered
+
+    private void LibraryBTNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LibraryBTNMouseExited
+        // TODO add your handling code here:
+        LibraryBTN.setBackground(new java.awt.Color(232,241,253)); 
+        LibraryBTN.setForeground(new java.awt.Color(17,24,39));
+        LibraryBTN.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(194,194,194), 1)
+    );
+    }//GEN-LAST:event_LibraryBTNMouseExited
+
+    private void BooksBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BooksBTNMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BooksBTNMouseEntered
+
+    private void BooksBTNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BooksBTNMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BooksBTNMouseExited
+
+    private void MoviesBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MoviesBTNMouseEntered
+        // TODO add your handling code here:
+        MoviesBTN.setBackground(new java.awt.Color(52, 115, 196)); 
+        MoviesBTN.setForeground(java.awt.Color.WHITE);
+        MoviesBTN.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(40, 90, 150), 2)
+    );
+        MoviesBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_MoviesBTNMouseEntered
+
+    private void MoviesBTNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MoviesBTNMouseExited
+        // TODO add your handling code here:
+        MoviesBTN.setBackground(new java.awt.Color(232,241,253)); 
+        MoviesBTN.setForeground(new java.awt.Color(17,24,39));
+        MoviesBTN.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(194,194,194), 1)
+    );
+    }//GEN-LAST:event_MoviesBTNMouseExited
+
+    private void NewestBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NewestBTNMouseEntered
+        // TODO add your handling code here:
+        NewestBTN.setBackground(new java.awt.Color(52, 115, 196)); 
+        NewestBTN.setForeground(java.awt.Color.WHITE);
+        NewestBTN.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(40, 90, 150), 2)
+    );
+        NewestBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_NewestBTNMouseEntered
+
+    private void NewestBTNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NewestBTNMouseExited
+        // TODO add your handling code here:
+        NewestBTN.setBackground(new java.awt.Color(232,241,253)); 
+        NewestBTN.setForeground(new java.awt.Color(17,24,39));
+        NewestBTN.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(194,194,194), 1)
+    );
+    }//GEN-LAST:event_NewestBTNMouseExited
+
+    private void SupportBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SupportBTNMouseEntered
+        // TODO add your handling code here:
+        SupportBTN.setBackground(new java.awt.Color(52, 115, 196)); 
+        SupportBTN.setForeground(java.awt.Color.WHITE);
+        SupportBTN.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(40, 90, 150), 2)
+    );
+        SupportBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_SupportBTNMouseEntered
+
+    private void SupportBTNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SupportBTNMouseExited
+        // TODO add your handling code here:
+        SupportBTN.setBackground(new java.awt.Color(232,241,253)); 
+        SupportBTN.setForeground(new java.awt.Color(17,24,39));
+        SupportBTN.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(194,194,194), 1)
+    );
+    }//GEN-LAST:event_SupportBTNMouseExited
+
+    private void FilterBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FilterBTNMouseEntered
+        // TODO add your handling code here:
+        FilterBTN.setBackground(new java.awt.Color(38,166,154)); 
+        FilterBTN.setForeground(java.awt.Color.WHITE);
+        FilterBTN.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(38,166,154), 2)
+    );
+        FilterBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_FilterBTNMouseEntered
+
+    private void FilterBTNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FilterBTNMouseExited
+        // TODO add your handling code here:
+        FilterBTN.setBackground(new java.awt.Color(250,248,248)); 
+        FilterBTN.setForeground(new java.awt.Color(107,114,128));
+        FilterBTN.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(38,166,154), 1)
+    );
+    }//GEN-LAST:event_FilterBTNMouseExited
     
    
     /**
@@ -442,28 +586,18 @@ public class BooksPage extends javax.swing.JFrame {
     private javax.swing.JButton LogoBTN;
     private javax.swing.JButton MoviesBTN;
     private javax.swing.JButton NewestBTN;
-    private javax.swing.JLabel Profile_icon1;
-    private javax.swing.JLabel Profile_icon4;
-    private javax.swing.JLabel Profile_icon5;
-    private javax.swing.JLabel Profile_icon6;
-    private javax.swing.JLabel Profile_icon7;
-    private javax.swing.JLabel Profile_icon8;
     private javax.swing.JButton SearchBTN;
     private javax.swing.JButton SupportBTN;
+    private javax.swing.JPanel bookPanelReal;
     private javax.swing.JButton cart;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JButton profileIconBTN;
     // End of variables declaration//GEN-END:variables
-    
+    public JPanel getProductPanel(){
+        return bookPanelReal;
+    }
 }

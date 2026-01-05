@@ -4,19 +4,30 @@
  */
 package view;
 
+
+import javax.swing.JPanel;
+import model.ProductModel;
+import model.User_model;
+
 /**
  *
  * @author zenni
  */
-public class ProductPage extends javax.swing.JFrame {
+public class SpecificProductPage extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ProductPage.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SpecificProductPage.class.getName());
 
     /**
      * Creates new form productPage
      */
-    public ProductPage() {
+    public SpecificProductPage(int productId) {
         initComponents();
+        setSize(1293,760);
+        
+        
+        controller.ProductpageController controller = new controller.ProductpageController(this, productId);
+
+            controller.loadProductById(productId);
     }
 
     /**
@@ -30,14 +41,12 @@ public class ProductPage extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
         Profile_icon6 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        itemName = new javax.swing.JLabel();
-        directorName = new javax.swing.JLabel();
-        Synopsis = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jPanel3 = new javax.swing.JPanel();
+        productPanelPlace = new javax.swing.JPanel();
+        reviewPanelPlace = new javax.swing.JPanel();
         rateBtn = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jTextArea1 = new javax.swing.JTextArea();
         Support = new javax.swing.JButton();
         Library = new javax.swing.JButton();
@@ -46,6 +55,8 @@ public class ProductPage extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         Books = new javax.swing.JButton();
         cart = new javax.swing.JButton();
+        logoBTN = new javax.swing.JLabel();
+        profileBTN = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,102 +66,64 @@ public class ProductPage extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(229, 231, 235), 3));
+        jPanel2.setLayout(null);
 
-        jPanel3.setBackground(new java.awt.Color(229, 231, 235));
+        Profile_icon6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/Johnwickposter.jpg"))); // NOI18N
+        jPanel2.add(Profile_icon6);
+        Profile_icon6.setBounds(78, 578, 150, 150);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(229, 231, 235)));
         jPanel3.setPreferredSize(new java.awt.Dimension(3, 560));
+
+        productPanelPlace.setBackground(new java.awt.Color(255, 255, 255));
+        productPanelPlace.setPreferredSize(new java.awt.Dimension(880, 200));
+
+        reviewPanelPlace.setBackground(new java.awt.Color(255, 255, 255));
+        reviewPanelPlace.setPreferredSize(new java.awt.Dimension(880, 220));
+
+        rateBtn.setBackground(new java.awt.Color(255, 255, 255));
+        rateBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        rateBtn.setForeground(new java.awt.Color(0, 0, 0));
+        rateBtn.setText("Rate/Review product");
+        rateBtn.setBorder(null);
+        rateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rateBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(42, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(reviewPanelPlace, javax.swing.GroupLayout.PREFERRED_SIZE, 890, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rateBtn)
+                    .addComponent(productPanelPlace, javax.swing.GroupLayout.PREFERRED_SIZE, 890, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 604, Short.MAX_VALUE)
-        );
-
-        Profile_icon6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/Johnwickposter.jpg"))); // NOI18N
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel9.setText("Rs. 899");
-
-        itemName.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
-        itemName.setForeground(new java.awt.Color(0, 0, 0));
-        itemName.setText("John Wick");
-
-        directorName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        directorName.setForeground(new java.awt.Color(0, 0, 0));
-        directorName.setText("Chad Stahelski");
-
-        Synopsis.setBackground(new java.awt.Color(255, 255, 255));
-        Synopsis.setColumns(20);
-        Synopsis.setForeground(new java.awt.Color(0, 0, 0));
-        Synopsis.setText("After the death of his wife, retired hitman John Wick mourns in solitude, finding solace in memories and the companionship of a dog \nshe left behind. When a violent act by local criminals destroys this final connection, John is pulled back into the criminal underworld he \nhad left behind. As he confronts former allies and enemies, his unmatched skills and tactical precision are revealed, and he systematically\ndismantles those responsible. The story explores themes of loss, revenge, and the strict codes governing the shadowy world of assassins, \nshowcasing John's relentless determination and the consequences of crossing him.");
-
-        rateBtn.setBackground(new java.awt.Color(255, 255, 255));
-        rateBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        rateBtn.setForeground(new java.awt.Color(0, 0, 0));
-        rateBtn.setText("Rate this movie?");
-        rateBtn.setBorder(null);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(Profile_icon6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(directorName)
-                            .addComponent(itemName)
-                            .addComponent(Synopsis, javax.swing.GroupLayout.PREFERRED_SIZE, 733, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(23, 23, 23))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(114, 114, 114)
-                                .addComponent(jLabel9))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(96, 96, 96)
-                                .addComponent(rateBtn)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(245, 245, 245))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Profile_icon6)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(itemName)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(directorName, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Synopsis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel9)
-                .addGap(18, 18, 18)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(productPanelPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rateBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(reviewPanelPlace, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(45, Short.MAX_VALUE))
         );
+
+        jScrollPane2.setViewportView(jPanel3);
+
+        jPanel2.add(jScrollPane2);
+        jScrollPane2.setBounds(0, 0, 980, 560);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(25, 140, 1230, 565);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/rentifyohnebg (1).png"))); // NOI18N
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(10, 10, 260, 60);
 
         jTextArea1.setBackground(new java.awt.Color(229, 231, 235));
         jTextArea1.setColumns(20);
@@ -240,6 +213,24 @@ public class ProductPage extends javax.swing.JFrame {
         jPanel1.add(cart);
         cart.setBounds(1100, 100, 40, 40);
 
+        logoBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/rentifyohnebg (1).png"))); // NOI18N
+        logoBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoBTNMouseClicked(evt);
+            }
+        });
+        jPanel1.add(logoBTN);
+        logoBTN.setBounds(10, 10, 260, 70);
+
+        profileBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/profile-85x85.png"))); // NOI18N
+        profileBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                profileBTNMouseClicked(evt);
+            }
+        });
+        jPanel1.add(profileBTN);
+        profileBTN.setBounds(1180, 10, 85, 85);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -282,8 +273,30 @@ public class ProductPage extends javax.swing.JFrame {
     }//GEN-LAST:event_BooksActionPerformed
 
     private void cartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cartActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:  
     }//GEN-LAST:event_cartActionPerformed
+
+    private void rateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rateBtnActionPerformed
+        // TODO add your handling code here:
+        ReviewPage page = new ReviewPage();
+        page.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_rateBtnActionPerformed
+
+    private void logoBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoBTNMouseClicked
+        // TODO add your handling code here:
+        HomePage homePage = new HomePage();
+        homePage.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_logoBTNMouseClicked
+
+    private void profileBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileBTNMouseClicked
+        // TODO add your handling code here:
+        UserDashboard userDashboard = new UserDashboard();
+        userDashboard.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_profileBTNMouseClicked
 
     /**
      * @param args the command line arguments
@@ -307,7 +320,8 @@ public class ProductPage extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new ProductPage().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new SpecificProductPage(1).setVisible(true));
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -317,17 +331,26 @@ public class ProductPage extends javax.swing.JFrame {
     private javax.swing.JButton Newest;
     private javax.swing.JLabel Profile_icon6;
     private javax.swing.JButton Support;
-    private javax.swing.JTextArea Synopsis;
     private javax.swing.JButton cart;
-    private javax.swing.JLabel directorName;
-    private javax.swing.JLabel itemName;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel logoBTN;
+    private javax.swing.JPanel productPanelPlace;
+    private javax.swing.JLabel profileBTN;
     private javax.swing.JButton rateBtn;
+    private javax.swing.JPanel reviewPanelPlace;
     // End of variables declaration//GEN-END:variables
+    
+    public JPanel getProductPanel(){
+        return productPanelPlace;
+    }
+    
+    public JPanel getReviewPanel(){
+        return reviewPanelPlace;
+    }
+    
 }

@@ -4,7 +4,13 @@
  */
 package view;
 
+import controller.DashboardController;
+import java.awt.CardLayout;
+import java.awt.Point;
 import java.awt.event.ActionListener;
+import javax.swing.BorderFactory;
+import javax.swing.JPanel;
+
 
 /**
  *
@@ -20,9 +26,25 @@ public class UserDashboard extends javax.swing.JFrame {
     public UserDashboard() {
         initComponents();
         setSize(1293,760);
+        SearchBOX.getInputMap().put(
+        javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ENTER, 0),
+        "search");
+        SearchBOX.getActionMap().put("search", new javax.swing.AbstractAction() {
+            @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            performSearch();
+            }
+        });
+
+        controller.DashboardController controller = new controller.DashboardController(this);
+        
+        
+
+        controller.loadAllProducts();
         
     }
-
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,24 +62,12 @@ public class UserDashboard extends javax.swing.JFrame {
         WishlistBTN = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         userEmail = new javax.swing.JLabel();
-        Profile_icon1 = new javax.swing.JLabel();
         userFullName = new javax.swing.JLabel();
         LogoutBTN = new javax.swing.JButton();
-        Profile_icon3 = new javax.swing.JLabel();
-        Profile_icon4 = new javax.swing.JLabel();
-        Profile_icon5 = new javax.swing.JLabel();
-        Profile_icon6 = new javax.swing.JLabel();
-        Profile_icon7 = new javax.swing.JLabel();
-        Profile_icon8 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         Profile_icon9 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        productPanelReal = new javax.swing.JPanel();
+        icon = new javax.swing.JLabel();
         SupportBTN = new javax.swing.JButton();
         LibraryBTN = new javax.swing.JButton();
         MoviesBTN = new javax.swing.JButton();
@@ -66,57 +76,101 @@ public class UserDashboard extends javax.swing.JFrame {
         SearchBOX = new javax.swing.JTextArea();
         SearchBTN = new javax.swing.JButton();
         cart = new javax.swing.JButton();
-        profileIconBTN = new javax.swing.JButton();
-        LogoBTN = new javax.swing.JButton();
+        logoBTN = new javax.swing.JLabel();
+        profileBTN = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(249, 250, 251));
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(229, 231, 235), 3));
 
-        ProfileBTN.setBackground(new java.awt.Color(255, 255, 255));
+        ProfileBTN.setBackground(new java.awt.Color(250, 248, 248));
         ProfileBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         ProfileBTN.setForeground(new java.awt.Color(107, 114, 128));
         ProfileBTN.setText("Profile");
         ProfileBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 166, 154)));
+        ProfileBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ProfileBTNMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ProfileBTNMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ProfileBTNMouseExited(evt);
+            }
+        });
         ProfileBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ProfileBTNActionPerformed(evt);
             }
         });
 
-        OrdersBTN.setBackground(new java.awt.Color(255, 255, 255));
+        OrdersBTN.setBackground(new java.awt.Color(250, 248, 248));
         OrdersBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         OrdersBTN.setForeground(new java.awt.Color(107, 114, 128));
         OrdersBTN.setText("Orders");
         OrdersBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 166, 154)));
+        OrdersBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                OrdersBTNMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                OrdersBTNMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                OrdersBTNMouseExited(evt);
+            }
+        });
         OrdersBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 OrdersBTNActionPerformed(evt);
             }
         });
 
-        HistoryBTN.setBackground(new java.awt.Color(255, 255, 255));
+        HistoryBTN.setBackground(new java.awt.Color(250, 248, 248));
         HistoryBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         HistoryBTN.setForeground(new java.awt.Color(107, 114, 128));
         HistoryBTN.setText("History");
         HistoryBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 166, 154)));
+        HistoryBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                HistoryBTNMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                HistoryBTNMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                HistoryBTNMouseExited(evt);
+            }
+        });
         HistoryBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HistoryBTNActionPerformed(evt);
             }
         });
 
-        WishlistBTN.setBackground(new java.awt.Color(255, 255, 255));
+        WishlistBTN.setBackground(new java.awt.Color(250, 248, 248));
         WishlistBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         WishlistBTN.setForeground(new java.awt.Color(107, 114, 128));
         WishlistBTN.setText("Wishlist");
         WishlistBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 166, 154)));
+        WishlistBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                WishlistBTNMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                WishlistBTNMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                WishlistBTNMouseExited(evt);
+            }
+        });
         WishlistBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 WishlistBTNActionPerformed(evt);
@@ -142,8 +196,6 @@ public class UserDashboard extends javax.swing.JFrame {
         userEmail.setForeground(new java.awt.Color(51, 51, 51));
         userEmail.setText("ashishshrestha250@gmail.com");
 
-        Profile_icon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/harrypotterHBPcover.jpg"))); // NOI18N
-
         userFullName.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
         userFullName.setForeground(new java.awt.Color(51, 51, 51));
         userFullName.setText("Ashish Shrestha");
@@ -152,63 +204,28 @@ public class UserDashboard extends javax.swing.JFrame {
         LogoutBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         LogoutBTN.setForeground(new java.awt.Color(255, 255, 255));
         LogoutBTN.setText("Logout");
+        LogoutBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                LogoutBTNMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                LogoutBTNMouseExited(evt);
+            }
+        });
         LogoutBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LogoutBTNActionPerformed(evt);
             }
         });
 
-        Profile_icon3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/profile-85x85.png"))); // NOI18N
-
-        Profile_icon4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/harrypotterTPScover.jpg"))); // NOI18N
-
-        Profile_icon5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/Transformersposter.jpg"))); // NOI18N
-
-        Profile_icon6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/Johnwickposter.jpg"))); // NOI18N
-
-        Profile_icon7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Profile_icon7.setForeground(new java.awt.Color(51, 51, 51));
-        Profile_icon7.setText("Transformers");
-
-        Profile_icon8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Profile_icon8.setForeground(new java.awt.Color(51, 51, 51));
-        Profile_icon8.setText("Harry Potter and");
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel2.setText("The Half-blood Prince ");
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel3.setText("Philosophers' stone");
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel4.setText("Harry Potter and the");
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel5.setText("John wick");
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel6.setText("Rs. 1100");
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel7.setText("Rs. 999");
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel8.setText("Rs. 1299");
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel9.setText("Rs. 899");
-
         Profile_icon9.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
         Profile_icon9.setForeground(new java.awt.Color(51, 51, 51));
         Profile_icon9.setText("Favourites");
+
+        productPanelReal.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setViewportView(productPanelReal);
+
+        icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/profile-85x85.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -227,55 +244,23 @@ public class UserDashboard extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(63, 63, 63)
-                        .addComponent(Profile_icon3)
+                        .addComponent(icon)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(userFullName)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(userEmail)))
-                        .addContainerGap())
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(62, 62, 62)
-                                .addComponent(Profile_icon5))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(77, 77, 77)
-                                .addComponent(Profile_icon7))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(87, 87, 87)
-                                .addComponent(jLabel7)))
-                        .addGap(70, 70, 70)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Profile_icon1)
-                            .addComponent(Profile_icon8, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel8))
-                        .addGap(70, 70, 70)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addContainerGap())
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Profile_icon4)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                        .addComponent(Profile_icon6)
-                                        .addGap(37, 37, 37))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel9)
-                                            .addComponent(jLabel5))
-                                        .addGap(73, 73, 73))))))
+                        .addContainerGap(456, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(62, 62, 62)
-                        .addComponent(Profile_icon9)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(Profile_icon9)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jScrollPane1)
+                                .addContainerGap())))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,55 +268,30 @@ public class UserDashboard extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(ProfileBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(OrdersBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addComponent(HistoryBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(WishlistBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(userFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(userEmail))
-                            .addComponent(Profile_icon3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Profile_icon9, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)))
+                .addGap(34, 34, 34)
+                .addComponent(ProfileBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(OrdersBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(HistoryBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(WishlistBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(LogoutBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Profile_icon4)
-                            .addComponent(Profile_icon1)
-                            .addComponent(Profile_icon6)
-                            .addComponent(Profile_icon5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Profile_icon7)
-                            .addComponent(Profile_icon8)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
+                        .addComponent(userFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(LogoutBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62))))
+                        .addComponent(userEmail))
+                    .addComponent(icon))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Profile_icon9, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66))
         );
 
         jPanel1.add(jPanel2);
@@ -341,6 +301,14 @@ public class UserDashboard extends javax.swing.JFrame {
         SupportBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         SupportBTN.setForeground(new java.awt.Color(17, 24, 39));
         SupportBTN.setText("Support");
+        SupportBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                SupportBTNMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                SupportBTNMouseExited(evt);
+            }
+        });
         SupportBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SupportBTNActionPerformed(evt);
@@ -353,6 +321,14 @@ public class UserDashboard extends javax.swing.JFrame {
         LibraryBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         LibraryBTN.setForeground(new java.awt.Color(17, 24, 39));
         LibraryBTN.setText("Library");
+        LibraryBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                LibraryBTNMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                LibraryBTNMouseExited(evt);
+            }
+        });
         LibraryBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LibraryBTNActionPerformed(evt);
@@ -365,6 +341,14 @@ public class UserDashboard extends javax.swing.JFrame {
         MoviesBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         MoviesBTN.setForeground(new java.awt.Color(17, 24, 39));
         MoviesBTN.setText("Movies");
+        MoviesBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                MoviesBTNMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                MoviesBTNMouseExited(evt);
+            }
+        });
         MoviesBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MoviesBTNActionPerformed(evt);
@@ -377,6 +361,14 @@ public class UserDashboard extends javax.swing.JFrame {
         NewestBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         NewestBTN.setForeground(new java.awt.Color(17, 24, 39));
         NewestBTN.setText("Newest");
+        NewestBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                NewestBTNMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                NewestBTNMouseExited(evt);
+            }
+        });
         NewestBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NewestBTNActionPerformed(evt);
@@ -389,6 +381,14 @@ public class UserDashboard extends javax.swing.JFrame {
         BooksBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         BooksBTN.setForeground(new java.awt.Color(17, 24, 39));
         BooksBTN.setText("Books");
+        BooksBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                BooksBTNMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                BooksBTNMouseExited(evt);
+            }
+        });
         BooksBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BooksBTNActionPerformed(evt);
@@ -397,14 +397,14 @@ public class UserDashboard extends javax.swing.JFrame {
         jPanel1.add(BooksBTN);
         BooksBTN.setBounds(480, 50, 146, 36);
 
-        SearchBOX.setBackground(new java.awt.Color(229, 231, 235));
+        SearchBOX.setBackground(new java.awt.Color(243, 243, 243));
         SearchBOX.setColumns(20);
         SearchBOX.setRows(5);
         SearchBOX.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jPanel1.add(SearchBOX);
         SearchBOX.setBounds(820, 100, 230, 30);
 
-        SearchBTN.setBackground(new java.awt.Color(229, 231, 235));
+        SearchBTN.setBackground(new java.awt.Color(243, 243, 243));
         SearchBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search-icon.png"))); // NOI18N
         SearchBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         SearchBTN.addActionListener(new java.awt.event.ActionListener() {
@@ -415,8 +415,10 @@ public class UserDashboard extends javax.swing.JFrame {
         jPanel1.add(SearchBTN);
         SearchBTN.setBounds(1050, 100, 40, 30);
 
-        cart.setBackground(new java.awt.Color(255, 255, 255));
+        cart.setBackground(new java.awt.Color(249, 250, 251));
         cart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cart40x40.png"))); // NOI18N
+        cart.setBorder(null);
+        cart.setFocusPainted(false);
         cart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cartActionPerformed(evt);
@@ -425,35 +427,77 @@ public class UserDashboard extends javax.swing.JFrame {
         jPanel1.add(cart);
         cart.setBounds(1100, 100, 40, 40);
 
-        profileIconBTN.setBackground(new java.awt.Color(255, 255, 255));
-        profileIconBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
-        profileIconBTN.setForeground(new java.awt.Color(17, 24, 39));
-        profileIconBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/profile-85x85.png"))); // NOI18N
-        profileIconBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                profileIconBTNActionPerformed(evt);
+        logoBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/rentifyohnebg (1).png"))); // NOI18N
+        logoBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoBTNMouseClicked(evt);
             }
         });
-        jPanel1.add(profileIconBTN);
-        profileIconBTN.setBounds(1180, 10, 90, 90);
+        jPanel1.add(logoBTN);
+        logoBTN.setBounds(10, 10, 260, 70);
 
-        LogoBTN.setBackground(new java.awt.Color(255, 255, 255));
-        LogoBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/rentifyohnebg (1).png"))); // NOI18N
-        LogoBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        LogoBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LogoBTNActionPerformed(evt);
+        profileBTN.setBackground(new java.awt.Color(249, 250, 251));
+        profileBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/profile-85x85.png"))); // NOI18N
+        profileBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                profileBTNMouseClicked(evt);
             }
         });
-        jPanel1.add(LogoBTN);
-        LogoBTN.setBounds(10, 10, 260, 70);
+        jPanel1.add(profileBTN);
+        profileBTN.setBounds(1180, 10, 85, 85);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 1280, 720);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    private boolean containsText(java.awt.Component comp, String text) {
+    // If this component has text (e.g. JLabel, JButton, JTextComponent)
+    if (comp instanceof javax.swing.JLabel) {
+        String labelText = ((javax.swing.JLabel) comp).getText();
+        if (labelText != null && labelText.toLowerCase().contains(text)) {
+            return true;
+        }
+    } else if (comp instanceof javax.swing.JButton) {
+        String btnText = ((javax.swing.JButton) comp).getText();
+        if (btnText != null && btnText.toLowerCase().contains(text)) {
+            return true;
+        }
+    } else if (comp instanceof javax.swing.text.JTextComponent) {
+        String fieldText = ((javax.swing.text.JTextComponent) comp).getText();
+        if (fieldText != null && fieldText.toLowerCase().contains(text)) {
+            return true;
+        }
+    }
 
+    // If it's a container (like JPanel), search its children
+    if (comp instanceof java.awt.Container) {
+        for (java.awt.Component child : ((java.awt.Container) comp).getComponents()) {
+            if (containsText(child, text)) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+    private void performSearch() {
+    String text = SearchBOX.getText().trim().toLowerCase();
+    boolean showAll = text.isEmpty();
+
+    for (java.awt.Component comp : jPanel2.getComponents()) {
+        boolean visible = showAll;
+
+        if (!showAll) {
+            // Search in all child components' text
+            visible = containsText(comp, text);
+        }
+        comp.setVisible(visible);
+    }
+
+    jPanel2.revalidate();
+    jPanel2.repaint();
+}
     private void ProfileBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileBTNActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ProfileBTNActionPerformed
@@ -472,27 +516,32 @@ public class UserDashboard extends javax.swing.JFrame {
 
     private void SupportBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupportBTNActionPerformed
         // TODO add your handling code here:
-        ProductPage productPage = new ProductPage();
-        productPage.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_SupportBTNActionPerformed
 
     private void LibraryBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LibraryBTNActionPerformed
         // TODO add your handling code here:
+        Point loc = this.getLocation();
         LibraryPage libraryPage = new LibraryPage();
+        libraryPage.setLocation(loc);
         libraryPage.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_LibraryBTNActionPerformed
 
     private void LogoutBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutBTNActionPerformed
         // TODO add your handling code here:
-        
+        Point loc = this.getLocation();
+        Login log = new Login();
+        log.setLocation(loc);
+        log.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_LogoutBTNActionPerformed
 
     private void MoviesBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MoviesBTNActionPerformed
         // TODO add your handling code here:
     // Navigate to Profile Page
+        Point loc = this.getLocation();
         MoviePage moviePage = new MoviePage();
+        moviePage.setLocation(loc);
         moviePage.setVisible(true);
         this.dispose(); // Close current dashboard
 
@@ -500,23 +549,25 @@ public class UserDashboard extends javax.swing.JFrame {
 
     private void NewestBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewestBTNActionPerformed
         // TODO add your handling code here:
+        Point loc = this.getLocation();
         NewestPage newestPage = new NewestPage();
+        newestPage.setLocation(loc);
         newestPage.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_NewestBTNActionPerformed
 
     private void BooksBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BooksBTNActionPerformed
         // TODO add your handling code here:
+        Point loc = this.getLocation();
         BooksPage booksPage = new BooksPage();
+        booksPage.setLocation(loc);
         booksPage.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BooksBTNActionPerformed
 
     private void SearchBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchBTNActionPerformed
         // TODO add your handling code here:
-        ProductPage productPage = new ProductPage();
-        productPage.setVisible(true);
-        this.dispose();
+        performSearch();
     }//GEN-LAST:event_SearchBTNActionPerformed
 
     private void cartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cartActionPerformed
@@ -524,19 +575,266 @@ public class UserDashboard extends javax.swing.JFrame {
         
     }//GEN-LAST:event_cartActionPerformed
 
-    private void profileIconBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileIconBTNActionPerformed
-        // TODO add your handling code here:
-        UserDashboard userDashboard = new UserDashboard();
-        userDashboard.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_profileIconBTNActionPerformed
+    private void adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminActionPerformed
 
-    private void LogoBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoBTNActionPerformed
         // TODO add your handling code here:
+        Point loc = this.getLocation();
+        manageproducts manageproductsPage = new manageproducts();
+        manageproductsPage.setLocation(loc);
+        manageproductsPage.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_adminActionPerformed
+
+    private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
+        // TODO add your handling code here:
+        Point loc = this.getLocation();
+        UserDashboard productPage = new UserDashboard();
+        productPage.setLocation(loc);
+        productPage.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_userActionPerformed
+
+    private void logoBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoBTNMouseClicked
+        // TODO add your handling code here:
+        Point loc = this.getLocation();
         HomePage homePage = new HomePage();
+        homePage.setLocation(loc);
         homePage.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_LogoBTNActionPerformed
+    }//GEN-LAST:event_logoBTNMouseClicked
+
+    private void profileBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileBTNMouseClicked
+        // TODO add your handling code here:
+        Point loc = this.getLocation();
+        UserDashboard userDashboard = new UserDashboard();
+        userDashboard.setLocation(loc);
+        userDashboard.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_profileBTNMouseClicked
+
+    private void LibraryBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LibraryBTNMouseEntered
+        // TODO add your handling code here:
+        LibraryBTN.setBackground(new java.awt.Color(52, 115, 196));
+        LibraryBTN.setForeground(java.awt.Color.WHITE);
+        LibraryBTN.setBorder(
+            BorderFactory.createLineBorder(new java.awt.Color(40, 90, 150), 2)
+        );
+        LibraryBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_LibraryBTNMouseEntered
+
+    private void LibraryBTNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LibraryBTNMouseExited
+        // TODO add your handling code here:
+        LibraryBTN.setBackground(new java.awt.Color(232,241,253));
+        LibraryBTN.setForeground(new java.awt.Color(17,24,39));
+        LibraryBTN.setBorder(
+            BorderFactory.createLineBorder(new java.awt.Color(194,194,194), 1)
+        );
+    }//GEN-LAST:event_LibraryBTNMouseExited
+
+    private void BooksBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BooksBTNMouseEntered
+        // TODO add your handling code here:
+        BooksBTN.setBackground(new java.awt.Color(52, 115, 196));
+        BooksBTN.setForeground(java.awt.Color.WHITE);
+        BooksBTN.setBorder(
+            BorderFactory.createLineBorder(new java.awt.Color(40, 90, 150), 2)
+        );
+        BooksBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_BooksBTNMouseEntered
+
+    private void BooksBTNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BooksBTNMouseExited
+        // TODO add your handling code here:
+        BooksBTN.setBackground(new java.awt.Color(232,241,253));
+        BooksBTN.setForeground(new java.awt.Color(17,24,39));
+        BooksBTN.setBorder(
+            BorderFactory.createLineBorder(new java.awt.Color(194,194,194), 1)
+        );
+    }//GEN-LAST:event_BooksBTNMouseExited
+
+    private void MoviesBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MoviesBTNMouseEntered
+        // TODO add your handling code here:
+        MoviesBTN.setBackground(new java.awt.Color(52, 115, 196));
+        MoviesBTN.setForeground(java.awt.Color.WHITE);
+        MoviesBTN.setBorder(
+            BorderFactory.createLineBorder(new java.awt.Color(40, 90, 150), 2)
+        );
+        MoviesBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_MoviesBTNMouseEntered
+
+    private void MoviesBTNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MoviesBTNMouseExited
+        // TODO add your handling code here:
+        MoviesBTN.setBackground(new java.awt.Color(232,241,253));
+        MoviesBTN.setForeground(new java.awt.Color(17,24,39));
+        MoviesBTN.setBorder(
+            BorderFactory.createLineBorder(new java.awt.Color(194,194,194), 1)
+        );
+    }//GEN-LAST:event_MoviesBTNMouseExited
+
+    private void NewestBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NewestBTNMouseEntered
+        // TODO add your handling code here:
+        NewestBTN.setBackground(new java.awt.Color(52, 115, 196));
+        NewestBTN.setForeground(java.awt.Color.WHITE);
+        NewestBTN.setBorder(
+            BorderFactory.createLineBorder(new java.awt.Color(40, 90, 150), 2)
+        );
+        NewestBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_NewestBTNMouseEntered
+
+    private void NewestBTNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NewestBTNMouseExited
+        // TODO add your handling code here:
+        NewestBTN.setBackground(new java.awt.Color(232,241,253));
+        NewestBTN.setForeground(new java.awt.Color(17,24,39));
+        NewestBTN.setBorder(
+            BorderFactory.createLineBorder(new java.awt.Color(194,194,194), 1)
+        );
+    }//GEN-LAST:event_NewestBTNMouseExited
+
+    private void SupportBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SupportBTNMouseEntered
+        // TODO add your handling code here:
+        SupportBTN.setBackground(new java.awt.Color(52, 115, 196));
+        SupportBTN.setForeground(java.awt.Color.WHITE);
+        SupportBTN.setBorder(
+            BorderFactory.createLineBorder(new java.awt.Color(40, 90, 150), 2)
+        );
+        SupportBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_SupportBTNMouseEntered
+
+    private void SupportBTNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SupportBTNMouseExited
+        // TODO add your handling code here:
+        SupportBTN.setBackground(new java.awt.Color(232,241,253));
+        SupportBTN.setForeground(new java.awt.Color(17,24,39));
+        SupportBTN.setBorder(
+            BorderFactory.createLineBorder(new java.awt.Color(194,194,194), 1)
+        );
+    }//GEN-LAST:event_SupportBTNMouseExited
+
+    private void ProfileBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProfileBTNMouseEntered
+        // TODO add your handling code here:
+        ProfileBTN.setBackground(new java.awt.Color(38,166,154));
+        ProfileBTN.setForeground(java.awt.Color.WHITE);
+        ProfileBTN.setBorder(
+            BorderFactory.createLineBorder(new java.awt.Color(38,166,154), 2)
+        );
+        ProfileBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_ProfileBTNMouseEntered
+
+    private void ProfileBTNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProfileBTNMouseExited
+        // TODO add your handling code here:
+        ProfileBTN.setBackground(new java.awt.Color(250,248,248));
+        ProfileBTN.setForeground(new java.awt.Color(107,114,128));
+        ProfileBTN.setBorder(
+            BorderFactory.createLineBorder(new java.awt.Color(38,166,154), 1)
+        );
+    }//GEN-LAST:event_ProfileBTNMouseExited
+
+    private void OrdersBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrdersBTNMouseEntered
+        // TODO add your handling code here:
+        OrdersBTN.setBackground(new java.awt.Color(38,166,154));
+        OrdersBTN.setForeground(java.awt.Color.WHITE);
+        OrdersBTN.setBorder(
+            BorderFactory.createLineBorder(new java.awt.Color(38,166,154), 2)
+        );
+        OrdersBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_OrdersBTNMouseEntered
+
+    private void OrdersBTNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrdersBTNMouseExited
+        // TODO add your handling code here:
+        OrdersBTN.setBackground(new java.awt.Color(250,248,248));
+        OrdersBTN.setForeground(new java.awt.Color(107,114,128));
+        OrdersBTN.setBorder(
+            BorderFactory.createLineBorder(new java.awt.Color(38,166,154), 1)
+        );
+    }//GEN-LAST:event_OrdersBTNMouseExited
+
+    private void HistoryBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HistoryBTNMouseEntered
+        // TODO add your handling code here:
+        HistoryBTN.setBackground(new java.awt.Color(38,166,154));
+        HistoryBTN.setForeground(java.awt.Color.WHITE);
+        HistoryBTN.setBorder(
+            BorderFactory.createLineBorder(new java.awt.Color(38,166,154), 2)
+        );
+        HistoryBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_HistoryBTNMouseEntered
+
+    private void HistoryBTNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HistoryBTNMouseExited
+        // TODO add your handling code here:
+        HistoryBTN.setBackground(new java.awt.Color(250,248,248));
+        HistoryBTN.setForeground(new java.awt.Color(107,114,128));
+        HistoryBTN.setBorder(
+            BorderFactory.createLineBorder(new java.awt.Color(38,166,154), 1)
+        );
+    }//GEN-LAST:event_HistoryBTNMouseExited
+
+    private void WishlistBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_WishlistBTNMouseEntered
+        // TODO add your handling code here:
+        WishlistBTN.setBackground(new java.awt.Color(38,166,154));
+        WishlistBTN.setForeground(java.awt.Color.WHITE);
+        WishlistBTN.setBorder(
+            BorderFactory.createLineBorder(new java.awt.Color(38,166,154), 2)
+        );
+        WishlistBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_WishlistBTNMouseEntered
+
+    private void WishlistBTNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_WishlistBTNMouseExited
+        // TODO add your handling code here:
+        WishlistBTN.setBackground(new java.awt.Color(250,248,248));
+        WishlistBTN.setForeground(new java.awt.Color(107,114,128));
+        WishlistBTN.setBorder(
+            BorderFactory.createLineBorder(new java.awt.Color(38,166,154), 1)
+        );
+    }//GEN-LAST:event_WishlistBTNMouseExited
+
+    private void LogoutBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogoutBTNMouseEntered
+        // TODO add your handling code here:
+        LogoutBTN.setBackground(new java.awt.Color(38,166,154)); 
+        LogoutBTN.setForeground(java.awt.Color.WHITE);
+        LogoutBTN.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(38,166,154), 2)
+    );
+        LogoutBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_LogoutBTNMouseEntered
+
+    private void LogoutBTNMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogoutBTNMouseExited
+        // TODO add your handling code here:
+        LogoutBTN.setBackground(new java.awt.Color(38,166,154)); 
+        LogoutBTN.setForeground(new java.awt.Color(255,255,255));
+        LogoutBTN.setBorder(
+        BorderFactory.createLineBorder(new java.awt.Color(193,193,193), 2)
+        );
+    }//GEN-LAST:event_LogoutBTNMouseExited
+
+    private void ProfileBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProfileBTNMouseClicked
+        // TODO add your handling code here:
+        Point loc = this.getLocation();
+        this.dispose();
+
+        UserDashboard ad = new UserDashboard();
+        ad.setLocation(loc);
+        ad.setVisible(true);
+    }//GEN-LAST:event_ProfileBTNMouseClicked
+
+    private void OrdersBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrdersBTNMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_OrdersBTNMouseClicked
+
+    private void HistoryBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HistoryBTNMouseClicked
+        // TODO add your handling code here:
+        Point loc = this.getLocation();
+        this.dispose();
+
+        Purchasehistory ad = new Purchasehistory();
+        ad.setLocation(loc);
+        ad.setVisible(true);
+    }//GEN-LAST:event_HistoryBTNMouseClicked
+
+    private void WishlistBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_WishlistBTNMouseClicked
+        // TODO add your handling code here:
+        Point loc = this.getLocation();
+        this.dispose();
+
+        Cart ad = new Cart();
+        ad.setLocation(loc);
+        ad.setVisible(true);
+    }//GEN-LAST:event_WishlistBTNMouseClicked
 
     /**
      * @param args the command line arguments
@@ -558,7 +856,30 @@ public class UserDashboard extends javax.swing.JFrame {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(UserDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(UserDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(UserDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(UserDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        // </editor-fold>
 
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new UserDashboard().setVisible(true);
+            }
+        });
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new UserDashboard().setVisible(true));
     }
@@ -567,40 +888,33 @@ public class UserDashboard extends javax.swing.JFrame {
     private javax.swing.JButton BooksBTN;
     private javax.swing.JButton HistoryBTN;
     private javax.swing.JButton LibraryBTN;
-    private javax.swing.JButton LogoBTN;
     private javax.swing.JButton LogoutBTN;
     private javax.swing.JButton MoviesBTN;
     private javax.swing.JButton NewestBTN;
     private javax.swing.JButton OrdersBTN;
     private javax.swing.JButton ProfileBTN;
-    private javax.swing.JLabel Profile_icon1;
-    private javax.swing.JLabel Profile_icon3;
-    private javax.swing.JLabel Profile_icon4;
-    private javax.swing.JLabel Profile_icon5;
-    private javax.swing.JLabel Profile_icon6;
-    private javax.swing.JLabel Profile_icon7;
-    private javax.swing.JLabel Profile_icon8;
     private javax.swing.JLabel Profile_icon9;
     private javax.swing.JTextArea SearchBOX;
     private javax.swing.JButton SearchBTN;
     private javax.swing.JButton SupportBTN;
     private javax.swing.JButton WishlistBTN;
     private javax.swing.JButton cart;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel icon;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JButton profileIconBTN;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel logoBTN;
+    private javax.swing.JPanel productPanelReal;
+    private javax.swing.JLabel profileBTN;
     private javax.swing.JLabel userEmail;
     private javax.swing.JLabel userFullName;
     // End of variables declaration//GEN-END:variables
+   
     
+    
+    public JPanel getProductPanel(){
+        return productPanelReal;
+    }
   
 }

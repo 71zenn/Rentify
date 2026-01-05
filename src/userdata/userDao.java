@@ -11,9 +11,9 @@ import java.sql.*;
 public class userDao {
     MySQLConnection mysql = new MySQLConnection();
     
-    public void signup(User_model user){
+    public void signup(User_model user, String fullname){
         Connection conn = mysql.openConnection();
-        String sql = "insert into users (username, email, password) values(?,?,?)";
+        String sql = "insert into user (username, email, password) values(?,?,?)";
         try (PreparedStatement pstm = conn.prepareStatement(sql)){
             pstm.setString(1, user.getUsername());
             pstm.setString(2, user.getEmail());
@@ -28,7 +28,7 @@ public class userDao {
     }
     public boolean check(User_model user){
         Connection conn = mysql.openConnection();
-        String sql = "select * from users where email = ? or username = ?";
+        String sql = "select * from user where email = ? or username = ?";
         try (PreparedStatement pstm = conn.prepareStatement(sql)){
             pstm.setString(1, user.getEmail());
             pstm.setString(2, user.getUsername());
@@ -42,19 +42,15 @@ public class userDao {
         return false;
     }
     
-    public boolean login(User_model user){
+    public boolean login(User_model users){
     Connection conn = mysql.openConnection();
-    String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+    String sql = "SELECT * FROM user WHERE Username = ? AND Password = ?";
 
-    try(PreparedStatement pstm = conn.prepareStatement(sql)) {
-
-        pstm.setString(1, user.getUsername());
-        pstm.setString(2, user.getPassword());
-
+    try (PreparedStatement pstm = conn.prepareStatement(sql)) {
+        pstm.setString(1, users.getUsername());
+        pstm.setString(2, users.getPassword());
         ResultSet rs = pstm.executeQuery();
-
-        return rs.next();  // true if login success
-
+        return rs.next();
     } catch (Exception ex) {
         System.out.println("Login error: " + ex);
         return false;
@@ -62,6 +58,7 @@ public class userDao {
         mysql.closeConnection(conn);
     }
 }
+
     
  public User_model loginAndGetUser(User_model user) {
     Connection conn = mysql.openConnection();

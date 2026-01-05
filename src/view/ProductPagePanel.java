@@ -5,7 +5,6 @@
 package view;
 
 import java.awt.Image;
-import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import model.ProductModel;
 
@@ -13,28 +12,15 @@ import model.ProductModel;
  *
  * @author zenni
  */
-public class ProductPanel extends javax.swing.JPanel {
-private ProductModel currentProduct;
+public class ProductPagePanel extends javax.swing.JPanel {
+    private ProductModel currentProduct;
     /**
-     * Creates new form productPanel
+     * Creates new form ProductPagePanel
      */
-    public ProductPanel() {
+    public ProductPagePanel() {
         initComponents();
-        setBackground(java.awt.Color.WHITE);
-        setPreferredSize(new java.awt.Dimension(200, 240));
-        
     }
-    
-    public void addProductClickListener(java.awt.event.MouseListener listener) {
-        // listen on the whole card
-        this.addMouseListener(listener);
-        // and on child components so clicks on labels also count
-        productImage.addMouseListener(listener);
-        productName.addMouseListener(listener);
-        productPrice.addMouseListener(listener);
-    }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,56 +30,65 @@ private ProductModel currentProduct;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        productPrice = new javax.swing.JLabel();
-        productBackground = new javax.swing.JPanel();
         productImage = new javax.swing.JLabel();
         productName = new javax.swing.JLabel();
+        productPrice = new javax.swing.JLabel();
+        productSynopsis = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
-        setMaximumSize(new java.awt.Dimension(200, 240));
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(null);
+        add(productImage);
+        productImage.setBounds(0, 0, 150, 140);
+
+        productName.setBackground(new java.awt.Color(255, 255, 255));
+        productName.setFont(new java.awt.Font("Segoe UI Semibold", 0, 28)); // NOI18N
+        productName.setForeground(new java.awt.Color(0, 0, 0));
+        productName.setText("Transformers");
+        add(productName);
+        productName.setBounds(150, -10, 630, 60);
 
         productPrice.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         productPrice.setForeground(new java.awt.Color(255, 51, 51));
         productPrice.setText("Rs. 999");
         add(productPrice);
-        productPrice.setBounds(20, 210, 70, 22);
+        productPrice.setBounds(50, 140, 70, 22);
 
-        productBackground.setBackground(new java.awt.Color(255, 255, 255));
-        productBackground.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 3));
+        productSynopsis.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        productSynopsis.setForeground(new java.awt.Color(0, 0, 0));
+        productSynopsis.setText("Synopsis of the product");
+        add(productSynopsis);
+        productSynopsis.setBounds(150, 90, 630, 30);
 
-        productImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/Transformersposter.jpg"))); // NOI18N
-        productBackground.add(productImage);
-
-        productName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        productName.setForeground(new java.awt.Color(51, 51, 51));
-        productName.setText("Transformers");
-        productBackground.add(productName);
-
-        add(productBackground);
-        productBackground.setBounds(0, 0, 200, 240);
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Synopsis");
+        add(jLabel1);
+        jLabel1.setBounds(150, 60, 130, 27);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel productBackground;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel productImage;
     private javax.swing.JLabel productName;
     private javax.swing.JLabel productPrice;
+    private javax.swing.JLabel productSynopsis;
     // End of variables declaration//GEN-END:variables
-    /**public void addProductListener(ActionListener listener) {
-        addProduct.addActionListener(listener);
-    }**/
+    
     public void setProduct(ProductModel product){
         
         productName.setText(product.getProductName());
         productPrice.setText("Rs." + product.getProductPrice());
-               
+        productSynopsis.setText(product.getProductSynopsis());  
+        
         ImageIcon icon = new ImageIcon(product.getProductImage());
         Image img = icon.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
         productImage.setIcon(new ImageIcon(img));
-        
-        
+
     }
+    
     public javax.swing.JLabel getProductImage() {
         return productImage;
     }
@@ -104,6 +99,10 @@ private ProductModel currentProduct;
     
     public javax.swing.JLabel getProductPrice() {
         return productPrice;
+    }
+    
+    public javax.swing.JLabel getProductSynopsis() {
+        return productSynopsis;
     }
     
     public ProductModel getCurrentProduct() {

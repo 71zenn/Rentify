@@ -39,7 +39,7 @@ public class reviewPanel extends javax.swing.JPanel {
         username.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
         username.setText("username");
         add(username);
-        username.setBounds(20, 20, 101, 30);
+        username.setBounds(20, 10, 101, 30);
 
         reviewBox.setText("review");
         reviewBox.addActionListener(new java.awt.event.ActionListener() {
@@ -48,12 +48,12 @@ public class reviewPanel extends javax.swing.JPanel {
             }
         });
         add(reviewBox);
-        reviewBox.setBounds(20, 80, 941, 26);
+        reviewBox.setBounds(20, 70, 941, 40);
 
         rating.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         rating.setText("rating");
         add(rating);
-        rating.setBounds(20, 50, 37, 20);
+        rating.setBounds(20, 40, 37, 20);
     }// </editor-fold>//GEN-END:initComponents
 
     private void reviewBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reviewBoxActionPerformed
@@ -72,5 +72,5 @@ public class reviewPanel extends javax.swing.JPanel {
         rating.setText(productRating = Float.toString(review.getProductRating()));
         reviewBox.setText(review.getProductReview());
         
-    }
-    }
+    } 
+}
