@@ -983,86 +983,73 @@ public class manageproducts extends javax.swing.JFrame {
     private void editMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editMouseClicked
         // TODO add your handling code here:
         int productId = getSelectedProductId();
-    if (productId == -1) return;
+if (productId == -1) return;
 
-    ProductController controller = new ProductController();
-    ProductModel product = controller.getProductById(productId);
-    if (product == null) {
-        JOptionPane.showMessageDialog(this, "Product not found.");
-        return;
+ProductController controller = new ProductController();
+ProductModel product = controller.getProductById(productId);
+if (product == null) {
+    JOptionPane.showMessageDialog(this, "Product not found.");
+    return;
+}
+
+String oldImageName = product.getProductImage();
+
+String newName     = JOptionPane.showInputDialog(this, "Name",     product.getProductName());
+String newPriceStr = JOptionPane.showInputDialog(this, "Price",    product.getProductPrice());
+String newSynopsis = JOptionPane.showInputDialog(this, "Synopsis", product.getProductSynopsis());
+String newType     = JOptionPane.showInputDialog(this, "Type",     product.getProductType());
+String newForm     = JOptionPane.showInputDialog(this, "Form",     product.getProductForm());
+String newQtyStr   = JOptionPane.showInputDialog(this, "QTY",      product.getProductQuantity());
+
+// choose image only if user wants
+int changeImg = JOptionPane.showConfirmDialog(
+        this, "Change image?", "Image", JOptionPane.YES_NO_OPTION);
+String newImageName = oldImageName;
+if (changeImg == JOptionPane.YES_OPTION) {
+    String tmp = chooseImageAndCopy();
+    if (tmp != null) newImageName = tmp;
+}
+
+if (newName == null || newPriceStr == null || newSynopsis == null ||
+    newType == null || newForm == null || newQtyStr == null) {
+    // user cancelled – if a new image was copied, delete it
+    if (!newImageName.equals(oldImageName)) {
+        deleteImageIfExists(newImageName);
     }
+    return;
+}
 
-    String newName = JOptionPane.showInputDialog(
-            this, "Name:", product.getProductName());
-    String oldImageName = product.getProductImage();
-
-    
-    String newImage = chooseImageAndCopy();       
-    if (newImage == null) {
-        
-        newImage = oldImageName;
-    }
-
-    String newPriceStr = JOptionPane.showInputDialog(
-            this, "Price:", product.getProductPrice());
-    String newSynopsis = JOptionPane.showInputDialog(
-            this, "Synopsis:", product.getProductSynopsis());
-    String newType = JOptionPane.showInputDialog(
-            this, "Type:", product.getProductType());
-    String newForm = JOptionPane.showInputDialog(
-            this, "Form:", product.getProductForm());
-    String newQtyStr = JOptionPane.showInputDialog(
-            this, "QTY:", product.getProductQuantity());
-
-    
-    
-    if (newName == null || newImage == null || newPriceStr == null ||
-        newSynopsis == null || newType == null || newForm == null ||
-        newQtyStr == null) {
-
-        if (newImage != null && !newImage.equals(oldImageName)) {
-            File f = new File("src/pictures", newImage);
-            if (f.exists()) f.delete();
-        }
-        return;
-    }
-
+try {
     int newPrice = Integer.parseInt(newPriceStr);
-    int newQty = Integer.parseInt(newQtyStr);
+    int newQty   = Integer.parseInt(newQtyStr);
 
     product.setProductName(newName);
-    product.setProductImage(newImage);
+    product.setProductImage(newImageName);
     product.setProductPrice(newPrice);
     product.setProductSynopsis(newSynopsis);
     product.setProductType(newType);
     product.setProductForm(newForm);
     product.setProductQuantity(newQty);
 
-    try {
-        controller.updateProduct(product);    
+    controller.updateProduct(product);
 
-       
-        if (oldImageName != null && !oldImageName.isBlank()
-                && !oldImageName.equals(newImage)) {
-            File oldFile = new File("src/pictures", oldImageName);
-            if (oldFile.exists()) {
-                boolean deleted = oldFile.delete();
-                System.out.println("Old image deleted: " + deleted);
-            }
-        }
-    } catch (Exception ex) {
-        
-        if (newImage != null && !newImage.equals(oldImageName)) {
-            File newFile = new File("src/pictures", newImage);
-            if (newFile.exists()) newFile.delete();
-        }
-        JOptionPane.showMessageDialog(this,
-                "Error updating product: " + ex.getMessage());
-        restoreOldImageIfMissing(oldImageName);
-        return;
+    // delete old file only if name really changed
+    if (oldImageName != null && !oldImageName.isBlank()
+            && !oldImageName.equals(newImageName)) {
+        deleteImageIfExists(oldImageName);
     }
+} catch (Exception ex) {
+    ex.printStackTrace();
+    JOptionPane.showMessageDialog(this, "Error updating product: " + ex.getMessage());
+    if (!newImageName.equals(oldImageName)) {
+        deleteImageIfExists(newImageName);   // rollback new image
+    }
+    restoreOldImageIfMissing(oldImageName);
+    return;
+}
 
-    loadProductsToTable();
+loadProductsToTable();
+
     }//GEN-LAST:event_editMouseClicked
 
     private void editMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editMouseEntered
@@ -1091,38 +1078,38 @@ public class manageproducts extends javax.swing.JFrame {
 }
     private void deleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseClicked
         // TODO add your handling code here:
-        int productId = getSelectedProductId();
+       int productId = getSelectedProductId();
     if (productId == -1) return;
 
-    String imageName = getSelectedProductImageName();
-
     int confirm = JOptionPane.showConfirmDialog(
-            this,
-            "Delete this product?",
-            "Confirm delete",
+            this, "Delete this product?", "Confirm delete",
             JOptionPane.YES_NO_OPTION);
-
     if (confirm != JOptionPane.YES_OPTION) return;
 
-    
-    try {
-        productController.deleteProduct(productId);  
-    } catch (Exception ex) {
-        ex.printStackTrace();
-        JOptionPane.showMessageDialog(this, "Error deleting product: " + ex.getMessage());
-        return;
-    }
+    ProductController controller = new ProductController();
+ProductModel product = controller.getProductById(productId);
+if (product == null) {
+    JOptionPane.showMessageDialog(this, "Product not found.");
+    return;
+}
 
-    
-    if (imageName != null && !imageName.isBlank()) {
-        File img = new File("src/pictures", imageName);
-        if (img.exists()) {
-            boolean deleted = img.delete();
-            System.out.println("Deleted image " + imageName + ": " + deleted);
-        }
-    }
+// value stored in DB (and table) might be "src/pictures/JohnWick.png"
+String imagePath = product.getProductImage();
+String imageName = imagePath;
+int slash = imagePath.lastIndexOf('/');
+if (slash >= 0) {
+    imageName = imagePath.substring(slash + 1);   // "JohnWick.png"
+}
 
-    
+try {
+    controller.deleteProduct(productId);
+    deleteImageIfExists(imageName);               // now matches file in /pictures
+    loadProductsToTable();
+} catch (Exception ex) {
+    ex.printStackTrace();
+    JOptionPane.showMessageDialog(this, "Error deleting product: " + ex.getMessage());
+}
+
     loadProductsToTable();
     }//GEN-LAST:event_deleteMouseClicked
 
@@ -1146,7 +1133,8 @@ public class manageproducts extends javax.swing.JFrame {
     
     private void deleteImageIfExists(String imageName) {
     if (imageName == null || imageName.isBlank()) return;
-    File f = new File("src/pictures", imageName);
+
+    File f = new File("src/pictures", imageName);   // folder + filename
     if (f.exists()) {
         boolean deleted = f.delete();
         System.out.println("Rollback image delete " + imageName + ": " + deleted);

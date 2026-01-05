@@ -24,7 +24,7 @@ package model;
         
         public ProductModel(String productName, String productImage , int productPrice, String productSynopsis, String productType, String productForm, int productQuantity){
             this.productName = productName;
-            this.productImage = productImage;
+            this.productImage = "src/pictures/" + productImage;
             this.productPrice = productPrice;
             this.productSynopsis = productSynopsis;
             this.productType = productType;
@@ -65,7 +65,7 @@ package model;
         }
         
         public void setProductImage(String productImage) {
-            this.productImage = productImage;
+            this.productImage = "src/pictures/" + productImage;
         }
         
         public int getProductPrice() {
@@ -107,6 +107,5 @@ package model;
         public void setProductQuantity(int productQuantity) {
             this.productQuantity = productQuantity;
         }
-        
 }
  

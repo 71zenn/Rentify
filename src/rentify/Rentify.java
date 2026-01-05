@@ -5,7 +5,7 @@
 package rentify;
 
 import view.Login;
-import view.admindashboard;
+import view.UserDashboard;
 
 
 /**
@@ -18,8 +18,8 @@ public class Rentify {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //new Login().setVisible(true);
-        new admindashboard().setVisible(true);
+        new Login().setVisible(true);
+        //new UserDashboard().setVisible(true);
     }
     
 }

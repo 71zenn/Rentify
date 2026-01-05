@@ -111,5 +111,21 @@ public class adminDao {
         }
         return users;
     }
+    public boolean login(String username, String password) {
+        Connection conn = mysql.openConnection();
+        String sql = "SELECT * FROM admin WHERE username = ? AND password = ?";
+        try (PreparedStatement pstm = conn.prepareStatement(sql)) {
+            pstm.setString(1, username);
+            pstm.setString(2, password);
+            ResultSet rs = pstm.executeQuery();
+            return rs.next(); // true if a row exists
+        } catch (Exception ex) {
+            System.out.println(ex);
+        } finally {
+            mysql.closeConnection(conn);
+        }
+        return false;
+    }
+
 }
 

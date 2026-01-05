@@ -1,27 +1,26 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package controller;
 
 import java.awt.Dimension;
-import javax.swing.JFileChooser;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
-import javax.swing.JFileChooser;
-import javax.swing.JPanel;
-import userdata.ProductDao;
 import model.ProductModel;
+import userdata.ProductDao;
+import view.HomePage;
 import view.ProductPanel;
 import view.UserDashboard;
 
 /**
-*
-* @author User
-*/
-
-public class DashboardController {
+ *
+ * @author zenni
+ */
+public class HomepageController {
     private final ProductDao productDao = new ProductDao();
-    private final UserDashboard dashboardView;
+    private final HomePage dashboardView;
     
-    public DashboardController(UserDashboard dashboardView) {
+    public HomepageController(HomePage dashboardView) {
         this.dashboardView = dashboardView;
         getAllProducts();
         loadAllProducts();
@@ -38,13 +37,14 @@ public class DashboardController {
     javax.swing.JPanel productListPanel = dashboardView.getProductPanel();
 
     productListPanel.removeAll();
-    productListPanel.setLayout(new java.awt.GridLayout(0, 4, 20, 20));
-
+    productListPanel.setLayout(new java.awt.GridLayout(0, 4, 20, 20 ));
+    
     try {
         List<ProductModel> products = productDao.getAllProducts();
         for (ProductModel product : products) {
             ProductPanel card = new ProductPanel();
             card.setProduct(product);
+            card.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
             card.setPreferredSize(new Dimension(150, 170));
 
             final int pid = product.getProductID();   // capture id
@@ -57,7 +57,7 @@ public class DashboardController {
                     page.setVisible(true);
                 }
             });
-
+            
             productListPanel.add(card);
         }
     } catch (Exception e) {
@@ -67,4 +67,4 @@ public class DashboardController {
     productListPanel.revalidate();
     productListPanel.repaint();
 }
-} 
+}

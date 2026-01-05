@@ -3,28 +3,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
-import controller.controller;
+
+import controller.adminController;
 import java.awt.Point;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author zenni
+ * @author sthaa
  */
-public class Login extends javax.swing.JFrame {
+public class AdminLogin extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Login.class.getName());
-    private final controller Controller;
-
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AdminLogin.class.getName());
+    private final adminController controller = new adminController();
     /**
-     * Creates new form login
+     * Creates new form AdminLogin
      */
-    public Login() {
+    public AdminLogin() {
         initComponents();
-        pack();                    
-        setLocationRelativeTo(null); 
-        setVisible(true);
-        Controller = new controller();
         setSize(1293,760);
     }
 
@@ -43,15 +39,11 @@ public class Login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         Logintext = new javax.swing.JLabel();
         Username = new javax.swing.JTextField();
-        Registerbutton = new javax.swing.JButton();
-        Forgotbutton = new javax.swing.JButton();
         Loginbutton = new javax.swing.JButton();
         Password = new javax.swing.JPasswordField();
-        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(249, 250, 251));
-        setSize(new java.awt.Dimension(1280, 720));
+        setPreferredSize(new java.awt.Dimension(1280, 720));
 
         Background.setBackground(new java.awt.Color(249, 250, 251));
         Background.setPreferredSize(new java.awt.Dimension(1280, 720));
@@ -64,6 +56,11 @@ public class Login extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/rentify-230.png"))); // NOI18N
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout RentifyIconLayout = new javax.swing.GroupLayout(RentifyIcon);
         RentifyIcon.setLayout(RentifyIconLayout);
@@ -83,7 +80,7 @@ public class Login extends javax.swing.JFrame {
 
         Logintext.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
         Logintext.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Logintext.setText("Login");
+        Logintext.setText("Admin");
 
         Username.setForeground(new java.awt.Color(107, 114, 128));
         Username.setText("Username");
@@ -95,40 +92,14 @@ public class Login extends javax.swing.JFrame {
                 UsernameFocusLost(evt);
             }
         });
-        Username.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UsernameActionPerformed(evt);
-            }
-        });
-
-        Registerbutton.setBackground(new java.awt.Color(232, 241, 253));
-        Registerbutton.setText("Register");
-        Registerbutton.setPreferredSize(new java.awt.Dimension(116, 29));
-        Registerbutton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RegisterbuttonActionPerformed(evt);
-            }
-        });
-
-        Forgotbutton.setBackground(new java.awt.Color(232, 241, 253));
-        Forgotbutton.setText("Forgot");
-        Forgotbutton.setPreferredSize(new java.awt.Dimension(116, 29));
-        Forgotbutton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ForgotbuttonActionPerformed(evt);
-            }
-        });
+        Username.addActionListener(this::UsernameActionPerformed);
 
         Loginbutton.setBackground(new java.awt.Color(13, 106, 210));
         Loginbutton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         Loginbutton.setForeground(new java.awt.Color(255, 255, 255));
         Loginbutton.setText("Login");
         Loginbutton.setPreferredSize(new java.awt.Dimension(319, 42));
-        Loginbutton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LoginbuttonActionPerformed(evt);
-            }
-        });
+        Loginbutton.addActionListener(this::LoginbuttonActionPerformed);
 
         Password.setForeground(new java.awt.Color(107, 114, 128));
         Password.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -150,20 +121,15 @@ public class Login extends javax.swing.JFrame {
                         .addGap(50, 50, 50)
                         .addComponent(RentifyIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(LoginboxLayout.createSequentialGroup()
-                        .addGap(147, 147, 147)
-                        .addComponent(Logintext, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(LoginboxLayout.createSequentialGroup()
                         .addGap(157, 157, 157)
-                        .addComponent(Loginbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Loginbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(LoginboxLayout.createSequentialGroup()
+                        .addGap(147, 147, 147)
+                        .addComponent(Logintext)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginboxLayout.createSequentialGroup()
                 .addGap(0, 42, Short.MAX_VALUE)
-                .addGroup(LoginboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(LoginboxLayout.createSequentialGroup()
-                        .addComponent(Registerbutton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(79, 79, 79)
-                        .addComponent(Forgotbutton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38))
             .addGroup(LoginboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginboxLayout.createSequentialGroup()
@@ -182,11 +148,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
                 .addComponent(Loginbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64)
-                .addGroup(LoginboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Registerbutton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Forgotbutton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addContainerGap(183, Short.MAX_VALUE))
             .addGroup(LoginboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(LoginboxLayout.createSequentialGroup()
                     .addGap(241, 241, 241)
@@ -194,36 +156,21 @@ public class Login extends javax.swing.JFrame {
                     .addContainerGap(317, Short.MAX_VALUE)))
         );
 
-        jLabel2.setBackground(new java.awt.Color(249, 250, 251));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/administrator-icon.png"))); // NOI18N
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout BackgroundLayout = new javax.swing.GroupLayout(Background);
         Background.setLayout(BackgroundLayout);
         BackgroundLayout.setHorizontalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BackgroundLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addContainerGap())
             .addGroup(BackgroundLayout.createSequentialGroup()
-                .addGap(440, 440, 440)
+                .addGap(384, 384, 384)
                 .addComponent(Loginbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(440, Short.MAX_VALUE))
+                .addContainerGap(496, Short.MAX_VALUE))
         );
         BackgroundLayout.setVerticalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BackgroundLayout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addComponent(Loginbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -234,47 +181,11 @@ public class Login extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Background, 734, 734, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(Background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void UsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_UsernameActionPerformed
-
-    private void RegisterbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterbuttonActionPerformed
-        // TODO add your handling code here:
-        Point loc = this.getLocation();
-        registration registry = new registration();
-        registry.setLocation(loc);
-        registry.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_RegisterbuttonActionPerformed
-
-    private void ForgotbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ForgotbuttonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ForgotbuttonActionPerformed
-
-    private void LoginbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginbuttonActionPerformed
-        // TODO add your handling code here:
-    String username = Username.getText();  
-    String password = Password.getText();
-
-    boolean success = Controller.loginUser(username, password);
-
-    if (success) {
-        Point loc = this.getLocation();
-        HomePage home = new HomePage();
-        home.setLocation(loc);
-        home.setVisible(true);
-        this.dispose();
-        // TODO: open dashboard page here if you want
-    } else {
-        JOptionPane.showMessageDialog(this, "Invalid username or password!");
-    }
-    }//GEN-LAST:event_LoginbuttonActionPerformed
 
     private void UsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UsernameFocusGained
         // TODO add your handling code here:
@@ -290,22 +201,46 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_UsernameFocusLost
 
+    private void UsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UsernameActionPerformed
+
+    private void LoginbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginbuttonActionPerformed
+        // TODO add your handling code here:
+        String username = Username.getText();
+        char[] pwdChars = Password.getPassword();
+        String password = new String(pwdChars);
+
+        boolean success = controller.loginUser(username, password);
+
+        if (success) {
+            Point loc = this.getLocation();
+            admindashboard ad = new admindashboard();
+            ad.setLocation(loc);
+            ad.setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Invalid username or password!");
+        }
+        java.util.Arrays.fill(pwdChars, '\0');
+    }//GEN-LAST:event_LoginbuttonActionPerformed
+
     private void PasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PasswordFocusGained
-        // TODO add your handling code here:      
+        // TODO add your handling code here:
     }//GEN-LAST:event_PasswordFocusGained
 
     private void PasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PasswordFocusLost
         // TODO add your handling code here:
     }//GEN-LAST:event_PasswordFocusLost
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
         Point loc = this.getLocation();
-        AdminLogin ad = new AdminLogin();
-        ad.setLocation(loc);
-        ad.setVisible(true);
+        Login lg = new Login();
+        lg.setLocation(loc);
+        lg.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jLabel2MouseClicked
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -329,20 +264,17 @@ public class Login extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Login().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new AdminLogin().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
-    private javax.swing.JButton Forgotbutton;
     private javax.swing.JPanel Loginbox;
     private javax.swing.JButton Loginbutton;
     private javax.swing.JLabel Logintext;
     private javax.swing.JPasswordField Password;
-    private javax.swing.JButton Registerbutton;
     private javax.swing.JPanel RentifyIcon;
     private javax.swing.JTextField Username;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

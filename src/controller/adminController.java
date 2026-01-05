@@ -11,11 +11,13 @@ import userdata.adminDao;
 public class adminController {
 
     private adminDao dao;
-
+    
     public adminController() {
         dao = new adminDao();
     }
-
+    public boolean loginUser(String username, String password) {
+        return dao.login(username, password);
+    }
     public List<User_model> getAllUsers() {
         return dao.getAllUsers();
     }
