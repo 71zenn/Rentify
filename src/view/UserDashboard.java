@@ -485,7 +485,7 @@ public class UserDashboard extends javax.swing.JFrame {
     String text = SearchBOX.getText().trim().toLowerCase();
     boolean showAll = text.isEmpty();
 
-    for (java.awt.Component comp : jPanel2.getComponents()) {
+    for (java.awt.Component comp : productPanelReal.getComponents()) {
         boolean visible = showAll;
 
         if (!showAll) {
@@ -495,8 +495,8 @@ public class UserDashboard extends javax.swing.JFrame {
         comp.setVisible(visible);
     }
 
-    jPanel2.revalidate();
-    jPanel2.repaint();
+    productPanelReal.revalidate();
+    productPanelReal.repaint();
 }
     private void ProfileBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileBTNActionPerformed
         // TODO add your handling code here:
@@ -572,7 +572,11 @@ public class UserDashboard extends javax.swing.JFrame {
 
     private void cartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cartActionPerformed
         // TODO add your handling code here:
-        
+        Point loc = this.getLocation();
+        Cart cr = new Cart();
+        cr.setLocation(loc);
+        cr.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_cartActionPerformed
 
     private void adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminActionPerformed
@@ -814,6 +818,12 @@ public class UserDashboard extends javax.swing.JFrame {
 
     private void OrdersBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrdersBTNMouseClicked
         // TODO add your handling code here:
+        Point loc = this.getLocation();
+        this.dispose();
+
+        RentalDate ad = new RentalDate();
+        ad.setLocation(loc);
+        ad.setVisible(true);
     }//GEN-LAST:event_OrdersBTNMouseClicked
 
     private void HistoryBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HistoryBTNMouseClicked
@@ -873,13 +883,6 @@ public class UserDashboard extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(UserDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         // </editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new UserDashboard().setVisible(true);
-            }
-        });
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new UserDashboard().setVisible(true));
     }

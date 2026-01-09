@@ -30,6 +30,15 @@ private int loggedInUserId;
     public Cart() {
 
     initComponents();
+    Cartbox.getInputMap().put(
+        javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ENTER, 0),
+        "search");
+        Cartbox.getActionMap().put("search", new javax.swing.AbstractAction() {
+            @Override
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            performSearch();
+            }
+        });
     cartController = new CartController();
     loggedInUserId = UserSession.getUserId();
 
@@ -46,21 +55,21 @@ private int loggedInUserId;
         }
     });
 
-    // ✅ Build contentPanel (center area under header)
+    
     contentPanel = new JPanel(new BorderLayout());
     contentPanel.setOpaque(false);
 
-    // ✅ Remove old components that NetBeans put there (cart + summary)
+    
     jPanel1.remove(Cartbox);
     jPanel1.remove(jPanel4);
 
-    // ✅ Wrap cart in scroll
+    
     Cartbox.removeAll();
     Cartbox.setLayout(new BoxLayout(Cartbox, BoxLayout.Y_AXIS));
     JScrollPane cartScroll = new JScrollPane(Cartbox);
     cartScroll.setBorder(null);
 
-    // ✅ Split pane 50/50
+    
     split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, cartScroll, jPanel4);
     split.setResizeWeight(0.50);
     split.setDividerSize(6);
@@ -68,16 +77,29 @@ private int loggedInUserId;
 
     contentPanel.add(split, BorderLayout.CENTER);
 
-    // ✅ Add contentPanel into jPanel1 with manual positioning (since you use null layout)
-    contentPanel.setBounds(18, 210, 1240, 430); // adjust if needed
-    jPanel1.setLayout(null); // important if not already null
+    
+    contentPanel.setBounds(18, 210, 1240, 430); 
+    jPanel1.setLayout(null); 
     jPanel1.add(contentPanel);
 
-    // ✅ Make divider exact after UI shows
+    
     SwingUtilities.invokeLater(() -> split.setDividerLocation(0.50));
 
-    // ✅ Load DB items
+    
     loadCartItems();
+    chkSelectALL.addActionListener(e -> {
+    boolean sel = chkSelectALL.isSelected();
+
+    for (java.awt.Component comp : Cartbox.getComponents()) {
+        if (!(comp instanceof JPanel)) continue;
+        JPanel row = (JPanel) comp;
+        Object cbObj = row.getClientProperty("checkBox");
+        if (cbObj instanceof JCheckBox) {
+            ((JCheckBox) cbObj).setSelected(sel);
+        }
+    }
+    updateTotals();
+    });
 
     pack();
 }
@@ -157,78 +179,173 @@ private int loggedInUserId;
         jLabel11 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(249, 250, 251));
-        jPanel1.setMinimumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
+        jPanel1.setLayout(null);
 
-        Rentifylogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Rentifylogo.png"))); // NOI18N
+        Rentifylogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/rentifyohnebg (1).png"))); // NOI18N
+        Rentifylogo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RentifylogoMouseClicked(evt);
+            }
+        });
+        jPanel1.add(Rentifylogo);
+        Rentifylogo.setBounds(16, 14, 250, 120);
 
         Librarybutton.setBackground(new java.awt.Color(232, 241, 253));
         Librarybutton.setText("Library");
         Librarybutton.setPreferredSize(new java.awt.Dimension(146, 36));
+        Librarybutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LibrarybuttonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                LibrarybuttonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                LibrarybuttonMouseExited(evt);
+            }
+        });
         Librarybutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LibrarybuttonActionPerformed(evt);
             }
         });
+        jPanel1.add(Librarybutton);
+        Librarybutton.setBounds(328, 65, 120, 30);
 
         Booksbutton.setBackground(new java.awt.Color(232, 241, 253));
         Booksbutton.setText("Books");
         Booksbutton.setPreferredSize(new java.awt.Dimension(146, 36));
+        Booksbutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BooksbuttonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                BooksbuttonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                BooksbuttonMouseExited(evt);
+            }
+        });
         Booksbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BooksbuttonActionPerformed(evt);
             }
         });
+        jPanel1.add(Booksbutton);
+        Booksbutton.setBounds(490, 65, 120, 30);
 
         Moviesbutton.setBackground(new java.awt.Color(232, 241, 253));
         Moviesbutton.setText("Movies");
         Moviesbutton.setPreferredSize(new java.awt.Dimension(146, 36));
+        Moviesbutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MoviesbuttonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                MoviesbuttonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                MoviesbuttonMouseExited(evt);
+            }
+        });
         Moviesbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MoviesbuttonActionPerformed(evt);
             }
         });
+        jPanel1.add(Moviesbutton);
+        Moviesbutton.setBounds(651, 65, 120, 30);
 
         Newestbutton.setBackground(new java.awt.Color(232, 241, 253));
         Newestbutton.setText("Newest");
         Newestbutton.setPreferredSize(new java.awt.Dimension(146, 36));
+        Newestbutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                NewestbuttonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                NewestbuttonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                NewestbuttonMouseExited(evt);
+            }
+        });
         Newestbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NewestbuttonActionPerformed(evt);
             }
         });
+        jPanel1.add(Newestbutton);
+        Newestbutton.setBounds(817, 65, 120, 30);
 
         Supportbutton.setBackground(new java.awt.Color(232, 241, 253));
         Supportbutton.setText("Support");
         Supportbutton.setPreferredSize(new java.awt.Dimension(146, 36));
+        Supportbutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SupportbuttonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                SupportbuttonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                SupportbuttonMouseExited(evt);
+            }
+        });
         Supportbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SupportbuttonActionPerformed(evt);
             }
         });
+        jPanel1.add(Supportbutton);
+        Supportbutton.setBounds(977, 65, 120, 30);
 
         Profileicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/profile icon.png"))); // NOI18N
+        Profileicon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ProfileiconMouseClicked(evt);
+            }
+        });
+        jPanel1.add(Profileicon);
+        Profileicon.setBounds(1162, 35, 60, 60);
 
-        CartIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cart_icon.png"))); // NOI18N
+        CartIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cart 25x22.png"))); // NOI18N
+        CartIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CartIconMouseClicked(evt);
+            }
+        });
+        jPanel1.add(CartIcon);
+        CartIcon.setBounds(1120, 130, 30, 22);
 
         jSeparator1.setForeground(new java.awt.Color(209, 213, 219));
+        jPanel1.add(jSeparator1);
+        jSeparator1.setBounds(0, 167, 1290, 4);
 
-        Search_Icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Search_Icon.png"))); // NOI18N
+        jPanel2.setBackground(new java.awt.Color(243, 243, 243));
 
-        Mainsearchbar.setBackground(new java.awt.Color(242, 242, 242));
+        Search_Icon.setBackground(new java.awt.Color(243, 243, 243));
+        Search_Icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search-icon.png"))); // NOI18N
+        Search_Icon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Search_IconMouseClicked(evt);
+            }
+        });
+
+        Mainsearchbar.setBackground(new java.awt.Color(243, 243, 243));
         Mainsearchbar.setForeground(new java.awt.Color(107, 114, 128));
         Mainsearchbar.setText("Search in Rentify");
         Mainsearchbar.setBorder(null);
@@ -252,9 +369,10 @@ private int loggedInUserId;
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Mainsearchbar, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Mainsearchbar, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Search_Icon, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(Search_Icon, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,23 +383,32 @@ private int loggedInUserId;
                     .addComponent(Mainsearchbar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
+        jPanel1.add(jPanel2);
+        jPanel2.setBounds(761, 125, 350, 30);
+
+        pSelectALLBar.setBackground(new java.awt.Color(243, 243, 243));
         pSelectALLBar.setPreferredSize(new java.awt.Dimension(35, 40));
         pSelectALLBar.setLayout(new java.awt.BorderLayout());
 
+        chkSelectALL.setBackground(new java.awt.Color(249, 250, 251));
         chkSelectALL.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         chkSelectALL.setForeground(new java.awt.Color(128, 126, 126));
         chkSelectALL.setText("SELECT ALL (ITEM(S))");
-        pSelectALLBar.add(chkSelectALL, java.awt.BorderLayout.PAGE_END);
+        pSelectALLBar.add(chkSelectALL, java.awt.BorderLayout.CENTER);
+
+        jPanel1.add(pSelectALLBar);
+        pSelectALLBar.setBounds(118, 183, 578, 30);
 
         Cartbox.setBackground(new java.awt.Color(255, 255, 255));
         Cartbox.setLayout(new javax.swing.BoxLayout(Cartbox, javax.swing.BoxLayout.Y_AXIS));
 
         Cartbox1.setBackground(new java.awt.Color(255, 255, 255));
         Cartbox1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        Cartbox1.setPreferredSize(new java.awt.Dimension(511, 148));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        HPimg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Harry.png"))); // NOI18N
+        HPimg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/Johnwickposter.jpg"))); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -296,8 +423,8 @@ private int loggedInUserId;
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(HPimg, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(HPimg, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -338,7 +465,7 @@ private int loggedInUserId;
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(165, 165, 165)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                         .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -378,7 +505,7 @@ private int loggedInUserId;
                         .addGap(10, 10, 10)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         Cartbox.add(Cartbox1);
@@ -388,7 +515,7 @@ private int loggedInUserId;
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
-        Tslimg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/The secret library.png"))); // NOI18N
+        Tslimg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/harrypotterHBPcover.jpg"))); // NOI18N
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -401,9 +528,9 @@ private int loggedInUserId;
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+            .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Tslimg, javax.swing.GroupLayout.PREFERRED_SIZE, 122, Short.MAX_VALUE)
+                .addComponent(Tslimg, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -464,7 +591,7 @@ private int loggedInUserId;
                 .addGroup(Cartbox2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Cartbox2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 21, Short.MAX_VALUE)
                         .addComponent(jLabel6)
                         .addGroup(Cartbox2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(Cartbox2Layout.createSequentialGroup()
@@ -491,7 +618,7 @@ private int loggedInUserId;
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
 
-        Hamletimg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Hamlet.png"))); // NOI18N
+        Hamletimg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/harrypotterHBPcover.jpg"))); // NOI18N
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -499,8 +626,8 @@ private int loggedInUserId;
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(Hamletimg)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addComponent(Hamletimg, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -598,7 +725,7 @@ private int loggedInUserId;
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
 
-        HPimg1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Harry.png"))); // NOI18N
+        HPimg1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/harrypotterHBPcover.jpg"))); // NOI18N
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -613,7 +740,7 @@ private int loggedInUserId;
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(HPimg1, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                .addComponent(HPimg1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -655,7 +782,7 @@ private int loggedInUserId;
                             .addComponent(jLabel24, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(165, 165, 165)
                         .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                         .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37)
                         .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -700,6 +827,9 @@ private int loggedInUserId;
 
         Cartbox.add(Cartbox4);
 
+        jPanel1.add(Cartbox);
+        Cartbox.setBounds(18, 225, 720, 624);
+
         jPanel4.setBackground(new java.awt.Color(232, 241, 253));
 
         jPanel5.setBackground(new java.awt.Color(153, 204, 255));
@@ -707,11 +837,9 @@ private int loggedInUserId;
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel11.setText("Order Summary");
 
-        jLabel17.setText("Subtotal (0 items)");
+        jLabel17.setText("0 items");
 
         jLabel18.setText("Shipping Fee");
-
-        jLabel19.setText("Rs.0");
 
         jLabel20.setText("Rs.0");
 
@@ -719,6 +847,14 @@ private int loggedInUserId;
         jTextField1.setForeground(new java.awt.Color(174, 156, 156));
         jTextField1.setText("Enter Voucher Code");
         jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField1FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField1FocusLost(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(13, 106, 210));
         jButton1.setText("APPLY");
@@ -727,41 +863,47 @@ private int loggedInUserId;
         jLabel21.setText("Total");
 
         jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel22.setText("Rs = 0");
+        jLabel22.setText("          Rs = 0");
 
         jTextField2.setBackground(new java.awt.Color(13, 106, 210));
         jTextField2.setForeground(new java.awt.Color(255, 255, 255));
         jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField2.setText("PROCEED TO CHECKOUT(0)");
 
+        jLabel19.setText("Items");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addGap(46, 46, 46)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jTextField2)
+                                .addGroup(jPanel5Layout.createSequentialGroup()
+                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel5Layout.createSequentialGroup()
+                                            .addComponent(jTextField1)
+                                            .addGap(18, 18, 18))
+                                        .addGroup(jPanel5Layout.createSequentialGroup()
+                                            .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(169, 169, 169)))
+                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                        .addGap(0, 3, Short.MAX_VALUE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(202, 202, 202)
-                                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jTextField1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton1)))
-                        .addGap(0, 3, Short.MAX_VALUE)))
+                            .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(19, 19, 19))
         );
         jPanel5Layout.setVerticalGroup(
@@ -807,86 +949,60 @@ private int loggedInUserId;
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(Rentifylogo)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(Librarybutton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(Booksbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
-                        .addComponent(Moviesbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
-                        .addComponent(Newestbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(Supportbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
-                        .addComponent(Profileicon, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(CartIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(116, 116, 116))))
-            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(108, 108, 108)
-                        .addComponent(pSelectALLBar, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(Cartbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(Rentifylogo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Profileicon, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(Librarybutton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Booksbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Moviesbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Newestbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Supportbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(30, 30, 30)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CartIcon))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(pSelectALLBar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)
-                        .addComponent(Cartbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jPanel1.add(jPanel4);
+        jPanel4.setBounds(854, 183, 394, 374);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 1290, 720);
+        jPanel1.setBounds(0, 0, 1280, 720);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    private boolean containsText(java.awt.Component comp, String text) {
+ 
+    if (comp instanceof javax.swing.JLabel) {
+        String labelText = ((javax.swing.JLabel) comp).getText();
+        if (labelText != null && labelText.toLowerCase().contains(text)) {
+            return true;
+        }
+    } else if (comp instanceof javax.swing.JButton) {
+        String btnText = ((javax.swing.JButton) comp).getText();
+        if (btnText != null && btnText.toLowerCase().contains(text)) {
+            return true;
+        }
+    } else if (comp instanceof javax.swing.text.JTextComponent) {
+        String fieldText = ((javax.swing.text.JTextComponent) comp).getText();
+        if (fieldText != null && fieldText.toLowerCase().contains(text)) {
+            return true;
+        }
+    }
 
+    
+    if (comp instanceof java.awt.Container) {
+        for (java.awt.Component child : ((java.awt.Container) comp).getComponents()) {
+            if (containsText(child, text)) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+    private void performSearch() {
+    String text = Mainsearchbar.getText().trim().toLowerCase();
+    boolean showAll = text.isEmpty();
+
+    for (java.awt.Component comp : Cartbox.getComponents()) {
+        boolean visible = showAll;
+
+        if (!showAll) {
+            
+            visible = containsText(comp, text);
+        }
+        comp.setVisible(visible);
+    }
+
+    Cartbox.revalidate();
+    Cartbox.repaint();
+}
     private void LibrarybuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LibrarybuttonActionPerformed
         javax.swing.JFrame page = new javax.swing.JFrame("Library");
         page.setSize(800, 600);
@@ -928,7 +1044,7 @@ private int loggedInUserId;
     }//GEN-LAST:event_SupportbuttonActionPerformed
 
     private void MainsearchbarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_MainsearchbarFocusGained
-        if (Mainsearchbar.getText().equals("Search")) {
+        if (Mainsearchbar.getText().equals("Search in Rentify")) {
             Mainsearchbar.setText("");
             Mainsearchbar.setForeground(new java.awt.Color(0, 0, 0));
         }
@@ -936,7 +1052,7 @@ private int loggedInUserId;
 
     private void MainsearchbarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_MainsearchbarFocusLost
         if (Mainsearchbar.getText().trim().isEmpty()) {
-            Mainsearchbar.setText("Search");
+            Mainsearchbar.setText("Search in Rentify");
             Mainsearchbar.setForeground(new java.awt.Color(107, 114, 128));
         }
     }//GEN-LAST:event_MainsearchbarFocusLost
@@ -944,6 +1060,191 @@ private int loggedInUserId;
     private void MainsearchbarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MainsearchbarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_MainsearchbarActionPerformed
+
+    private void CartIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CartIconMouseClicked
+        // TODO add your handling code here:
+        Point loc = this.getLocation();
+        Cart cr = new Cart();
+        cr.setVisible(true);
+        cr.setLocation(loc);
+        this.dispose();
+    }//GEN-LAST:event_CartIconMouseClicked
+
+    private void LibrarybuttonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LibrarybuttonMouseEntered
+        // TODO add your handling code here:
+        Librarybutton.setBackground(new java.awt.Color(52, 115, 196));
+        Librarybutton.setForeground(java.awt.Color.WHITE);
+        Librarybutton.setBorder(
+            BorderFactory.createLineBorder(new java.awt.Color(40, 90, 150), 2)
+        );
+        Librarybutton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_LibrarybuttonMouseEntered
+
+    private void LibrarybuttonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LibrarybuttonMouseExited
+        // TODO add your handling code here:
+        Librarybutton.setBackground(new java.awt.Color(232,241,253));
+        Librarybutton.setForeground(new java.awt.Color(17,24,39));
+        Librarybutton.setBorder(
+            BorderFactory.createLineBorder(new java.awt.Color(194,194,194), 1)
+        );
+    }//GEN-LAST:event_LibrarybuttonMouseExited
+
+    private void BooksbuttonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BooksbuttonMouseEntered
+        // TODO add your handling code here:
+        Booksbutton.setBackground(new java.awt.Color(52, 115, 196));
+        Booksbutton.setForeground(java.awt.Color.WHITE);
+        Booksbutton.setBorder(
+            BorderFactory.createLineBorder(new java.awt.Color(40, 90, 150), 2)
+        );
+        Booksbutton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_BooksbuttonMouseEntered
+
+    private void BooksbuttonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BooksbuttonMouseExited
+        // TODO add your handling code here:
+        Booksbutton.setBackground(new java.awt.Color(232,241,253));
+        Booksbutton.setForeground(new java.awt.Color(17,24,39));
+        Booksbutton.setBorder(
+            BorderFactory.createLineBorder(new java.awt.Color(194,194,194), 1)
+        );
+    }//GEN-LAST:event_BooksbuttonMouseExited
+
+    private void MoviesbuttonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MoviesbuttonMouseEntered
+        // TODO add your handling code here:
+        Moviesbutton.setBackground(new java.awt.Color(52, 115, 196));
+        Moviesbutton.setForeground(java.awt.Color.WHITE);
+        Moviesbutton.setBorder(
+            BorderFactory.createLineBorder(new java.awt.Color(40, 90, 150), 2)
+        );
+        Moviesbutton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_MoviesbuttonMouseEntered
+
+    private void MoviesbuttonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MoviesbuttonMouseExited
+        // TODO add your handling code here:
+        Moviesbutton.setBackground(new java.awt.Color(232,241,253));
+        Moviesbutton.setForeground(new java.awt.Color(17,24,39));
+        Moviesbutton.setBorder(
+            BorderFactory.createLineBorder(new java.awt.Color(194,194,194), 1)
+        );
+    }//GEN-LAST:event_MoviesbuttonMouseExited
+
+    private void NewestbuttonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NewestbuttonMouseEntered
+        // TODO add your handling code here:
+        Newestbutton.setBackground(new java.awt.Color(52, 115, 196));
+        Newestbutton.setForeground(java.awt.Color.WHITE);
+        Newestbutton.setBorder(
+            BorderFactory.createLineBorder(new java.awt.Color(40, 90, 150), 2)
+        );
+        Newestbutton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_NewestbuttonMouseEntered
+
+    private void NewestbuttonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NewestbuttonMouseExited
+        // TODO add your handling code here:
+        Newestbutton.setBackground(new java.awt.Color(232,241,253));
+        Newestbutton.setForeground(new java.awt.Color(17,24,39));
+        Newestbutton.setBorder(
+            BorderFactory.createLineBorder(new java.awt.Color(194,194,194), 1)
+        );
+    }//GEN-LAST:event_NewestbuttonMouseExited
+
+    private void SupportbuttonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SupportbuttonMouseEntered
+        // TODO add your handling code here:
+        Supportbutton.setBackground(new java.awt.Color(52, 115, 196));
+        Supportbutton.setForeground(java.awt.Color.WHITE);
+        Supportbutton.setBorder(
+            BorderFactory.createLineBorder(new java.awt.Color(40, 90, 150), 2)
+        );
+        Supportbutton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_SupportbuttonMouseEntered
+
+    private void SupportbuttonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SupportbuttonMouseExited
+        // TODO add your handling code here:
+        Supportbutton.setBackground(new java.awt.Color(232,241,253));
+        Supportbutton.setForeground(new java.awt.Color(17,24,39));
+        Supportbutton.setBorder(
+            BorderFactory.createLineBorder(new java.awt.Color(194,194,194), 1)
+        );
+    }//GEN-LAST:event_SupportbuttonMouseExited
+
+    private void RentifylogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RentifylogoMouseClicked
+        // TODO add your handling code here:
+        Point loc = this.getLocation();
+        HomePage hm = new HomePage();
+        hm.setLocation(loc);
+        hm.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_RentifylogoMouseClicked
+
+    private void LibrarybuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LibrarybuttonMouseClicked
+        // TODO add your handling code here:
+        Point loc = this.getLocation();
+        LibraryPage hm = new LibraryPage();
+        hm.setLocation(loc);
+        hm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_LibrarybuttonMouseClicked
+
+    private void BooksbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BooksbuttonMouseClicked
+        // TODO add your handling code here:
+        Point loc = this.getLocation();
+        BooksPage hm = new BooksPage();
+        hm.setLocation(loc);
+        hm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BooksbuttonMouseClicked
+
+    private void MoviesbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MoviesbuttonMouseClicked
+        // TODO add your handling code here:
+        Point loc = this.getLocation();
+        MoviePage hm = new MoviePage();
+        hm.setLocation(loc);
+        hm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_MoviesbuttonMouseClicked
+
+    private void NewestbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NewestbuttonMouseClicked
+        // TODO add your handling code here:
+        Point loc = this.getLocation();
+        NewestPage hm = new NewestPage();
+        hm.setLocation(loc);
+        hm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_NewestbuttonMouseClicked
+
+    private void SupportbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SupportbuttonMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_SupportbuttonMouseClicked
+
+    private void ProfileiconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProfileiconMouseClicked
+        // TODO add your handling code here:
+        Point loc = this.getLocation();
+        UserDashboard hm = new UserDashboard();
+        hm.setLocation(loc);
+        hm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_ProfileiconMouseClicked
+
+    private void Search_IconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Search_IconMouseClicked
+        // TODO add your handling code here:
+        performSearch();
+    }//GEN-LAST:event_Search_IconMouseClicked
+
+    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
+        // TODO add your handling code here:
+        if (jTextField1.getText().equals("Enter Voucher Code")) {
+            jTextField1.setText("");
+            jTextField1.setForeground(new java.awt.Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_jTextField1FocusGained
+
+    private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
+        // TODO add your handling code here:
+        if (jTextField1.getText().trim().isEmpty()) {
+            jTextField1.setText("Enter Voucher Code");
+            jTextField1.setForeground(new java.awt.Color(107, 114, 128));
+        }
+    }//GEN-LAST:event_jTextField1FocusLost
 
     /**
      * @param args the command line arguments
@@ -975,75 +1276,99 @@ private int loggedInUserId;
     
     private void doCheckout() {
     if (loggedInUserId == -1) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Please login again.");
+        JOptionPane.showMessageDialog(this, "Please login again.");
+        return;
+    }
+
+    // build list of selected items
+    java.util.List<CartItem> selectedItems = new java.util.ArrayList<>();
+
+    for (java.awt.Component comp : Cartbox.getComponents()) {
+        if (!(comp instanceof JPanel)) continue;
+        JPanel row = (JPanel) comp;
+
+        Object cbObj   = row.getClientProperty("checkBox");
+        Object itemObj = row.getClientProperty("cartItem");
+        Object qtyObj  = row.getClientProperty("qtyLabel");
+        if (!(cbObj instanceof JCheckBox) || !(itemObj instanceof CartItem) || !(qtyObj instanceof JLabel))
+            continue;
+
+        JCheckBox cb = (JCheckBox) cbObj;
+        CartItem item = (CartItem) itemObj;
+        JLabel qtyLabel = (JLabel) qtyObj;
+
+        if (cb.isSelected()) {
+            int q = Integer.parseInt(qtyLabel.getText());
+            item.setQuantity(q);          // use current quantity in UI
+            selectedItems.add(item);
+        }
+    }
+
+    if (selectedItems.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please select at least one item.");
+        return;
+    }
+
+    int confirm = JOptionPane.showConfirmDialog(
+            this,
+            "Checkout " + selectedItems.size() + " item(s)?",
+            "Confirm Checkout",
+            JOptionPane.YES_NO_OPTION
+    );
+    if (confirm != JOptionPane.YES_OPTION) return;
+
+    cartController.checkoutCart(selectedItems, loggedInUserId);
+
+    JOptionPane.showMessageDialog(this, "Checkout successful!");
+    loadCartItems();
+}
+
+    private void loadCartItems() {
+
+    Cartbox.removeAll();
+    if (loggedInUserId == -1) {
+        JOptionPane.showMessageDialog(this, "Please login again.");
+        dispose();
         return;
     }
 
     java.util.List<CartItem> cartItems = cartController.getCartItems(loggedInUserId);
 
-    if (cartItems == null || cartItems.isEmpty()) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Your cart is empty.");
-        return;
-    }
-
-    int confirm = javax.swing.JOptionPane.showConfirmDialog(
-            this,
-            "Checkout " + cartItems.size() + " item(s)?",
-            "Confirm Checkout",
-            javax.swing.JOptionPane.YES_NO_OPTION
-    );
-
-    if (confirm != javax.swing.JOptionPane.YES_OPTION) return;
-
-    cartController.checkoutCart(cartItems, loggedInUserId);
-
-    javax.swing.JOptionPane.showMessageDialog(this, "Checkout successful!");
-    loadCartItems(); // refresh UI (cart should be empty now)
-
-    // Optional: open purchase history after checkout
-    // new Purchasehistory().setVisible(true);
-    // dispose();
-}
-
-    private void loadCartItems() {
-
-    Cartbox.removeAll(); // clear old UI
-    if (loggedInUserId == -1) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Please login again.");
-        dispose();
-        return;
-    }
-
-    Cartbox.removeAll();
-
-    var cartItems = cartController.getCartItems(loggedInUserId);
-
     for (CartItem item : cartItems) {
-    Cartbox.add(createCartItemPanel(item));
-    Cartbox.add(Box.createVerticalStrut(10));  // spacing between cards
-}
+        Cartbox.add(createCartItemPanel(item));
+        Cartbox.add(Box.createVerticalStrut(10));
+    }
 
-    int count = cartItems.size();
-jTextField2.setText("PROCEED TO CHECKOUT(" + count + ")");
-jLabel17.setText("Subtotal (" + count + " items)");
-
+    updateTotals();          
     Cartbox.revalidate();
     Cartbox.repaint();
-
-
-
 }
+
     
-    
+   private void formWindowOpened(java.awt.event.WindowEvent evt) {
+    chkSelectALL.addActionListener(e -> {
+        boolean sel = chkSelectALL.isSelected();
+        for (java.awt.Component comp : Cartbox.getComponents()) {
+            if (!(comp instanceof JPanel)) continue;
+            JPanel row = (JPanel) comp;
+            Object cbObj = row.getClientProperty("checkBox");
+            if (cbObj instanceof JCheckBox) {
+                ((JCheckBox) cbObj).setSelected(sel);
+            }
+        }
+        updateTotals();
+    });
+}
+ 
    private javax.swing.JPanel createCartItemPanel(CartItem item) {
 
     JPanel row = new JPanel(new BorderLayout(15, 10));
     row.setBackground(Color.WHITE);
     row.setBorder(BorderFactory.createLineBorder(new Color(204, 204, 204)));
-    row.setMaximumSize(new Dimension(950, 150));   // similar height like static
+    row.setMaximumSize(new Dimension(950, 150));
     row.setPreferredSize(new Dimension(950, 150));
 
-    // ✅ LEFT: checkbox + image
+    // LEFT: checkbox + image
     JPanel left = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 20));
     left.setBackground(Color.WHITE);
 
@@ -1052,9 +1377,7 @@ jLabel17.setText("Subtotal (" + count + " items)");
 
     JLabel img = new JLabel();
     img.setPreferredSize(new Dimension(99, 122));
-
     try {
-        // DB image example: "/icons/Harry.png"
         img.setIcon(new ImageIcon(getClass().getResource(item.getImage())));
     } catch (Exception e) {
         img.setText("No Image");
@@ -1064,59 +1387,122 @@ jLabel17.setText("Subtotal (" + count + " items)");
     left.add(img);
     row.add(left, BorderLayout.WEST);
 
-    // ✅ CENTER: name + brand + stock/type
+    // CENTER: name + brand + type
     JPanel center = new JPanel();
     center.setBackground(Color.WHITE);
     center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
-    center.setBorder(new EmptyBorder(15, 0, 0, 0));
+    center.setBorder(new EmptyBorder(20, 0, 0, 0));
 
-    JLabel name = new JLabel(item.getItemName());
+    JLabel name = new JLabel(item.getItemName());              // ✅ title from DB
     name.setFont(new Font("Segoe UI", Font.BOLD, 12));
 
     JLabel brand = new JLabel("No Brand");
     brand.setForeground(new Color(153, 153, 153));
 
-    JLabel type = new JLabel(item.getItemType() + " | " + item.getActionType());
+    JLabel type = new JLabel(item.getItemType() + " | " + item.getActionType());  // ✅ type+action
     type.setForeground(new Color(153, 153, 153));
 
     center.add(name);
-    center.add(Box.createVerticalStrut(10));
+    center.add(Box.createVerticalStrut(8));
     center.add(brand);
-    center.add(Box.createVerticalStrut(5));
+    center.add(Box.createVerticalStrut(4));
     center.add(type);
 
     row.add(center, BorderLayout.CENTER);
 
-    // ✅ RIGHT: price + qty + +/- + remove
+    // ... center panel as you already have ...
+
     JPanel right = new JPanel(new FlowLayout(FlowLayout.RIGHT, 15, 45));
     right.setBackground(Color.WHITE);
 
-    JLabel price = new JLabel("Rs. " + item.getPrice());
-
+    JLabel price = new JLabel("Rs." + item.getPrice());
     JButton minus = new JButton("-");
     JLabel qty = new JLabel(String.valueOf(item.getQuantity()));
     qty.setFont(new Font("Segoe UI", Font.PLAIN, 14));
     JButton plus = new JButton("+");
-
     JButton removeBtn = new JButton("Remove");
-    removeBtn.addActionListener(e -> {
-        cartController.removeItemFromCart(item.getCartId());
-        loadCartItems();
-    });
 
     right.add(price);
     right.add(minus);
     right.add(qty);
     right.add(plus);
     right.add(removeBtn);
-
     row.add(right, BorderLayout.EAST);
+
+    row.putClientProperty("cartItem", item);
+    row.putClientProperty("checkBox", cb);
+    row.putClientProperty("qtyLabel", qty);
+
+    cb.addActionListener(e -> updateTotals());
+    plus.addActionListener(e -> {
+    int q = Integer.parseInt(qty.getText());
+    q++;
+    qty.setText(String.valueOf(q));
+    cartController.updateCartQuantity(item.getCartId(), q);
+    updateTotals();
+    });
+    minus.addActionListener(e -> {
+    int q = Integer.parseInt(qty.getText());
+    if (q > 1) {
+        q--;
+        qty.setText(String.valueOf(q));
+        cartController.updateCartQuantity(item.getCartId(), q);
+        updateTotals();
+    }
+});
+    minus.addActionListener(e -> {
+        int q = Integer.parseInt(qty.getText());
+        if (q > 1) {
+            q--;
+            qty.setText(String.valueOf(q));
+            cartController.updateCartQuantity(item.getCartId(), q);
+            updateTotals();
+        }
+    });
+    removeBtn.addActionListener(e -> {
+        cartController.removeItemFromCart(item.getCartId());
+        loadCartItems();
+    });
 
     return row;
 }
+   private void updateTotals() {
+    double total = 0.0;
+    int selectedCount = 0;
+    boolean hasBuy = false;
 
-    
-    
+    for (java.awt.Component comp : Cartbox.getComponents()) {
+        if (!(comp instanceof JPanel)) continue;
+        JPanel row = (JPanel) comp;
+
+        Object cbObj   = row.getClientProperty("checkBox");
+        Object itemObj = row.getClientProperty("cartItem");
+        Object qtyObj  = row.getClientProperty("qtyLabel");
+        if (!(cbObj instanceof JCheckBox) || !(itemObj instanceof CartItem) || !(qtyObj instanceof JLabel))
+            continue;
+
+        JCheckBox cb   = (JCheckBox) cbObj;
+        CartItem item  = (CartItem) itemObj;
+        JLabel qtyLabel = (JLabel) qtyObj;
+
+        if (cb.isSelected()) {
+            int q = Integer.parseInt(qtyLabel.getText());
+            total += item.getPrice() * q;
+            selectedCount++;
+
+            if ("BUY".equalsIgnoreCase(item.getActionType())) {
+                hasBuy = true;
+            }
+        }
+    }
+
+    double shipping = hasBuy ? 39.0 : 0.0;
+
+    jLabel17.setText(selectedCount + " items");          // ✅ only selected
+    jLabel20.setText("Rs." + shipping);                  // Shipping Fee
+    jLabel22.setText("Rs " + (total + shipping));        // Total incl. shipping
+    jTextField2.setText("PROCEED TO CHECKOUT(" + selectedCount + ")");
+}   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Booksbutton;

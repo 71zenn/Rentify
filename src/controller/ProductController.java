@@ -35,5 +35,9 @@ public class ProductController {
 
     public void deleteProduct(int productId) {
         dao.deleteProduct(productId);
-    }    
+    }   
+    
+    public int getTotalQuantityByType(String type) {
+    return dao.getTotalQuantityByType(type);
+    }
 }

@@ -79,7 +79,6 @@ public class users extends javax.swing.JFrame {
         Users = new javax.swing.JButton();
         Statistics = new javax.swing.JButton();
         ManageProducts = new javax.swing.JButton();
-        Invoice = new javax.swing.JButton();
         Calender = new javax.swing.JButton();
         logout = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -249,25 +248,6 @@ public class users extends javax.swing.JFrame {
         });
         ManageProducts.addActionListener(this::ManageProductsActionPerformed);
 
-        Invoice.setBackground(new java.awt.Color(229, 231, 235));
-        Invoice.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        Invoice.setForeground(new java.awt.Color(107, 114, 128));
-        Invoice.setText("Invoice");
-        Invoice.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 2, true));
-        Invoice.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Invoice.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                InvoiceMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                InvoiceMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                InvoiceMouseExited(evt);
-            }
-        });
-        Invoice.addActionListener(this::InvoiceActionPerformed);
-
         Calender.setBackground(new java.awt.Color(229, 231, 235));
         Calender.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Calender.setForeground(new java.awt.Color(107, 114, 128));
@@ -381,9 +361,8 @@ public class users extends javax.swing.JFrame {
                     .addComponent(Users, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Statistics, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ManageProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Invoice, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Calender, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Calender, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(centerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -411,16 +390,14 @@ public class users extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(ManageProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(Invoice, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addComponent(Calender, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 246, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
             .addGroup(centerLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(centerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(edit, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -651,25 +628,6 @@ public class users extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ManageProductsActionPerformed
 
-    private void InvoiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InvoiceMouseClicked
-        // TODO add your handling code here:
-        Point loc = this.getLocation();
-        if (adWindow != null && adWindow.isVisible()) {
-        adWindow.setVisible(false);
-        adWindow.dispose();
-        adWindow = null;
-        }
-        this.dispose();
-
-        invoice ad = new invoice();
-        ad.setLocation(loc);
-        ad.setVisible(true);
-    }//GEN-LAST:event_InvoiceMouseClicked
-
-    private void InvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InvoiceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_InvoiceActionPerformed
-
     private void CalenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CalenderMouseClicked
         // TODO add your handling code here:
         Point loc = this.getLocation();
@@ -843,25 +801,6 @@ public class users extends javax.swing.JFrame {
     );
     }//GEN-LAST:event_ManageProductsMouseExited
 
-    private void InvoiceMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InvoiceMouseEntered
-        // TODO add your handling code here:
-        Invoice.setBackground(new java.awt.Color(38,166,154)); 
-        Invoice.setForeground(java.awt.Color.WHITE);
-        Invoice.setBorder(
-        BorderFactory.createLineBorder(new java.awt.Color(38,166,154), 2)
-    );
-        Invoice.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    }//GEN-LAST:event_InvoiceMouseEntered
-
-    private void InvoiceMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InvoiceMouseExited
-        // TODO add your handling code here:
-        Invoice.setBackground(new java.awt.Color(229,231,235)); 
-        Invoice.setForeground(new java.awt.Color(107,114,128));
-        Invoice.setBorder(
-        BorderFactory.createLineBorder(new java.awt.Color(193,193,193), 2)
-    );
-    }//GEN-LAST:event_InvoiceMouseExited
-
     private void CalenderMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CalenderMouseEntered
         // TODO add your handling code here:
         Calender.setBackground(new java.awt.Color(38,166,154)); 
@@ -964,7 +903,6 @@ public class users extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Calender;
-    private javax.swing.JButton Invoice;
     private javax.swing.JButton ManageProducts;
     private javax.swing.JLabel ProfileIcon;
     private javax.swing.JButton Statistics;

@@ -4,6 +4,7 @@
  */
 package view;
 
+import java.awt.Point;
 import javax.swing.JPanel;
 
 /**
@@ -72,15 +73,12 @@ public class ReviewPage extends javax.swing.JFrame {
 
         title.setBackground(new java.awt.Color(0, 0, 0));
         title.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        title.setForeground(new java.awt.Color(0, 0, 0));
         title.setText("Ratings");
 
         productName.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         productName.setForeground(new java.awt.Color(51, 51, 51));
         productName.setText("Transformers");
 
-        ratingBox.setBackground(new java.awt.Color(255, 255, 255));
-        ratingBox.setForeground(new java.awt.Color(0, 0, 0));
         ratingBox.setText("Rating out of 5: ");
         ratingBox.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -96,8 +94,6 @@ public class ReviewPage extends javax.swing.JFrame {
             }
         });
 
-        reviewBox.setBackground(new java.awt.Color(255, 255, 255));
-        reviewBox.setForeground(new java.awt.Color(0, 0, 0));
         reviewBox.setText("Write your review: ");
 
         AddBTN.setText("Add");
@@ -164,7 +160,7 @@ public class ReviewPage extends javax.swing.JFrame {
         jPanel1.add(jPanel2);
         jPanel2.setBounds(25, 140, 1230, 565);
 
-        jTextArea1.setBackground(new java.awt.Color(229, 231, 235));
+        jTextArea1.setBackground(new java.awt.Color(243, 243, 243));
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jTextArea1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -219,7 +215,7 @@ public class ReviewPage extends javax.swing.JFrame {
         jPanel1.add(Newest);
         Newest.setBounds(820, 50, 146, 36);
 
-        jButton1.setBackground(new java.awt.Color(229, 231, 235));
+        jButton1.setBackground(new java.awt.Color(243, 243, 243));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search-icon.png"))); // NOI18N
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -242,8 +238,9 @@ public class ReviewPage extends javax.swing.JFrame {
         jPanel1.add(Books);
         Books.setBounds(480, 50, 146, 36);
 
-        cart.setBackground(new java.awt.Color(255, 255, 255));
         cart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cart40x40.png"))); // NOI18N
+        cart.setBorder(null);
+        cart.setFocusPainted(false);
         cart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cartActionPerformed(evt);
@@ -313,6 +310,11 @@ public class ReviewPage extends javax.swing.JFrame {
 
     private void cartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cartActionPerformed
         // TODO add your handling code here:
+        Point loc = this.getLocation();
+        Cart cr = new Cart();
+        cr.setLocation(loc);
+        cr.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_cartActionPerformed
 
     private void ratingBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ratingBoxActionPerformed

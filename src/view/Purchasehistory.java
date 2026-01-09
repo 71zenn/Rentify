@@ -49,14 +49,16 @@ public class Purchasehistory extends javax.swing.JFrame {
         Newestbutton = new javax.swing.JButton();
         Supportbutton = new javax.swing.JButton();
         Viewpurchasebutton = new javax.swing.JButton();
-        searchbar = new javax.swing.JTextField();
         Allbutton = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         Mainsearchbar = new javax.swing.JTextField();
         Searchicon = new javax.swing.JLabel();
         Profileicon = new javax.swing.JLabel();
-        Scrollbarpanel = new javax.swing.JPanel();
-        jScrollBar1 = new javax.swing.JScrollBar();
+        Pagethree = new javax.swing.JButton();
+        Pagefour = new javax.swing.JButton();
+        Pageone = new javax.swing.JButton();
+        Pagetwo = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
         jPanel3 = new javax.swing.JPanel();
         Firstbox = new javax.swing.JPanel();
         Imagebox1 = new javax.swing.JLabel();
@@ -69,13 +71,8 @@ public class Purchasehistory extends javax.swing.JFrame {
         Thirdbox = new javax.swing.JPanel();
         Hamlet = new javax.swing.JLabel();
         Imagebox3 = new javax.swing.JLabel();
-        Pageone = new javax.swing.JButton();
-        Pagetwo = new javax.swing.JButton();
-        Pagethree = new javax.swing.JButton();
-        Pagefour = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(249, 250, 251));
@@ -198,20 +195,6 @@ public class Purchasehistory extends javax.swing.JFrame {
         jPanel2.add(Viewpurchasebutton);
         Viewpurchasebutton.setBounds(80, 150, 140, 30);
 
-        searchbar.setBackground(new java.awt.Color(243, 243, 243));
-        searchbar.setForeground(new java.awt.Color(107, 114, 128));
-        searchbar.setText("Search");
-        searchbar.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                searchbarFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                searchbarFocusLost(evt);
-            }
-        });
-        jPanel2.add(searchbar);
-        searchbar.setBounds(80, 210, 140, 30);
-
         Allbutton.setBackground(new java.awt.Color(229, 231, 235));
         Allbutton.setForeground(new java.awt.Color(107, 114, 128));
         Allbutton.setText("All");
@@ -221,13 +204,13 @@ public class Purchasehistory extends javax.swing.JFrame {
             }
         });
         jPanel2.add(Allbutton);
-        Allbutton.setBounds(240, 210, 50, 23);
+        Allbutton.setBounds(80, 210, 50, 23);
 
         jButton1.setBackground(new java.awt.Color(229, 231, 235));
         jButton1.setForeground(new java.awt.Color(107, 114, 128));
         jButton1.setText("Newest");
         jPanel2.add(jButton1);
-        jButton1.setBounds(310, 210, 75, 23);
+        jButton1.setBounds(150, 210, 75, 23);
 
         Mainsearchbar.setBackground(new java.awt.Color(243, 243, 243));
         Mainsearchbar.setForeground(new java.awt.Color(107, 114, 128));
@@ -261,23 +244,36 @@ public class Purchasehistory extends javax.swing.JFrame {
         jPanel2.add(Profileicon);
         Profileicon.setBounds(1140, 40, 60, 60);
 
-        Scrollbarpanel.setBackground(new java.awt.Color(249, 250, 251));
+        Pagethree.setText("3");
+        Pagethree.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PagethreeActionPerformed(evt);
+            }
+        });
+        jPanel2.add(Pagethree);
+        Pagethree.setBounds(660, 680, 23, 23);
 
-        javax.swing.GroupLayout ScrollbarpanelLayout = new javax.swing.GroupLayout(Scrollbarpanel);
-        Scrollbarpanel.setLayout(ScrollbarpanelLayout);
-        ScrollbarpanelLayout.setHorizontalGroup(
-            ScrollbarpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-        ScrollbarpanelLayout.setVerticalGroup(
-            ScrollbarpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 420, Short.MAX_VALUE)
-        );
+        Pagefour.setText("4");
+        Pagefour.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PagefourActionPerformed(evt);
+            }
+        });
+        jPanel2.add(Pagefour);
+        Pagefour.setBounds(690, 680, 23, 23);
 
-        jPanel2.add(Scrollbarpanel);
-        Scrollbarpanel.setBounds(1250, 260, 20, 420);
-        jPanel2.add(jScrollBar1);
-        jScrollBar1.setBounds(1250, 258, 20, 420);
+        Pageone.setText("1");
+        Pageone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PageoneActionPerformed(evt);
+            }
+        });
+        jPanel2.add(Pageone);
+        Pageone.setBounds(600, 680, 23, 23);
+
+        Pagetwo.setText("2");
+        jPanel2.add(Pagetwo);
+        Pagetwo.setBounds(630, 680, 23, 23);
 
         jPanel3.setBackground(new java.awt.Color(249, 250, 251));
 
@@ -407,69 +403,38 @@ public class Purchasehistory extends javax.swing.JFrame {
                 .addContainerGap(81, Short.MAX_VALUE))
         );
 
-        Pageone.setText("1");
-        Pageone.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PageoneActionPerformed(evt);
-            }
-        });
-
-        Pagetwo.setText("2");
-
-        Pagethree.setText("3");
-
-        Pagefour.setText("4");
-        Pagefour.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PagefourActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1230, Short.MAX_VALUE)
+            .addGap(0, 1248, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(Firstbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(Secondbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Thirdbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addGap(470, 470, 470)
-                            .addComponent(Pageone, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, 0)
-                            .addComponent(Pagetwo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, 0)
-                            .addComponent(Pagethree, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, 0)
-                            .addComponent(Pagefour, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Thirdbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 460, Short.MAX_VALUE)
+            .addGap(0, 468, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 19, Short.MAX_VALUE)
                     .addComponent(Firstbox, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(10, 10, 10)
                     .addComponent(Secondbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(10, 10, 10)
                     .addComponent(Thirdbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(10, 10, 10)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(Pageone, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Pagetwo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Pagethree, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Pagefour, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 29, Short.MAX_VALUE)))
         );
 
-        jPanel2.add(jPanel3);
-        jPanel3.setBounds(30, 250, 1230, 460);
+        jScrollPane1.setViewportView(jPanel3);
+
+        jPanel2.add(jScrollPane1);
+        jScrollPane1.setBounds(30, 250, 1210, 410);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(0, 0, 1280, 720);
@@ -696,20 +661,6 @@ public class Purchasehistory extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_MainsearchbarActionPerformed
 
-    private void searchbarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchbarFocusGained
-        // TODO add your handling code here:
-        if (searchbar.getText().equals("Search")) {
-        searchbar.setText("");
-    }
-    }//GEN-LAST:event_searchbarFocusGained
-
-    private void searchbarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchbarFocusLost
-        // TODO add your handling code here:
-        if (searchbar.getText().trim().isEmpty()) {
-        searchbar.setText("Search");
-    }
-    }//GEN-LAST:event_searchbarFocusLost
-
     private void ProfileiconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProfileiconMouseClicked
         // TODO add your handling code here:
         Point loc = this.getLocation();
@@ -727,6 +678,10 @@ public class Purchasehistory extends javax.swing.JFrame {
         ad.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_RentifylogoMouseClicked
+
+    private void PagethreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PagethreeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PagethreeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -773,7 +728,6 @@ public class Purchasehistory extends javax.swing.JFrame {
     private javax.swing.JButton Pagetwo;
     private javax.swing.JLabel Profileicon;
     private javax.swing.JLabel Rentifylogo;
-    private javax.swing.JPanel Scrollbarpanel;
     private javax.swing.JLabel Searchicon;
     private javax.swing.JPanel Secondbox;
     private javax.swing.JButton Supportbutton;
@@ -784,7 +738,6 @@ public class Purchasehistory extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollBar jScrollBar1;
-    private javax.swing.JTextField searchbar;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

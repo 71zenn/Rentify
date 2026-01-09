@@ -240,9 +240,8 @@
                           <Component id="Users" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
                           <Component id="Statistics" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
                           <Component id="ManageProducts" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
-                          <Component id="Invoice" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
-                          <Component id="Calender" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
                           <Component id="logout" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
+                          <Component id="Calender" min="-2" pref="180" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
@@ -282,10 +281,8 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="ManageProducts" min="-2" pref="31" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="Invoice" min="-2" pref="31" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="Calender" min="-2" pref="31" max="-2" attributes="0"/>
-                      <EmptySpace pref="246" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="logout" min="-2" pref="31" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   </Group>
@@ -293,7 +290,7 @@
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       <Component id="addproduct" min="-2" pref="32" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="456" max="32767" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="delete" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
@@ -439,36 +436,6 @@
                 <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ManageProductsMouseEntered"/>
                 <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ManageProductsMouseExited"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ManageProductsActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="Invoice">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="eb" green="e7" red="e5" type="rgb"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="14" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="80" green="72" red="6b" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Invoice"/>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                    <LineBorder roundedCorners="true" thickness="2">
-                      <Color PropertyName="color" blue="c1" green="c1" red="c1" type="rgb"/>
-                    </LineBorder>
-                  </Border>
-                </Property>
-                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Hand Cursor"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="InvoiceMouseClicked"/>
-                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="InvoiceMouseEntered"/>
-                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="InvoiceMouseExited"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InvoiceActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="Calender">

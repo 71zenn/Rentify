@@ -178,7 +178,7 @@ public class registration extends javax.swing.JFrame {
 
     user.setUsername(username);
     user.setEmail(email);
-    user.setPasssword(password);   
+    user.setPassword(password);   
 
     
 

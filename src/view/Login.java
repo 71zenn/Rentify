@@ -6,6 +6,9 @@ package view;
 import controller.controller;
 import java.awt.Point;
 import javax.swing.JOptionPane;
+import model.User_model;
+import userdata.UserSession;
+import userdata.userDao;
 
 /**
  *
@@ -259,18 +262,29 @@ public class Login extends javax.swing.JFrame {
 
     private void LoginbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginbuttonActionPerformed
         // TODO add your handling code here:
-    String username = Username.getText();  
-    String password = Password.getText();
+    String username = Username.getText();
+    String password = new String(Password.getPassword());   // or getText()
 
-    boolean success = Controller.loginUser(username, password);
+    // Build model for DAO
+    User_model input = new User_model();
+    input.setUsername(username);
+    input.setPassword(password);
 
-    if (success) {
+    userDao dao = new userDao();
+
+    // Get full user (with user_id) from DB
+    User_model loggedIn = dao.loginAndGetUser(input);
+
+    if (loggedIn != null) {
+        // ✅ Save to session
+        UserSession.setCurrentUser(loggedIn);
+        System.out.println("Logged in userId = " + UserSession.getUserId());
+
         Point loc = this.getLocation();
         HomePage home = new HomePage();
         home.setLocation(loc);
         home.setVisible(true);
         this.dispose();
-        // TODO: open dashboard page here if you want
     } else {
         JOptionPane.showMessageDialog(this, "Invalid username or password!");
     }

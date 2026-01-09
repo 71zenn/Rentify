@@ -67,7 +67,7 @@ public class userDao {
         return null;
     }
 
-    String sql = "SELECT user_id, username, email FROM users WHERE username = ? AND password = ?";
+    String sql = "SELECT UserID, username, email FROM user WHERE username = ? AND password = ?";
 
     try (PreparedStatement pstm = conn.prepareStatement(sql)) {
 
@@ -76,8 +76,8 @@ public class userDao {
 
         try (ResultSet rs = pstm.executeQuery()) {
             if (rs.next()) {
-                User_model u = new User_model();
-                u.setUserID(rs.getInt("user_id"));
+                User_model u = new User_model(); 
+                u.setUserID(rs.getInt("UserID"));
                 u.setUsername(rs.getString("username"));
                 u.setEmail(rs.getString("email"));
                 return u;
