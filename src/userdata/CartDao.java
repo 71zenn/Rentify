@@ -22,38 +22,38 @@ public class CartDao {
     MySQLConnection mysql = new MySQLConnection();
 
     public List<CartItem> getCartItems(int userId) {
-        
+    List<CartItem> list = new ArrayList<>();
 
-        List<CartItem> list = new ArrayList<>();
+    String sql = """
+        SELECT cart_id, item_id, item_name, item_type, action_type, price, image, quantity
+        FROM cart_items
+        WHERE user_id = ?
+    """;
 
-        String sql = """
-                        SELECT cart_id, item_id, item_name, item_type, action_type, price, image, quantity
-                        FROM cart_items
-                        WHERE user_id = ?
-                    """;
-        try (Connection con = mysql.openConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
+    try (Connection con = mysql.openConnection();
+         PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setInt(1, userId);
-            ResultSet rs = ps.executeQuery();
+        ps.setInt(1, userId);
+        ResultSet rs = ps.executeQuery();
 
-            while (rs.next()) {
-    CartItem item = new CartItem();
-    item.setCartId(rs.getInt("cart_id"));
-    item.setItemId(rs.getInt("item_id"));
-    item.setItemName(rs.getString("item_name"));
-    item.setItemType(rs.getString("item_type"));
-    item.setActionType(rs.getString("action_type"));
-    item.setPrice(rs.getDouble("price"));
-    item.setImage(rs.getString("image"));
-    item.setQuantity(rs.getInt("quantity"));
-    list.add(item);
-}
-        } catch (Exception e) {
-            e.printStackTrace();
+        while (rs.next()) {
+            CartItem item = new CartItem();
+            item.setCartId(rs.getInt("cart_id"));
+            item.setItemId(rs.getInt("item_id"));
+            item.setItemName(rs.getString("item_name"));
+            item.setItemType(rs.getString("item_type"));
+            item.setActionType(rs.getString("action_type"));
+            item.setPrice(rs.getDouble("price"));
+            item.setImage(rs.getString("image"));
+            item.setQuantity(rs.getInt("quantity"));
+            list.add(item);
         }
-        return list;
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+    return list;
+}
+
 
     public void removeFromCart(int cartId) {
 
@@ -86,19 +86,20 @@ public class CartDao {
     }
 
     // ✅ NEW: delete ALL items for user (top DELETE button)
-    public void clearCart(int userId) {
-        String sql = "DELETE FROM cart_items WHERE user_id = ?";
+    public void clearCart(int userId) {               // add parameter
+    String sql = "DELETE FROM cart_items WHERE user_id = ?";
 
-        try (Connection con = mysql.openConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
+    try (Connection con = mysql.openConnection();
+         PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setInt(1, userId);
-            ps.executeUpdate();
+        ps.setInt(1, userId);                    // now compiles
+        ps.executeUpdate();
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+    }
+
     
     public void removeSelected(java.util.List<Integer> cartIds) {
     if (cartIds == null || cartIds.isEmpty()) return;

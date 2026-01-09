@@ -4,6 +4,7 @@
  */
 package view;
 
+import controller.ProductController;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Point;
@@ -23,6 +24,7 @@ import org.jfree.chart.renderer.category.BarRenderer;
  * @author sthaa
  */
 public class statistics extends javax.swing.JFrame {
+    private final ProductController productController = new ProductController();
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(statistics.class.getName());
 
@@ -39,36 +41,37 @@ public class statistics extends javax.swing.JFrame {
             }
         });
         
+        int booksQty  = productController.getTotalQuantityByType("Book");
+        int moviesQty = productController.getTotalQuantityByType("Movie");
+
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        dataset.addValue(120, "Books", "Books");
-        dataset.addValue(200, "Movies", "Movies");
+        dataset.addValue(booksQty,  "Books",  "Books");   // books from DB
+        dataset.addValue(moviesQty, "Movies", "Movies");  // movies from DB
 
         JFreeChart chart = ChartFactory.createBarChart(
-            "Product Sales",
+            "Product Quantity",
             "Product",
-            "Units Sold",
+            "Total Quantity",
             dataset,
             PlotOrientation.VERTICAL,
             true,
             true,
             false
         );
-        
+
         CategoryPlot plot = chart.getCategoryPlot();
-        plot.setRangeGridlinePaint(new Color(230, 230, 230)); // Subtle grid lines
-    
+        plot.setRangeGridlinePaint(new Color(230, 230, 230));
+
         BarRenderer renderer = (BarRenderer) plot.getRenderer();
-    
-        // Set Colors
-        renderer.setSeriesPaint(0, new Color(231, 76, 60));   // Books: Soft Red
-        renderer.setSeriesPaint(1, new Color(38,166,154));  // Movies: Teal/Green
+        renderer.setSeriesPaint(0, new Color(231, 76, 60));
+        renderer.setSeriesPaint(1, new Color(38,166,154));
+
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setMouseWheelEnabled(true);
 
-        jLabel1.removeAll();                    
-        jLabel1.setLayout(new BorderLayout()); 
+        jLabel1.removeAll();
+        jLabel1.setLayout(new BorderLayout());
         jLabel1.add(chartPanel, BorderLayout.CENTER);
-
         jLabel1.revalidate();
         jLabel1.repaint();
     }
@@ -98,7 +101,6 @@ public class statistics extends javax.swing.JFrame {
         Users = new javax.swing.JButton();
         Statistics = new javax.swing.JButton();
         ManageProducts = new javax.swing.JButton();
-        Invoice = new javax.swing.JButton();
         Calender = new javax.swing.JButton();
         logout = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -266,25 +268,6 @@ public class statistics extends javax.swing.JFrame {
         });
         ManageProducts.addActionListener(this::ManageProductsActionPerformed);
 
-        Invoice.setBackground(new java.awt.Color(229, 231, 235));
-        Invoice.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        Invoice.setForeground(new java.awt.Color(107, 114, 128));
-        Invoice.setText("Invoice");
-        Invoice.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(193, 193, 193), 2, true));
-        Invoice.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Invoice.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                InvoiceMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                InvoiceMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                InvoiceMouseExited(evt);
-            }
-        });
-        Invoice.addActionListener(this::InvoiceActionPerformed);
-
         Calender.setBackground(new java.awt.Color(229, 231, 235));
         Calender.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Calender.setForeground(new java.awt.Color(107, 114, 128));
@@ -336,7 +319,6 @@ public class statistics extends javax.swing.JFrame {
                     .addComponent(Users, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Statistics, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ManageProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Invoice, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Calender, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
@@ -358,14 +340,12 @@ public class statistics extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(ManageProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(Invoice, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addComponent(Calender, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 246, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, centerLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(50, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -576,25 +556,6 @@ public class statistics extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ManageProductsActionPerformed
 
-    private void InvoiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InvoiceMouseClicked
-        // TODO add your handling code here:
-        Point loc = this.getLocation();
-        if (adWindow != null && adWindow.isVisible()) {
-        adWindow.setVisible(false);
-        adWindow.dispose();
-        adWindow = null;
-        }
-        this.dispose();
-
-        invoice ad = new invoice();
-        ad.setLocation(loc);
-        ad.setVisible(true);
-    }//GEN-LAST:event_InvoiceMouseClicked
-
-    private void InvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InvoiceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_InvoiceActionPerformed
-
     private void CalenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CalenderMouseClicked
         // TODO add your handling code here:
         Point loc = this.getLocation();
@@ -709,25 +670,6 @@ public class statistics extends javax.swing.JFrame {
     );
     }//GEN-LAST:event_ManageProductsMouseExited
 
-    private void InvoiceMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InvoiceMouseEntered
-        // TODO add your handling code here:
-        Invoice.setBackground(new java.awt.Color(38,166,154)); 
-        Invoice.setForeground(java.awt.Color.WHITE);
-        Invoice.setBorder(
-        BorderFactory.createLineBorder(new java.awt.Color(38,166,154), 2)
-    );
-        Invoice.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    }//GEN-LAST:event_InvoiceMouseEntered
-
-    private void InvoiceMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InvoiceMouseExited
-        // TODO add your handling code here:
-        Invoice.setBackground(new java.awt.Color(229,231,235)); 
-        Invoice.setForeground(new java.awt.Color(107,114,128));
-        Invoice.setBorder(
-        BorderFactory.createLineBorder(new java.awt.Color(193,193,193), 2)
-    );
-    }//GEN-LAST:event_InvoiceMouseExited
-
     private void CalenderMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CalenderMouseEntered
         // TODO add your handling code here:
         Calender.setBackground(new java.awt.Color(38,166,154)); 
@@ -793,7 +735,6 @@ public class statistics extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Calender;
-    private javax.swing.JButton Invoice;
     private javax.swing.JButton ManageProducts;
     private javax.swing.JLabel ProfileIcon;
     private javax.swing.JButton Statistics;

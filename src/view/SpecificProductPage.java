@@ -5,6 +5,7 @@
 package view;
 
 
+import java.awt.Point;
 import javax.swing.JPanel;
 import model.ProductModel;
 import model.User_model;
@@ -82,9 +83,7 @@ public class SpecificProductPage extends javax.swing.JFrame {
         reviewPanelPlace.setBackground(new java.awt.Color(255, 255, 255));
         reviewPanelPlace.setPreferredSize(new java.awt.Dimension(880, 220));
 
-        rateBtn.setBackground(new java.awt.Color(255, 255, 255));
         rateBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        rateBtn.setForeground(new java.awt.Color(0, 0, 0));
         rateBtn.setText("Rate/Review product");
         rateBtn.setBorder(null);
         rateBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -203,7 +202,6 @@ public class SpecificProductPage extends javax.swing.JFrame {
         jPanel1.add(Books);
         Books.setBounds(480, 50, 146, 36);
 
-        cart.setBackground(new java.awt.Color(255, 255, 255));
         cart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cart40x40.png"))); // NOI18N
         cart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -274,6 +272,11 @@ public class SpecificProductPage extends javax.swing.JFrame {
 
     private void cartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cartActionPerformed
         // TODO add your handling code here:  
+        Point loc = this.getLocation();
+        Cart cr = new Cart();
+        cr.setLocation(loc);
+        cr.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_cartActionPerformed
 
     private void rateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rateBtnActionPerformed

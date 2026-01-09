@@ -148,4 +148,23 @@ public void deleteProduct(int id) {
         mysql.closeConnection(conn);
     }
 }
+public int getTotalQuantityByType(String type) {
+    int total = 0;
+    Connection conn = mysql.openConnection();
+    String sql = "SELECT SUM(productQuantity) AS total FROM products WHERE productType = ?";
+
+    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        pstmt.setString(1, type);
+        try (ResultSet rs = pstmt.executeQuery()) {
+            if (rs.next()) {
+                total = rs.getInt("total");
+            }
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    } finally {
+        mysql.closeConnection(conn);
+    }
+    return total;
+}
 }

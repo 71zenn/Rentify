@@ -346,6 +346,11 @@ public class HomePage extends javax.swing.JFrame {
 
     private void cartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cartActionPerformed
         // TODO add your handling code here:
+        Point loc = this.getLocation();
+        Cart cr = new Cart();
+        cr.setLocation(loc);
+        cr.setVisible(true);
+        this.dispose();
         
     }//GEN-LAST:event_cartActionPerformed
 
