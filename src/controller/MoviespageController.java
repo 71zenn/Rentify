@@ -8,17 +8,20 @@ import java.awt.Dimension;
 import java.util.List;
 import model.ProductModel;
 import userdata.ProductDao;
-import view.BooksPage;
+import view.HomePage;
+import view.MoviePage;
 import view.ProductPanel;
+import view.UserDashboard;
+
 /**
  *
  * @author zenni
  */
-public class BookspageController {
+public class MoviespageController {
     private final ProductDao productDao = new ProductDao();
-    private final BooksPage dashboardView;
+    private final MoviePage dashboardView;
     
-    public BookspageController(BooksPage dashboardView) {
+    public MoviespageController(MoviePage dashboardView) {
         this.dashboardView = dashboardView;
         getAllProducts();
         loadAllProducts();
@@ -26,7 +29,7 @@ public class BookspageController {
     }
     
     public List<ProductModel>getAllProducts(){
-        return productDao.getAllbooks();
+        return productDao.getAllMovies();
         
     }
      
@@ -38,7 +41,7 @@ public class BookspageController {
     productListPanel.setLayout(new java.awt.GridLayout(0, 4, 20, 20 ));
     
     try {
-        List<ProductModel> products = productDao.getAllbooks();
+        List<ProductModel> products = productDao.getAllMovies();
         for (ProductModel product : products) {
             ProductPanel card = new ProductPanel();
             card.setProduct(product);

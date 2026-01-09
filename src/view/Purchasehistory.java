@@ -21,6 +21,7 @@ public class Purchasehistory extends javax.swing.JFrame {
      */
     public Purchasehistory() {
         initComponents();
+        setSize(1293,760);
         Mainsearchbar.getInputMap().put(
         javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ENTER, 0),
         "search");

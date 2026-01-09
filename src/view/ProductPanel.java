@@ -44,37 +44,50 @@ private ProductModel currentProduct;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        productPrice = new javax.swing.JLabel();
         productBackground = new javax.swing.JPanel();
         productImage = new javax.swing.JLabel();
         productName = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        productPrice = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(200, 240));
         setLayout(null);
 
-        productPrice.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        productPrice.setForeground(new java.awt.Color(255, 51, 51));
-        productPrice.setText("Rs. 999");
-        add(productPrice);
-        productPrice.setBounds(20, 210, 70, 22);
-
         productBackground.setBackground(new java.awt.Color(255, 255, 255));
         productBackground.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 3));
+        productBackground.setLayout(null);
 
         productImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/Transformersposter.jpg"))); // NOI18N
         productBackground.add(productImage);
+        productImage.setBounds(25, 8, 150, 150);
 
         productName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         productName.setForeground(new java.awt.Color(51, 51, 51));
         productName.setText("Transformers");
         productBackground.add(productName);
+        productName.setBounds(50, 160, 104, 25);
+
+        jButton1.setBackground(new java.awt.Color(38, 166, 154));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Add To Cart");
+        jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        productBackground.add(jButton1);
+        jButton1.setBounds(20, 230, 160, 30);
+
+        productPrice.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        productPrice.setForeground(new java.awt.Color(255, 51, 51));
+        productPrice.setText("Rs. 999");
+        productBackground.add(productPrice);
+        productPrice.setBounds(20, 190, 70, 22);
 
         add(productBackground);
-        productBackground.setBounds(0, 0, 200, 240);
+        productBackground.setBounds(0, 0, 200, 280);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel productBackground;
     private javax.swing.JLabel productImage;
     private javax.swing.JLabel productName;

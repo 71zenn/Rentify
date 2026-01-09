@@ -58,6 +58,7 @@ public class RentalDate extends javax.swing.JFrame {
      */
     public RentalDate() {
         initComponents();
+        setSize(1293,760);
         Mainsearchbar.getInputMap().put(
         javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ENTER, 0),
         "search");

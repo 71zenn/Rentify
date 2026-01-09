@@ -26,6 +26,9 @@ public class BooksPage extends javax.swing.JFrame {
     public BooksPage() {
         initComponents();       
         setSize(1293,760);
+        controller.BookspageController controller = new controller.BookspageController(this);
+        controller.loadAllProducts();
+        
        jTextArea2.getInputMap().put(
         javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ENTER, 0),
         "search");
@@ -142,17 +145,14 @@ public class BooksPage extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addComponent(FilterBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(FilterBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2);
@@ -164,6 +164,9 @@ public class BooksPage extends javax.swing.JFrame {
         SupportBTN.setText("Support");
         SupportBTN.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(194, 194, 194), 1, true));
         SupportBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SupportBTNMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 SupportBTNMouseEntered(evt);
             }
@@ -380,6 +383,11 @@ public class BooksPage extends javax.swing.JFrame {
 
     private void SupportBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupportBTNActionPerformed
         // TODO add your handling code here:
+        Point loc = this.getLocation();
+        this.dispose();
+        SupportPage Page = new SupportPage();
+        Page.setLocation(loc);
+        Page.setVisible(true);
     }//GEN-LAST:event_SupportBTNActionPerformed
 
     private void LibraryBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LibraryBTNActionPerformed
@@ -449,7 +457,9 @@ public class BooksPage extends javax.swing.JFrame {
 
     private void LogoBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoBTNActionPerformed
         // TODO add your handling code here:
+        Point loc = this.getLocation();
         HomePage homePage = new HomePage();
+        homePage.setLocation(loc);
         homePage.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_LogoBTNActionPerformed
@@ -556,6 +566,10 @@ public class BooksPage extends javax.swing.JFrame {
         BorderFactory.createLineBorder(new java.awt.Color(38,166,154), 1)
     );
     }//GEN-LAST:event_FilterBTNMouseExited
+
+    private void SupportBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SupportBTNMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SupportBTNMouseClicked
     
    
     /**
