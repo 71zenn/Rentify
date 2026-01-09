@@ -3,84 +3,294 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
-import controller.CartController;
-import model.CartItem;
-import userdata.UserSession;
-import java.awt.*;
+
+import controller.AddToCartController;
+import model.CartModel;
+
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
+public class AddToCart extends JFrame {
 
+    private static final java.util.logging.Logger logger =
+            java.util.logging.Logger.getLogger(AddToCart.class.getName());
 
-/**
- *
- * @author Dell
- */
-public class Cart extends javax.swing.JFrame {
-    private CartController cartController;
-    private JPanel contentPanel;
-private JSplitPane split;
-private int loggedInUserId;
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Cart.class.getName());
+    // --- Controller + temp user ---
+    private final AddToCartController cartController = new AddToCartController();
+    private int loggedInUserId = 1; // later replace with UserSession
 
-    /**
-     * Creates new form Cart
-     */
-    public Cart() {
+    // --- UI components (we control, no NetBeans auto code) ---
+    private JPanel BackgroundPanel;
+    private JScrollPane scrlCart;
+    private JPanel cartListPanel;
 
-    initComponents();
-    cartController = new CartController();
-    loggedInUserId = UserSession.getUserId();
+    private JTextField txtSearch;
+    private JCheckBox chkSelectALL;
+    private JButton btnDeleteSelected;
 
-    setLocationRelativeTo(null);
-    setResizable(true);
+    private JLabel lblSubtotal;
+    private JLabel lblTotal;
 
-    // ✅ Make "Proceed to checkout" behave like a button
-    jTextField2.setEditable(false);
-    jTextField2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    jTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
-        @Override
-        public void mouseClicked(java.awt.event.MouseEvent e) {
-            doCheckout();
+    // track items + checkboxes
+    private List<CartModel> currentItems = new ArrayList<>();
+    private final List<JCheckBox> itemChecks = new ArrayList<>();
+
+    public AddToCart() {
+        buildUI();
+        loadCart();
+    }
+
+    private void buildUI() {
+        setTitle("Rentify - Cart");
+        setSize(1280, 720);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        BackgroundPanel = new JPanel(new BorderLayout());
+        BackgroundPanel.setBackground(new Color(249, 250, 251));
+        setContentPane(BackgroundPanel);
+
+        // ---------- TOP HEADER ----------
+        JPanel top = new JPanel();
+        top.setBackground(new Color(249, 250, 251));
+        top.setLayout(new BorderLayout(10, 10));
+        top.setBorder(BorderFactory.createEmptyBorder(15, 20, 10, 20));
+
+        JLabel logo = new JLabel("RENTIFY");
+        logo.setFont(new Font("Segoe UI", Font.BOLD, 22));
+
+        JPanel searchWrap = new JPanel(new BorderLayout());
+        searchWrap.setBackground(Color.WHITE);
+        searchWrap.setBorder(BorderFactory.createLineBorder(new Color(210, 210, 210)));
+        searchWrap.setPreferredSize(new Dimension(350, 35));
+
+        txtSearch = new JTextField("Search in Rentify");
+        txtSearch.setBorder(null);
+        txtSearch.setForeground(new Color(107, 114, 128));
+        txtSearch.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        txtSearch.setBackground(Color.WHITE);
+
+        // clear placeholder when clicked
+        txtSearch.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override public void focusGained(java.awt.event.FocusEvent e) {
+                if (txtSearch.getText().equals("Search in Rentify")) {
+                    txtSearch.setText("");
+                }
+            }
+            @Override public void focusLost(java.awt.event.FocusEvent e) {
+                if (txtSearch.getText().trim().isEmpty()) {
+                    txtSearch.setText("Search in Rentify");
+                }
+            }
+        });
+
+        // Enter key search
+        txtSearch.addActionListener(e -> loadCart());
+
+        searchWrap.add(txtSearch, BorderLayout.CENTER);
+
+        top.add(logo, BorderLayout.WEST);
+        top.add(searchWrap, BorderLayout.EAST);
+
+        BackgroundPanel.add(top, BorderLayout.NORTH);
+
+        // ---------- CENTER (LEFT CART + RIGHT SUMMARY) ----------
+        JPanel center = new JPanel(new BorderLayout(15, 10));
+        center.setBackground(new Color(249, 250, 251));
+        center.setBorder(BorderFactory.createEmptyBorder(10, 20, 20, 20));
+        BackgroundPanel.add(center, BorderLayout.CENTER);
+
+        // ===== LEFT SIDE =====
+        JPanel leftSide = new JPanel();
+        leftSide.setBackground(new Color(249, 250, 251));
+        leftSide.setLayout(new BorderLayout(0, 10));
+
+        // Select all bar
+        JPanel selectBar = new JPanel(new BorderLayout());
+        selectBar.setBackground(Color.WHITE);
+        selectBar.setBorder(BorderFactory.createLineBorder(new Color(220, 220, 220)));
+        selectBar.setPreferredSize(new Dimension(0, 40));
+
+        chkSelectALL = new JCheckBox("SELECT ALL");
+        chkSelectALL.setBackground(Color.WHITE);
+        chkSelectALL.setForeground(new Color(128, 126, 126));
+        chkSelectALL.setFont(new Font("Segoe UI", Font.PLAIN, 11));
+        chkSelectALL.addActionListener(e -> toggleSelectAll());
+
+        btnDeleteSelected = new JButton("Delete");
+        btnDeleteSelected.setFocusPainted(false);
+        btnDeleteSelected.addActionListener(e -> deleteSelected());
+
+        selectBar.add(chkSelectALL, BorderLayout.WEST);
+        selectBar.add(btnDeleteSelected, BorderLayout.EAST);
+
+        leftSide.add(selectBar, BorderLayout.NORTH);
+
+        // Scroll + list panel
+        cartListPanel = new JPanel();
+        cartListPanel.setLayout(new BoxLayout(cartListPanel, BoxLayout.Y_AXIS));
+        cartListPanel.setBackground(Color.WHITE);
+
+        scrlCart = new JScrollPane(cartListPanel);
+        scrlCart.setBorder(BorderFactory.createLineBorder(new Color(220, 220, 220)));
+        scrlCart.getVerticalScrollBar().setUnitIncrement(16);
+        scrlCart.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        leftSide.add(scrlCart, BorderLayout.CENTER);
+
+        // ===== RIGHT SIDE (Order summary) =====
+        JPanel rightSide = new JPanel();
+        rightSide.setPreferredSize(new Dimension(360, 0));
+        rightSide.setBackground(new Color(232, 241, 253));
+        rightSide.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+        rightSide.setLayout(new BoxLayout(rightSide, BoxLayout.Y_AXIS));
+
+        JLabel title = new JLabel("Order Summary");
+        title.setFont(new Font("Segoe UI", Font.BOLD, 14));
+
+        lblSubtotal = new JLabel("Subtotal (0 items)");
+        lblTotal = new JLabel("Rs = 0");
+
+        lblSubtotal.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
+        lblTotal.setFont(new Font("Segoe UI", Font.BOLD, 13));
+
+        JButton btnCheckout = new JButton("PROCEED TO CHECKOUT");
+        btnCheckout.setBackground(new Color(13, 106, 210));
+        btnCheckout.setForeground(Color.WHITE);
+        btnCheckout.setFocusPainted(false);
+
+        rightSide.add(title);
+        rightSide.add(lblSubtotal);
+        rightSide.add(lblTotal);
+        rightSide.add(Box.createVerticalStrut(20));
+        rightSide.add(btnCheckout);
+
+        // Put left + right into center
+        center.add(leftSide, BorderLayout.CENTER);
+        center.add(rightSide, BorderLayout.EAST);
+    }
+
+    private void loadCart() {
+        String search = txtSearch.getText();
+        if (search == null || search.trim().isEmpty() || "Search in Rentify".equalsIgnoreCase(search)) {
+            search = "";
         }
-    });
 
-    // ✅ Build contentPanel (center area under header)
-    contentPanel = new JPanel(new BorderLayout());
-    contentPanel.setOpaque(false);
+        currentItems = cartController.getCartItems(loggedInUserId, search);
 
-    // ✅ Remove old components that NetBeans put there (cart + summary)
-    jPanel1.remove(Cartbox);
-    jPanel1.remove(jPanel4);
+        cartListPanel.removeAll();
+        itemChecks.clear();
 
-    // ✅ Wrap cart in scroll
-    Cartbox.removeAll();
-    Cartbox.setLayout(new BoxLayout(Cartbox, BoxLayout.Y_AXIS));
-    JScrollPane cartScroll = new JScrollPane(Cartbox);
-    cartScroll.setBorder(null);
+        int subtotal = 0;
 
-    // ✅ Split pane 50/50
-    split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, cartScroll, jPanel4);
-    split.setResizeWeight(0.50);
-    split.setDividerSize(6);
-    split.setBorder(null);
+        for (CartModel item : currentItems) {
+            cartListPanel.add(createCartRow(item));
+            cartListPanel.add(Box.createVerticalStrut(10));
+            subtotal += item.getProductPrice() * item.getQuantity();
+        }
 
-    contentPanel.add(split, BorderLayout.CENTER);
+        lblSubtotal.setText("Subtotal (" + currentItems.size() + " items)");
+        lblTotal.setText("Rs = " + subtotal);
 
-    // ✅ Add contentPanel into jPanel1 with manual positioning (since you use null layout)
-    contentPanel.setBounds(18, 210, 1240, 430); // adjust if needed
-    jPanel1.setLayout(null); // important if not already null
-    jPanel1.add(contentPanel);
+        cartListPanel.revalidate();
+        cartListPanel.repaint();
+    }
 
-    // ✅ Make divider exact after UI shows
-    SwingUtilities.invokeLater(() -> split.setDividerLocation(0.50));
+    private JPanel createCartRow(CartModel item) {
+        JPanel row = new JPanel(new BorderLayout(12, 10));
+        row.setBackground(Color.WHITE);
+        row.setBorder(BorderFactory.createLineBorder(new Color(220, 220, 220)));
+        row.setMaximumSize(new Dimension(Integer.MAX_VALUE, 110));
 
-    // ✅ Load DB items
-    loadCartItems();
+        // LEFT: checkbox
+        JCheckBox cb = new JCheckBox();
+        cb.setBackground(Color.WHITE);
+        itemChecks.add(cb);
 
-    pack();
+        JPanel left = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 15));
+        left.setBackground(Color.WHITE);
+        left.add(cb);
+        row.add(left, BorderLayout.WEST);
+
+        // CENTER: name + meta
+        JPanel center = new JPanel();
+        center.setBackground(Color.WHITE);
+        center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
+
+        JLabel name = new JLabel(item.getProductName());
+        name.setFont(new Font("Segoe UI", Font.BOLD, 12));
+
+        JLabel meta = new JLabel(item.getProductType() + " | " + item.getProductForm() + " | " + item.getActionType());
+        meta.setForeground(new Color(120, 120, 120));
+
+        center.add(name);
+        center.add(Box.createVerticalStrut(5));
+        center.add(meta);
+
+        row.add(center, BorderLayout.CENTER);
+
+        // RIGHT: price + qty + buttons
+        JPanel right = new JPanel(new FlowLayout(FlowLayout.RIGHT, 8, 12));
+        right.setBackground(Color.WHITE);
+
+        JLabel price = new JLabel("Rs. " + item.getProductPrice());
+        JLabel qty = new JLabel("Qty: " + item.getQuantity());
+
+        JButton minus = new JButton("-");
+        JButton plus = new JButton("+");
+        JButton del = new JButton("Delete");
+
+        minus.addActionListener(e -> {
+            cartController.decreaseQty(item.getCartId(), item.getQuantity());
+            loadCart();
+        });
+
+        plus.addActionListener(e -> {
+            cartController.increaseQty(item.getCartId(), item.getQuantity());
+            loadCart();
+        });
+
+        del.addActionListener(e -> {
+            cartController.deleteItem(item.getCartId());
+            loadCart();
+        });
+
+        right.add(price);
+        right.add(minus);
+        right.add(qty);
+        right.add(plus);
+        right.add(del);
+
+        row.add(right, BorderLayout.EAST);
+
+        return row;
+    }
+
+    private void toggleSelectAll() {
+        boolean select = chkSelectALL.isSelected();
+        for (JCheckBox cb : itemChecks) {
+            cb.setSelected(select);
+        }
+    }
+
+    private void deleteSelected() {
+        for (int i = 0; i < currentItems.size(); i++) {
+            if (i < itemChecks.size() && itemChecks.get(i).isSelected()) {
+                cartController.deleteItem(currentItems.get(i).getCartId());
+            }
+        }
+        loadCart();
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new AddToCart().setVisible(true));
+    }
 }
+
 
 
     /**
@@ -166,7 +376,6 @@ private int loggedInUserId;
         jTextField2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(249, 250, 251));
