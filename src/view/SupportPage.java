@@ -10,25 +10,17 @@ import java.awt.Point;
  *
  * @author zenni
  */
-public class LibraryPage extends javax.swing.JFrame {
+public class SupportPage extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(LibraryPage.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SupportPage.class.getName());
 
     /**
      * Creates new form dashboard
      */
-    public LibraryPage() {
+    public SupportPage() {
         initComponents();
         setSize(1293,760);
-        jTextArea2.getInputMap().put(
-        javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ENTER, 0),
-        "search");
-        jTextArea2.getActionMap().put("search", new javax.swing.AbstractAction() {
-            @Override
-        public void actionPerformed(java.awt.event.ActionEvent e) {
-            performSearch();
-            }
-        }); 
+
     }
 
     /**
@@ -42,21 +34,15 @@ public class LibraryPage extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        FilterBTN = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        Profile_icon4 = new javax.swing.JLabel();
-        Profile_icon5 = new javax.swing.JLabel();
-        Profile_icon6 = new javax.swing.JLabel();
-        Profile_icon7 = new javax.swing.JLabel();
-        Profile_icon8 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        ContactBTN = new javax.swing.JButton();
+        ProductDemoBTN = new javax.swing.JButton();
+        RequestBTN = new javax.swing.JButton();
+        LicenseQuesBTN = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jTextArea1 = new javax.swing.JTextArea();
+        jTextArea4 = new javax.swing.JTextArea();
+        jTextArea6 = new javax.swing.JTextArea();
+        jTextArea7 = new javax.swing.JTextArea();
         SupportBTN = new javax.swing.JButton();
         LibraryBTN = new javax.swing.JButton();
         MoviesBTN = new javax.swing.JButton();
@@ -67,6 +53,9 @@ public class LibraryPage extends javax.swing.JFrame {
         cart = new javax.swing.JButton();
         logoBTN = new javax.swing.JLabel();
         profileBTN = new javax.swing.JLabel();
+        jTextArea3 = new javax.swing.JTextArea();
+        jPanel3 = new javax.swing.JPanel();
+        jTextArea5 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -78,77 +67,92 @@ public class LibraryPage extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(229, 231, 235), 3));
 
-        FilterBTN.setBackground(new java.awt.Color(255, 255, 255));
-        FilterBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
-        FilterBTN.setForeground(new java.awt.Color(107, 114, 128));
-        FilterBTN.setText("Filter");
-        FilterBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 166, 154)));
-        FilterBTN.addActionListener(new java.awt.event.ActionListener() {
+        ContactBTN.setBackground(new java.awt.Color(255, 255, 255));
+        ContactBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        ContactBTN.setForeground(new java.awt.Color(107, 114, 128));
+        ContactBTN.setText("Contact info");
+        ContactBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 166, 154)));
+        ContactBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FilterBTNActionPerformed(evt);
+                ContactBTNActionPerformed(evt);
             }
         });
 
-        jPanel3.setBackground(new java.awt.Color(229, 231, 235));
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(229, 231, 235)));
-        jPanel3.setPreferredSize(new java.awt.Dimension(3, 560));
+        ProductDemoBTN.setBackground(new java.awt.Color(255, 255, 255));
+        ProductDemoBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        ProductDemoBTN.setForeground(new java.awt.Color(107, 114, 128));
+        ProductDemoBTN.setText("Product demo");
+        ProductDemoBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 166, 154)));
+        ProductDemoBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ProductDemoBTNActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        RequestBTN.setBackground(new java.awt.Color(255, 255, 255));
+        RequestBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        RequestBTN.setForeground(new java.awt.Color(107, 114, 128));
+        RequestBTN.setText("Request features");
+        RequestBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 166, 154)));
+        RequestBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RequestBTNActionPerformed(evt);
+            }
+        });
+
+        LicenseQuesBTN.setBackground(new java.awt.Color(255, 255, 255));
+        LicenseQuesBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        LicenseQuesBTN.setForeground(new java.awt.Color(107, 114, 128));
+        LicenseQuesBTN.setText("License inquiries");
+        LicenseQuesBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 166, 154)));
+        LicenseQuesBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LicenseQuesBTNActionPerformed(evt);
+            }
+        });
+
+        jPanel4.setBackground(new java.awt.Color(229, 231, 235));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(229, 231, 235)));
+        jPanel4.setPreferredSize(new java.awt.Dimension(3, 560));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 604, Short.MAX_VALUE)
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 559, Short.MAX_VALUE)
         );
 
-        Profile_icon4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/harrypotterTPScover.jpg"))); // NOI18N
+        jTextArea1.setBackground(new java.awt.Color(204, 204, 204));
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jTextArea1.setForeground(new java.awt.Color(0, 0, 0));
+        jTextArea1.setRows(5);
+        jTextArea1.setText("Address : Lazimpath, Kathmandu, Nepal");
 
-        Profile_icon5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/Transformersposter.jpg"))); // NOI18N
+        jTextArea4.setBackground(new java.awt.Color(204, 204, 204));
+        jTextArea4.setColumns(20);
+        jTextArea4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jTextArea4.setForeground(new java.awt.Color(0, 0, 0));
+        jTextArea4.setRows(5);
+        jTextArea4.setText("Contact : +977-9842132132");
 
-        Profile_icon6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/Johnwickposter.jpg"))); // NOI18N
+        jTextArea6.setBackground(new java.awt.Color(204, 204, 204));
+        jTextArea6.setColumns(20);
+        jTextArea6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jTextArea6.setForeground(new java.awt.Color(0, 0, 0));
+        jTextArea6.setRows(5);
+        jTextArea6.setText("FAQ");
 
-        Profile_icon7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Profile_icon7.setForeground(new java.awt.Color(51, 51, 51));
-        Profile_icon7.setText("Transformers");
-
-        Profile_icon8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Profile_icon8.setForeground(new java.awt.Color(51, 51, 51));
-        Profile_icon8.setText("Harry Potter and");
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel2.setText("The Half-blood Prince ");
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel3.setText("Philosophers' stone");
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel4.setText("Harry Potter and the");
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel5.setText("John wick");
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel6.setText("Rs. 1100");
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel7.setText("Rs. 999");
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel8.setText("Rs. 1299");
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel9.setText("Rs. 899");
+        jTextArea7.setBackground(new java.awt.Color(204, 204, 204));
+        jTextArea7.setColumns(20);
+        jTextArea7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jTextArea7.setForeground(new java.awt.Color(0, 0, 0));
+        jTextArea7.setRows(5);
+        jTextArea7.setText("Email : rentifysupport@gmail.com\n");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -156,75 +160,47 @@ public class LibraryPage extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(54, 54, 54)
-                .addComponent(FilterBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(ContactBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ProductDemoBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RequestBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LicenseQuesBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(85, 85, 85)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Profile_icon5)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(Profile_icon7))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel7)))
-                .addGap(70, 70, 70)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Profile_icon8, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel8))
-                .addGap(760, 760, 760)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 323, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Profile_icon4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Profile_icon6, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel5))
-                                .addGap(36, 36, 36)))))
-                .addGap(47, 47, 47))
+                    .addComponent(jTextArea1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextArea4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextArea7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextArea6, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(531, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addComponent(FilterBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(ContactBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(ProductDemoBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(RequestBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(LicenseQuesBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(1183, 1183, 1183)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Profile_icon4)
-                            .addComponent(Profile_icon6)
-                            .addComponent(Profile_icon5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Profile_icon7)
-                            .addComponent(Profile_icon8)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
+                        .addGap(41, 41, 41)
+                        .addComponent(jTextArea4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9))))
+                        .addComponent(jTextArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextArea7, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)
+                        .addComponent(jTextArea6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -337,59 +313,46 @@ public class LibraryPage extends javax.swing.JFrame {
         jPanel1.add(profileBTN);
         profileBTN.setBounds(1180, 10, 85, 85);
 
+        jTextArea3.setBackground(new java.awt.Color(229, 231, 235));
+        jTextArea3.setColumns(20);
+        jTextArea3.setRows(5);
+        jTextArea3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel1.add(jTextArea3);
+        jTextArea3.setBounds(820, 100, 230, 30);
+
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 1280, 720);
+
+        jPanel3.setBackground(new java.awt.Color(229, 231, 235));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(229, 231, 235)));
+        jPanel3.setPreferredSize(new java.awt.Dimension(3, 560));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 604, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel3);
+        jPanel3.setBounds(276, 3, 2, 606);
+
+        jTextArea5.setBackground(new java.awt.Color(204, 204, 204));
+        jTextArea5.setColumns(20);
+        jTextArea5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jTextArea5.setForeground(new java.awt.Color(0, 0, 0));
+        jTextArea5.setRows(5);
+        jTextArea5.setText("Contact : +977-9842132132");
+        getContentPane().add(jTextArea5);
+        jTextArea5.setBounds(0, 0, 332, 129);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private boolean containsText(java.awt.Component comp, String text) {
-    // If this component has text (e.g. JLabel, JButton, JTextComponent)
-    if (comp instanceof javax.swing.JLabel) {
-        String labelText = ((javax.swing.JLabel) comp).getText();
-        if (labelText != null && labelText.toLowerCase().contains(text)) {
-            return true;
-        }
-    } else if (comp instanceof javax.swing.JButton) {
-        String btnText = ((javax.swing.JButton) comp).getText();
-        if (btnText != null && btnText.toLowerCase().contains(text)) {
-            return true;
-        }
-    } else if (comp instanceof javax.swing.text.JTextComponent) {
-        String fieldText = ((javax.swing.text.JTextComponent) comp).getText();
-        if (fieldText != null && fieldText.toLowerCase().contains(text)) {
-            return true;
-        }
-    }
-
-    // If it's a container (like JPanel), search its children
-    if (comp instanceof java.awt.Container) {
-        for (java.awt.Component child : ((java.awt.Container) comp).getComponents()) {
-            if (containsText(child, text)) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
-    private void performSearch() {
-    String text = jTextArea2.getText().trim().toLowerCase();
-    boolean showAll = text.isEmpty();
-
-    for (java.awt.Component comp : jPanel2.getComponents()) {
-        boolean visible = showAll;
-
-        if (!showAll) {
-            // Search in all child components' text
-            visible = containsText(comp, text);
-        }
-        comp.setVisible(visible);
-    }
-
-    jPanel2.revalidate();
-    jPanel2.repaint();
-    }
     private void SupportBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupportBTNActionPerformed
         // TODO add your handling code here:
         Point loc = this.getLocation();
@@ -402,8 +365,9 @@ public class LibraryPage extends javax.swing.JFrame {
     private void LibraryBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LibraryBTNActionPerformed
         // TODO add your handling code here:
         Point loc = this.getLocation();
-        LibraryPage libraryPage = new LibraryPage();
+        SupportPage libraryPage = new SupportPage();
         libraryPage.setLocation(loc);
+        
         libraryPage.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_LibraryBTNActionPerformed
@@ -437,17 +401,13 @@ public class LibraryPage extends javax.swing.JFrame {
 
     private void SearchBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchBTNActionPerformed
         // TODO add your handling code here:
-        performSearch();
+        
     }//GEN-LAST:event_SearchBTNActionPerformed
 
     private void cartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cartActionPerformed
         // TODO add your handling code here:
         
     }//GEN-LAST:event_cartActionPerformed
-
-    private void FilterBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FilterBTNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FilterBTNActionPerformed
 
     private void logoBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoBTNMouseClicked
         // TODO add your handling code here:
@@ -466,6 +426,42 @@ public class LibraryPage extends javax.swing.JFrame {
         userDashboard.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_profileBTNMouseClicked
+
+    private void LicenseQuesBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LicenseQuesBTNActionPerformed
+        // TODO add your handling code here:
+        Point loc = this.getLocation();
+        SupportPageToBeAdded supportPageToBeAdded = new SupportPageToBeAdded();
+        supportPageToBeAdded.setLocation(loc);
+        supportPageToBeAdded.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_LicenseQuesBTNActionPerformed
+
+    private void RequestBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RequestBTNActionPerformed
+        // TODO add your handling code here:
+        Point loc = this.getLocation();
+        SupportPageToBeAdded supportPageToBeAdded = new SupportPageToBeAdded();
+        supportPageToBeAdded.setLocation(loc);
+        supportPageToBeAdded.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_RequestBTNActionPerformed
+
+    private void ProductDemoBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductDemoBTNActionPerformed
+        // TODO add your handling code here:
+        Point loc = this.getLocation();
+        SupportPageToBeAdded supportPageToBeAdded = new SupportPageToBeAdded();
+        supportPageToBeAdded.setLocation(loc);
+        supportPageToBeAdded.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_ProductDemoBTNActionPerformed
+
+    private void ContactBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContactBTNActionPerformed
+        // TODO add your handling code here:
+        Point loc = this.getLocation();
+        SupportPage supportPage = new SupportPage();
+        supportPage.setLocation(loc);
+        supportPage.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_ContactBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -489,35 +485,32 @@ public class LibraryPage extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new LibraryPage().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new SupportPage().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BooksBTN;
-    private javax.swing.JButton FilterBTN;
+    private javax.swing.JButton ContactBTN;
     private javax.swing.JButton LibraryBTN;
+    private javax.swing.JButton LicenseQuesBTN;
     private javax.swing.JButton MoviesBTN;
     private javax.swing.JButton NewestBTN;
-    private javax.swing.JLabel Profile_icon4;
-    private javax.swing.JLabel Profile_icon5;
-    private javax.swing.JLabel Profile_icon6;
-    private javax.swing.JLabel Profile_icon7;
-    private javax.swing.JLabel Profile_icon8;
+    private javax.swing.JButton ProductDemoBTN;
+    private javax.swing.JButton RequestBTN;
     private javax.swing.JButton SearchBTN;
     private javax.swing.JButton SupportBTN;
     private javax.swing.JButton cart;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea jTextArea3;
+    private javax.swing.JTextArea jTextArea4;
+    private javax.swing.JTextArea jTextArea5;
+    private javax.swing.JTextArea jTextArea6;
+    private javax.swing.JTextArea jTextArea7;
     private javax.swing.JLabel logoBTN;
     private javax.swing.JLabel profileBTN;
     // End of variables declaration//GEN-END:variables

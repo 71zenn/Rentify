@@ -17,11 +17,52 @@ import model.ProductModel;
 
 public class ProductDao {
     MySQLConnection mysql = new MySQLConnection();
+    public List<ProductModel> getAllProducts() {
+        List<ProductModel> products = new ArrayList<>();
+        
+        try {
+            // Use your mysqlconnection class
+            MySQLConnection db = new MySQLConnection();
+            Connection conn = db.openConnection();
+            
+            if (conn != null) {
+                String sql = "SELECT * FROM products";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(sql);
+                 ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    ProductModel product = new ProductModel(
+                        rs.getInt("id"),
+                        rs.getString("productName"),
+                        rs.getString("productImage"),
+                        rs.getInt("productPrice"),
+                        rs.getString("productSynopsis"),
+                        rs.getString("productType"),
+                        rs.getString("productForm"),  
+                        rs.getInt("productQuantity")
+                    );
+                    products.add(product);
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            } finally {
+                mysql.closeConnection(conn);
+            }
+                System.out.println(products);
+                System.out.println("Loaded " + products.size() + " products from database");
+                db.closeConnection(conn);
+            }
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+        
+        return products;
+    }
     public void createProduct(ProductModel product) {
         Connection conn = mysql.openConnection();
-String sql = "INSERT INTO products (productName , productImage, productPrice, " +
-             "productSynopsis, productType, productForm, productQuantity) " +
-             "VALUES ( ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO products (productName , productImage, productPrice, " +
+                     "productSynopsis, productType, productForm, productQuantity) " +
+                     "VALUES ( ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, product.getProductName());
             pstmt.setString(2, product.getProductImage());
@@ -39,116 +80,176 @@ String sql = "INSERT INTO products (productName , productImage, productPrice, " 
         }
     } 
 
+    
 
 
-     
-    public List<ProductModel> getAllProducts() {
+    public List<ProductModel> getAllFavouriteProducts(int userid) {
     List<ProductModel> products = new ArrayList<>();
-    Connection conn = mysql.openConnection();
-    String sql = "SELECT * FROM products";
-/**
- *  private String productName; 
-        private String productImage;
-        private String productSynopsis;
-        private Boolean productType;
-        private Boolean productForm;
-        private int productPrice; 
-        * (int product_ID, String productName, String productImage , int productPrice, String productSynopsis, Boolean productType, Boolean productForm)
- */
-    try (PreparedStatement pstmt = conn.prepareStatement(sql);
-         ResultSet rs = pstmt.executeQuery()) {
-        while (rs.next()) {
-            ProductModel product = new ProductModel(
-                rs.getInt("id"),
-                rs.getString("productName"),
-                rs.getString("productImage"),
-                rs.getInt("productPrice"),
-                rs.getString("productSynopsis"),
-                rs.getString("productType"),
-                rs.getString("productForm"),  
-                rs.getInt("productQuantity")
-            );
-            products.add(product);
-        }
-    } catch (SQLException ex) {
-        ex.printStackTrace();
-    } finally {
-        mysql.closeConnection(conn);
-    }
-    return products;
-}
+    Connection conn = null;
 
+    String sql = "SELECT * FROM favourites where favourites.userid = ?";
 
-public void updateProduct(ProductModel product) {
-    Connection conn = mysql.openConnection();
-    String sql = "UPDATE products SET " +
-                 "productName=?, productImage=?, productPrice=?, " +
-                 "productSynopsis=?, productType=?, productForm=?, " +
-                 "productQuantity=? WHERE id=?";
+    try {
+        conn = mysql.openConnection();
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            // set the userid parameter
+            pstmt.setInt(1, userid);
 
-    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-        pstmt.setString(1, product.getProductName());
-        pstmt.setString(2, product.getProductImage());
-        pstmt.setInt(3, product.getProductPrice());
-        pstmt.setString(4, product.getProductSynopsis());
-        pstmt.setString(5, product.getProductType());
-        pstmt.setString(6, product.getProductForm());
-        pstmt.setInt(7, product.getProductQuantity());
-        pstmt.setInt(8, product.getProductID());
-
-        int rows = pstmt.executeUpdate();   // only once
-        System.out.println("UPDATED rows = " + rows);
-    } catch (SQLException ex) {
-        ex.printStackTrace();
-    } finally {
-        mysql.closeConnection(conn);
-    }
-}
-
-
-public ProductModel getProductById(int id) {
-    ProductModel product = null;
-    Connection conn = mysql.openConnection();
-    String sql = "SELECT * FROM products WHERE id=?";
-
-    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-        pstmt.setInt(1, id);
-        try (ResultSet rs = pstmt.executeQuery()) {
-            if (rs.next()) {
-                product = new ProductModel(
-                    rs.getInt("id"),
-                    rs.getString("productName"),
-                    rs.getString("productImage"),
-                    rs.getInt("productPrice"),
-                    rs.getString("productSynopsis"),
-                    rs.getString("productType"),
-                    rs.getString("productForm"),
-                    rs.getInt("productQuantity")
-                );
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    ProductModel product = new ProductModel(
+                        rs.getInt("id"),
+                        rs.getString("productName"),
+                        rs.getString("productImage"),
+                        rs.getInt("productPrice"),
+                        rs.getString("productSynopsis"),
+                        rs.getString("productType"),
+                        rs.getString("productForm"),
+                        rs.getInt("productQuantity")
+                    );
+                    products.add(product);
+                }
             }
         }
     } catch (SQLException ex) {
-        ex.printStackTrace();
+        ex.printStackTrace();   // or log properly
     } finally {
         mysql.closeConnection(conn);
     }
-    return product;
-}
-public void deleteProduct(int id) {
-    Connection conn = mysql.openConnection();
-    String sql = "DELETE FROM products WHERE id=?";
 
-    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-        pstmt.setInt(1, id);
-        pstmt.executeUpdate();
-    } catch (SQLException ex) {
-        ex.printStackTrace();
-    } finally {
-        mysql.closeConnection(conn);
-    }
+    return products;
 }
-public int getTotalQuantityByType(String type) {
+
+    public List<ProductModel> getAllbooks() {
+            List<ProductModel> products = new ArrayList<>();
+            Connection conn = mysql.openConnection();
+            String sql = "select * from products where productType = 'Book'";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(sql);
+                    
+                 ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    ProductModel product = new ProductModel(
+                        rs.getInt("id"),
+                        rs.getString("productName"),
+                        rs.getString("productImage"),
+                        rs.getInt("productPrice"),
+                        rs.getString("productSynopsis"),
+                        rs.getString("productType"),
+                        rs.getString("productForm"),  
+                        rs.getInt("productQuantity")   
+                    );
+                    products.add(product);
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            } finally {
+                mysql.closeConnection(conn);
+            }
+            return products;
+        }
+    
+    public List<ProductModel> getAllMovies() {
+            List<ProductModel> products = new ArrayList<>();
+            Connection conn = mysql.openConnection();
+            String sql = "select * from products where productType = 'Movie'";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(sql);
+                    
+                 ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    ProductModel product = new ProductModel(
+                        rs.getInt("id"),
+                        rs.getString("productName"),
+                        rs.getString("productImage"),
+                        rs.getInt("productPrice"),
+                        rs.getString("productSynopsis"),
+                        rs.getString("productType"),
+                        rs.getString("productForm"),  
+                        rs.getInt("productQuantity")   
+                    );
+                    products.add(product);
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            } finally {
+                mysql.closeConnection(conn);
+            }
+            return products;
+        }
+    
+   
+    public void updateProduct(ProductModel product) {
+        Connection conn = mysql.openConnection();
+        String sql = "UPDATE products SET " +
+                     "productName=?, productImage=?, productPrice=?, " +
+                     "productSynopsis=?, productType=?, productForm=?, " +
+                     "productQuantity=? WHERE id=?";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, product.getProductName());
+            pstmt.setString(2, product.getProductImage());
+            pstmt.setInt(3, product.getProductPrice());
+            pstmt.setString(4, product.getProductSynopsis());
+            pstmt.setString(5, product.getProductType());
+            pstmt.setString(6, product.getProductForm());
+            pstmt.setInt(7, product.getProductQuantity());
+            pstmt.setInt(8, product.getProductID());
+
+            int rows = pstmt.executeUpdate();   // only once
+            System.out.println("UPDATED rows = " + rows);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            mysql.closeConnection(conn);
+        }
+    }
+
+
+    public ProductModel getProductById(int id) {
+        ProductModel product = null;
+        Connection conn = mysql.openConnection();
+        String sql = "SELECT * FROM products WHERE id=?";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    product = new ProductModel(
+                        rs.getInt("id"),
+                        rs.getString("productName"),
+                        rs.getString("productImage"),
+                        rs.getInt("productPrice"),
+                        rs.getString("productSynopsis"),
+                        rs.getString("productType"),
+                        rs.getString("productForm"),
+                        rs.getInt("productQuantity")
+                    );
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            mysql.closeConnection(conn);
+        }
+        return product;
+    }
+    
+    public void deleteProduct(int id) {
+        Connection conn = mysql.openConnection();
+        String sql = "DELETE FROM products WHERE id=?";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            mysql.closeConnection(conn);
+        }
+    }
+    public int getTotalQuantityByType(String type) {
     int total = 0;
     Connection conn = mysql.openConnection();
     String sql = "SELECT SUM(productQuantity) AS total FROM products WHERE productType = ?";

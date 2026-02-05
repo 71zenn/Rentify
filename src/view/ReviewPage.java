@@ -20,6 +20,7 @@ public class ReviewPage extends javax.swing.JFrame {
      */
     public ReviewPage() {
         initComponents();
+        setSize(1293,760);
     }
 
     /**
@@ -285,19 +286,39 @@ public class ReviewPage extends javax.swing.JFrame {
 
     private void SupportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupportActionPerformed
         // TODO add your handling code here:
+        Point loc = this.getLocation();
+        SupportPage ad = new SupportPage();
+        ad.setLocation(loc);
+        ad.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_SupportActionPerformed
 
     private void LibraryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LibraryActionPerformed
         // TODO add your handling code here:
+        Point loc = this.getLocation();
+        LibraryPage ad = new LibraryPage();
+        ad.setLocation(loc);
+        ad.setVisible(true);
+        this.dispose();
 
     }//GEN-LAST:event_LibraryActionPerformed
 
     private void MoviesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MoviesActionPerformed
         // TODO add your handling code here:
+        Point loc = this.getLocation();
+        MoviePage ad = new MoviePage();
+        ad.setLocation(loc);
+        ad.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_MoviesActionPerformed
 
     private void NewestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewestActionPerformed
         // TODO add your handling code here:
+        Point loc = this.getLocation();
+        NewestPage ad = new NewestPage();
+        ad.setLocation(loc);
+        ad.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_NewestActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -306,6 +327,11 @@ public class ReviewPage extends javax.swing.JFrame {
 
     private void BooksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BooksActionPerformed
         // TODO add your handling code here:
+        Point loc = this.getLocation();
+        BooksPage ad = new BooksPage();
+        ad.setLocation(loc);
+        ad.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_BooksActionPerformed
 
     private void cartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cartActionPerformed
@@ -337,14 +363,18 @@ public class ReviewPage extends javax.swing.JFrame {
 
     private void logoBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoBTNMouseClicked
         // TODO add your handling code here:
+        Point loc = this.getLocation();
         HomePage homePage = new HomePage();
+        homePage.setLocation(loc);
         homePage.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_logoBTNMouseClicked
 
     private void profileBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileBTNMouseClicked
         // TODO add your handling code here:
+        Point loc = this.getLocation();
         UserDashboard userDashboard = new UserDashboard();
+        userDashboard.setLocation(loc);
         userDashboard.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_profileBTNMouseClicked

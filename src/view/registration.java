@@ -22,6 +22,7 @@ public class registration extends javax.swing.JFrame {
      */
     public registration() {
         initComponents();
+        setSize(1293,760);
         new userController(this);
     }
 

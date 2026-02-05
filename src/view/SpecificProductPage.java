@@ -46,6 +46,7 @@ public class SpecificProductPage extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel3 = new javax.swing.JPanel();
         productPanelPlace = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
         reviewPanelPlace = new javax.swing.JPanel();
         rateBtn = new javax.swing.JButton();
         jTextArea1 = new javax.swing.JTextArea();
@@ -79,6 +80,15 @@ public class SpecificProductPage extends javax.swing.JFrame {
 
         productPanelPlace.setBackground(new java.awt.Color(255, 255, 255));
         productPanelPlace.setPreferredSize(new java.awt.Dimension(880, 200));
+        productPanelPlace.setLayout(null);
+
+        jButton2.setBackground(new java.awt.Color(38, 166, 154));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Add To Cart");
+        jButton2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        productPanelPlace.add(jButton2);
+        jButton2.setBounds(740, 160, 140, 30);
 
         reviewPanelPlace.setBackground(new java.awt.Color(255, 255, 255));
         reviewPanelPlace.setPreferredSize(new java.awt.Dimension(880, 220));
@@ -97,7 +107,7 @@ public class SpecificProductPage extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(42, Short.MAX_VALUE)
+                .addContainerGap(48, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(reviewPanelPlace, javax.swing.GroupLayout.PREFERRED_SIZE, 890, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rateBtn)
@@ -111,9 +121,9 @@ public class SpecificProductPage extends javax.swing.JFrame {
                 .addComponent(productPanelPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rateBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(reviewPanelPlace, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         jScrollPane2.setViewportView(jPanel3);
@@ -336,6 +346,7 @@ public class SpecificProductPage extends javax.swing.JFrame {
     private javax.swing.JButton Support;
     private javax.swing.JButton cart;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

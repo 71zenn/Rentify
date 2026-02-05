@@ -5,36 +5,22 @@
 package view;
 
 import java.awt.Point;
-import javax.swing.JPanel;
 
 /**
  *
  * @author zenni
  */
-public class MoviePage extends javax.swing.JFrame {
+public class SupportPageToBeAdded extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MoviePage.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SupportPageToBeAdded.class.getName());
 
     /**
      * Creates new form dashboard
      */
-    public MoviePage() {
+    public SupportPageToBeAdded() {
         initComponents();
         setSize(1293,760);
-        controller.MoviespageController controller = new controller.MoviespageController(this);
-        
-        
 
-        controller.loadAllProducts();
-        jTextArea2.getInputMap().put(
-        javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ENTER, 0),
-        "search");
-        jTextArea2.getActionMap().put("search", new javax.swing.AbstractAction() {
-            @Override
-        public void actionPerformed(java.awt.event.ActionEvent e) {
-            performSearch();
-            }
-        }); 
     }
 
     /**
@@ -48,22 +34,12 @@ public class MoviePage extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        FilterBTN = new javax.swing.JButton();
-        Profile_icon4 = new javax.swing.JLabel();
-        Profile_icon5 = new javax.swing.JLabel();
-        Profile_icon6 = new javax.swing.JLabel();
-        Profile_icon7 = new javax.swing.JLabel();
-        Profile_icon8 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        homePanelReal = new javax.swing.JPanel();
+        ContactBTN = new javax.swing.JButton();
+        ProductDemoBTN = new javax.swing.JButton();
+        RequestBTN = new javax.swing.JButton();
+        LicenseQuesBTN = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jTextArea7 = new javax.swing.JTextArea();
         SupportBTN = new javax.swing.JButton();
         LibraryBTN = new javax.swing.JButton();
         MoviesBTN = new javax.swing.JButton();
@@ -74,6 +50,9 @@ public class MoviePage extends javax.swing.JFrame {
         cart = new javax.swing.JButton();
         logoBTN = new javax.swing.JLabel();
         profileBTN = new javax.swing.JLabel();
+        jTextArea3 = new javax.swing.JTextArea();
+        jPanel3 = new javax.swing.JPanel();
+        jTextArea5 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -84,99 +63,112 @@ public class MoviePage extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(229, 231, 235), 3));
-        jPanel2.setLayout(null);
 
-        FilterBTN.setBackground(new java.awt.Color(255, 255, 255));
-        FilterBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
-        FilterBTN.setForeground(new java.awt.Color(107, 114, 128));
-        FilterBTN.setText("Filter");
-        FilterBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 166, 154)));
-        FilterBTN.addActionListener(new java.awt.event.ActionListener() {
+        ContactBTN.setBackground(new java.awt.Color(255, 255, 255));
+        ContactBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        ContactBTN.setForeground(new java.awt.Color(107, 114, 128));
+        ContactBTN.setText("Contact info");
+        ContactBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 166, 154)));
+        ContactBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FilterBTNActionPerformed(evt);
+                ContactBTNActionPerformed(evt);
             }
         });
-        jPanel2.add(FilterBTN);
-        FilterBTN.setBounds(57, 37, 180, 36);
 
-        Profile_icon4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/harrypotterTPScover.jpg"))); // NOI18N
-        jPanel2.add(Profile_icon4);
-        Profile_icon4.setBounds(1487, 1334, 150, 150);
+        ProductDemoBTN.setBackground(new java.awt.Color(255, 255, 255));
+        ProductDemoBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        ProductDemoBTN.setForeground(new java.awt.Color(107, 114, 128));
+        ProductDemoBTN.setText("Product demo");
+        ProductDemoBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 166, 154)));
+        ProductDemoBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ProductDemoBTNActionPerformed(evt);
+            }
+        });
 
-        Profile_icon5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/Transformersposter.jpg"))); // NOI18N
-        jPanel2.add(Profile_icon5);
-        Profile_icon5.setBounds(330, 1334, 150, 150);
+        RequestBTN.setBackground(new java.awt.Color(255, 255, 255));
+        RequestBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        RequestBTN.setForeground(new java.awt.Color(107, 114, 128));
+        RequestBTN.setText("Request features");
+        RequestBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 166, 154)));
+        RequestBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RequestBTNActionPerformed(evt);
+            }
+        });
 
-        Profile_icon6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/Johnwickposter.jpg"))); // NOI18N
-        jPanel2.add(Profile_icon6);
-        Profile_icon6.setBounds(1653, 1334, 150, 150);
+        LicenseQuesBTN.setBackground(new java.awt.Color(255, 255, 255));
+        LicenseQuesBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        LicenseQuesBTN.setForeground(new java.awt.Color(107, 114, 128));
+        LicenseQuesBTN.setText("License inquiries");
+        LicenseQuesBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 166, 154)));
+        LicenseQuesBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LicenseQuesBTNActionPerformed(evt);
+            }
+        });
 
-        Profile_icon7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Profile_icon7.setForeground(new java.awt.Color(51, 51, 51));
-        Profile_icon7.setText("Transformers");
-        jPanel2.add(Profile_icon7);
-        Profile_icon7.setBounds(345, 1496, 102, 25);
+        jPanel4.setBackground(new java.awt.Color(229, 231, 235));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(229, 231, 235)));
+        jPanel4.setPreferredSize(new java.awt.Dimension(3, 560));
 
-        Profile_icon8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Profile_icon8.setForeground(new java.awt.Color(51, 51, 51));
-        Profile_icon8.setText("Harry Potter and");
-        jPanel2.add(Profile_icon8);
-        Profile_icon8.setBounds(550, 1496, 172, 25);
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 559, Short.MAX_VALUE)
+        );
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel2.setText("The Half-blood Prince ");
-        jPanel2.add(jLabel2);
-        jLabel2.setBounds(550, 1527, 177, 25);
+        jTextArea7.setBackground(new java.awt.Color(255, 255, 255));
+        jTextArea7.setColumns(20);
+        jTextArea7.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        jTextArea7.setForeground(new java.awt.Color(0, 0, 0));
+        jTextArea7.setRows(5);
+        jTextArea7.setText("To be added.");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel3.setText("Philosophers' stone");
-        jPanel2.add(jLabel3);
-        jLabel3.setBounds(1487, 1527, 153, 25);
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel4.setText("Harry Potter and the");
-        jPanel2.add(jLabel4);
-        jLabel4.setBounds(1487, 1496, 160, 25);
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel5.setText("John wick");
-        jPanel2.add(jLabel5);
-        jLabel5.setBounds(1690, 1496, 77, 25);
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel6.setText("Rs. 1100");
-        jPanel2.add(jLabel6);
-        jLabel6.setBounds(1487, 1570, 59, 22);
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel7.setText("Rs. 999");
-        jPanel2.add(jLabel7);
-        jLabel7.setBounds(355, 1570, 50, 22);
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel8.setText("Rs. 1299");
-        jPanel2.add(jLabel8);
-        jLabel8.setBounds(550, 1570, 59, 22);
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel9.setText("Rs. 899");
-        jPanel2.add(jLabel9);
-        jLabel9.setBounds(1690, 1570, 50, 22);
-
-        homePanelReal.setBackground(new java.awt.Color(255, 255, 255));
-        homePanelReal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(229, 231, 235), 3));
-        jScrollPane1.setViewportView(homePanelReal);
-
-        jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(290, 0, 940, 560);
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(ContactBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ProductDemoBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RequestBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LicenseQuesBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(305, 305, 305)
+                .addComponent(jTextArea7, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(314, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(ContactBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(ProductDemoBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(RequestBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(LicenseQuesBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(198, 198, 198)
+                        .addComponent(jTextArea7, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(25, 140, 1230, 565);
@@ -193,7 +185,7 @@ public class MoviePage extends javax.swing.JFrame {
         jPanel1.add(SupportBTN);
         SupportBTN.setBounds(990, 50, 146, 36);
 
-        LibraryBTN.setBackground(new java.awt.Color(232, 241, 253));
+        LibraryBTN.setBackground(new java.awt.Color(196, 215, 239));
         LibraryBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         LibraryBTN.setForeground(new java.awt.Color(17, 24, 39));
         LibraryBTN.setText("Library");
@@ -205,7 +197,7 @@ public class MoviePage extends javax.swing.JFrame {
         jPanel1.add(LibraryBTN);
         LibraryBTN.setBounds(310, 50, 146, 36);
 
-        MoviesBTN.setBackground(new java.awt.Color(196, 215, 239));
+        MoviesBTN.setBackground(new java.awt.Color(232, 241, 253));
         MoviesBTN.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         MoviesBTN.setForeground(new java.awt.Color(17, 24, 39));
         MoviesBTN.setText("Movies");
@@ -287,63 +279,50 @@ public class MoviePage extends javax.swing.JFrame {
         jPanel1.add(profileBTN);
         profileBTN.setBounds(1180, 10, 85, 85);
 
+        jTextArea3.setBackground(new java.awt.Color(229, 231, 235));
+        jTextArea3.setColumns(20);
+        jTextArea3.setRows(5);
+        jTextArea3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel1.add(jTextArea3);
+        jTextArea3.setBounds(820, 100, 230, 30);
+
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 1280, 720);
+
+        jPanel3.setBackground(new java.awt.Color(229, 231, 235));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(229, 231, 235)));
+        jPanel3.setPreferredSize(new java.awt.Dimension(3, 560));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 604, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel3);
+        jPanel3.setBounds(276, 3, 2, 606);
+
+        jTextArea5.setBackground(new java.awt.Color(204, 204, 204));
+        jTextArea5.setColumns(20);
+        jTextArea5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jTextArea5.setForeground(new java.awt.Color(0, 0, 0));
+        jTextArea5.setRows(5);
+        jTextArea5.setText("Contact : +977-9842132132");
+        getContentPane().add(jTextArea5);
+        jTextArea5.setBounds(0, 0, 332, 129);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private boolean containsText(java.awt.Component comp, String text) {
-    // If this component has text (e.g. JLabel, JButton, JTextComponent)
-    if (comp instanceof javax.swing.JLabel) {
-        String labelText = ((javax.swing.JLabel) comp).getText();
-        if (labelText != null && labelText.toLowerCase().contains(text)) {
-            return true;
-        }
-    } else if (comp instanceof javax.swing.JButton) {
-        String btnText = ((javax.swing.JButton) comp).getText();
-        if (btnText != null && btnText.toLowerCase().contains(text)) {
-            return true;
-        }
-    } else if (comp instanceof javax.swing.text.JTextComponent) {
-        String fieldText = ((javax.swing.text.JTextComponent) comp).getText();
-        if (fieldText != null && fieldText.toLowerCase().contains(text)) {
-            return true;
-        }
-    }
-
-    // If it's a container (like JPanel), search its children
-    if (comp instanceof java.awt.Container) {
-        for (java.awt.Component child : ((java.awt.Container) comp).getComponents()) {
-            if (containsText(child, text)) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
-    private void performSearch() {
-    String text = jTextArea2.getText().trim().toLowerCase();
-    boolean showAll = text.isEmpty();
-
-    for (java.awt.Component comp : homePanelReal.getComponents()) {
-        boolean visible = showAll;
-
-        if (!showAll) {
-            // Search in all child components' text
-            visible = containsText(comp, text);
-        }
-        comp.setVisible(visible);
-    }
-
-    homePanelReal.revalidate();
-    homePanelReal.repaint();
-    }
     private void SupportBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupportBTNActionPerformed
         // TODO add your handling code here:
         Point loc = this.getLocation();
-        SupportPage supportPage = new SupportPage();
+        SupportPageToBeAdded supportPage = new SupportPageToBeAdded();
         supportPage.setLocation(loc);
         supportPage.setVisible(true);
         this.dispose();
@@ -352,7 +331,7 @@ public class MoviePage extends javax.swing.JFrame {
     private void LibraryBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LibraryBTNActionPerformed
         // TODO add your handling code here:
         Point loc = this.getLocation();
-        LibraryPage libraryPage = new LibraryPage();
+        SupportPageToBeAdded libraryPage = new SupportPageToBeAdded();
         libraryPage.setLocation(loc);
         libraryPage.setVisible(true);
         this.dispose();
@@ -360,13 +339,11 @@ public class MoviePage extends javax.swing.JFrame {
 
     private void MoviesBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MoviesBTNActionPerformed
         // TODO add your handling code here:
-    // Navigate to Profile Page
         Point loc = this.getLocation();
         MoviePage moviePage = new MoviePage();
         moviePage.setLocation(loc);
         moviePage.setVisible(true);
-        this.dispose(); // Close current dashboard
-
+        this.dispose(); 
     }//GEN-LAST:event_MoviesBTNActionPerformed
 
     private void NewestBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewestBTNActionPerformed
@@ -389,17 +366,13 @@ public class MoviePage extends javax.swing.JFrame {
 
     private void SearchBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchBTNActionPerformed
         // TODO add your handling code here:
-        performSearch();
+        
     }//GEN-LAST:event_SearchBTNActionPerformed
 
     private void cartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cartActionPerformed
         // TODO add your handling code here:
         
     }//GEN-LAST:event_cartActionPerformed
-
-    private void FilterBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FilterBTNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FilterBTNActionPerformed
 
     private void logoBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoBTNMouseClicked
         // TODO add your handling code here:
@@ -418,8 +391,43 @@ public class MoviePage extends javax.swing.JFrame {
         userDashboard.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_profileBTNMouseClicked
-    
-   
+
+    private void LicenseQuesBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LicenseQuesBTNActionPerformed
+        // TODO add your handling code here:
+        Point loc = this.getLocation();
+        SupportPageToBeAdded supportPageToBeAdded = new SupportPageToBeAdded();
+        supportPageToBeAdded.setLocation(loc);
+        supportPageToBeAdded.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_LicenseQuesBTNActionPerformed
+
+    private void RequestBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RequestBTNActionPerformed
+        // TODO add your handling code here:
+        Point loc = this.getLocation();
+        SupportPageToBeAdded supportPageToBeAdded = new SupportPageToBeAdded();
+        supportPageToBeAdded.setLocation(loc);
+        supportPageToBeAdded.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_RequestBTNActionPerformed
+
+    private void ProductDemoBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductDemoBTNActionPerformed
+        // TODO add your handling code here:
+        Point loc = this.getLocation();
+        SupportPageToBeAdded supportPageToBeAdded = new SupportPageToBeAdded();
+        supportPageToBeAdded.setLocation(loc);
+        supportPageToBeAdded.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_ProductDemoBTNActionPerformed
+
+    private void ContactBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContactBTNActionPerformed
+        // TODO add your handling code here:
+        Point loc = this.getLocation();
+        SupportPage supportPage = new SupportPage();
+        supportPage.setLocation(loc);
+        supportPage.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_ContactBTNActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -440,61 +448,33 @@ public class MoviePage extends javax.swing.JFrame {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UserDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UserDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UserDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UserDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MoviePage().setVisible(true);
-            }
-        });
+        java.awt.EventQueue.invokeLater(() -> new SupportPageToBeAdded().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BooksBTN;
-    private javax.swing.JButton FilterBTN;
+    private javax.swing.JButton ContactBTN;
     private javax.swing.JButton LibraryBTN;
+    private javax.swing.JButton LicenseQuesBTN;
     private javax.swing.JButton MoviesBTN;
     private javax.swing.JButton NewestBTN;
-    private javax.swing.JLabel Profile_icon4;
-    private javax.swing.JLabel Profile_icon5;
-    private javax.swing.JLabel Profile_icon6;
-    private javax.swing.JLabel Profile_icon7;
-    private javax.swing.JLabel Profile_icon8;
+    private javax.swing.JButton ProductDemoBTN;
+    private javax.swing.JButton RequestBTN;
     private javax.swing.JButton SearchBTN;
     private javax.swing.JButton SupportBTN;
     private javax.swing.JButton cart;
-    private javax.swing.JPanel homePanelReal;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea jTextArea3;
+    private javax.swing.JTextArea jTextArea5;
+    private javax.swing.JTextArea jTextArea7;
     private javax.swing.JLabel logoBTN;
     private javax.swing.JLabel profileBTN;
     // End of variables declaration//GEN-END:variables
-    public JPanel getProductPanel(){
-        return homePanelReal;
-    }
+    
 }

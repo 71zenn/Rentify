@@ -57,7 +57,7 @@ public class ReviewDao {
         ReviewModel review = null;
         Connection conn = mysql.openConnection();
         String sql = "SELECT * FROM reviews WHERE user_id = ? AND product_id = ?";
-
+        
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, productId);
             pstmt.setInt(2, userId);
@@ -90,12 +90,12 @@ public class ReviewDao {
         throw new IllegalStateException("User already reviewed this product.");
     }
 
-    String sql = "INSERT INTO reviews (user_id, product_id, user_name, review_text, profile_image, rating) "
+    String sql = "INSERT INTO reviews (user_id, product_id, user_name, product_review, profile_image, product_rating)"
                + "VALUES (?,?,?,?,?,?)";
 
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, productId);
-            pstmt.setInt(2, review.getUserID());
+            pstmt.setInt(1, review.getUserID()); // user_id
+            pstmt.setInt(2, productId);          // product_id
             pstmt.setString(3, review.getUserName());
             pstmt.setString(4, review.getProductReview());
             pstmt.setString(5, review.getProfileImage());
